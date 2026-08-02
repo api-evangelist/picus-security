@@ -1,0 +1,48 @@
+generated: '2026-08-02'
+method: generated
+source: >-
+  Packaged Agent Skills generated from the Picus Customer API contract harvested at
+  https://api.picussecurity.com/swagger.json (Swagger 2.0; source in openapi/_original/, split one-per-tag
+  under openapi/). Every step is grounded in an operationId verified verbatim in the spec; cross-cutting
+  rules cite ../authentication/, ../conventions/, ../errors/, ../rate-limits/, ../lifecycle/ and
+  ../data-model/.
+safety_note: >-
+  Picus is an offensive-security platform. Skills that create or run simulations, author threat content, or
+  upload payload files carry an explicit consequence gate requiring human approval — they execute real
+  adversary techniques against live security controls.
+skills:
+- file: picus-security-authenticate.md
+  name: Authenticate to the Picus Customer API
+  api: openapi/picus-security-authentication-openapi.yml
+  operations: [AuthTokenParam, RegenerateRefreshTokenParam]
+  consequence: read
+- file: picus-security-run-a-simulation.md
+  name: Create and run a security validation simulation
+  api: openapi/picus-security-simulations-openapi.yml
+  operations: [templateListParams, Result, createSimulationParams, simulationListParams, simulationParams, simulateNowParams, simulationCancelParams, updateSimulationParams, simulationDeleteParams]
+  consequence: safety-critical
+- file: picus-security-read-simulation-results.md
+  name: Read simulation results with ATT&CK and detection evidence
+  api: openapi/picus-security-simulation-latest-result-openapi.yml
+  operations: [latestRunParams, latestRunDetailParams, latestRunThreatParams, latestActionDetailsListParams, latestActionDetailsParams, latestActionAlertsParams, latestActionLogsParams, simulationRunParams, runDetailParams, runThreatParams, actionDetailsListParams, actionDetailsParams, rawLogsParams, integrationList]
+  consequence: read
+- file: picus-security-author-a-custom-threat.md
+  name: Author a custom threat in the Picus threat library
+  api: openapi/picus-security-threats-openapi.yml
+  operations: [threatListParams, threatDetails, actionListParams, actionDetailsList, actionParametersParams, fileUploadParams, filesListParams, createProcessParams, processListParams, customActionKeywordParams, createActionParams, createThreatParams, importThreatParams, exportThreatParams, Tags, Threat-Actors]
+  consequence: safety-critical
+- file: picus-security-close-mitigation-gaps.md
+  name: Close prevention gaps with vendor mitigation signatures
+  api: openapi/picus-security-mitigation-openapi.yml
+  operations: [deviceListParamsV2, deviceStatsByIdParams, signatureListParams, genericNotBlockedActionsParams, latestRunParams, agentParams]
+  consequence: read
+- file: picus-security-author-detection-content.md
+  name: Author custom detection content for a SIEM or EDR
+  api: openapi/picus-security-mitigation-openapi.yml
+  operations: [contentSources, contentSourceNameUriParam, detectionContentRulesParams, contentSourceNameAndRuleIdUriParam, getDetectionDevicesParams, getMitreTacticsParams, getMitreTechniquesParams, getMitreSubTechniquesParams, getCustomDetectionContentParams, createCustomDetectionContentParams, getCustomDetectionContentByIdParams, updateCustomDetectionContentParams, deleteCustomDetectionContentParams]
+  consequence: write
+- file: picus-security-generate-a-report.md
+  name: Generate and download a simulation result report
+  api: openapi/picus-security-simulation-result-reports-openapi.yml
+  operations: [generateSimulationReportParams, reportParams, reportDownloadUrlParams, reportDownloadParams, summaryOverallParams, activityLogsFilterParams]
+  consequence: write

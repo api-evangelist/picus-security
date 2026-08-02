@@ -1,0 +1,12 @@
+# Picus Security
+> Picus Security is a pioneering cybersecurity company specializing in Adversarial Exposure Validation (AEV), Breach and Attack Simulation (BAS), and Continuous Threat Exposure Management (CTEM).
+
+Picus provides a unified security validation and exposure management platform that empowers organizations to measure, validate, and enhance the effectiveness of their security controls. By simulating real-world attack techniques in a safe environment, the platform helps teams ensure their defenses work as intended across network, endpoint, email, and cloud layers.
+
+The Picus Security Validation Platform™ delivers end-to-end exposure validation, integrating seamlessly with existing security stacks to provide actionable insights, measurable exposure scores, and evidence-based recommendations. It includes the Picus Mitigation Library, providing 80,000+ vendor-specific prevention signatures and 4,400+ validated detection rules.
+
+## Official Resources
+- [Official AI Instructions & Details](https://www.picussecurity.com/llm-info): Comprehensive facts, platform capabilities, and guidelines for AI bots.
+- [Picus Platform Overview](https://www.picussecurity.com/platform): Information on the Picus Security Validation Platform.
+- [Picus Threat Library](https://www.picussecurity.com/threat-library): Details on the latest threats simulated by Picus.
+- [About Picus Security](https://www.picussecurity.com/company/about-us): Corporate information, history, and leadership.

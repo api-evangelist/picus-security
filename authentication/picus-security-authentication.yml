@@ -1,0 +1,98 @@
+generated: '2026-08-02'
+method: searched
+docs: https://apidocs.picussecurity.com/docs/authentication-method
+source: >-
+  https://apidocs.picussecurity.com/docs/authentication-method (upgraded a derived pass over the 14
+  openapi/ spec files split from openapi/_original/picus-security-openapi.json)
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  model: refresh-token-exchange
+  note: >-
+    Picus describes the model as OAuth2 ("OAuth2 protocol is used to authorize Refresh/Access tokens") but
+    the contract declares a single apiKey scheme and the exchange is a proprietary JSON POST, not an
+    RFC 6749 token endpoint. See conformance/picus-security-conformance.yml.
+flow:
+  step_1:
+    action: Generate a refresh token (human, in the console)
+    where: app.picussecurity.com > Settings > Rest API Token > Generate Token
+    inputs: [token name (unique), description, expiration in days, scope]
+    ttl: 6 months
+    note: >-
+      The token and its curl command are displayed exactly once and cannot be retrieved afterwards. The
+      console lists existing tokens with name, creation date, created by, expiration date, scopes and
+      active/expired status.
+  step_2:
+    action: Exchange the refresh token for an access token
+    operationId: AuthTokenParam
+    request: POST https://api.picussecurity.com/v1/auth/token
+    request_headers:
+      Content-Type: application/json
+    request_body: '{"refresh_token": "<refresh token>"}'
+    response_body: '{"token": "<access token>", "expire_at": <unix epoch MILLISECONDS>}'
+    ttl: 2 hours
+    unauthenticated: true
+  step_3:
+    action: Call any endpoint with the access token
+    header: 'Authorization: Bearer <accessToken>'
+    note: All Picus API endpoints except the token endpoint use this single credential.
+  rotation:
+    action: Regenerate the refresh token
+    operationId: RegenerateRefreshTokenParam
+    request: POST https://api.picussecurity.com/v1/auth/refresh
+    effect: >-
+      Issues a new refresh token and INVALIDATES the previous refresh and access tokens. Cannot be used once
+      the refresh token has already expired — a new one must then be generated from the console.
+scopes:
+  supported: true
+  published: false
+  note: >-
+    Refresh tokens are created with a SCOPE that "is used to filter the API endpoints accessible by the
+    token", and the console shows a scopes column per token. Picus does not publish the scope vocabulary in
+    the docs or declare it in the contract, so no scopes/ artifact can be captured. A 403 on an endpoint the
+    user's role permits usually means the token's scope is too narrow.
+authorization:
+  model: role-based
+  roles_endpoint: GET /v1/users/roles (RolesFilterParams)
+  assign_endpoint: PUT /v1/users/{userId}/role (assignRoleParams)
+  note: >-
+    Effective permission is the intersection of the user's assigned role and the refresh token's scope.
+schemes:
+- name: Access-Token
+  type: apiKey
+  in: header
+  parameter: Authorization
+  value_form: 'Bearer {accessToken}'
+  applied: global
+  applied_note: Declared as a global `security` requirement on the root document and repeated per operation.
+  description: >-
+    After getting the access token, type "Bearer accessToken" in the Authorization header value to request
+    access to the endpoints.
+  sources:
+  - openapi/picus-security-activity-logs-openapi.yml
+  - openapi/picus-security-agents-openapi.yml
+  - openapi/picus-security-authentication-openapi.yml
+  - openapi/picus-security-instances-openapi.yml
+  - openapi/picus-security-integrations-openapi.yml
+  - openapi/picus-security-mitigation-openapi.yml
+  - openapi/picus-security-simulation-latest-result-openapi.yml
+  - openapi/picus-security-simulation-result-openapi.yml
+  - openapi/picus-security-simulation-result-reports-openapi.yml
+  - openapi/picus-security-simulations-openapi.yml
+  - openapi/picus-security-summary-openapi.yml
+  - openapi/picus-security-templates-openapi.yml
+  - openapi/picus-security-threats-openapi.yml
+  - openapi/picus-security-users-openapi.yml
+gaps:
+- No OIDC discovery document and no RFC 8414 authorization-server metadata (all /.well-known/ paths 404).
+- No mTLS, no client credentials, no PKCE — the refresh token is a bearer secret with a 6 month lifetime.
+- The scope vocabulary is enforced but unpublished, so token least-privilege cannot be planned from the docs.
+- The expire_at field is milliseconds while the rate-limit reset header is seconds — an easy client bug.
+evidence:
+- url: https://apidocs.picussecurity.com/docs/authentication-method
+  http_status: 200
+  fetched: '2026-08-02'
+- source: openapi/_original/picus-security-openapi.json
+  kind: securityDefinitions

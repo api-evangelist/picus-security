@@ -1,0 +1,138 @@
+generated: '2026-08-02'
+method: searched
+source: >-
+  https://apidocs.picussecurity.com/docs/request +
+  https://apidocs.picussecurity.com/docs/response-codes-errors +
+  https://apidocs.picussecurity.com/docs/rate-limit +
+  https://apidocs.picussecurity.com/docs/authentication-method +
+  derived from openapi/_original/picus-security-openapi.json (Swagger 2.0, 71 paths, 84 operations)
+summary: >-
+  Cross-cutting request/response semantics for the Picus Customer API. The API is JSON-in/JSON-out over
+  HTTPS with a bearer access token, URI-path versioning, offset/limit pagination with per-endpoint caps,
+  comma-separated multi-value query filters, an lte/gte numeric range convention, and X-Ratelimit-*
+  throttling headers. Idempotency is NOT supported — no idempotency key mechanism is documented anywhere
+  in the docs or declared in the contract; do not assume safe retry on writes.
+authentication:
+  style: oauth2-refresh-token-exchange
+  header: 'Authorization: Bearer {accessToken}'
+  token_endpoint: POST https://api.picussecurity.com/v1/auth/token
+  refresh_endpoint: POST https://api.picussecurity.com/v1/auth/refresh
+  refresh_token_ttl: 6 months
+  access_token_ttl: 2 hours
+  refresh_token_issued_from: app.picussecurity.com > Settings > Rest API Token
+  scoped_tokens: true
+  scoped_tokens_note: >-
+    Refresh tokens are created with a name, description, expiration in days, and a SCOPE that "is used to
+    filter the API endpoints accessible by the token". The scope vocabulary itself is not published in the
+    docs or the contract, so it cannot be captured as an OAuthScopes artifact.
+  docs: https://apidocs.picussecurity.com/docs/authentication-method
+  see: authentication/picus-security-authentication.yml
+transport:
+  scheme: https
+  host: api.picussecurity.com
+  base_path: /
+  methods: [GET, POST, PUT, DELETE, PATCH]
+  request_media_type: application/json
+  response_media_type: application/json
+  required_request_header: 'Content-Type: application/json'
+  file_upload: multipart/form-data (POST /v1/threat-library/files, field "file")
+  binary_responses: >-
+    Threat pack export and simulation report download return binary bodies with a Content-Disposition header
+    rather than JSON.
+response_envelope:
+  success: unwrapped
+  success_note: >-
+    "The successful response returns the data directly without wrapping any element." Collection endpoints
+    return a typed object containing the list plus counts; there is no generic {data: ...} envelope.
+  error: message-object
+  error_note: "The error response contains a message for detailed information."
+  see: errors/picus-security-problem-types.yml
+pagination:
+  style: offset-limit
+  params:
+    limit: limit
+    offset: offset
+  alternate_params:
+    limit: Limit
+    offset: Offset
+    note: >-
+      The detection-content rules endpoint uses capitalised Limit/Offset instead of limit/offset — a real
+      inconsistency in the contract, not a transcription error.
+  defaults:
+  - endpoint: GET /v1/simulations
+    default_limit: 25
+    default_offset: 0
+    max_limit: 50
+  - endpoint: GET /v1/simulations/{Id}/run/latest/threats
+    default_limit: 10
+    default_offset: 0
+    max_limit: 50
+  - endpoint: GET /v1/simulations/{Id}/run/{RunId}/threats
+    default_limit: 10
+    default_offset: 0
+    max_limit: 50
+  - endpoint: .../integrations/{IntegrationId}/alerts
+    default_limit: 100
+    default_offset: 0
+    max_limit: 1000
+  - endpoint: .../integrations/{IntegrationId}/logs
+    default_limit: 100
+    default_offset: 0
+    max_limit: 1000
+  notes: >-
+    Max limits are per-endpoint and are enforced with a 422 validation error naming the violated tag
+    (e.g. "tag=max, param=25, given value=1000"). There is no cursor or link-header pagination.
+filtering:
+  multi_value: comma-separated
+  multi_value_example: 'GET /v1/simulations?status=RUNNING,COMPLETED'
+  free_text: >-
+    Name fields are contains-style free text search ("The record will be returned if the given name contains
+    record field") — e.g. simulation_name, agent_name, template_name.
+  numeric_range:
+    suffixes: [_lte, _gte]
+    example: 'prevention_result_gte=50&prevention_result_lte=75'
+  date_range:
+    params: [date_start, date_end]
+    used_by: GET /v1/activity-logs
+  sorting:
+    params: [OrderBy, IsAscending]
+    used_by: GET /v1/mitigation/detection-content/{source}/rules
+  notes: >-
+    Some endpoints cap the number of values accepted in a multi-value filter; the per-endpoint guide states
+    the restriction.
+idempotency:
+  supported: false
+  documented: false
+  header: null
+  notes: >-
+    No Idempotency-Key (or equivalent) header, parameter, or retry-safety contract appears in the docs or in
+    swagger.json. Write operations (create simulation, simulate-now, create threat/action/process, invite
+    user, generate report) are NOT safe to blind-retry. Agents should read back state (e.g. GET
+    /v1/simulations) before retrying a failed write.
+request_tracing:
+  request_id_header: null
+  documented: false
+  notes: No correlation/request-id header is documented or declared in the contract.
+rate_limits:
+  headers: [X-Ratelimit-Limit, X-Ratelimit-Remaining, X-Ratelimit-Reset]
+  window: minute
+  scope: client-ip
+  throttled_status: 429
+  see: rate-limits/picus-security-rate-limits.yml
+versioning:
+  scheme: uri-path
+  current: v1
+  also_served: v2
+  see: lifecycle/picus-security-lifecycle.yml
+field_expansion:
+  supported: false
+  notes: No sparse-fieldset or expansion parameter is offered; response shape is fixed per operation.
+metadata:
+  supported: false
+  notes: No user-defined metadata bag on Picus resources.
+cross_links:
+  authentication: authentication/picus-security-authentication.yml
+  errors: errors/picus-security-problem-types.yml
+  lifecycle: lifecycle/picus-security-lifecycle.yml
+  rate_limits: rate-limits/picus-security-rate-limits.yml
+  data_model: data-model/picus-security-data-model.yml

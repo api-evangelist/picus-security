@@ -1,0 +1,57 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+provider: Picus Security
+providerId: picus-security
+generated: '2026-08-02'
+method: searched
+source: https://apidocs.picussecurity.com/docs/rate-limit
+created: '2026-08-02'
+modified: '2026-08-02'
+tags:
+- Rate Limiting
+- Security Validation
+description: >-
+  The Picus Customer API applies tiered, per-endpoint rate limits on a per-minute basis, enforced by client
+  IP. Read-oriented endpoints get higher limits than write-oriented endpoints. Picus does not publish a full
+  per-endpoint limit table; instead every response carries the limit for the endpoint that was called in the
+  X-Ratelimit-* headers, and the docs give two worked examples.
+sources:
+- https://apidocs.picussecurity.com/docs/rate-limit
+- https://apidocs.picussecurity.com/docs/response-codes-errors
+scope: client-ip
+window: minute
+strategy: tiered-per-endpoint
+headers:
+  limit: X-Ratelimit-Limit
+  remaining: X-Ratelimit-Remaining
+  reset: X-Ratelimit-Reset
+  reset_format: unix-epoch-seconds
+  note: >-
+    "X-Ratelimit-Limit give us to rate limit (per minutes) of the endpoint that is requested." Clients are
+    directed to read the limit for an endpoint off its own response headers rather than from a published table.
+responseCodes:
+  throttled: 429
+  throttled_description: TOO MANY REQUEST — The rate limit is applied.
+limits:
+- name: GET /v1/agents (documented example)
+  scope: client-ip
+  metric: requests_per_minute
+  limit: 100
+  timeFrame: minute
+  operationId: Result
+  source: https://apidocs.picussecurity.com/docs/rate-limit
+- name: GET /v1/templates/{Id} (documented example)
+  scope: client-ip
+  metric: requests_per_minute
+  limit: 2500
+  timeFrame: minute
+  operationId: templateParams
+  source: https://apidocs.picussecurity.com/docs/rate-limit
+notes: >-
+  The two documented examples span a 25x range (100/min to 2500/min), confirming the tiering is genuinely
+  per-endpoint. No published limit exists for write endpoints; the docs only state that write endpoints have
+  lower limits than read endpoints. No burst allowance, retry-after header, or quota-by-plan is documented.
+gaps:
+- No complete per-endpoint limit table is published.
+- No Retry-After header is documented on 429 responses.
+- Limits are not declared in the OpenAPI (no x-ratelimit extensions in swagger.json).

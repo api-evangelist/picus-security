@@ -1,0 +1,56 @@
+generated: '2026-08-02'
+method: searched
+probe: true
+source: https://www.picussecurity.com/trust-center
+url: https://www.picussecurity.com/trust-center
+description: >-
+  The Picus Trust Center publishes the company's privacy and security posture, its Vulnerability Disclosure
+  Program, downloadable third-party audit certificates and attestations, and a security FAQ. Certificates are
+  offered as downloads from the Compliance section of the page; the CSA STAR listing is hosted on the Cloud
+  Security Alliance registry.
+certifications:
+- ISO/IEC 27001
+- ISO/IEC 27701
+- ISO/IEC 22301
+- ISO/IEC 20000-1
+- SOC 2 Type 2
+- CSA STAR Level One
+sections:
+- name: Privacy & Security
+  url: https://www.picussecurity.com/trust-center/privacy-security
+- name: Vulnerability Disclosure Program
+  url: https://www.picussecurity.com/trust-center
+- name: Compliance
+  url: https://www.picussecurity.com/trust-center
+- name: Security FAQ
+  url: https://www.picussecurity.com/trust-center
+- name: KVKK (Turkish personal data protection law)
+  url: https://www.picussecurity.com/trust-center/kisisel-verilerin-korunmasi-kanunu
+- name: Information security & corporate policies
+  url: https://www.picussecurity.com/security
+external_registries:
+- name: Cloud Security Alliance STAR Registry
+  url: https://cloudsecurityalliance.org/star/registry/picus-security
+evidence:
+- source: https://www.picussecurity.com/trust-center
+  http_status: 200
+  fetched: '2026-08-02'
+  keywords:
+  - iso 27001
+  - iso 27701
+  - iso 22301
+  - iso 20000
+  - soc 2 type 2
+  - csa star
+  - trust center
+  - vulnerability disclosure program
+- source: https://www.picussecurity.com/security
+  http_status: 200
+  fetched: '2026-08-02'
+  keywords:
+  - iso/iec 27001:2013
+  - information security policy
+notes: >-
+  No PCI DSS, FedRAMP or HIPAA certification is claimed by Picus. Picus publishes a HIPAA *use-case* page
+  (/hipaa-compliance) describing how the platform helps customers validate HIPAA controls — that is a product
+  page, not a Picus attestation, and is deliberately excluded from certifications above.

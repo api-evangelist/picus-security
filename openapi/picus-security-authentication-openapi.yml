@@ -1,0 +1,206 @@
+swagger: '2.0'
+info:
+  title: Picus Customer API — Authentication
+  description: '<p class="body-1">You can access the simulation raw data using the Rest API. Scope of the API includes; Simulation
+    list, Simulation Details, Threat/Objective/Action Results, Results mapped to MITRE ATTC&K and Unified Kill Chain frameworks,
+    Detection Analysis Results, Validated Logs & Alerts with SIEM & EDR integration.</p>
+
+    <p class="body-1">OAuth2 protocol is used to authorize Refresh/Access tokens. To obtain the API, you should generate a
+    refresh token and then request an access token using the /v1/auth/token endpoint. The refresh token will be valid for
+    6 months, whereas the access token will be available for 2 hours. After getting the access token, add Authorization: Bearer
+    {accessToken} to the header to request access to the below endpoints.</p>
+
+    <p class="body-1">Endpoints returning data with a lot of load works with the pagination method. You can use the offset
+    and limit parameters to get the correct page.</p>
+
+
+    <i class="body-1">Your usage will be limited with your Picus license.</i>'
+  version: '1.0'
+host: api.picussecurity.com
+basePath: /
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+securityDefinitions:
+  Access-Token:
+    description: After getting the access token, type <i>Bearer accessToken</i> to the Value input box to request access to
+      the below endpoints For example <i>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</i>
+    type: apiKey
+    name: Authorization
+    in: header
+security:
+- Access-Token: []
+tags:
+- name: Authentication
+paths:
+  /v1/auth/refresh:
+    post:
+      security:
+      - Access-Token: []
+      description: 'This endpoint regenerates refresh token.
+
+        Invalidates previous refresh/access token.
+
+        When provided refresh token is expired, a new refresh token should be created from the application itself'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - Authentication
+      summary: '# Regenerating refresh token'
+      operationId: RegenerateRefreshTokenParam
+      parameters:
+      - name: Body
+        in: body
+        schema:
+          type: object
+          properties:
+            refresh_token:
+              type: string
+              x-go-name: RefreshToken
+              example: access_token (Getting from Settings / API Token / Generate Token)
+      responses:
+        '200':
+          $ref: '#/responses/GenerateRefreshTokenInternalResponse'
+        '401':
+          $ref: '#/responses/unauthorizedErrorSwagger'
+        '422':
+          $ref: '#/responses/validationErrorSwagger'
+        default:
+          $ref: '#/responses/genericErrorSwagger'
+  /v1/auth/token:
+    post:
+      description: 'OAuth2 protocol is used to authorize Refresh/Access tokens.
+
+        To obtain the API, you should generate a refresh token and then request an access token using the /v1/auth/token endpoint.
+
+        The refresh token will be valid for 6 months, whereas the access token will be available for 2 hours.
+
+        After getting the access token, add Authorization: Bearer {accessToken} to the header to request access to the below
+        endpoints.'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - Authentication
+      summary: '# Getting access token for endpoints'
+      operationId: AuthTokenParam
+      parameters:
+      - name: Body
+        in: body
+        schema:
+          type: object
+          properties:
+            refresh_token:
+              type: string
+              x-go-name: RefreshToken
+              example: access_token (Getting from Settings / API Token / Generate Token)
+      responses:
+        '200':
+          $ref: '#/responses/AuthTokenResponse'
+        '401':
+          $ref: '#/responses/unauthorizedErrorSwagger'
+        '422':
+          $ref: '#/responses/validationErrorSwagger'
+        default:
+          $ref: '#/responses/genericErrorSwagger'
+      security: []
+responses:
+  AuthTokenResponse:
+    description: AuthTokenResponse
+    schema:
+      type: object
+      properties:
+        expire_at:
+          description: When access token is expired at
+          type: integer
+          format: int64
+          x-go-name: ExpireAt
+          example: 1650875751
+        token:
+          description: Access Token
+          type: string
+          x-go-name: Token
+          example: access_token
+  GenerateRefreshTokenInternalResponse:
+    description: ''
+    headers:
+      created_at:
+        type: integer
+        format: int64
+        description: When refresh token is created at
+      expired_at:
+        type: integer
+        format: int64
+        description: When refresh token is expired at
+      id:
+        type: integer
+        format: uint64
+        description: Token Id
+      is_expired:
+        type: boolean
+        description: Token expiration flag
+      name:
+        type: string
+        description: Name
+      token:
+        type: string
+        description: Refresh Token
+  genericErrorSwagger:
+    description: genericErrorSwagger is represents the erroneous cases
+    schema:
+      type: object
+      properties:
+        error_code:
+          description: Error Code is optional. It is using for define specific error types.
+          type: integer
+          format: int64
+          x-go-name: ErrorCode
+          example: 1001
+        errors:
+          description: Errors are optional. If there are multiple error, this field gives details.
+          type: object
+          additionalProperties:
+            type: string
+          x-go-name: Errors
+          example: '["error1", "error2"]'
+        message:
+          description: Error Message that contains information about error
+          type: string
+          x-go-name: Message
+  unauthorizedErrorSwagger:
+    description: unauthorizedErrorSwagger is represents unauthorized error
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+          example: unauthorized error
+  validationErrorSwagger:
+    description: validationErrorSwagger is represents the erroneous cases
+    schema:
+      type: object
+      properties:
+        errors:
+          description: Validation Error List
+          type: object
+          additionalProperties:
+            type: string
+          x-go-name: Errors
+          example:
+            param: tag=max, param=25, given value=1000
+        message:
+          description: Message will be "validation error"
+          type: string
+          x-go-name: Message
+          example: validation error

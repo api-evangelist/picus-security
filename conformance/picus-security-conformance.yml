@@ -1,0 +1,126 @@
+generated: '2026-08-02'
+method: searched
+source: >-
+  Derived from openapi/_original/picus-security-openapi.json (Swagger 2.0) and the Picus docs
+  (authentication-method, request, response-codes-errors, rate-limit, versioning), plus the compliance
+  attestations published on https://www.picussecurity.com/trust-center
+summary: >-
+  The Picus Customer API is a plain JSON REST API with bearer-token authorization. It does not implement
+  RFC 9457 problem details, RFC 8594 sunset signalling, RFC 9116 security.txt, OIDC discovery, or any
+  domain interop standard. Its strongest standards posture is on the security/compliance side (ISO 27001,
+  ISO 27701, ISO 22301, ISO 20000-1, SOC 2 Type 2, CSA STAR Level One) and on threat-modelling vocabularies
+  (MITRE ATT&CK and the Unified Kill Chain are first-class response structures).
+standards:
+- id: openapi
+  conforms: false
+  evidence: >-
+    Contract is Swagger 2.0 (the document declares swagger 2.0, not openapi 3.x). Served at
+    https://api.picussecurity.com/swagger.json
+- id: swagger-2.0
+  conforms: true
+  evidence: openapi/_original/picus-security-openapi.json — 71 paths, 84 operations, 141 definitions, 83 shared responses
+- id: rest-json
+  conforms: true
+  evidence: consumes/produces application/json across every operation; resource-oriented /v1 and /v2 paths
+- id: oauth2
+  conforms: false
+  partial: true
+  evidence: >-
+    The docs describe the flow as "OAuth2 protocol is used to authorize Refresh/Access tokens", but the
+    contract declares a single apiKey scheme (Access-Token in the Authorization header) and the exchange is a
+    proprietary POST /v1/auth/token with a `refresh_token` JSON body — not an RFC 6749 token endpoint
+    (no grant_type, no client credentials, no token_type/expires_in response). Treat as OAuth2-flavoured
+    bearer tokens, not RFC 6749 conformance.
+- id: oidc
+  conforms: false
+  evidence: No /.well-known/openid-configuration on any Picus host (see well-known/picus-security-well-known.yml)
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: false
+  evidence: /.well-known/oauth-authorization-server returns 404 on api.picussecurity.com
+- id: rfc6750-bearer-token
+  conforms: true
+  partial: true
+  evidence: >-
+    The Authorization header carries "Bearer {accessToken}" — the documented and declared credential presentation
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors are application/json with proprietary envelopes; see errors/picus-security-problem-types.yml
+- id: rfc7231-status-codes
+  conforms: true
+  evidence: >-
+    The response-code reference explicitly cites RFC 7231, RFC 7235, RFC 4918 and RFC 6585 as the basis for
+    its status-code usage
+- id: rfc6585-additional-status-codes
+  conforms: true
+  evidence: 429 Too Many Requests documented as the throttling signal
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: >-
+    A deprecation policy is published but no Sunset or Deprecation header is emitted; retirement is signalled
+    with 410 Gone on the retired operation
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on www, apex, api and docs hosts
+- id: rate-limit-headers
+  conforms: true
+  partial: true
+  evidence: >-
+    X-Ratelimit-Limit / X-Ratelimit-Remaining / X-Ratelimit-Reset are documented and returned; these are the
+    de-facto headers, not the IETF draft RateLimit-* fields
+- id: idempotency-key
+  conforms: false
+  evidence: No idempotency mechanism documented or declared; see conventions/picus-security-conventions.yml
+- id: json-api
+  conforms: false
+  evidence: Responses are unwrapped domain objects, not JSON:API documents
+- id: odata
+  conforms: false
+- id: scim2
+  conforms: false
+  evidence: >-
+    User and role management exists (/v1/users, /v1/users/invite, /v1/users/roles,
+    /v1/users/{userId}/role) but with a proprietary shape, not SCIM 2.0 resources
+- id: asyncapi
+  conforms: false
+  evidence: No event, streaming or webhook surface is published
+- id: mitre-attack
+  conforms: true
+  evidence: >-
+    First-class in the contract — /v1/simulations/{Id}/run/latest/frameworks and .../run/{RunId}/frameworks
+    return ATT&CK mappings; /v1/mitigation/detection-content/mitre/{tactics,techniques,sub-techniques}
+    enumerate the framework; MITRE tactics/techniques are required inputs when authoring custom detection
+    content
+- id: unified-kill-chain
+  conforms: true
+  evidence: Run-result framework endpoints return Unified Kill Chain mappings alongside MITRE ATT&CK
+- id: owasp
+  conforms: true
+  partial: true
+  evidence: Threat-library action details carry an `Owasp` classification field
+- id: sigma-detection-rules
+  conforms: false
+  partial: true
+  evidence: >-
+    Detection content is modelled per vendor (Splunk, QRadar, CrowdStrike IOA rule shapes appear in the
+    definitions) rather than as vendor-neutral Sigma
+compliance:
+  published: true
+  url: https://www.picussecurity.com/trust-center
+  certifications:
+  - ISO/IEC 27001
+  - ISO/IEC 27701
+  - ISO/IEC 22301
+  - ISO/IEC 20000-1
+  - SOC 2 Type 2
+  - CSA STAR Level One
+  see: security/picus-security-trust-center.yml
+regulatory_alignment:
+  note: >-
+    Picus publishes customer-facing framework pages (DORA, HIPAA, NIST CSF, CTEM) describing how the platform
+    helps customers validate controls against those regimes. These are product positioning, not Picus
+    attestations, and are recorded here only as alignment claims.
+  frameworks:
+  - {id: dora, url: 'https://www.picussecurity.com/digital-operational-resiliency-act', kind: customer-use-case}
+  - {id: hipaa, url: 'https://www.picussecurity.com/hipaa-compliance', kind: customer-use-case}
+  - {id: nist-csf, url: 'https://www.picussecurity.com/nist-cybersecurity-framework-compliance', kind: customer-use-case}
+  - {id: ctem, url: 'https://www.picussecurity.com/continuous-threat-exposure-management', kind: customer-use-case}

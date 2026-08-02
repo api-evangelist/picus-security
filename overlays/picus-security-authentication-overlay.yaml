@@ -1,0 +1,54 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Picus Customer API — Authentication
+  version: 1.0.0
+extends: openapi/picus-security-authentication-openapi.yml
+x-generated: '2026-08-02'
+x-method: generated
+x-source: openapi/_original/picus-security-openapi.json
+actions:
+- target: $.info
+  update:
+    contact:
+      name: Picus Security Support
+      url: https://support.picussecurity.com/
+      email: info@picussecurity.com
+    x-apievangelist-provider: picus-security
+    x-apievangelist-harvested-from: https://api.picussecurity.com/swagger.json
+    x-apievangelist-harvested: '2026-08-02'
+    x-apievangelist-tag: Authentication
+    x-apievangelist-artifacts:
+      authentication: authentication/picus-security-authentication.yml
+      conventions: conventions/picus-security-conventions.yml
+      errors: errors/picus-security-problem-types.yml
+      rate_limits: rate-limits/picus-security-rate-limits.yml
+      lifecycle: lifecycle/picus-security-lifecycle.yml
+      data_model: data-model/picus-security-data-model.yml
+      conformance: conformance/picus-security-conformance.yml
+- target: $
+  update:
+    externalDocs:
+      description: Picus Customer API documentation
+      url: https://apidocs.picussecurity.com/
+- target: $.tags[?(@.name=='Authentication')]
+  update:
+    externalDocs:
+      description: Picus Customer API reference
+      url: https://apidocs.picussecurity.com/reference/intro-to-the-picus-customer-api
+- target: $.securityDefinitions.Access-Token
+  update:
+    x-token-endpoint: POST https://api.picussecurity.com/v1/auth/token
+    x-token-ttl: 2 hours
+    x-refresh-token-ttl: 6 months
+    x-refresh-token-source: app.picussecurity.com > Settings > Rest API Token
+    x-token-scoped: true
+- target: $.paths['/v1/auth/refresh'].post
+  update:
+    x-apievangelist-summary: Regenerating refresh token
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/auth/token'].post
+  update:
+    x-apievangelist-summary: Getting access token for endpoints
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.

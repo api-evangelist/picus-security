@@ -1,0 +1,255 @@
+swagger: '2.0'
+info:
+  title: Picus Customer API — Integrations
+  description: '<p class="body-1">You can access the simulation raw data using the Rest API. Scope of the API includes; Simulation
+    list, Simulation Details, Threat/Objective/Action Results, Results mapped to MITRE ATTC&K and Unified Kill Chain frameworks,
+    Detection Analysis Results, Validated Logs & Alerts with SIEM & EDR integration.</p>
+
+    <p class="body-1">OAuth2 protocol is used to authorize Refresh/Access tokens. To obtain the API, you should generate a
+    refresh token and then request an access token using the /v1/auth/token endpoint. The refresh token will be valid for
+    6 months, whereas the access token will be available for 2 hours. After getting the access token, add Authorization: Bearer
+    {accessToken} to the header to request access to the below endpoints.</p>
+
+    <p class="body-1">Endpoints returning data with a lot of load works with the pagination method. You can use the offset
+    and limit parameters to get the correct page.</p>
+
+
+    <i class="body-1">Your usage will be limited with your Picus license.</i>'
+  version: '1.0'
+host: api.picussecurity.com
+basePath: /
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+securityDefinitions:
+  Access-Token:
+    description: After getting the access token, type <i>Bearer accessToken</i> to the Value input box to request access to
+      the below endpoints For example <i>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</i>
+    type: apiKey
+    name: Authorization
+    in: header
+security:
+- Access-Token: []
+tags:
+- name: Integrations
+paths:
+  /v1/integrations:
+    get:
+      security:
+      - Access-Token: []
+      description: Integration List; Integration ID, Integration Name, Created At, Updated At, Health Status, Integration
+        Agent ID, Integration Agent Name (If Available)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - Integrations
+      summary: '# Integrations'
+      operationId: integrationList
+      responses:
+        '200':
+          $ref: '#/responses/IntegrationsReturnSwagger'
+        default:
+          $ref: '#/responses/genericErrorSwagger'
+  /v1/integrations/agents:
+    get:
+      security:
+      - Access-Token: []
+      description: Integration Agent List; Integration Agent ID, Integration Agent Name, Created At, Updated At, Status (Alive
+        | Dead), Is Installed, Is Token Expired
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - Integrations
+      summary: '# Integration Agents'
+      operationId: integrationAgent
+      responses:
+        '200':
+          $ref: '#/responses/IntegrationAgentsReturnSwagger'
+        default:
+          $ref: '#/responses/genericErrorSwagger'
+responses:
+  IntegrationAgentsReturnSwagger:
+    description: IntegrationAgentsReturnSwagger
+    schema:
+      type: object
+      properties:
+        integration_agents:
+          type: array
+          items:
+            $ref: '#/definitions/IntegrationAgent'
+          x-go-name: IntegrationAgents
+  IntegrationsReturnSwagger:
+    description: IntegrationsReturnSwagger
+    schema:
+      type: object
+      properties:
+        integrations:
+          type: array
+          items:
+            $ref: '#/definitions/IntegrationSummary'
+          x-go-name: Integrations
+  genericErrorSwagger:
+    description: genericErrorSwagger is represents the erroneous cases
+    schema:
+      type: object
+      properties:
+        error_code:
+          description: Error Code is optional. It is using for define specific error types.
+          type: integer
+          format: int64
+          x-go-name: ErrorCode
+          example: 1001
+        errors:
+          description: Errors are optional. If there are multiple error, this field gives details.
+          type: object
+          additionalProperties:
+            type: string
+          x-go-name: Errors
+          example: '["error1", "error2"]'
+        message:
+          description: Error Message that contains information about error
+          type: string
+          x-go-name: Message
+definitions:
+  HealthStatusError:
+    type: object
+    properties:
+      message:
+        description: Error Detail from coming integrated product.
+        type: string
+        x-go-name: ErrorDetail
+      step:
+        description: Error Step like (Connection | Authentication | Log Storage | Peer-Manager Communication | vendor | os
+          | alert | log)
+        type: string
+        x-go-name: Step
+        example: Connection | Authentication | Log Storage | Peer-Manager Communication | vendor | os | alert | log
+      type:
+        description: Error Title like Microsoft Defender for Endpoint Authentication Check Step Error.
+        type: string
+        x-go-name: ErrorTitle
+        example: Microsoft Defender for Endpoint Authentication Check Step Error
+    x-go-package: github.com/picusnext/picus-digital/go/customer-api/integrations
+  HealthStatusSummary:
+    type: object
+    properties:
+      error:
+        $ref: '#/definitions/HealthStatusError'
+      healthy:
+        description: Integration is healthy or not
+        type: boolean
+        x-go-name: Healthy
+        example: false
+    x-go-package: github.com/picusnext/picus-digital/go/customer-api/integrations
+  IntegrationAgent:
+    type: object
+    properties:
+      created_at:
+        description: Created At
+        type: integer
+        format: int64
+        x-go-name: CreatedAt
+      id:
+        description: Identifier
+        type: integer
+        format: uint64
+        x-go-name: Id
+      installed:
+        description: Is Integration Agent installed
+        type: boolean
+        x-go-name: Installed
+      name:
+        description: Integration Agent Name
+        type: string
+        x-go-name: Name
+      status:
+        description: Integration Agent Status (Dead / Alive)
+        type: string
+        x-go-name: Status
+      token_expired:
+        description: Is Integration Agent Installation token expired
+        type: boolean
+        x-go-name: TokenExpired
+      updated_at:
+        description: Updated At
+        type: integer
+        format: int64
+        x-go-name: UpdatedAt
+    x-go-package: github.com/picusnext/picus-digital/go/customer-api/integrations
+  IntegrationSummary:
+    type: object
+    properties:
+      connection_name:
+        description: Connection name that distinguishes multiple connections of the same product
+        type: string
+        x-go-name: ConnectionName
+        example: TAC-1
+      created_at:
+        description: Integration Created At
+        type: integer
+        format: int64
+        x-go-name: CreatedAt
+        example: 1645625919624
+      default_integration_id:
+        description: Default Integration Id
+        type: integer
+        format: int64
+        x-go-name: DefaultIntegrationId
+        example: 1
+      description:
+        description: Product description
+        type: string
+        x-go-name: Description
+        example: Description about product
+      display_name:
+        description: Integrated Product Display Name that is showing on Picus Platform
+        type: string
+        x-go-name: DisplayName
+        example: Crowdstrike
+      health_status:
+        $ref: '#/definitions/HealthStatusSummary'
+      integration_agent:
+        description: Integration Agent Name that integration connected
+        type: string
+        x-go-name: PeerName
+        example: Saturn Agent
+      integration_agent_id:
+        description: Integration Agent Id that integration connected
+        type: integer
+        format: uint64
+        x-go-name: PeerId
+        example: 1
+      integration_id:
+        description: Integration Id
+        type: integer
+        format: int64
+        x-go-name: IntegrationId
+        example: 1
+      name:
+        description: Integrated Product Name
+        type: string
+        x-go-name: Name
+        example: Crowdstrike
+      type:
+        description: Product Type ( SIEM / EDR )
+        type: string
+        x-go-name: ProductType
+        example: SIEM / EDR
+      updated_at:
+        description: Integration Updated At
+        type: integer
+        format: int64
+        x-go-name: UpdatedAt
+        example: 1645625919624
+    x-go-package: github.com/picusnext/picus-digital/go/customer-api/integrations

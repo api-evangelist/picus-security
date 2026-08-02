@@ -1,0 +1,129 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Picus Customer API — Mitigation
+  version: 1.0.0
+extends: openapi/picus-security-mitigation-openapi.yml
+x-generated: '2026-08-02'
+x-method: generated
+x-source: openapi/_original/picus-security-openapi.json
+actions:
+- target: $.info
+  update:
+    contact:
+      name: Picus Security Support
+      url: https://support.picussecurity.com/
+      email: info@picussecurity.com
+    x-apievangelist-provider: picus-security
+    x-apievangelist-harvested-from: https://api.picussecurity.com/swagger.json
+    x-apievangelist-harvested: '2026-08-02'
+    x-apievangelist-tag: Mitigation
+    x-apievangelist-artifacts:
+      authentication: authentication/picus-security-authentication.yml
+      conventions: conventions/picus-security-conventions.yml
+      errors: errors/picus-security-problem-types.yml
+      rate_limits: rate-limits/picus-security-rate-limits.yml
+      lifecycle: lifecycle/picus-security-lifecycle.yml
+      data_model: data-model/picus-security-data-model.yml
+      conformance: conformance/picus-security-conformance.yml
+- target: $
+  update:
+    externalDocs:
+      description: Picus Customer API documentation
+      url: https://apidocs.picussecurity.com/
+- target: $.tags[?(@.name=='Mitigation')]
+  update:
+    externalDocs:
+      description: Picus Customer API reference
+      url: https://apidocs.picussecurity.com/reference/intro-to-the-picus-customer-api
+- target: $.securityDefinitions.Access-Token
+  update:
+    x-token-endpoint: POST https://api.picussecurity.com/v1/auth/token
+    x-token-ttl: 2 hours
+    x-refresh-token-ttl: 6 months
+    x-refresh-token-source: app.picussecurity.com > Settings > Rest API Token
+    x-token-scoped: true
+- target: $.paths['/v1/mitigation/detection-content/custom'].get
+  update:
+    x-apievangelist-summary: List Custom Detection Content
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/mitigation/detection-content/custom'].post
+  update:
+    x-apievangelist-summary: Create Custom Detection Content
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/mitigation/detection-content/custom/{content_id}'].get
+  update:
+    x-apievangelist-summary: Get Custom Detection Content By ID
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/mitigation/detection-content/custom/{content_id}'].put
+  update:
+    x-apievangelist-summary: Update Custom Detection Content
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/mitigation/detection-content/custom/{content_id}'].delete
+  update:
+    x-apievangelist-summary: Delete Custom Detection Content
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/mitigation/detection-content/devices'].get
+  update:
+    x-apievangelist-summary: Get Detection Content Devices
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/mitigation/detection-content/mitre/sub-techniques'].get
+  update:
+    x-apievangelist-summary: Get MITRE ATT&CK Sub-Techniques
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/mitigation/detection-content/mitre/tactics'].get
+  update:
+    x-apievangelist-summary: Get MITRE ATT&CK Tactics
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/mitigation/detection-content/mitre/techniques'].get
+  update:
+    x-apievangelist-summary: Get MITRE ATT&CK Techniques
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/mitigation/detection-content/sources'].get
+  update:
+    x-apievangelist-summary: Detection Content Sources
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/mitigation/detection-content/{source}/log-sources'].get
+  update:
+    x-apievangelist-summary: Detection Content Log Sources
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/mitigation/detection-content/{source}/rules'].get
+  update:
+    x-apievangelist-summary: Detection Content Rules
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/mitigation/detection-content/{source}/rules/{ruleId}'].get
+  update:
+    x-apievangelist-summary: Detection Content Rule Details
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/mitigation/devices'].get
+  update:
+    x-apievangelist-summary: Devices' Stats List (deprecated)
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/mitigation/generic/not-blocked-actions'].get
+  update:
+    x-apievangelist-summary: Generic Not Blocked Actions List
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v2/mitigation/devices'].get
+  update:
+    x-apievangelist-summary: Device List
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v2/mitigation/devices/{DeviceId}'].get
+  update:
+    x-apievangelist-summary: Device Stats
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.

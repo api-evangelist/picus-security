@@ -1,0 +1,69 @@
+generated: '2026-08-02'
+method: searched
+source: https://apidocs.picussecurity.com/docs/versioning
+versioning:
+  scheme: uri-path
+  current: v1
+  also_served: v2
+  docs: https://apidocs.picussecurity.com/docs/versioning
+  stated_version: '1.0'
+  policy: >-
+    "The current version of The Picus Rest API is version 1.0. We only release a new version when backward
+    compatibility is not feasible." Adding new endpoints, adding new attributes to existing endpoints, and
+    minor attribute changes are explicitly declared backward-compatible and shipped without a version bump.
+  notes: >-
+    Despite the "version 1.0" statement, the live contract serves both /v1/* and /v2/* path prefixes — /v2 is
+    used for the mitigation devices split (GET /v2/mitigation/devices + /v2/mitigation/devices/{DeviceId}),
+    simulation result reports (/v2/simulations/{Id}/results/reports), and the newer threat-library action list
+    (/v2/threat-library/actions).
+deprecation:
+  policy_documented: true
+  policy_url: https://apidocs.picussecurity.com/docs/versioning
+  policy: >-
+    "If there are major changes, more than one version will be supported. Old versions will continue to be
+    supported but only for a limited time." Picus states it will "announce the date that support will cease to
+    be offered" but publishes no fixed notice period.
+  sunset_header: false
+  rfc8594: false
+  notes: >-
+    No Sunset or Deprecation HTTP header (RFC 8594 / RFC 9745) is documented. Deprecation is communicated in
+    the OpenAPI (deprecated flag + in-description migration instructions) and on the changelog.
+deprecated_operations:
+- id: deviceListParams
+  path: GET /v1/mitigation/devices
+  spec: openapi/picus-security-mitigation-openapi.yml
+  replacement:
+  - deviceListParamsV2 (GET /v2/mitigation/devices)
+  - deviceStatsByIdParams (GET /v2/mitigation/devices/{DeviceId})
+  note: >-
+    Marked deprecated in the spec and documented as "no longer available" — the published migration is a
+    two-call workflow: list devices with the V2 endpoint, then fetch per-device stats by DeviceId.
+gone_status:
+  status: 410
+  note: >-
+    The spec declares a 410 Gone response on the deprecated device-stats operation — the only 410 in the
+    contract, used to signal a retired endpoint.
+sla:
+  documented: false
+  notes: No public SLA or uptime target is published on the marketing site, docs, or status page.
+status_page:
+  url: https://status.picussecurity.com/
+  title: Picus Platform Status
+  http_status: 200
+  provider: self-hosted
+changelog:
+  url: https://apidocs.picussecurity.com/changelog
+  artifact: changelog/picus-security-changelog.yml
+support:
+  url: https://support.picussecurity.com/hc/en-us/sections/6348275363729-Picus-Platform
+  docs: https://apidocs.picussecurity.com/docs/support-content
+  note: Support portal requires Picus credentials (returns 403 to anonymous clients).
+evidence:
+- url: https://apidocs.picussecurity.com/docs/versioning
+  http_status: 200
+  fetched: '2026-08-02'
+- url: https://status.picussecurity.com/
+  http_status: 200
+  fetched: '2026-08-02'
+- source: openapi/_original/picus-security-openapi.json
+  kind: deprecated-operation-flag

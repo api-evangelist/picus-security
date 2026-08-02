@@ -1,0 +1,44 @@
+generated: '2026-08-02'
+method: searched
+source: https://apidocs.picussecurity.com/changelog
+url: https://apidocs.picussecurity.com/changelog
+scheme: dated-entries
+platform: ReadMe (apidocs.picussecurity.com)
+current_version: '1.0'
+versioning: lifecycle/picus-security-lifecycle.yml
+summary: >-
+  Picus publishes a ReadMe changelog for the Customer API, but it is sparse — three entries since the API
+  launched, the most recent roughly three years old at the time of capture. Material API changes (the /v2
+  mitigation devices split, simulation result reports, custom detection content, exposure instance scores,
+  threat pack import/export) shipped into the live contract without corresponding changelog entries, so the
+  swagger.json served from api.picussecurity.com is the more current record of what changed.
+entries:
+- title: Update Simulation Change
+  author: Picus Engineering
+  type: improved
+  relative_date: almost 3 years ago
+  url: https://apidocs.picussecurity.com/changelog/update-simulation-change
+  breaking: false
+- title: Simulation Result Status Change
+  author: Picus Engineering
+  type: unspecified
+  relative_date: over 3 years ago
+  url: https://apidocs.picussecurity.com/changelog/simulation-result-status-change
+  breaking: false
+- title: Welcome to Picus Customer API
+  author: Emre Esirik
+  type: announcement
+  relative_date: about 4 years ago
+  url: https://apidocs.picussecurity.com/changelog/welcome-to-picus-customer-api
+  breaking: false
+gaps:
+- Entries are relative-dated only in the rendered changelog; no absolute publication dates are exposed.
+- No entry covers the /v2 endpoints or the deprecation of GET /v1/mitigation/devices.
+evidence:
+- url: https://apidocs.picussecurity.com/changelog
+  http_status: 200
+  fetched: '2026-08-02'
+- url: https://apidocs.picussecurity.com/llms.txt
+  http_status: 200
+  fetched: '2026-08-02'
+  note: llms.txt Changelog section lists the same three entries.

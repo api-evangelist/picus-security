@@ -1,0 +1,637 @@
+generated: '2026-08-02'
+method: derived
+status: candidate
+source: openapi/_original/picus-security-openapi.json (Swagger 2.0, 71 paths, 84 operations)
+summary: 'Picus Security publishes NO hosted or remote MCP server as of this pass: nothing on the docs host, nothing in
+  the public MCP registries, no npm/@modelcontextprotocol package, and no MCP endpoint referenced anywhere in apidocs.picussecurity.com/llms.txt.
+  This manifest is a DERIVED CANDIDATE tool surface, computed one-tool-per-operation from the live Picus Customer API contract,
+  so an agent integrator (or Picus) has a grounded starting point. Every tool below names the exact backing operationId;
+  the tool''s real input schema is that operation''s parameters plus requestBody in the referenced spec file. Nothing here
+  is served by Picus.'
+server:
+  name: picus-security
+  published: false
+  url: null
+  transport: null
+  note: No Picus-operated MCP endpoint exists. Do not advertise one.
+auth:
+  style: bearer
+  header: 'Authorization: Bearer {accessToken}'
+  token_endpoint: POST https://api.picussecurity.com/v1/auth/token
+  access_token_ttl: 2 hours
+  refresh_token_ttl: 6 months
+  see: authentication/picus-security-authentication.yml
+safety:
+  note: This is an offensive-security control plane. 25 of the 84 candidate tools are write operations that create, run,
+    cancel or delete adversary simulations, author custom threats and actions, upload payload files, or manage users and
+    roles. Any real MCP deployment MUST gate the write set behind explicit human approval — running a simulation executes
+    attack techniques against production security controls.
+  high_consequence_tools:
+  - create_simulations
+  - create_simulations_simulate_now
+  - update_simulations
+  - delete_simulations
+  - update_simulations_cancel
+  - create_threat_library_threats
+  - update_threat_library_threats
+  - delete_threat_library_threats
+  - create_threat_library_actions
+  - create_threat_library_files
+  - create_threat_library_threats_import
+  - create_users_invite
+  - delete_users
+  - update_users_role
+coverage:
+  rest_operations_total: 84
+  tools_derived: 84
+  read_tools: 59
+  write_tools: 25
+tools:
+- name: list_activity_logs
+  description: Get activity logs
+  method: GET
+  path: /v1/activity-logs
+  source_operation: openapi/picus-security-activity-logs-openapi.yml#activityLogsFilterParams
+  tag: Activity-Logs
+  write: false
+- name: list_agents
+  description: Agent List
+  method: GET
+  path: /v1/agents
+  source_operation: openapi/picus-security-agents-openapi.yml#Result
+  tag: Agents
+  write: false
+- name: list_agents_download_link
+  description: Download Link
+  method: GET
+  path: /v1/agents/download-link
+  source_operation: openapi/picus-security-agents-openapi.yml#downloadLinkParams
+  tag: Agents
+  write: false
+- name: list_agents_install_token
+  description: Install Token
+  method: GET
+  path: /v1/agents/install-token
+  source_operation: openapi/picus-security-agents-openapi.yml#installTokenParams
+  tag: Agents
+  write: false
+- name: list_agents_kubernetes_download_yaml
+  description: Download Kubernetes agent YAML
+  method: GET
+  path: /v1/agents/kubernetes/download-yaml
+  source_operation: openapi/picus-security-agents-openapi.yml#downloadK8sAgentYamlParams
+  tag: Agents
+  write: false
+- name: list_agents_reinstall_token
+  description: Reinstall Token
+  method: GET
+  path: /v1/agents/reinstall-token
+  source_operation: openapi/picus-security-agents-openapi.yml#reinstallTokenParams
+  tag: Agents
+  write: false
+- name: get_agents
+  description: Agent Detail
+  method: GET
+  path: /v1/agents/{Id}
+  source_operation: openapi/picus-security-agents-openapi.yml#agentParams
+  tag: Agents
+  write: false
+- name: create_auth_refresh
+  description: Regenerating refresh token
+  method: POST
+  path: /v1/auth/refresh
+  source_operation: openapi/picus-security-authentication-openapi.yml#RegenerateRefreshTokenParam
+  tag: Authentication
+  write: true
+- name: create_auth_token
+  description: Getting access token for endpoints
+  method: POST
+  path: /v1/auth/token
+  source_operation: openapi/picus-security-authentication-openapi.yml#AuthTokenParam
+  tag: Authentication
+  write: true
+- name: create_exposures_instances_scores
+  description: List Instance Scores
+  method: POST
+  path: /v1/exposures/instances/scores
+  source_operation: openapi/picus-security-instances-openapi.yml#listInstanceScoresParams
+  tag: Instances
+  write: true
+- name: list_integrations
+  description: Integrations
+  method: GET
+  path: /v1/integrations
+  source_operation: openapi/picus-security-integrations-openapi.yml#integrationList
+  tag: Integrations
+  write: false
+- name: list_integrations_agents
+  description: Integration Agents
+  method: GET
+  path: /v1/integrations/agents
+  source_operation: openapi/picus-security-integrations-openapi.yml#integrationAgent
+  tag: Integrations
+  write: false
+- name: list_mitigation_detection_content_custom
+  description: List Custom Detection Content
+  method: GET
+  path: /v1/mitigation/detection-content/custom
+  source_operation: openapi/picus-security-mitigation-openapi.yml#getCustomDetectionContentParams
+  tag: Mitigation
+  write: false
+- name: create_mitigation_detection_content_custom
+  description: Create Custom Detection Content
+  method: POST
+  path: /v1/mitigation/detection-content/custom
+  source_operation: openapi/picus-security-mitigation-openapi.yml#createCustomDetectionContentParams
+  tag: Mitigation
+  write: true
+- name: get_mitigation_detection_content_custom
+  description: Get Custom Detection Content By ID
+  method: GET
+  path: /v1/mitigation/detection-content/custom/{content_id}
+  source_operation: openapi/picus-security-mitigation-openapi.yml#getCustomDetectionContentByIdParams
+  tag: Mitigation
+  write: false
+- name: update_mitigation_detection_content_custom
+  description: Update Custom Detection Content
+  method: PUT
+  path: /v1/mitigation/detection-content/custom/{content_id}
+  source_operation: openapi/picus-security-mitigation-openapi.yml#updateCustomDetectionContentParams
+  tag: Mitigation
+  write: true
+- name: delete_mitigation_detection_content_custom
+  description: Delete Custom Detection Content
+  method: DELETE
+  path: /v1/mitigation/detection-content/custom/{content_id}
+  source_operation: openapi/picus-security-mitigation-openapi.yml#deleteCustomDetectionContentParams
+  tag: Mitigation
+  write: true
+- name: list_mitigation_detection_content_devices
+  description: Get Detection Content Devices
+  method: GET
+  path: /v1/mitigation/detection-content/devices
+  source_operation: openapi/picus-security-mitigation-openapi.yml#getDetectionDevicesParams
+  tag: Mitigation
+  write: false
+- name: list_mitigation_detection_content_mitre_sub_techniques
+  description: Get MITRE ATT&CK Sub-Techniques
+  method: GET
+  path: /v1/mitigation/detection-content/mitre/sub-techniques
+  source_operation: openapi/picus-security-mitigation-openapi.yml#getMitreSubTechniquesParams
+  tag: Mitigation
+  write: false
+- name: list_mitigation_detection_content_mitre_tactics
+  description: Get MITRE ATT&CK Tactics
+  method: GET
+  path: /v1/mitigation/detection-content/mitre/tactics
+  source_operation: openapi/picus-security-mitigation-openapi.yml#getMitreTacticsParams
+  tag: Mitigation
+  write: false
+- name: list_mitigation_detection_content_mitre_techniques
+  description: Get MITRE ATT&CK Techniques
+  method: GET
+  path: /v1/mitigation/detection-content/mitre/techniques
+  source_operation: openapi/picus-security-mitigation-openapi.yml#getMitreTechniquesParams
+  tag: Mitigation
+  write: false
+- name: list_mitigation_detection_content_sources
+  description: Detection Content Sources
+  method: GET
+  path: /v1/mitigation/detection-content/sources
+  source_operation: openapi/picus-security-mitigation-openapi.yml#contentSources
+  tag: Mitigation
+  write: false
+- name: list_mitigation_detection_content_log_sources
+  description: Detection Content Log Sources
+  method: GET
+  path: /v1/mitigation/detection-content/{source}/log-sources
+  source_operation: openapi/picus-security-mitigation-openapi.yml#contentSourceNameUriParam
+  tag: Mitigation
+  write: false
+- name: list_mitigation_detection_content_rules
+  description: Detection Content Rules
+  method: GET
+  path: /v1/mitigation/detection-content/{source}/rules
+  source_operation: openapi/picus-security-mitigation-openapi.yml#detectionContentRulesParams
+  tag: Mitigation
+  write: false
+- name: get_mitigation_detection_content_rules
+  description: Detection Content Rule Details
+  method: GET
+  path: /v1/mitigation/detection-content/{source}/rules/{ruleId}
+  source_operation: openapi/picus-security-mitigation-openapi.yml#contentSourceNameAndRuleIdUriParam
+  tag: Mitigation
+  write: false
+- name: list_mitigation_devices
+  description: Devices' Stats List (deprecated)
+  method: GET
+  path: /v1/mitigation/devices
+  source_operation: openapi/picus-security-mitigation-openapi.yml#deviceListParams
+  tag: Mitigation
+  write: false
+- name: list_mitigation_devices_signatures
+  description: Signature List; Signature Id, Signature Name, Vendor Severity, Signature Category, Signature Version,
+  method: GET
+  path: /v1/mitigation/devices/{DeviceId}/signatures
+  source_operation: openapi/picus-security-mitigation-openapi.yml#signatureListParams
+  tag: Mitigation
+  write: false
+- name: list_mitigation_generic_not_blocked_actions
+  description: Generic Not Blocked Actions List
+  method: GET
+  path: /v1/mitigation/generic/not-blocked-actions
+  source_operation: openapi/picus-security-mitigation-openapi.yml#genericNotBlockedActionsParams
+  tag: Mitigation
+  write: false
+- name: list_simulations
+  description: Simulation List
+  method: GET
+  path: /v1/simulations
+  source_operation: openapi/picus-security-simulations-openapi.yml#simulationListParams
+  tag: Simulations
+  write: false
+- name: create_simulations
+  description: Create Simulation
+  method: POST
+  path: /v1/simulations
+  source_operation: openapi/picus-security-simulations-openapi.yml#createSimulationParams
+  tag: Simulations
+  write: true
+- name: get_simulations
+  description: Simulation Detail
+  method: GET
+  path: /v1/simulations/{Id}
+  source_operation: openapi/picus-security-simulations-openapi.yml#simulationParams
+  tag: Simulations
+  write: false
+- name: update_simulations
+  description: Update Simulation
+  method: PUT
+  path: /v1/simulations/{Id}
+  source_operation: openapi/picus-security-simulations-openapi.yml#updateSimulationParams
+  tag: Simulations
+  write: true
+- name: delete_simulations
+  description: Delete Simulation
+  method: DELETE
+  path: /v1/simulations/{Id}
+  source_operation: openapi/picus-security-simulations-openapi.yml#simulationDeleteParams
+  tag: Simulations
+  write: true
+- name: update_simulations_cancel
+  description: Cancel Simulation
+  method: PUT
+  path: /v1/simulations/{Id}/cancel
+  source_operation: openapi/picus-security-simulations-openapi.yml#simulationCancelParams
+  tag: Simulations
+  write: true
+- name: list_simulations_run_latest
+  description: Latest Simulation Run Result
+  method: GET
+  path: /v1/simulations/{Id}/run/latest
+  source_operation: openapi/picus-security-simulation-latest-result-openapi.yml#latestRunParams
+  tag: Simulation-Latest-Result
+  write: false
+- name: list_simulations_run_latest_frameworks
+  description: Latest Simulation Run Result with Mitre ATT&CK and Unified Kill Chain framework
+  method: GET
+  path: /v1/simulations/{Id}/run/latest/frameworks
+  source_operation: openapi/picus-security-simulation-latest-result-openapi.yml#latestRunDetailParams
+  tag: Simulation-Latest-Result
+  write: false
+- name: list_simulations_run_latest_threats
+  description: Threats - Objectives - Actions
+  method: GET
+  path: /v1/simulations/{Id}/run/latest/threats
+  source_operation: openapi/picus-security-simulation-latest-result-openapi.yml#latestRunThreatParams
+  tag: Simulation-Latest-Result
+  write: false
+- name: list_simulations_run_latest_threats_actions
+  description: Action Details List
+  method: GET
+  path: /v1/simulations/{Id}/run/latest/threats/{ThreatId}/actions
+  source_operation: openapi/picus-security-simulation-latest-result-openapi.yml#latestActionDetailsListParams
+  tag: Simulation-Latest-Result
+  write: false
+- name: get_simulations_run_latest_threats_actions
+  description: Action Details
+  method: GET
+  path: /v1/simulations/{Id}/run/latest/threats/{ThreatId}/actions/{ActionId}
+  source_operation: openapi/picus-security-simulation-latest-result-openapi.yml#latestActionDetailsParams
+  tag: Simulation-Latest-Result
+  write: false
+- name: list_simulations_run_latest_threats_actions_integrations_alerts
+  description: Integration based Alert Details for Actions
+  method: GET
+  path: /v1/simulations/{Id}/run/latest/threats/{ThreatId}/actions/{ActionId}/integrations/{IntegrationId}/alerts
+  source_operation: openapi/picus-security-simulation-latest-result-openapi.yml#latestActionAlertsParams
+  tag: Simulation-Latest-Result
+  write: false
+- name: list_simulations_run_latest_threats_actions_integrations_logs
+  description: Integration based Log Details for Actions
+  method: GET
+  path: /v1/simulations/{Id}/run/latest/threats/{ThreatId}/actions/{ActionId}/integrations/{IntegrationId}/logs
+  source_operation: openapi/picus-security-simulation-latest-result-openapi.yml#latestActionLogsParams
+  tag: Simulation-Latest-Result
+  write: false
+- name: get_simulations_run
+  description: Simulation Run Result
+  method: GET
+  path: /v1/simulations/{Id}/run/{RunId}
+  source_operation: openapi/picus-security-simulation-result-openapi.yml#simulationRunParams
+  tag: Simulation-Result
+  write: false
+- name: list_simulations_run_frameworks
+  description: Simulation Run Result with Mitre ATT&CK and Unified Kill Chain framework
+  method: GET
+  path: /v1/simulations/{Id}/run/{RunId}/frameworks
+  source_operation: openapi/picus-security-simulation-result-openapi.yml#runDetailParams
+  tag: Simulation-Result
+  write: false
+- name: list_simulations_run_threats
+  description: Threats - Objectives - Actions
+  method: GET
+  path: /v1/simulations/{Id}/run/{RunId}/threats
+  source_operation: openapi/picus-security-simulation-result-openapi.yml#runThreatParams
+  tag: Simulation-Result
+  write: false
+- name: list_simulations_run_threats_actions
+  description: Action Details List
+  method: GET
+  path: /v1/simulations/{Id}/run/{RunId}/threats/{ThreatId}/actions
+  source_operation: openapi/picus-security-simulation-result-openapi.yml#actionDetailsListParams
+  tag: Simulation-Result
+  write: false
+- name: get_simulations_run_threats_actions
+  description: Action Details
+  method: GET
+  path: /v1/simulations/{Id}/run/{RunId}/threats/{ThreatId}/actions/{ActionId}
+  source_operation: openapi/picus-security-simulation-result-openapi.yml#actionDetailsParams
+  tag: Simulation-Result
+  write: false
+- name: list_simulations_run_threats_actions_integrations_alerts
+  description: Integration based Alert Details for Actions
+  method: GET
+  path: /v1/simulations/{Id}/run/{RunId}/threats/{ThreatId}/actions/{ActionId}/integrations/{IntegrationId}/alerts
+  source_operation: openapi/picus-security-simulation-result-openapi.yml#actionAlertsParams
+  tag: Simulation-Result
+  write: false
+- name: list_simulations_run_threats_actions_integrations_logs
+  description: Integration based Log Details for Actions
+  method: GET
+  path: /v1/simulations/{Id}/run/{RunId}/threats/{ThreatId}/actions/{ActionId}/integrations/{IntegrationId}/logs
+  source_operation: openapi/picus-security-simulation-result-openapi.yml#actionLogsParams
+  tag: Simulation-Result
+  write: false
+- name: create_simulations_simulate_now
+  description: Simulate Now
+  method: POST
+  path: /v1/simulations/{Id}/simulate-now
+  source_operation: openapi/picus-security-simulations-openapi.yml#simulateNowParams
+  tag: Simulations
+  write: true
+- name: list_simulations_run_threats_peers_integrations_raw_logs
+  description: Raw Log File Links
+  method: GET
+  path: /v1/simulations/{SimulationId}/run/{RunId}/threats/{ThreatId}/peers/{PeerId}/integrations/{IntegrationId}/raw-logs
+  source_operation: openapi/picus-security-simulation-result-openapi.yml#rawLogsParams
+  tag: Simulation-Result
+  write: false
+- name: create_summary_overall
+  description: Summary Overall
+  method: POST
+  path: /v1/summary/overall
+  source_operation: openapi/picus-security-summary-openapi.yml#summaryOverallParams
+  tag: Summary
+  write: true
+- name: list_templates
+  description: Template List
+  method: GET
+  path: /v1/templates
+  source_operation: openapi/picus-security-templates-openapi.yml#templateListParams
+  tag: Templates
+  write: false
+- name: create_templates
+  description: Create Template
+  method: POST
+  path: /v1/templates
+  source_operation: openapi/picus-security-templates-openapi.yml#createTemplateParams
+  tag: Templates
+  write: true
+- name: get_templates
+  description: Template Detail
+  method: GET
+  path: /v1/templates/{Id}
+  source_operation: openapi/picus-security-templates-openapi.yml#templateParams
+  tag: Templates
+  write: false
+- name: list_threat_library_action_parameters
+  description: Action Parameters
+  method: GET
+  path: /v1/threat-library/action-parameters
+  source_operation: openapi/picus-security-threats-openapi.yml#actionParametersParams
+  tag: Threats
+  write: false
+- name: list_threat_library_actions
+  description: Action Details List
+  method: GET
+  path: /v1/threat-library/actions
+  source_operation: openapi/picus-security-threats-openapi.yml#actionDetailsList
+  tag: Threats
+  write: false
+- name: create_threat_library_actions
+  description: CreateAction
+  method: POST
+  path: /v1/threat-library/actions
+  source_operation: openapi/picus-security-threats-openapi.yml#createActionParams
+  tag: Threats
+  write: true
+- name: create_threat_library_actions_custom_keyword
+  description: Custom Action Keyword
+  method: POST
+  path: /v1/threat-library/actions/custom-keyword
+  source_operation: openapi/picus-security-threats-openapi.yml#customActionKeywordParams
+  tag: Threats
+  write: true
+- name: get_threat_library_actions
+  description: Action Details
+  method: GET
+  path: /v1/threat-library/actions/{ActionId}
+  source_operation: openapi/picus-security-threats-openapi.yml#actionDetails
+  tag: Threats
+  write: false
+- name: list_threat_library_files
+  description: Files List
+  method: GET
+  path: /v1/threat-library/files
+  source_operation: openapi/picus-security-threats-openapi.yml#filesListParams
+  tag: Threats
+  write: false
+- name: create_threat_library_files
+  description: Upload File
+  method: POST
+  path: /v1/threat-library/files
+  source_operation: openapi/picus-security-threats-openapi.yml#fileUploadParams
+  tag: Threats
+  write: true
+- name: list_threat_library_processes
+  description: Process List
+  method: GET
+  path: /v1/threat-library/processes
+  source_operation: openapi/picus-security-threats-openapi.yml#processListParams
+  tag: Threats
+  write: false
+- name: create_threat_library_processes
+  description: Create Process
+  method: POST
+  path: /v1/threat-library/processes
+  source_operation: openapi/picus-security-threats-openapi.yml#createProcessParams
+  tag: Threats
+  write: true
+- name: list_threat_library_tags
+  description: List Tags
+  method: GET
+  path: /v1/threat-library/tags
+  source_operation: openapi/picus-security-threats-openapi.yml#Tags
+  tag: Threats
+  write: false
+- name: list_threat_library_threat_actors
+  description: List Threat Actors
+  method: GET
+  path: /v1/threat-library/threat-actors
+  source_operation: openapi/picus-security-threats-openapi.yml#Threat-Actors
+  tag: Threats
+  write: false
+- name: list_threat_library_threats
+  description: Threat List
+  method: GET
+  path: /v1/threat-library/threats
+  source_operation: openapi/picus-security-threats-openapi.yml#threatListParams
+  tag: Threats
+  write: false
+- name: create_threat_library_threats
+  description: Create Threat
+  method: POST
+  path: /v1/threat-library/threats
+  source_operation: openapi/picus-security-threats-openapi.yml#createThreatParams
+  tag: Threats
+  write: true
+- name: create_threat_library_threats_import
+  description: Import Threat Pack
+  method: POST
+  path: /v1/threat-library/threats/import
+  source_operation: openapi/picus-security-threats-openapi.yml#importThreatParams
+  tag: Threats
+  write: true
+- name: get_threat_library_threats
+  description: Threat Details
+  method: GET
+  path: /v1/threat-library/threats/{ThreatId}
+  source_operation: openapi/picus-security-threats-openapi.yml#threatDetails
+  tag: Threats
+  write: false
+- name: update_threat_library_threats
+  description: Update Threat
+  method: PUT
+  path: /v1/threat-library/threats/{ThreatId}
+  source_operation: openapi/picus-security-threats-openapi.yml#updateThreatParams
+  tag: Threats
+  write: true
+- name: delete_threat_library_threats
+  description: Delete Threat
+  method: DELETE
+  path: /v1/threat-library/threats/{ThreatId}
+  source_operation: openapi/picus-security-threats-openapi.yml#deleteThreatParams
+  tag: Threats
+  write: true
+- name: list_threat_library_threats_export
+  description: Export Threat Pack
+  method: GET
+  path: /v1/threat-library/threats/{ThreatId}/export
+  source_operation: openapi/picus-security-threats-openapi.yml#exportThreatParams
+  tag: Threats
+  write: false
+- name: list_users
+  description: Get Users
+  method: GET
+  path: /v1/users
+  source_operation: openapi/picus-security-users-openapi.yml#usersFilterParams
+  tag: Users
+  write: false
+- name: create_users_invite
+  description: Invite User
+  method: POST
+  path: /v1/users/invite
+  source_operation: openapi/picus-security-users-openapi.yml#InviteUserParams
+  tag: Users
+  write: true
+- name: list_users_roles
+  description: Get Roles
+  method: GET
+  path: /v1/users/roles
+  source_operation: openapi/picus-security-users-openapi.yml#RolesFilterParams
+  tag: Users
+  write: false
+- name: delete_users
+  description: Delete User
+  method: DELETE
+  path: /v1/users/{userId}
+  source_operation: openapi/picus-security-users-openapi.yml#deleteUserFilterParams
+  tag: Users
+  write: true
+- name: update_users_role
+  description: Assign Role
+  method: PUT
+  path: /v1/users/{userId}/role
+  source_operation: openapi/picus-security-users-openapi.yml#assignRoleParams
+  tag: Users
+  write: true
+- name: list_mitigation_devices_2
+  description: Device List
+  method: GET
+  path: /v2/mitigation/devices
+  source_operation: openapi/picus-security-mitigation-openapi.yml#deviceListParamsV2
+  tag: Mitigation
+  write: false
+- name: get_mitigation_devices
+  description: Device Stats
+  method: GET
+  path: /v2/mitigation/devices/{DeviceId}
+  source_operation: openapi/picus-security-mitigation-openapi.yml#deviceStatsByIdParams
+  tag: Mitigation
+  write: false
+- name: create_simulations_results_reports
+  description: Generate Simulation Report
+  method: POST
+  path: /v2/simulations/{Id}/results/reports
+  source_operation: openapi/picus-security-simulation-result-reports-openapi.yml#generateSimulationReportParams
+  tag: Simulation-Result-Reports
+  write: true
+- name: get_simulations_results_reports
+  description: Simulation Result Report Detail
+  method: GET
+  path: /v2/simulations/{Id}/results/reports/{ReportId}
+  source_operation: openapi/picus-security-simulation-result-reports-openapi.yml#reportParams
+  tag: Simulation-Result-Reports
+  write: false
+- name: list_simulations_results_reports_download
+  description: Download Simulation Result Report
+  method: GET
+  path: /v2/simulations/{Id}/results/reports/{ReportId}/download
+  source_operation: openapi/picus-security-simulation-result-reports-openapi.yml#reportDownloadParams
+  tag: Simulation-Result-Reports
+  write: false
+- name: list_simulations_results_reports_download_url
+  description: Simulation Result Report Download Url
+  method: GET
+  path: /v2/simulations/{Id}/results/reports/{ReportId}/download-url
+  source_operation: openapi/picus-security-simulation-result-reports-openapi.yml#reportDownloadUrlParams
+  tag: Simulation-Result-Reports
+  write: false
+- name: list_threat_library_actions_2
+  description: Action List
+  method: GET
+  path: /v2/threat-library/actions
+  source_operation: openapi/picus-security-threats-openapi.yml#actionListParams
+  tag: Threats
+  write: false

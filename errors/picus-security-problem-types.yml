@@ -1,0 +1,158 @@
+generated: '2026-08-02'
+method: searched
+format: custom-json
+rfc9457: false
+source: >-
+  Derived from the 4xx/5xx responses declared in openapi/_original/picus-security-openapi.json (Swagger 2.0,
+  71 paths, 84 operations) and enriched from the published response-code reference at
+  https://apidocs.picussecurity.com/docs/response-codes-errors
+docs: https://apidocs.picussecurity.com/docs/response-codes-errors
+summary: >-
+  The Picus Customer API does NOT use RFC 9457 application/problem+json. Errors are returned as
+  application/json with one of three flat envelopes declared in the contract. The docs publish a
+  status-code table citing RFC 7231, RFC 7235, RFC 4918 and RFC 6585; the contract itself declares only
+  401, 404, 410, 422, 500 and a catch-all `default` response, so the remaining documented codes (400, 402,
+  403, 408, 429, 503) are real runtime behaviour that is not modelled in the spec.
+envelopes:
+- name: genericErrorSwagger
+  used_for: the `default` response on all 84 operations
+  media_type: application/json
+  shape: '{ "error_code": integer?, "errors": { "<key>": "<message>" }?, "message": string }'
+  fields:
+  - name: error_code
+    type: integer
+    required: false
+    description: >-
+      "Error Code is optional. It is using for define specific error types." Example value 1001. Picus
+      publishes no registry of these numeric error codes.
+  - name: errors
+    type: object<string,string>
+    required: false
+    description: Present when multiple errors apply; maps a key to a message.
+  - name: message
+    type: string
+    required: false
+    description: Human-readable error message.
+- name: validationErrorSwagger
+  used_for: the 422 response on 62 operations
+  media_type: application/json
+  shape: '{ "errors": { "<param>": "<constraint message>" }, "message": "validation error" }'
+  fields:
+  - name: errors
+    type: object<string,string>
+    description: >-
+      Validation error list keyed by the offending parameter. Documented example value
+      `{"param": "tag=max, param=25, given value=1000"}` — the message names the violated validation tag,
+      the configured bound, and the value supplied.
+  - name: message
+    type: string
+    description: Always the literal string "validation error".
+- name: GenericErrorResponse / GenericErrorWithFieldsResponse
+  used_for: newer v2 and custom-detection-content operations
+  media_type: application/json
+  shape: '{ "code": integer, "message": string?, "errors": { "<key>": "<value>" }?, "success": false }'
+  fields:
+  - name: code
+    type: integer
+    description: Mirrors the HTTP status (example 400).
+  - name: success
+    type: boolean
+    description: Always false on error.
+  - name: message
+    type: string
+    required: false
+  - name: errors
+    type: object<string,string>
+    required: false
+  note: >-
+    A second, incompatible error envelope. Clients cannot assume a single error shape across the whole
+    surface — branch on the presence of `success`/`code` versus `message`/`error_code`.
+problems:
+- status: 401
+  title: UNAUTHORIZED
+  declared_in_spec: true
+  operations_declaring: 12
+  meaning: >-
+    "The request requires to authentication. If the request includes authorization information,
+    authorization has been refused for those credentials."
+  common_cause: Missing/expired bearer access token (access tokens live 2 hours) or an expired refresh token.
+  remediation: >-
+    Exchange the refresh token at POST /v1/auth/token (operationId AuthTokenParam) for a fresh access token
+    and retry. If the refresh token itself expired (6 month TTL) regenerate it from
+    app.picussecurity.com > Settings > Rest API Token, or call POST /v1/auth/refresh
+    (operationId RegenerateRefreshTokenParam).
+- status: 404
+  title: NOT FOUND
+  declared_in_spec: true
+  operations_declaring: 3
+  meaning: The requested resource is not found.
+  remediation: Verify the path id (simulation Id, ThreatId, ActionId, ReportId, DeviceId, content_id, userId).
+- status: 410
+  title: GONE
+  declared_in_spec: true
+  operations_declaring: 1
+  source_operation: openapi/picus-security-mitigation-openapi.yml#deviceListParams
+  meaning: >-
+    The deprecated GET /v1/mitigation/devices endpoint has been retired.
+  remediation: >-
+    Migrate to GET /v2/mitigation/devices (deviceListParamsV2) for the device list, then
+    GET /v2/mitigation/devices/{DeviceId} (deviceStatsByIdParams) for per-device stats.
+  see: lifecycle/picus-security-lifecycle.yml
+- status: 422
+  title: UNPROCESSABLE ENTITY
+  declared_in_spec: true
+  operations_declaring: 62
+  envelope: validationErrorSwagger
+  meaning: "The request contains invalid parameter. The parameter contains validation error."
+  remediation: >-
+    Read errors[<param>] to find the offending parameter and the violated constraint (commonly a max limit —
+    see the per-endpoint pagination caps in conventions/picus-security-conventions.yml), correct and retry.
+- status: 500
+  title: INTERNAL SERVER ERROR
+  declared_in_spec: true
+  operations_declaring: 1
+  meaning: An unexpected server error.
+  remediation: Retry with backoff; escalate via the Picus support portal if persistent.
+documented_but_not_in_spec:
+- status: 400
+  title: BAD REQUEST
+  meaning: The request could not be understood by the server due to malformed syntax.
+- status: 402
+  title: PAYMENT REQUIRED
+  meaning: >-
+    "The requested resource has reached out limitation. You can try it later or removing existing resources.
+    Also you can contact with the support." — a licensing/quota signal, unusual outside billing APIs.
+  remediation: Delete unused resources or contact Picus support to raise the licensed limit.
+- status: 403
+  title: FORBIDDEN
+  meaning: >-
+    "Authorization information is correct but you do not have permission to access this resource." Driven by
+    the role assigned to the user and by the SCOPE attached to the refresh token.
+  remediation: Assign a role with the required permission, or regenerate a refresh token with a wider scope.
+- status: 408
+  title: REQUEST TIMEOUT
+  meaning: No response within the given time.
+- status: 429
+  title: TOO MANY REQUEST
+  meaning: The rate limit is applied.
+  remediation: >-
+    Back off until X-Ratelimit-Reset (unix epoch seconds); read X-Ratelimit-Limit / X-Ratelimit-Remaining to
+    pace requests. See rate-limits/picus-security-rate-limits.yml.
+successes:
+- status: 200
+  title: OK
+- status: 201
+  title: CREATED
+- status: 204
+  title: NO CONTENT
+gaps:
+- No RFC 9457 problem+json; no `type` URI per error class.
+- The numeric `error_code` field is declared but no code registry is published.
+- Two mutually incompatible error envelopes coexist across v1 and v2 operations.
+- 400/402/403/408/429 are documented in prose but not declared on any operation in the contract.
+evidence:
+- url: https://apidocs.picussecurity.com/docs/response-codes-errors
+  http_status: 200
+  fetched: '2026-08-02'
+- source: openapi/_original/picus-security-openapi.json
+  kind: declared-responses

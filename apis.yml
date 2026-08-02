@@ -1,23 +1,200 @@
 aid: picus-security
 name: Picus Security
-description: 'Picus Security is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Picus Security is a cybersecurity company that pioneered Breach and Attack Simulation (BAS) in 2013 and now
+  ships the Picus Security Validation Platform for Adversarial Exposure Validation (AEV) and Continuous Threat
+  Exposure Management (CTEM). The platform continuously simulates real-world adversary techniques against
+  network, endpoint, email and cloud controls, scores prevention and detection effectiveness, maps results to
+  MITRE ATT&CK and the Unified Kill Chain, and returns vendor-specific mitigation signatures and validated
+  detection rules from the Picus Mitigation Library. The Picus Customer API is a public REST API documented at
+  apidocs.picussecurity.com and served from api.picussecurity.com, exposing simulations, simulation run
+  results, the threat library, threat templates, agents, integrations, mitigation and detection content,
+  exposure instance scores, users and roles, and activity logs, authorized with OAuth2-issued refresh and
+  access tokens.
+image: https://www.picussecurity.com/hubfs/Picus_February2020/images/favicon.ico
 url: https://raw.githubusercontent.com/api-evangelist/picus-security/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
-specificationVersion: '0.20'
+specificationVersion: '0.21'
 created: '2026-08-02'
 modified: '2026-08-02'
 tags:
-- Company
-apis: []
+- cybersecurity
+- security-validation
+- breach-and-attack-simulation
+- adversarial-exposure-validation
+- continuous-threat-exposure-management
+- penetration-testing
+- threat-intelligence
+- mitre-attack
+- detection-engineering
+- security-operations
+apis:
+- name: Picus Customer API
+  description: >-
+    Public REST API for the Picus Security Validation Platform. Create, run, update, cancel and delete
+    simulations; read simulation run results including threats, attacker objectives and per-action detail with
+    MITRE ATT&CK and Unified Kill Chain mappings; pull SIEM/EDR-integration log and alert evidence; browse and
+    author the threat library (threats, actions, processes, files, tags, threat actors, import/export threat
+    packs); manage threat templates, agents, integrations, mitigation devices and signatures, custom detection
+    content, exposure instance scores, users and roles, and activity logs. Authorization uses an OAuth2 refresh
+    token (6 months) exchanged at /v1/auth/token for a bearer access token (2 hours).
+  humanURL: https://apidocs.picussecurity.com/
+  baseURL: https://api.picussecurity.com/
+  tags:
+  - cybersecurity
+  - security-validation
+  - breach-and-attack-simulation
+  - simulation
+  - threat-library
+  - mitre-attack
+  - detection-engineering
+  - security-operations
+  properties:
+  - type: Documentation
+    url: https://apidocs.picussecurity.com/
+  - type: APIReference
+    url: https://apidocs.picussecurity.com/reference/intro-to-the-picus-customer-api
+  - type: GettingStarted
+    url: https://apidocs.picussecurity.com/docs/scope-of-the-picus-api
+  - type: OpenAPI
+    url: openapi/picus-security-activity-logs-openapi.yml
+  - type: OpenAPI
+    url: openapi/picus-security-agents-openapi.yml
+  - type: OpenAPI
+    url: openapi/picus-security-authentication-openapi.yml
+  - type: OpenAPI
+    url: openapi/picus-security-instances-openapi.yml
+  - type: OpenAPI
+    url: openapi/picus-security-integrations-openapi.yml
+  - type: OpenAPI
+    url: openapi/picus-security-mitigation-openapi.yml
+  - type: OpenAPI
+    url: openapi/picus-security-simulation-latest-result-openapi.yml
+  - type: OpenAPI
+    url: openapi/picus-security-simulation-result-openapi.yml
+  - type: OpenAPI
+    url: openapi/picus-security-simulation-result-reports-openapi.yml
+  - type: OpenAPI
+    url: openapi/picus-security-simulations-openapi.yml
+  - type: OpenAPI
+    url: openapi/picus-security-summary-openapi.yml
+  - type: OpenAPI
+    url: openapi/picus-security-templates-openapi.yml
+  - type: OpenAPI
+    url: openapi/picus-security-threats-openapi.yml
+  - type: OpenAPI
+    url: openapi/picus-security-users-openapi.yml
+  - type: Overlay
+    url: overlays/picus-security-activity-logs-overlay.yaml
+  - type: Overlay
+    url: overlays/picus-security-agents-overlay.yaml
+  - type: Overlay
+    url: overlays/picus-security-authentication-overlay.yaml
+  - type: Overlay
+    url: overlays/picus-security-instances-overlay.yaml
+  - type: Overlay
+    url: overlays/picus-security-integrations-overlay.yaml
+  - type: Overlay
+    url: overlays/picus-security-mitigation-overlay.yaml
+  - type: Overlay
+    url: overlays/picus-security-simulation-latest-result-overlay.yaml
+  - type: Overlay
+    url: overlays/picus-security-simulation-result-overlay.yaml
+  - type: Overlay
+    url: overlays/picus-security-simulation-result-reports-overlay.yaml
+  - type: Overlay
+    url: overlays/picus-security-simulations-overlay.yaml
+  - type: Overlay
+    url: overlays/picus-security-summary-overlay.yaml
+  - type: Overlay
+    url: overlays/picus-security-templates-overlay.yaml
+  - type: Overlay
+    url: overlays/picus-security-threats-overlay.yaml
+  - type: Overlay
+    url: overlays/picus-security-users-overlay.yaml
+  - type: Authentication
+    url: authentication/picus-security-authentication.yml
+  - type: Conventions
+    url: conventions/picus-security-conventions.yml
+  - type: ErrorCatalog
+    url: errors/picus-security-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/picus-security-rate-limits.yml
+  - type: DataModel
+    url: data-model/picus-security-data-model.yml
+common:
+- type: AgenticAccess
+  url: agentic-access/picus-security-agentic-access.yml
+- type: TrustCenter
+  url: security/picus-security-trust-center.yml
+- type: DomainSecurity
+  url: security/picus-security-domain-security.yml
+- type: Authentication
+  url: authentication/picus-security-authentication.yml
+- type: Website
+  url: https://www.picussecurity.com/
+- type: DeveloperPortal
+  url: https://apidocs.picussecurity.com/
+- type: Documentation
+  url: https://apidocs.picussecurity.com/
+- type: APIReference
+  url: https://apidocs.picussecurity.com/reference/intro-to-the-picus-customer-api
+- type: GettingStarted
+  url: https://apidocs.picussecurity.com/docs/scope-of-the-picus-api
+- type: Support
+  url: https://support.picussecurity.com/
+- type: Blog
+  url: https://www.picussecurity.com/blog
+- type: SignUp
+  url: https://discover.picussecurity.com/start-your-free-trial
+- type: Login
+  url: https://app.picussecurity.com/signin
+- type: TermsOfService
+  url: https://www.picussecurity.com/terms
+- type: PrivacyPolicy
+  url: https://www.picussecurity.com/trust-center/privacy-security
+- type: StatusPage
+  url: https://status.picussecurity.com/
+- type: ChangeLog
+  url: https://apidocs.picussecurity.com/changelog
+- type: Compliance
+  url: https://www.picussecurity.com/trust-center
+- type: Security
+  url: https://www.picussecurity.com/trust-center
+- type: LLMsTxt
+  url: https://apidocs.picussecurity.com/llms.txt
+- type: Lifecycle
+  url: lifecycle/picus-security-lifecycle.yml
+- type: Deprecation
+  url: https://apidocs.picussecurity.com/docs/versioning
+- type: ChangeLog
+  url: changelog/picus-security-changelog.yml
+- type: Conventions
+  url: conventions/picus-security-conventions.yml
+- type: RateLimits
+  url: rate-limits/picus-security-rate-limits.yml
+- type: ErrorCatalog
+  url: errors/picus-security-problem-types.yml
+- type: Conformance
+  url: conformance/picus-security-conformance.yml
+- type: DataModel
+  url: data-model/picus-security-data-model.yml
+- type: Packages
+  url: packages/picus-security-packages.yml
+- type: VulnerabilityDisclosure
+  url: security/picus-security-vulnerability-disclosure.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/picus-security-llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
-common:
-- type: Website
-  url: https://forgeglobal.com/picus-security_stock/
+x-enrichment:
+  date: '2026-08-02'
+  status: enriched
+  artifacts_added: 54
+  pass: local-v1

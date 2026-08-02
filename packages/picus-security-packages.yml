@@ -1,0 +1,55 @@
+generated: '2026-08-02'
+method: searched
+source: >-
+  Registry searches (npm, PyPI, GitHub) plus the Picus developer docs
+  (https://apidocs.picussecurity.com/ and its llms.txt index)
+summary: >-
+  Picus Security publishes NO first-party client libraries. There is no Picus GitHub organization, no npm
+  scope, no PyPI distribution, no CLI, and no SDK page anywhere in the API documentation. The only
+  integration code shipped for the Picus Customer API is third-party: the Cortex XSOAR content packs
+  ("Picus Security" and "Picus Security NG") maintained by Palo Alto Networks in demisto/content, and a
+  Datadog integration built by Crest Data Systems. Integrators call the REST API directly with curl or a
+  generic HTTP client — the documentation's recipes are all raw curl.
+packages: []
+official_sdks: 0
+registries_probed:
+- registry: npm
+  query: picus security
+  result: no first-party package (only unrelated generic security packages)
+  status: 200
+- registry: pypi
+  query: picus
+  result: >-
+    https://pypi.org/project/picus/ exists but is unrelated — "Pointed Interpretation of Clinical Variant
+    Significance", a bioinformatics package. picus-security and picussecurity are both 404.
+  status: 200
+- registry: pypi
+  query: picus-security
+  result: 404
+  status: 404
+- registry: github
+  query: 'github.com/picus-security, /PicusSecurity, /picussec'
+  result: 404 on every candidate org name — Picus has no public GitHub organization
+  status: 404
+third_party_integrations:
+- name: Picus Security (Cortex XSOAR content pack)
+  vendor: Palo Alto Networks
+  url: https://xsoar.pan.dev/docs/reference/integrations/picus
+  official: false
+- name: Picus Security NG (Cortex XSOAR content pack)
+  vendor: Palo Alto Networks
+  url: https://xsoar.pan.dev/docs/reference/integrations/picus-ng
+  official: false
+- name: Picus Security (Datadog integration)
+  vendor: Crest Data Systems
+  url: https://docs.datadoghq.com/integrations/crest-data-systems-picus-security/
+  official: false
+gaps:
+- No first-party SDK in any language — the single largest developer-ergonomics gap for this API.
+- No public GitHub organization, so no sample code, no issue tracker, no community surface.
+- No CLI.
+- No published Postman collection or workspace (Postman public search returns zero results for Picus).
+evidence:
+- source: https://apidocs.picussecurity.com/llms.txt
+  fetched: '2026-08-02'
+  note: Complete docs index — contains Guides, API Reference, Recipes and Changelog sections; no SDK section.

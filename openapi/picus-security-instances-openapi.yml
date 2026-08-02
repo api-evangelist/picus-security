@@ -1,0 +1,188 @@
+swagger: '2.0'
+info:
+  title: Picus Customer API — Instances
+  description: '<p class="body-1">You can access the simulation raw data using the Rest API. Scope of the API includes; Simulation
+    list, Simulation Details, Threat/Objective/Action Results, Results mapped to MITRE ATTC&K and Unified Kill Chain frameworks,
+    Detection Analysis Results, Validated Logs & Alerts with SIEM & EDR integration.</p>
+
+    <p class="body-1">OAuth2 protocol is used to authorize Refresh/Access tokens. To obtain the API, you should generate a
+    refresh token and then request an access token using the /v1/auth/token endpoint. The refresh token will be valid for
+    6 months, whereas the access token will be available for 2 hours. After getting the access token, add Authorization: Bearer
+    {accessToken} to the header to request access to the below endpoints.</p>
+
+    <p class="body-1">Endpoints returning data with a lot of load works with the pagination method. You can use the offset
+    and limit parameters to get the correct page.</p>
+
+
+    <i class="body-1">Your usage will be limited with your Picus license.</i>'
+  version: '1.0'
+host: api.picussecurity.com
+basePath: /
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+securityDefinitions:
+  Access-Token:
+    description: After getting the access token, type <i>Bearer accessToken</i> to the Value input box to request access to
+      the below endpoints For example <i>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</i>
+    type: apiKey
+    name: Authorization
+    in: header
+security:
+- Access-Token: []
+tags:
+- name: Instances
+paths:
+  /v1/exposures/instances/scores:
+    post:
+      security:
+      - Access-Token: []
+      description: 'Returns exposure instance scores for the specified host-exposure pairs.
+
+        Duplicate pairs are deduplicated server-side. Unmatched pairs are omitted from the response.'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - Instances
+      summary: '# List Instance Scores'
+      operationId: listInstanceScoresParams
+      parameters:
+      - name: Body
+        in: body
+        schema:
+          type: object
+          required:
+          - filters
+          properties:
+            filters:
+              type: object
+              required:
+              - host_exposure_pairs
+              properties:
+                host_exposure_pairs:
+                  description: List of host-exposure pairs to query.
+                  type: array
+                  maxItems: 250
+                  minItems: 1
+                  items:
+                    $ref: '#/definitions/HostExposurePairSwagger'
+                  x-go-name: HostExposurePairs
+                  example:
+                  - exposure_id: CVE-2022-21903
+                    hostname: asset-001
+              x-go-name: Filters
+      responses:
+        '200':
+          $ref: '#/responses/ScoresResponse'
+        '422':
+          $ref: '#/responses/validationErrorSwagger'
+        default:
+          $ref: '#/responses/genericErrorSwagger'
+responses:
+  ScoresResponse:
+    description: ScoresResponse contains the list of instances for the requested host-exposure pairs.
+    schema:
+      type: object
+      properties:
+        instance_scores:
+          description: List of exposure instance scores matching the requested pairs. Unmatched pairs are omitted.
+          type: array
+          items:
+            $ref: '#/definitions/ScoreItem'
+          x-go-name: InstanceScores
+  genericErrorSwagger:
+    description: genericErrorSwagger is represents the erroneous cases
+    schema:
+      type: object
+      properties:
+        error_code:
+          description: Error Code is optional. It is using for define specific error types.
+          type: integer
+          format: int64
+          x-go-name: ErrorCode
+          example: 1001
+        errors:
+          description: Errors are optional. If there are multiple error, this field gives details.
+          type: object
+          additionalProperties:
+            type: string
+          x-go-name: Errors
+          example: '["error1", "error2"]'
+        message:
+          description: Error Message that contains information about error
+          type: string
+          x-go-name: Message
+  validationErrorSwagger:
+    description: validationErrorSwagger is represents the erroneous cases
+    schema:
+      type: object
+      properties:
+        errors:
+          description: Validation Error List
+          type: object
+          additionalProperties:
+            type: string
+          x-go-name: Errors
+          example:
+            param: tag=max, param=25, given value=1000
+        message:
+          description: Message will be "validation error"
+          type: string
+          x-go-name: Message
+          example: validation error
+definitions:
+  HostExposurePairSwagger:
+    type: object
+    properties:
+      exposure_id:
+        type: string
+        x-go-name: ExposureID
+        example: CVE-2022-21903
+      hostname:
+        type: string
+        x-go-name: Hostname
+        example: asset-001
+    x-go-package: github.com/picusnext/picus-digital/go/customer-api/exposures/instances
+  ScoreItem:
+    type: object
+    properties:
+      asset_criticality:
+        type: number
+        format: double
+        x-go-name: AssetCriticality
+        example: 3.9
+      asset_id:
+        type: string
+        x-go-name: AssetID
+        example: asset-001
+      contextual_cvss:
+        type: number
+        format: double
+        x-go-name: ContextualCvss
+        example: 7.6
+      cve_id:
+        type: string
+        x-go-name: CveID
+        example: CVE-2022-21903
+      exploitability:
+        type: number
+        format: double
+        x-go-name: Exploitability
+        example: 71
+      picus_exposure_score:
+        type: number
+        format: double
+        x-go-name: PicusExposureScore
+        example: 7.2
+      security_control_effectiveness:
+        type: string
+        x-go-name: SecurityControlEffectiveness
+        example: '75.0'
+    x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request

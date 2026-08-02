@@ -1,0 +1,139 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Picus Customer API — Threats
+  version: 1.0.0
+extends: openapi/picus-security-threats-openapi.yml
+x-generated: '2026-08-02'
+x-method: generated
+x-source: openapi/_original/picus-security-openapi.json
+actions:
+- target: $.info
+  update:
+    contact:
+      name: Picus Security Support
+      url: https://support.picussecurity.com/
+      email: info@picussecurity.com
+    x-apievangelist-provider: picus-security
+    x-apievangelist-harvested-from: https://api.picussecurity.com/swagger.json
+    x-apievangelist-harvested: '2026-08-02'
+    x-apievangelist-tag: Threats
+    x-apievangelist-artifacts:
+      authentication: authentication/picus-security-authentication.yml
+      conventions: conventions/picus-security-conventions.yml
+      errors: errors/picus-security-problem-types.yml
+      rate_limits: rate-limits/picus-security-rate-limits.yml
+      lifecycle: lifecycle/picus-security-lifecycle.yml
+      data_model: data-model/picus-security-data-model.yml
+      conformance: conformance/picus-security-conformance.yml
+- target: $
+  update:
+    externalDocs:
+      description: Picus Customer API documentation
+      url: https://apidocs.picussecurity.com/
+- target: $.tags[?(@.name=='Threats')]
+  update:
+    externalDocs:
+      description: Picus Customer API reference
+      url: https://apidocs.picussecurity.com/reference/intro-to-the-picus-customer-api
+- target: $.securityDefinitions.Access-Token
+  update:
+    x-token-endpoint: POST https://api.picussecurity.com/v1/auth/token
+    x-token-ttl: 2 hours
+    x-refresh-token-ttl: 6 months
+    x-refresh-token-source: app.picussecurity.com > Settings > Rest API Token
+    x-token-scoped: true
+- target: $.paths['/v1/threat-library/action-parameters'].get
+  update:
+    x-apievangelist-summary: Action Parameters
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/threat-library/actions'].get
+  update:
+    x-apievangelist-summary: Action Details List
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/threat-library/actions'].post
+  update:
+    x-apievangelist-summary: CreateAction
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/threat-library/actions/custom-keyword'].post
+  update:
+    x-apievangelist-summary: Custom Action Keyword
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/threat-library/actions/{ActionId}'].get
+  update:
+    x-apievangelist-summary: Action Details
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/threat-library/files'].get
+  update:
+    x-apievangelist-summary: Files List
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/threat-library/files'].post
+  update:
+    x-apievangelist-summary: Upload File
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/threat-library/processes'].get
+  update:
+    x-apievangelist-summary: Process List
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/threat-library/processes'].post
+  update:
+    x-apievangelist-summary: Create Process
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/threat-library/tags'].get
+  update:
+    x-apievangelist-summary: List Tags
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/threat-library/threat-actors'].get
+  update:
+    x-apievangelist-summary: List Threat Actors
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/threat-library/threats'].get
+  update:
+    x-apievangelist-summary: Threat List
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/threat-library/threats'].post
+  update:
+    x-apievangelist-summary: Create Threat
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/threat-library/threats/import'].post
+  update:
+    x-apievangelist-summary: Import Threat Pack
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/threat-library/threats/{ThreatId}'].get
+  update:
+    x-apievangelist-summary: Threat Details
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/threat-library/threats/{ThreatId}'].put
+  update:
+    x-apievangelist-summary: Update Threat
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/threat-library/threats/{ThreatId}'].delete
+  update:
+    x-apievangelist-summary: Delete Threat
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v1/threat-library/threats/{ThreatId}/export'].get
+  update:
+    x-apievangelist-summary: Export Threat Pack
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.
+- target: $.paths['/v2/threat-library/actions'].get
+  update:
+    x-apievangelist-summary: Action List
+  description: Published summary carries a leading markdown "#"; this records the cleaned title without mutating the harvested
+    spec.

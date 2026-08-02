@@ -1,0 +1,491 @@
+swagger: '2.0'
+info:
+  title: Picus Customer API — Agents
+  description: '<p class="body-1">You can access the simulation raw data using the Rest API. Scope of the API includes; Simulation
+    list, Simulation Details, Threat/Objective/Action Results, Results mapped to MITRE ATTC&K and Unified Kill Chain frameworks,
+    Detection Analysis Results, Validated Logs & Alerts with SIEM & EDR integration.</p>
+
+    <p class="body-1">OAuth2 protocol is used to authorize Refresh/Access tokens. To obtain the API, you should generate a
+    refresh token and then request an access token using the /v1/auth/token endpoint. The refresh token will be valid for
+    6 months, whereas the access token will be available for 2 hours. After getting the access token, add Authorization: Bearer
+    {accessToken} to the header to request access to the below endpoints.</p>
+
+    <p class="body-1">Endpoints returning data with a lot of load works with the pagination method. You can use the offset
+    and limit parameters to get the correct page.</p>
+
+
+    <i class="body-1">Your usage will be limited with your Picus license.</i>'
+  version: '1.0'
+host: api.picussecurity.com
+basePath: /
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+securityDefinitions:
+  Access-Token:
+    description: After getting the access token, type <i>Bearer accessToken</i> to the Value input box to request access to
+      the below endpoints For example <i>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</i>
+    type: apiKey
+    name: Authorization
+    in: header
+security:
+- Access-Token: []
+tags:
+- name: Agents
+paths:
+  /v1/agents:
+    get:
+      security:
+      - Access-Token: []
+      description: Agents; Agent Name, Agent Status, Agent Type, Agent Created Time, Agent Platform
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - Agents
+      summary: '# Agent List'
+      operationId: Result
+      responses:
+        '200':
+          $ref: '#/responses/AgentsReturnSwagger'
+        default:
+          $ref: '#/responses/genericErrorSwagger'
+  /v1/agents/download-link:
+    get:
+      security:
+      - Access-Token: []
+      description: 'Returns the download link for the given agent type and variant. Variants can be portable or installable
+        for windows agent type,
+
+        32bit or 64bit for linux agent type and apple or intel for macos agent type.'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - Agents
+      summary: '# Download Link'
+      operationId: downloadLinkParams
+      parameters:
+      - type: string
+        x-go-name: AgentType
+        name: agent_type
+        in: query
+        required: true
+      - type: string
+        x-go-name: Variant
+        name: variant
+        in: query
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/GetSimAgentDownloadLinkResponse'
+        default:
+          $ref: '#/responses/genericErrorSwagger'
+  /v1/agents/install-token:
+    get:
+      security:
+      - Access-Token: []
+      description: 'Returns the install token for the given agent type and variant. Variants can be portable or installable
+        for windows agent type,
+
+        32bit or 64bit for linux agent type and apple or intel for macos agent type. If agent type is kubernetes, variant
+        is not required.'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - Agents
+      summary: '# Install Token'
+      operationId: installTokenParams
+      parameters:
+      - type: string
+        x-go-name: AgentType
+        name: agent_type
+        in: query
+        required: true
+      - type: string
+        x-go-name: Variant
+        name: variant
+        in: query
+      responses:
+        default:
+          $ref: '#/responses/genericErrorSwagger'
+  /v1/agents/kubernetes/download-yaml:
+    get:
+      security:
+      - Access-Token: []
+      description: Downloads the Kubernetes agent YAML file for the given agent name and agent ID.
+      consumes:
+      - application/json
+      produces:
+      - application/octet-stream
+      schemes:
+      - https
+      tags:
+      - Agents
+      summary: '# Download Kubernetes agent YAML'
+      operationId: downloadK8sAgentYamlParams
+      parameters:
+      - type: string
+        x-go-name: AgentName
+        name: agent_name
+        in: query
+        required: true
+      - type: integer
+        format: uint64
+        x-go-name: AgentID
+        name: agent_id
+        in: query
+      responses:
+        '200':
+          $ref: '#/responses/fileResponse'
+        '422':
+          $ref: '#/responses/validationErrorSwagger'
+        default:
+          $ref: '#/responses/genericErrorSwagger'
+  /v1/agents/reinstall-token:
+    get:
+      security:
+      - Access-Token: []
+      description: 'Returns the reinstall token for the given agent type and variant. Variants can be portable or installable
+        for windows agent type,
+
+        32bit or 64bit for linux agent type and apple or intel for macos agent type.'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - Agents
+      summary: '# Reinstall Token'
+      operationId: reinstallTokenParams
+      parameters:
+      - type: integer
+        format: uint64
+        x-go-name: AgentID
+        name: agent_id
+        in: query
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/GetSimAgentInstallTokenResponse'
+        default:
+          $ref: '#/responses/genericErrorSwagger'
+  /v1/agents/{Id}:
+    get:
+      security:
+      - Access-Token: []
+      description: 'Agent Detail; Agent Name, Agent Status, Agent Type, Agent Created Time, Agent Platform,
+
+        Agent Mitigation Devices, Agent Attack Modules'
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - Agents
+      summary: '# Agent Detail'
+      operationId: agentParams
+      parameters:
+      - type: integer
+        format: uint64
+        description: Agent ID (URI parameter)
+        name: Id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/AgentDetailReturnSwagger'
+        '422':
+          $ref: '#/responses/validationErrorSwagger'
+        default:
+          $ref: '#/responses/genericErrorSwagger'
+responses:
+  AgentDetailReturnSwagger:
+    description: AgentDetailReturnSwagger
+    schema:
+      type: object
+      properties:
+        Agent:
+          $ref: '#/definitions/AgentDetailReturn'
+  AgentsReturnSwagger:
+    description: AgentsReturnSwagger
+    schema:
+      type: object
+      properties:
+        agents:
+          type: array
+          items:
+            $ref: '#/definitions/AgentReturn'
+          x-go-name: Agents
+  GetSimAgentDownloadLinkResponse:
+    description: GetSimAgentDownloadLinkResponse
+    schema:
+      type: object
+      properties:
+        link:
+          description: Link
+          type: string
+          x-go-name: Link
+          example: '"https://download.picusnext.com/agents/windows/portable/1.0.0.0/picus-agent-windows-portable-1.0.0.0.exe"'
+        short_url:
+          description: ShortURL
+          type: string
+          x-go-name: ShortURL
+          example: https://cutt.ly/1234567890
+        version:
+          description: Version
+          type: string
+          x-go-name: Version
+          example: '1.2'
+  GetSimAgentInstallTokenResponse:
+    description: GetSimAgentInstallTokenResponse
+    schema:
+      type: object
+      properties:
+        token:
+          description: Token
+          type: string
+          x-go-name: Token
+          example: ebsys....
+  fileResponse:
+    description: A file download response
+    schema:
+      type: array
+      items:
+        type: integer
+        format: uint8
+  genericErrorSwagger:
+    description: genericErrorSwagger is represents the erroneous cases
+    schema:
+      type: object
+      properties:
+        error_code:
+          description: Error Code is optional. It is using for define specific error types.
+          type: integer
+          format: int64
+          x-go-name: ErrorCode
+          example: 1001
+        errors:
+          description: Errors are optional. If there are multiple error, this field gives details.
+          type: object
+          additionalProperties:
+            type: string
+          x-go-name: Errors
+          example: '["error1", "error2"]'
+        message:
+          description: Error Message that contains information about error
+          type: string
+          x-go-name: Message
+  validationErrorSwagger:
+    description: validationErrorSwagger is represents the erroneous cases
+    schema:
+      type: object
+      properties:
+        errors:
+          description: Validation Error List
+          type: object
+          additionalProperties:
+            type: string
+          x-go-name: Errors
+          example:
+            param: tag=max, param=25, given value=1000
+        message:
+          description: Message will be "validation error"
+          type: string
+          x-go-name: Message
+          example: validation error
+definitions:
+  AffectedPlatform:
+    type: object
+    properties:
+      architecture:
+        description: Affected Platform Architecture
+        type: string
+        x-go-name: Architecture
+        example: 32-bit
+      name:
+        description: Affected Platform Name
+        type: string
+        x-go-name: Name
+        example: Windows Server 2022
+    x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
+  AgentDetailReturn:
+    type: object
+    properties:
+      affected_platforms:
+        type: array
+        items:
+          $ref: '#/definitions/AffectedPlatform'
+        x-go-name: AffectedPlatforms
+      attack_modules:
+        type: array
+        items:
+          $ref: '#/definitions/Module'
+        x-go-name: AttackModules
+      created_at:
+        description: Agent Created at
+        type: integer
+        format: int64
+        x-go-name: CreatedAt
+        example: 1650284604358
+      devices:
+        type: array
+        items:
+          $ref: '#/definitions/Device'
+        x-go-name: Devices
+      id:
+        description: Agent Id
+        type: integer
+        format: uint64
+        x-go-name: Id
+        example: 1
+      ip:
+        description: Agent Ip 1.1.1.1
+        type: string
+        x-go-name: Ip
+        example: 1.1.1.1
+      is_update_needed:
+        description: Is agent should update to run simulation
+        type: boolean
+        x-go-name: IsUpdateNeeded
+      name:
+        description: Agent Name
+        type: string
+        x-go-name: Name
+        example: Agent-1
+      nat_ip:
+        description: Agent Nat Ip 0.0.0.0
+        type: string
+        x-go-name: NatIp
+        example: 0.0.0.0
+      platform_architecture:
+        description: Platform Architecture like 64-bit
+        type: string
+        x-go-name: PlatformArchitecture
+        example: 64-bit
+      platform_name:
+        description: Platform Name like Windows 10
+        type: string
+        x-go-name: PlatformName
+        example: Windows 10
+      status:
+        description: Agent status gives information about your agent alive ( alive | dead | expired )
+        type: string
+        x-go-name: Status
+        example: alive | dead | expired
+      type:
+        description: Agent type (QuickEmail | Browser | Installable Agent | Windows | Linux | MacOS)
+        type: string
+        x-go-name: Type
+        example: QuickEmail | Browser | Installable Agent | Windows | Linux | MacOS
+      version:
+        description: Agent Version like 3.4.0.0
+        type: string
+        x-go-name: Version
+        example: 3.4.0.0
+    x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
+  AgentReturn:
+    type: object
+    properties:
+      created_at:
+        description: Agent Created at
+        type: integer
+        format: int64
+        x-go-name: CreatedAt
+        example: 1650284604358
+      id:
+        description: Agent Id
+        type: integer
+        format: uint64
+        x-go-name: Id
+        example: 1
+      name:
+        description: Agent Name
+        type: string
+        x-go-name: Name
+        example: Agent-1
+      platform_architecture:
+        description: Platform Architecture like 64-bit
+        type: string
+        x-go-name: PlatformArchitecture
+        example: 64-bit
+      platform_name:
+        description: Platform Name like Windows 10
+        type: string
+        x-go-name: PlatformName
+        example: Windows 10
+      status:
+        description: Agent status gives information about your agent alive ( alive | dead | expired )
+        type: string
+        x-go-name: Status
+        example: alive | dead | expired
+      type:
+        description: Agent type (QuickEmail | Browser | Installable Agent | Windows | Linux | MacOS)
+        type: string
+        x-go-name: Type
+        example: QuickEmail | Browser | Installable Agent | Windows | Linux | MacOS
+      version:
+        description: Agent Version like 3.4.0.0
+        type: string
+        x-go-name: Version
+        example: 3.4.0.0
+    x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
+  Device:
+    type: object
+    properties:
+      id:
+        description: Identifier
+        type: integer
+        format: uint64
+        x-go-name: Id
+      name:
+        description: Security Device Name like FortiWeb
+        type: string
+        x-go-name: Name
+        example: FortiWeb
+      product_platform:
+        description: Product Platform like FGWVM
+        type: string
+        x-go-name: ProductPlatform
+        example: FGWVM
+      product_version:
+        description: Product version
+        type: string
+        x-go-name: ProductVersion
+        example: 6.3.7
+    x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
+  Module:
+    type: object
+    properties:
+      enabled:
+        description: Is Attack Module Enable
+        type: boolean
+        x-go-name: Enabled
+      id:
+        description: Attack Module Id
+        type: integer
+        format: int64
+        x-go-name: Id
+      name:
+        description: Attack Module like File Download
+        type: string
+        x-go-name: Name
+        example: File Download
+    x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents

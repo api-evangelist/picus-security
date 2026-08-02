@@ -1,0 +1,72 @@
+generated: '2026-08-02'
+method: probed
+source: live probes of /.well-known/ on every Picus host in apis.yml + OpenAPI servers
+summary: >-
+  No /.well-known/ discovery document was found on any Picus host. Every canonical path returns 404 on the
+  API host (api.picussecurity.com, plain-text 404) and on the docs host (apidocs.picussecurity.com, ReadMe).
+  The marketing host (www.picussecurity.com, HubSpot) returns a 404 HTML page. The application host
+  (app.picussecurity.com) is a single-page app whose catch-all answers HTTP 200 with the SPA HTML shell for
+  EVERY /.well-known/* path — those 200s are recorded below as false positives and are NOT treated as hits.
+hosts:
+- host: https://api.picussecurity.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://apidocs.picussecurity.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+- host: https://www.picussecurity.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+- host: https://picussecurity.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+- host: https://app.picussecurity.com
+  note: >-
+    SPA catch-all — returns HTTP 200 with text/html for arbitrary paths, including /openapi.json. Treated as
+    no-hit per the contract-discovery rule that rejects HTML bodies on /.well-known/ probes.
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    content_type: text/html
+    valid: false
+    reason: SPA HTML shell, not a JSON discovery document
+findings:
+  security_txt: false
+  openid_configuration: false
+  oauth_authorization_server: false
+  api_catalog: false
+  ai_plugin: false
+  agent_card: false
+adjacent_discovery:
+  llms_txt:
+  - url: https://apidocs.picussecurity.com/llms.txt
+    status: 200
+    file: ../llms/picus-security-llms.txt
+  - url: https://www.picussecurity.com/llms.txt
+    status: 200
+    file: ../llms/picus-security-www-llms.txt
+  openapi:
+  - url: https://api.picussecurity.com/swagger.json
+    status: 200
+    file: ../openapi/_original/picus-security-openapi.json
+    note: Swagger 2.0, served from the API host root — not discoverable via /.well-known/.

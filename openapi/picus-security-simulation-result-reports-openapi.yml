@@ -1,0 +1,363 @@
+swagger: '2.0'
+info:
+  title: Picus Customer API — Simulation-Result-Reports
+  description: '<p class="body-1">You can access the simulation raw data using the Rest API. Scope of the API includes; Simulation
+    list, Simulation Details, Threat/Objective/Action Results, Results mapped to MITRE ATTC&K and Unified Kill Chain frameworks,
+    Detection Analysis Results, Validated Logs & Alerts with SIEM & EDR integration.</p>
+
+    <p class="body-1">OAuth2 protocol is used to authorize Refresh/Access tokens. To obtain the API, you should generate a
+    refresh token and then request an access token using the /v1/auth/token endpoint. The refresh token will be valid for
+    6 months, whereas the access token will be available for 2 hours. After getting the access token, add Authorization: Bearer
+    {accessToken} to the header to request access to the below endpoints.</p>
+
+    <p class="body-1">Endpoints returning data with a lot of load works with the pagination method. You can use the offset
+    and limit parameters to get the correct page.</p>
+
+
+    <i class="body-1">Your usage will be limited with your Picus license.</i>'
+  version: '1.0'
+host: api.picussecurity.com
+basePath: /
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+securityDefinitions:
+  Access-Token:
+    description: After getting the access token, type <i>Bearer accessToken</i> to the Value input box to request access to
+      the below endpoints For example <i>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</i>
+    type: apiKey
+    name: Authorization
+    in: header
+security:
+- Access-Token: []
+tags:
+- name: Simulation-Result-Reports
+paths:
+  /v2/simulations/{Id}/results/reports:
+    post:
+      security:
+      - Access-Token: []
+      description: Generates a report for the specified simulation. The report can either provide an overview or focus on
+        a specific run of the simulation, depending on the parameters.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - Simulation-Result-Reports
+      summary: '# Generate Simulation Report'
+      operationId: generateSimulationReportParams
+      parameters:
+      - type: integer
+        format: uint64
+        description: Simulation ID
+        name: Id
+        in: path
+        required: true
+      - type: string
+        x-go-name: Type
+        description: 'Type of the report. One of: ''run'' | ''overview'''
+        name: type
+        in: query
+        required: true
+      - type: string
+        x-go-name: RunId
+        description: Id of the run or 'latest'. Required if type is 'run'
+        name: runId
+        in: query
+      - name: Body
+        in: body
+        schema:
+          $ref: '#/definitions/GenerateSimulationReportInput'
+      responses:
+        '200':
+          $ref: '#/responses/GenerateSimulationReportResponse'
+        '401':
+          $ref: '#/responses/unauthorizedErrorSwagger'
+        '422':
+          $ref: '#/responses/validationErrorSwagger'
+        default:
+          $ref: '#/responses/genericErrorSwagger'
+  /v2/simulations/{Id}/results/reports/{ReportId}:
+    get:
+      security:
+      - Access-Token: []
+      description: Get details for simulation result report by report id
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - Simulation-Result-Reports
+      summary: '# Simulation Result Report Detail'
+      operationId: reportParams
+      parameters:
+      - type: integer
+        format: uint64
+        description: Report ID (URI parameter)
+        name: ReportId
+        in: path
+        required: true
+      - type: integer
+        format: uint64
+        description: Simulation ID (URI parameter)
+        name: Id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/SimulationReportDetailResponse'
+        '401':
+          $ref: '#/responses/unauthorizedErrorSwagger'
+        '404':
+          $ref: '#/responses/notFoundErrorSwagger'
+        default:
+          $ref: '#/responses/genericErrorSwagger'
+  /v2/simulations/{Id}/results/reports/{ReportId}/download:
+    get:
+      security:
+      - Access-Token: []
+      description: 'Downloads a simulation result report file by id.
+
+        This endpoint is used in on-prem deployments where users cannot access S3 directly.
+
+        The file is returned as binary content with appropriate Content-Disposition header.'
+      produces:
+      - application/octet-stream
+      schemes:
+      - https
+      tags:
+      - Simulation-Result-Reports
+      summary: '# Download Simulation Result Report'
+      operationId: reportDownloadParams
+      parameters:
+      - type: integer
+        format: uint64
+        description: Report ID (URI parameter)
+        name: ReportId
+        in: path
+        required: true
+      - type: integer
+        format: uint64
+        description: Simulation ID (URI parameter)
+        name: Id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/fileResponse'
+        '401':
+          $ref: '#/responses/unauthorizedErrorSwagger'
+        '404':
+          $ref: '#/responses/notFoundErrorSwagger'
+        '500':
+          $ref: '#/responses/internalServerErrorSwagger'
+        default:
+          $ref: '#/responses/genericErrorSwagger'
+  /v2/simulations/{Id}/results/reports/{ReportId}/download-url:
+    get:
+      security:
+      - Access-Token: []
+      description: Get download url for a simulation result report by id
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      schemes:
+      - https
+      tags:
+      - Simulation-Result-Reports
+      summary: '# Simulation Result Report Download Url'
+      operationId: reportDownloadUrlParams
+      parameters:
+      - type: integer
+        format: uint64
+        description: Report ID (URI parameter)
+        name: ReportId
+        in: path
+        required: true
+      - type: integer
+        format: uint64
+        description: Simulation ID (URI parameter)
+        name: Id
+        in: path
+        required: true
+      responses:
+        '200':
+          $ref: '#/responses/SimulationReportDownloadUrlResponse'
+        '401':
+          $ref: '#/responses/unauthorizedErrorSwagger'
+        '404':
+          $ref: '#/responses/notFoundErrorSwagger'
+        default:
+          $ref: '#/responses/genericErrorSwagger'
+responses:
+  GenerateSimulationReportResponse:
+    description: GenerateSimulationReportResponse
+    schema:
+      type: array
+      items:
+        $ref: '#/definitions/SimulationReportBasicOutput'
+  SimulationReportDetailResponse:
+    description: SimulationReportDetailResponse
+    schema:
+      type: object
+      properties:
+        format:
+          description: 'Report Format. One of: ''PDF'' | ''CSV'''
+          type: string
+          x-go-name: Format
+          example: PDF
+        id:
+          description: Report Id
+          type: integer
+          format: uint64
+          x-go-name: ID
+          example: 1
+        includesSensitiveData:
+          description: Displays threat information with access links if false (Only for CSV reports)
+          type: boolean
+          x-go-name: IncludesSensitiveData
+        isPreventionOnly:
+          description: True if report content includes only prevention results (not detection results)
+          type: boolean
+          x-go-name: IsPreventionOnly
+        name:
+          description: Report Name
+          type: string
+          x-go-name: Name
+        status:
+          description: 'Report Status. One of: ''IN PROGRESS'' | ''COMPLETED'' | ''ERROR'''
+          type: string
+          x-go-name: Status
+          example: COMPLETED
+  SimulationReportDownloadUrlResponse:
+    description: SimulationReportDownloadUrlResponse
+    schema:
+      type: object
+      properties:
+        downloadUrl:
+          type: string
+          x-go-name: DownloadUrl
+  fileResponse:
+    description: A file download response
+    schema:
+      type: array
+      items:
+        type: integer
+        format: uint8
+  genericErrorSwagger:
+    description: genericErrorSwagger is represents the erroneous cases
+    schema:
+      type: object
+      properties:
+        error_code:
+          description: Error Code is optional. It is using for define specific error types.
+          type: integer
+          format: int64
+          x-go-name: ErrorCode
+          example: 1001
+        errors:
+          description: Errors are optional. If there are multiple error, this field gives details.
+          type: object
+          additionalProperties:
+            type: string
+          x-go-name: Errors
+          example: '["error1", "error2"]'
+        message:
+          description: Error Message that contains information about error
+          type: string
+          x-go-name: Message
+  internalServerErrorSwagger:
+    description: internalServerErrorSwagger represents internal server error
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+          example: internal server error
+  notFoundErrorSwagger:
+    description: notFoundErrorSwagger represents not found error
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+          example: not found error
+  unauthorizedErrorSwagger:
+    description: unauthorizedErrorSwagger is represents unauthorized error
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+          example: unauthorized error
+  validationErrorSwagger:
+    description: validationErrorSwagger is represents the erroneous cases
+    schema:
+      type: object
+      properties:
+        errors:
+          description: Validation Error List
+          type: object
+          additionalProperties:
+            type: string
+          x-go-name: Errors
+          example:
+            param: tag=max, param=25, given value=1000
+        message:
+          description: Message will be "validation error"
+          type: string
+          x-go-name: Message
+          example: validation error
+definitions:
+  GenerateSimulationReportInput:
+    type: object
+    properties:
+      format:
+        description: 'Corresponding report will be generated for each format specified. Available formats: PDF, CSV'
+        type: array
+        items:
+          type: string
+        x-go-name: Formats
+        example:
+        - PDF
+      includesSensitiveData:
+        description: If false, generated report will display threat information with access links (Only for CSV reports)
+        type: boolean
+        x-go-name: IncludesSensitiveData
+      onlyPrevention:
+        description: If true, generated report will include only prevention results
+        type: boolean
+        x-go-name: OnlyPrevention
+    x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
+  SimulationReportBasicOutput:
+    type: object
+    properties:
+      format:
+        description: 'Report Format. One of: ''PDF'' | ''CSV'''
+        type: string
+        x-go-name: Format
+        example: PDF
+      id:
+        description: Report Id
+        type: integer
+        format: uint64
+        x-go-name: ID
+        example: 1
+      status:
+        description: 'Report Status. One of: ''IN PROGRESS'' | ''COMPLETED'' | ''ERROR'''
+        type: string
+        x-go-name: Status
+        example: COMPLETED
+    x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
