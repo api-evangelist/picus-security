@@ -30,89 +30,362 @@ tags:
 - detection-engineering
 - security-operations
 apis:
-- name: Picus Customer API
-  description: >-
-    Public REST API for the Picus Security Validation Platform. Create, run, update, cancel and delete
-    simulations; read simulation run results including threats, attacker objectives and per-action detail with
-    MITRE ATT&CK and Unified Kill Chain mappings; pull SIEM/EDR-integration log and alert evidence; browse and
-    author the threat library (threats, actions, processes, files, tags, threat actors, import/export threat
-    packs); manage threat templates, agents, integrations, mitigation devices and signatures, custom detection
-    content, exposure instance scores, users and roles, and activity logs. Authorization uses an OAuth2 refresh
-    token (6 months) exchanged at /v1/auth/token for a bearer access token (2 hours).
+- aid: picus-security:picus-security-activity-logs-api
+  name: Picus Security Activity Logs API
+  description: The Activity-Logs API from Picus Security — 1 operation(s) for activity-logs.
   humanURL: https://apidocs.picussecurity.com/
   baseURL: https://api.picussecurity.com/
   tags:
-  - cybersecurity
-  - security-validation
-  - breach-and-attack-simulation
-  - simulation
-  - threat-library
-  - mitre-attack
-  - detection-engineering
-  - security-operations
+  - Activity-Logs
   properties:
+  - type: OpenAPI
+    url: openapi/picus-security-activity-logs-api-openapi.yml
   - type: Documentation
     url: https://apidocs.picussecurity.com/
   - type: APIReference
     url: https://apidocs.picussecurity.com/reference/intro-to-the-picus-customer-api
   - type: GettingStarted
     url: https://apidocs.picussecurity.com/docs/scope-of-the-picus-api
+  - type: Authentication
+    url: authentication/picus-security-authentication.yml
+  - type: Conventions
+    url: conventions/picus-security-conventions.yml
+  - type: ErrorCatalog
+    url: errors/picus-security-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/picus-security-rate-limits.yml
+  - type: DataModel
+    url: data-model/picus-security-data-model.yml
+- aid: picus-security:picus-security-agents-api
+  name: Picus Security Agents API
+  description: The Agents API from Picus Security — 6 operation(s) for agents.
+  humanURL: https://apidocs.picussecurity.com/
+  baseURL: https://api.picussecurity.com/
+  tags:
+  - Agents
+  properties:
   - type: OpenAPI
-    url: openapi/picus-security-activity-logs-openapi.yml
+    url: openapi/picus-security-agents-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.picussecurity.com/
+  - type: APIReference
+    url: https://apidocs.picussecurity.com/reference/intro-to-the-picus-customer-api
+  - type: GettingStarted
+    url: https://apidocs.picussecurity.com/docs/scope-of-the-picus-api
+  - type: Authentication
+    url: authentication/picus-security-authentication.yml
+  - type: Conventions
+    url: conventions/picus-security-conventions.yml
+  - type: ErrorCatalog
+    url: errors/picus-security-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/picus-security-rate-limits.yml
+  - type: DataModel
+    url: data-model/picus-security-data-model.yml
+- aid: picus-security:picus-security-authentication-api
+  name: Picus Security Authentication API
+  description: The Authentication API from Picus Security — 2 operation(s) for authentication.
+  humanURL: https://apidocs.picussecurity.com/
+  baseURL: https://api.picussecurity.com/
+  tags:
+  - Authentication
+  properties:
   - type: OpenAPI
-    url: openapi/picus-security-agents-openapi.yml
+    url: openapi/picus-security-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.picussecurity.com/
+  - type: APIReference
+    url: https://apidocs.picussecurity.com/reference/intro-to-the-picus-customer-api
+  - type: GettingStarted
+    url: https://apidocs.picussecurity.com/docs/scope-of-the-picus-api
+  - type: Authentication
+    url: authentication/picus-security-authentication.yml
+  - type: Conventions
+    url: conventions/picus-security-conventions.yml
+  - type: ErrorCatalog
+    url: errors/picus-security-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/picus-security-rate-limits.yml
+  - type: DataModel
+    url: data-model/picus-security-data-model.yml
+- aid: picus-security:picus-security-instances-api
+  name: Picus Security Instances API
+  description: The Instances API from Picus Security — 1 operation(s) for instances.
+  humanURL: https://apidocs.picussecurity.com/
+  baseURL: https://api.picussecurity.com/
+  tags:
+  - Instances
+  properties:
   - type: OpenAPI
-    url: openapi/picus-security-authentication-openapi.yml
+    url: openapi/picus-security-instances-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.picussecurity.com/
+  - type: APIReference
+    url: https://apidocs.picussecurity.com/reference/intro-to-the-picus-customer-api
+  - type: GettingStarted
+    url: https://apidocs.picussecurity.com/docs/scope-of-the-picus-api
+  - type: Authentication
+    url: authentication/picus-security-authentication.yml
+  - type: Conventions
+    url: conventions/picus-security-conventions.yml
+  - type: ErrorCatalog
+    url: errors/picus-security-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/picus-security-rate-limits.yml
+  - type: DataModel
+    url: data-model/picus-security-data-model.yml
+- aid: picus-security:picus-security-integrations-api
+  name: Picus Security Integrations API
+  description: The Integrations API from Picus Security — 2 operation(s) for integrations.
+  humanURL: https://apidocs.picussecurity.com/
+  baseURL: https://api.picussecurity.com/
+  tags:
+  - Integrations
+  properties:
   - type: OpenAPI
-    url: openapi/picus-security-instances-openapi.yml
+    url: openapi/picus-security-integrations-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.picussecurity.com/
+  - type: APIReference
+    url: https://apidocs.picussecurity.com/reference/intro-to-the-picus-customer-api
+  - type: GettingStarted
+    url: https://apidocs.picussecurity.com/docs/scope-of-the-picus-api
+  - type: Authentication
+    url: authentication/picus-security-authentication.yml
+  - type: Conventions
+    url: conventions/picus-security-conventions.yml
+  - type: ErrorCatalog
+    url: errors/picus-security-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/picus-security-rate-limits.yml
+  - type: DataModel
+    url: data-model/picus-security-data-model.yml
+- aid: picus-security:picus-security-mitigation-api
+  name: Picus Security Mitigation API
+  description: The Mitigation API from Picus Security — 15 operation(s) for mitigation.
+  humanURL: https://apidocs.picussecurity.com/
+  baseURL: https://api.picussecurity.com/
+  tags:
+  - Mitigation
+  properties:
   - type: OpenAPI
-    url: openapi/picus-security-integrations-openapi.yml
+    url: openapi/picus-security-mitigation-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.picussecurity.com/
+  - type: APIReference
+    url: https://apidocs.picussecurity.com/reference/intro-to-the-picus-customer-api
+  - type: GettingStarted
+    url: https://apidocs.picussecurity.com/docs/scope-of-the-picus-api
+  - type: Authentication
+    url: authentication/picus-security-authentication.yml
+  - type: Conventions
+    url: conventions/picus-security-conventions.yml
+  - type: ErrorCatalog
+    url: errors/picus-security-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/picus-security-rate-limits.yml
+  - type: DataModel
+    url: data-model/picus-security-data-model.yml
+- aid: picus-security:picus-security-simulation-latest-result-api
+  name: Picus Security Simulation Latest Result API
+  description: >-
+    The Simulation-Latest-Result API from Picus Security — 7 operation(s) for simulation-latest-result.
+  humanURL: https://apidocs.picussecurity.com/
+  baseURL: https://api.picussecurity.com/
+  tags:
+  - Simulation-Latest-Result
+  properties:
   - type: OpenAPI
-    url: openapi/picus-security-mitigation-openapi.yml
+    url: openapi/picus-security-simulation-latest-result-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.picussecurity.com/
+  - type: APIReference
+    url: https://apidocs.picussecurity.com/reference/intro-to-the-picus-customer-api
+  - type: GettingStarted
+    url: https://apidocs.picussecurity.com/docs/scope-of-the-picus-api
+  - type: Authentication
+    url: authentication/picus-security-authentication.yml
+  - type: Conventions
+    url: conventions/picus-security-conventions.yml
+  - type: ErrorCatalog
+    url: errors/picus-security-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/picus-security-rate-limits.yml
+  - type: DataModel
+    url: data-model/picus-security-data-model.yml
+- aid: picus-security:picus-security-simulation-result-api
+  name: Picus Security Simulation Result API
+  description: The Simulation-Result API from Picus Security — 8 operation(s) for simulation-result.
+  humanURL: https://apidocs.picussecurity.com/
+  baseURL: https://api.picussecurity.com/
+  tags:
+  - Simulation-Result
+  properties:
   - type: OpenAPI
-    url: openapi/picus-security-simulation-latest-result-openapi.yml
+    url: openapi/picus-security-simulation-result-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.picussecurity.com/
+  - type: APIReference
+    url: https://apidocs.picussecurity.com/reference/intro-to-the-picus-customer-api
+  - type: GettingStarted
+    url: https://apidocs.picussecurity.com/docs/scope-of-the-picus-api
+  - type: Authentication
+    url: authentication/picus-security-authentication.yml
+  - type: Conventions
+    url: conventions/picus-security-conventions.yml
+  - type: ErrorCatalog
+    url: errors/picus-security-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/picus-security-rate-limits.yml
+  - type: DataModel
+    url: data-model/picus-security-data-model.yml
+- aid: picus-security:picus-security-simulation-result-reports-api
+  name: Picus Security Simulation Result Reports API
+  description: >-
+    The Simulation-Result-Reports API from Picus Security — 4 operation(s) for simulation-result-reports.
+  humanURL: https://apidocs.picussecurity.com/
+  baseURL: https://api.picussecurity.com/
+  tags:
+  - Simulation-Result-Reports
+  properties:
   - type: OpenAPI
-    url: openapi/picus-security-simulation-result-openapi.yml
+    url: openapi/picus-security-simulation-result-reports-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.picussecurity.com/
+  - type: APIReference
+    url: https://apidocs.picussecurity.com/reference/intro-to-the-picus-customer-api
+  - type: GettingStarted
+    url: https://apidocs.picussecurity.com/docs/scope-of-the-picus-api
+  - type: Authentication
+    url: authentication/picus-security-authentication.yml
+  - type: Conventions
+    url: conventions/picus-security-conventions.yml
+  - type: ErrorCatalog
+    url: errors/picus-security-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/picus-security-rate-limits.yml
+  - type: DataModel
+    url: data-model/picus-security-data-model.yml
+- aid: picus-security:picus-security-simulations-api
+  name: Picus Security Simulations API
+  description: The Simulations API from Picus Security — 4 operation(s) for simulations.
+  humanURL: https://apidocs.picussecurity.com/
+  baseURL: https://api.picussecurity.com/
+  tags:
+  - Simulations
+  properties:
   - type: OpenAPI
-    url: openapi/picus-security-simulation-result-reports-openapi.yml
+    url: openapi/picus-security-simulations-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.picussecurity.com/
+  - type: APIReference
+    url: https://apidocs.picussecurity.com/reference/intro-to-the-picus-customer-api
+  - type: GettingStarted
+    url: https://apidocs.picussecurity.com/docs/scope-of-the-picus-api
+  - type: Authentication
+    url: authentication/picus-security-authentication.yml
+  - type: Conventions
+    url: conventions/picus-security-conventions.yml
+  - type: ErrorCatalog
+    url: errors/picus-security-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/picus-security-rate-limits.yml
+  - type: DataModel
+    url: data-model/picus-security-data-model.yml
+- aid: picus-security:picus-security-summary-api
+  name: Picus Security Summary API
+  description: The Summary API from Picus Security — 1 operation(s) for summary.
+  humanURL: https://apidocs.picussecurity.com/
+  baseURL: https://api.picussecurity.com/
+  tags:
+  - Summary
+  properties:
   - type: OpenAPI
-    url: openapi/picus-security-simulations-openapi.yml
+    url: openapi/picus-security-summary-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.picussecurity.com/
+  - type: APIReference
+    url: https://apidocs.picussecurity.com/reference/intro-to-the-picus-customer-api
+  - type: GettingStarted
+    url: https://apidocs.picussecurity.com/docs/scope-of-the-picus-api
+  - type: Authentication
+    url: authentication/picus-security-authentication.yml
+  - type: Conventions
+    url: conventions/picus-security-conventions.yml
+  - type: ErrorCatalog
+    url: errors/picus-security-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/picus-security-rate-limits.yml
+  - type: DataModel
+    url: data-model/picus-security-data-model.yml
+- aid: picus-security:picus-security-templates-api
+  name: Picus Security Templates API
+  description: The Templates API from Picus Security — 2 operation(s) for templates.
+  humanURL: https://apidocs.picussecurity.com/
+  baseURL: https://api.picussecurity.com/
+  tags:
+  - Templates
+  properties:
   - type: OpenAPI
-    url: openapi/picus-security-summary-openapi.yml
+    url: openapi/picus-security-templates-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.picussecurity.com/
+  - type: APIReference
+    url: https://apidocs.picussecurity.com/reference/intro-to-the-picus-customer-api
+  - type: GettingStarted
+    url: https://apidocs.picussecurity.com/docs/scope-of-the-picus-api
+  - type: Authentication
+    url: authentication/picus-security-authentication.yml
+  - type: Conventions
+    url: conventions/picus-security-conventions.yml
+  - type: ErrorCatalog
+    url: errors/picus-security-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/picus-security-rate-limits.yml
+  - type: DataModel
+    url: data-model/picus-security-data-model.yml
+- aid: picus-security:picus-security-threats-api
+  name: Picus Security Threats API
+  description: The Threats API from Picus Security — 13 operation(s) for threats.
+  humanURL: https://apidocs.picussecurity.com/
+  baseURL: https://api.picussecurity.com/
+  tags:
+  - Threats
+  properties:
   - type: OpenAPI
-    url: openapi/picus-security-templates-openapi.yml
+    url: openapi/picus-security-threats-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.picussecurity.com/
+  - type: APIReference
+    url: https://apidocs.picussecurity.com/reference/intro-to-the-picus-customer-api
+  - type: GettingStarted
+    url: https://apidocs.picussecurity.com/docs/scope-of-the-picus-api
+  - type: Authentication
+    url: authentication/picus-security-authentication.yml
+  - type: Conventions
+    url: conventions/picus-security-conventions.yml
+  - type: ErrorCatalog
+    url: errors/picus-security-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/picus-security-rate-limits.yml
+  - type: DataModel
+    url: data-model/picus-security-data-model.yml
+- aid: picus-security:picus-security-users-api
+  name: Picus Security Users API
+  description: The Users API from Picus Security — 5 operation(s) for users.
+  humanURL: https://apidocs.picussecurity.com/
+  baseURL: https://api.picussecurity.com/
+  tags:
+  - Users
+  properties:
   - type: OpenAPI
-    url: openapi/picus-security-threats-openapi.yml
-  - type: OpenAPI
-    url: openapi/picus-security-users-openapi.yml
-  - type: Overlay
-    url: overlays/picus-security-activity-logs-overlay.yaml
-  - type: Overlay
-    url: overlays/picus-security-agents-overlay.yaml
-  - type: Overlay
-    url: overlays/picus-security-authentication-overlay.yaml
-  - type: Overlay
-    url: overlays/picus-security-instances-overlay.yaml
-  - type: Overlay
-    url: overlays/picus-security-integrations-overlay.yaml
-  - type: Overlay
-    url: overlays/picus-security-mitigation-overlay.yaml
-  - type: Overlay
-    url: overlays/picus-security-simulation-latest-result-overlay.yaml
-  - type: Overlay
-    url: overlays/picus-security-simulation-result-overlay.yaml
-  - type: Overlay
-    url: overlays/picus-security-simulation-result-reports-overlay.yaml
-  - type: Overlay
-    url: overlays/picus-security-simulations-overlay.yaml
-  - type: Overlay
-    url: overlays/picus-security-summary-overlay.yaml
-  - type: Overlay
-    url: overlays/picus-security-templates-overlay.yaml
-  - type: Overlay
-    url: overlays/picus-security-threats-overlay.yaml
-  - type: Overlay
-    url: overlays/picus-security-users-overlay.yaml
+    url: openapi/picus-security-users-api-openapi.yml
+  - type: Documentation
+    url: https://apidocs.picussecurity.com/
+  - type: APIReference
+    url: https://apidocs.picussecurity.com/reference/intro-to-the-picus-customer-api
+  - type: GettingStarted
+    url: https://apidocs.picussecurity.com/docs/scope-of-the-picus-api
   - type: Authentication
     url: authentication/picus-security-authentication.yml
   - type: Conventions
@@ -124,6 +397,10 @@ apis:
   - type: DataModel
     url: data-model/picus-security-data-model.yml
 common:
+- type: MCPServer
+  url: mcp/picus-security-mcp.yml
+- type: Overlay
+  url: overlays/picus-security-activity-logs-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/picus-security-agentic-access.yml
 - type: TrustCenter
