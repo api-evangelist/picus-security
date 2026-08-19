@@ -1,0 +1,310 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picus Customer Simulation Latest Result API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Simulation-Latest-Result",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "# Latest Simulation Run Result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/simulations/:Id/run/latest",
+            "params": [
+              {
+                "name": "Id",
+                "value": "",
+                "type": "path",
+                "description": "Simulation ID (URI parameter)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Includes Prevention and Detection result details\nPrevention Result: Total Threats, Blocked/Not Blocked, Attackers Objective, UnAchieved/Achieved Count\nDetection Result: Logged/Not Logged, Alerted/Not Alerted Count"
+        },
+        {
+          "info": {
+            "name": "Latest Simulation Run Result with Mitre ATT&CK and Unified Kill Chain framework",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/simulations/:Id/run/latest/frameworks",
+            "params": [
+              {
+                "name": "Id",
+                "value": "",
+                "type": "path",
+                "description": "Simulation ID (URI parameter)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Latest Simulation Run Result with Mitre ATT&CK and Unified Kill Chain framework"
+        },
+        {
+          "info": {
+            "name": "# Threats - Objectives - Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/simulations/:Id/run/latest/threats",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Id",
+                "value": "",
+                "type": "path",
+                "description": "Simulation ID (URI parameter)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Includes Threat, Attacker's Objective, Action results for Prevention and Threat, Action results for Detection.\nDefault limit: 10, Default offset: 0\nMax limit: 50"
+        },
+        {
+          "info": {
+            "name": "# Action Details List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/simulations/:Id/run/latest/threats/:ThreatId/actions",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Id",
+                "value": "",
+                "type": "path",
+                "description": "Simulation ID (URI parameter)"
+              },
+              {
+                "name": "ThreatId",
+                "value": "",
+                "type": "path",
+                "description": "Threat ID (URI parameter)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Includes detailed action result with attack start & end time, log & alert time and attack module based details (payloads, terminal log, file name, sha256, md5, sha1).\nProtocol based results are also available."
+        },
+        {
+          "info": {
+            "name": "# Action Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/simulations/:Id/run/latest/threats/:ThreatId/actions/:ActionId",
+            "params": [
+              {
+                "name": "Id",
+                "value": "",
+                "type": "path",
+                "description": "Simulation ID (URI parameter)"
+              },
+              {
+                "name": "ThreatId",
+                "value": "",
+                "type": "path",
+                "description": "Threat ID (URI parameter)"
+              },
+              {
+                "name": "ActionId",
+                "value": "",
+                "type": "path",
+                "description": "Action ID (URI parameter)"
+              },
+              {
+                "name": "node_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Includes detailed action result with attack start & end time, log & alert time and attack module based details (payloads, terminal log, file name, sha256, md5, sha1).\nProtocol based results are also available."
+        },
+        {
+          "info": {
+            "name": "# Integration based Alert Details for Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/simulations/:Id/run/latest/threats/:ThreatId/actions/:ActionId/integrations/:IntegrationId/alerts",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Id",
+                "value": "",
+                "type": "path",
+                "description": "Simulation ID (URI parameter)"
+              },
+              {
+                "name": "ThreatId",
+                "value": "",
+                "type": "path",
+                "description": "Threat ID (URI parameter)"
+              },
+              {
+                "name": "ActionId",
+                "value": "",
+                "type": "path",
+                "description": "Action ID (URI parameter)"
+              },
+              {
+                "name": "IntegrationId",
+                "value": "",
+                "type": "path",
+                "description": "Integration ID (URI parameter)"
+              },
+              {
+                "name": "node_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Includes Action Name, Log Source and Alert Time.\nDefault limit: 100, Default offset: 0\nMax limit: 1000\nSame action can be used multiple times under the scope of threat where these actions are distinguished by node_id\nnode_id parameter can be used optionally. For the case it is not provided, first node is returned."
+        },
+        {
+          "info": {
+            "name": "# Integration based Log Details for Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/simulations/:Id/run/latest/threats/:ThreatId/actions/:ActionId/integrations/:IntegrationId/logs",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Id",
+                "value": "",
+                "type": "path",
+                "description": "Simulation ID (URI parameter)"
+              },
+              {
+                "name": "ThreatId",
+                "value": "",
+                "type": "path",
+                "description": "Threat ID (URI parameter)"
+              },
+              {
+                "name": "ActionId",
+                "value": "",
+                "type": "path",
+                "description": "Action ID (URI parameter)"
+              },
+              {
+                "name": "IntegrationId",
+                "value": "",
+                "type": "path",
+                "description": "Integration ID (URI parameter)"
+              },
+              {
+                "name": "node_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Includes Action Name, Log Source and Alert Time.\nDefault limit: 100, Default offset: 0\nMax limit: 1000\nSame action can be used multiple times under the scope of threat where these actions are distinguished by node_id\nnode_id parameter can be used optionally. For the case it is not provided, first node is returned."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

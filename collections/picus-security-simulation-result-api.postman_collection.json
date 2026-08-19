@@ -1,0 +1,2978 @@
+{
+  "item": [
+    {
+      "id": "4422c17d-f77d-47f0-bdbe-66ba5b07c389",
+      "name": "Simulation-Result",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e3a5013d-b23c-4d08-8fd1-d0f93c6ddf65",
+          "name": "# Simulation Run Result",
+          "request": {
+            "name": "# Simulation Run Result",
+            "description": {
+              "content": "Includes Prevention and Detection result details\nPrevention Result: Total Threats, Blocked/Not Blocked, Attackers Objective, UnAchieved/Achieved Count\nDetection Result: Logged/Not Logged, Alerted/Not Alerted Count",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "simulations",
+                ":Id",
+                "run",
+                ":RunId"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "Id",
+                  "description": "(Required) Simulation ID (URI parameter)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "RunId",
+                  "description": "(Required) Simulation Run ID (URI parameter)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3e119cd8-46cb-4161-9fb4-c40fef0cbaf5",
+              "name": "SimulationRunDetailResponse",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "run",
+                    ":RunId"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Simulation Run ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"completed_at\": 6149,\n  \"completion_ratio\": 7978,\n  \"fail_reason_message\": \"string\",\n  \"results\": {\n    \"detection_analysis\": {\n      \"alert\": {\n        \"alerted_threat_count\": 3058,\n        \"not_alerted_threat_count\": 9540,\n        \"score\": 5418\n      },\n      \"has_alert_analysis\": false,\n      \"has_log_analysis\": false,\n      \"integrations\": [\n        {\n          \"id\": 1,\n          \"product_name\": \"Crowdstrike\"\n        },\n        {\n          \"id\": 1,\n          \"product_name\": \"Crowdstrike\"\n        }\n      ],\n      \"log\": {\n        \"logged_threat_count\": 8918,\n        \"not_logged_threat_count\": 4766,\n        \"score\": 9245\n      },\n      \"security_score\": 8523\n    },\n    \"has_detection_analysis\": false,\n    \"prevention\": {\n      \"attacker_objectives\": {\n        \"achived_count\": 15,\n        \"not_tested_count\": 3848,\n        \"total_count\": 5123,\n        \"unachived_count\": 9030\n      },\n      \"security_score\": 8744,\n      \"threat\": {\n        \"blocked_count\": 7267,\n        \"not_blocked_count\": 487,\n        \"not_tested_count\": 1667,\n        \"total_count\": 7257\n      }\n    }\n  },\n  \"scheduled_time\": 1391,\n  \"simulation_id\": 3673,\n  \"simulation_run_id\": 6331,\n  \"started_at\": 844,\n  \"status\": \"string\",\n  \"status_details\": {\n    \"detection\": {\n      \"completed_threat_count\": 7121,\n      \"total_threat_count\": 7080\n    },\n    \"prevention\": {\n      \"completed_threat_count\": 9838,\n      \"total_threat_count\": 4956\n    }\n  },\n  \"template_id\": 3225\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c205931d-b58b-46b1-8b44-045f3044c0e5",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "run",
+                    ":RunId"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Simulation Run ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e8fb204-ff0c-47be-84ba-c6bac0a288fb",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "run",
+                    ":RunId"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Simulation Run ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff219b0f-c9a2-4112-af40-0adbff28fbe4",
+          "name": "Simulation Run Result with Mitre ATT&CK and Unified Kill Chain framework",
+          "request": {
+            "name": "Simulation Run Result with Mitre ATT&CK and Unified Kill Chain framework",
+            "description": {
+              "content": "Simulation Run Result with Mitre ATT&CK and Unified Kill Chain framework",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "simulations",
+                ":Id",
+                "run",
+                ":RunId",
+                "frameworks"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "Id",
+                  "description": "(Required) Simulation ID (URI parameter)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "RunId",
+                  "description": "(Required) Simulation Run ID (URI parameter)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "43913fc9-dc6d-4369-80e9-064a947b7c05",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "run",
+                    ":RunId",
+                    "frameworks"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Simulation Run ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"mitre_attack_results\": {\n    \"tactics\": [\n      {\n        \"blocked_action_count\": 1204,\n        \"description\": \"string\",\n        \"detection_result\": {\n          \"alert_result\": \"string\",\n          \"has_alert_analysis\": false,\n          \"has_log_analysis\": false,\n          \"integration_based_results\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"log_result\": \"string\"\n        },\n        \"mitre_id\": \"string\",\n        \"mitre_name\": \"string\",\n        \"name\": \"string\",\n        \"not_blocked_action_count\": 3584,\n        \"not_tested_action_count\": 9601,\n        \"techniques\": [\n          {\n            \"blocked_action_count\": 8070,\n            \"description\": \"string\",\n            \"detection_result\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mitre_id\": \"string\",\n            \"mitre_name\": \"string\",\n            \"name\": \"string\",\n            \"not_blocked_action_count\": 5424,\n            \"not_tested_action_count\": 4775,\n            \"sub_techniques\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"total_action_count\": 7969,\n            \"url\": \"string\"\n          },\n          {\n            \"blocked_action_count\": 838,\n            \"description\": \"string\",\n            \"detection_result\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mitre_id\": \"string\",\n            \"mitre_name\": \"string\",\n            \"name\": \"string\",\n            \"not_blocked_action_count\": 4079,\n            \"not_tested_action_count\": 6049,\n            \"sub_techniques\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"total_action_count\": 6682,\n            \"url\": \"string\"\n          }\n        ],\n        \"total_action_count\": 5126,\n        \"url\": \"string\"\n      },\n      {\n        \"blocked_action_count\": 3834,\n        \"description\": \"string\",\n        \"detection_result\": {\n          \"alert_result\": \"string\",\n          \"has_alert_analysis\": true,\n          \"has_log_analysis\": true,\n          \"integration_based_results\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"log_result\": \"string\"\n        },\n        \"mitre_id\": \"string\",\n        \"mitre_name\": \"string\",\n        \"name\": \"string\",\n        \"not_blocked_action_count\": 9677,\n        \"not_tested_action_count\": 3157,\n        \"techniques\": [\n          {\n            \"blocked_action_count\": 8065,\n            \"description\": \"string\",\n            \"detection_result\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mitre_id\": \"string\",\n            \"mitre_name\": \"string\",\n            \"name\": \"string\",\n            \"not_blocked_action_count\": 7180,\n            \"not_tested_action_count\": 1253,\n            \"sub_techniques\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"total_action_count\": 5905,\n            \"url\": \"string\"\n          },\n          {\n            \"blocked_action_count\": 5795,\n            \"description\": \"string\",\n            \"detection_result\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mitre_id\": \"string\",\n            \"mitre_name\": \"string\",\n            \"name\": \"string\",\n            \"not_blocked_action_count\": 4996,\n            \"not_tested_action_count\": 5778,\n            \"sub_techniques\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"total_action_count\": 9448,\n            \"url\": \"string\"\n          }\n        ],\n        \"total_action_count\": 376,\n        \"url\": \"string\"\n      }\n    ]\n  },\n  \"unified_kill_chain_results\": {\n    \"stages\": [\n      {\n        \"blocked_action_count\": 3759,\n        \"detection_result\": {\n          \"alert_result\": \"string\",\n          \"has_alert_analysis\": true,\n          \"has_log_analysis\": false,\n          \"integration_based_results\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"log_result\": \"string\"\n        },\n        \"name\": \"string\",\n        \"not_blocked_action_count\": 2568,\n        \"not_tested_action_count\": 8376,\n        \"phases\": [\n          {\n            \"blocked_action_count\": 8389,\n            \"detection_result\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": \"string\",\n            \"not_blocked_action_count\": 2918,\n            \"not_tested_action_count\": 9460,\n            \"total_action_count\": 6694\n          },\n          {\n            \"blocked_action_count\": 6930,\n            \"detection_result\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": \"string\",\n            \"not_blocked_action_count\": 5070,\n            \"not_tested_action_count\": 68,\n            \"total_action_count\": 7246\n          }\n        ],\n        \"total_action_count\": 1221\n      },\n      {\n        \"blocked_action_count\": 9669,\n        \"detection_result\": {\n          \"alert_result\": \"string\",\n          \"has_alert_analysis\": false,\n          \"has_log_analysis\": true,\n          \"integration_based_results\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"log_result\": \"string\"\n        },\n        \"name\": \"string\",\n        \"not_blocked_action_count\": 169,\n        \"not_tested_action_count\": 9349,\n        \"phases\": [\n          {\n            \"blocked_action_count\": 2844,\n            \"detection_result\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": \"string\",\n            \"not_blocked_action_count\": 436,\n            \"not_tested_action_count\": 5834,\n            \"total_action_count\": 4553\n          },\n          {\n            \"blocked_action_count\": 4100,\n            \"detection_result\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": \"string\",\n            \"not_blocked_action_count\": 1991,\n            \"not_tested_action_count\": 4960,\n            \"total_action_count\": 2508\n          }\n        ],\n        \"total_action_count\": 7505\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8e47811-3a61-4558-9286-4f4426494be6",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "run",
+                    ":RunId",
+                    "frameworks"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Simulation Run ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc8134dd-9fb5-459e-bc21-e7af42183f7c",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "run",
+                    ":RunId",
+                    "frameworks"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Simulation Run ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4931e5e0-c90d-4b2a-945e-caf11f14d501",
+          "name": "# Threats - Objectives - Actions",
+          "request": {
+            "name": "# Threats - Objectives - Actions",
+            "description": {
+              "content": "Includes Threat, Attacker's Objective, Action results for Prevention and Threat, Action results for Detection\nDefault limit: 10, Default offset: 0\nMax limit: 50",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "simulations",
+                ":Id",
+                "run",
+                ":RunId",
+                "threats"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "Id",
+                  "description": "(Required) Simulation ID (URI parameter)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "RunId",
+                  "description": "(Required) Simulation Run ID (URI parameter)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dcf984f8-3656-432b-a4c7-cacfa5ef04ba",
+              "name": "ThreatResultsReturnSwagger",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "run",
+                    ":RunId",
+                    "threats"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Simulation Run ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pages\": {\n    \"limit\": 20,\n    \"offset\": 0,\n    \"total_count\": 100\n  },\n  \"threats\": [\n    {\n      \"completed_at\": 496,\n      \"detection_analysis\": {\n        \"alert_result\": \"string\",\n        \"has_alert_analysis\": true,\n        \"has_log_analysis\": false,\n        \"integrations\": [\n          {\n            \"id\": 1,\n            \"product_name\": \"Crowdstrike\"\n          },\n          {\n            \"id\": 1,\n            \"product_name\": \"Crowdstrike\"\n          }\n        ],\n        \"log_result\": \"string\"\n      },\n      \"has_detection_analysis\": false,\n      \"objectives\": [\n        {\n          \"actions\": [\n            {\n              \"display_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"false_items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"node_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"true_items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"display_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"false_items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"node_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"true_items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"id\": 2495,\n          \"name\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"actions\": [\n            {\n              \"display_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"false_items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"node_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"true_items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"display_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"false_items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"node_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"true_items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"id\": 6593,\n          \"name\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"prevention\": \"string\",\n      \"release_date\": 4282,\n      \"severity\": \"string\",\n      \"started_at\": 4677,\n      \"threat_display_id\": 8266,\n      \"threat_id\": 9871,\n      \"threat_name\": \"string\"\n    },\n    {\n      \"completed_at\": 7144,\n      \"detection_analysis\": {\n        \"alert_result\": \"string\",\n        \"has_alert_analysis\": true,\n        \"has_log_analysis\": false,\n        \"integrations\": [\n          {\n            \"id\": 1,\n            \"product_name\": \"Crowdstrike\"\n          },\n          {\n            \"id\": 1,\n            \"product_name\": \"Crowdstrike\"\n          }\n        ],\n        \"log_result\": \"string\"\n      },\n      \"has_detection_analysis\": false,\n      \"objectives\": [\n        {\n          \"actions\": [\n            {\n              \"display_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"false_items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"node_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"true_items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"display_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"false_items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"node_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"true_items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"id\": 6872,\n          \"name\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"actions\": [\n            {\n              \"display_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"false_items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"node_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"true_items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"display_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"false_items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"node_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"true_items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"id\": 7932,\n          \"name\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"prevention\": \"string\",\n      \"release_date\": 310,\n      \"severity\": \"string\",\n      \"started_at\": 3872,\n      \"threat_display_id\": 6558,\n      \"threat_id\": 4110,\n      \"threat_name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dcf20228-96e4-448a-b853-d7a31e7975f1",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "run",
+                    ":RunId",
+                    "threats"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Simulation Run ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1ebfbf3-6169-4895-8b9a-7ec97dec156c",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "run",
+                    ":RunId",
+                    "threats"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Simulation Run ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf586332-1403-4ac6-8d9d-a1b42ec2df83",
+          "name": "# Action Details List",
+          "request": {
+            "name": "# Action Details List",
+            "description": {
+              "content": "Includes detailed action result with attack start & end time, log & alert time and attack module based details (payloads, terminal log, file name, sha256, md5, sha1) for the actions of the given threat.\nProtocol based results are also available.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "simulations",
+                ":Id",
+                "run",
+                ":RunId",
+                "threats",
+                ":ThreatId",
+                "actions"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "action_ids",
+                  "value": "<uint64>",
+                  "description": "List Action Details With Action ID List. (Max 100 ids)"
+                },
+                {
+                  "disabled": false,
+                  "key": "action_ids",
+                  "value": "<uint64>",
+                  "description": "List Action Details With Action ID List. (Max 100 ids)"
+                },
+                {
+                  "disabled": false,
+                  "key": "action_display_ids",
+                  "value": "<uint64>",
+                  "description": "List Action Details With Action Display ID List. (Max 100 display ids)"
+                },
+                {
+                  "disabled": false,
+                  "key": "action_display_ids",
+                  "value": "<uint64>",
+                  "description": "List Action Details With Action Display ID List. (Max 100 display ids)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "Id",
+                  "description": "(Required) Simulation ID (URI parameter)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "RunId",
+                  "description": "(Required) Simulation Run ID (URI parameter)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "ThreatId",
+                  "description": "(Required) Threat ID (URI parameter)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0e2667e8-2070-4417-81cb-f18fee6074a4",
+              "name": "ActionDetailsListReturnSwagger",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "run",
+                    ":RunId",
+                    "threats",
+                    ":ThreatId",
+                    "actions"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "action_ids",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "action_ids",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "action_display_ids",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "action_display_ids",
+                      "value": "<uint64>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Simulation Run ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ThreatId",
+                      "description": "(Required) Threat ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"actions\": [\n    {\n      \"action_id\": 8889,\n      \"action_name\": \"string\",\n      \"affected_os\": [\n        \"string\",\n        \"string\"\n      ],\n      \"affected_platforms\": [\n        {\n          \"architecture\": \"string\",\n          \"os\": \"string\",\n          \"platform\": \"string\"\n        },\n        {\n          \"architecture\": \"string\",\n          \"os\": \"string\",\n          \"platform\": \"string\"\n        }\n      ],\n      \"affected_products\": [\n        \"string\",\n        \"string\"\n      ],\n      \"attack_module\": \"string\",\n      \"attack_module_id\": 5641,\n      \"category\": \"string\",\n      \"completed_at\": 8181,\n      \"description\": \"string\",\n      \"detection_analysis\": {\n        \"alert_result\": \"string\",\n        \"has_alert_analysis\": false,\n        \"has_log_analysis\": true,\n        \"integration_based_results\": [\n          {\n            \"alert\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"has_alert_analysis\": false,\n            \"has_log_analysis\": false,\n            \"integration_id\": 3426,\n            \"log\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"product_name\": \"string\",\n            \"protocol\": \"string\",\n            \"status\": \"string\"\n          },\n          {\n            \"alert\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"has_alert_analysis\": true,\n            \"has_log_analysis\": true,\n            \"integration_id\": 938,\n            \"log\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"product_name\": \"string\",\n            \"protocol\": \"string\",\n            \"status\": \"string\"\n          }\n        ],\n        \"log_result\": \"string\"\n      },\n      \"display_id\": 2768,\n      \"frameworks\": {\n        \"mitre\": {\n          \"sub_technique\": \"string\",\n          \"sub_technique_id\": \"string\",\n          \"tactic\": \"string\",\n          \"tactic_id\": \"string\",\n          \"technique\": \"string\",\n          \"technique_id\": \"string\"\n        },\n        \"ukc\": {\n          \"phase\": \"string\",\n          \"stage\": \"string\"\n        }\n      },\n      \"has_detection_analysis\": true,\n      \"module_based_results\": {\n        \"file_details\": [\n          {\n            \"md5\": \"string\",\n            \"name\": \"string\",\n            \"sha1\": \"string\",\n            \"sha256\": \"string\"\n          },\n          {\n            \"md5\": \"string\",\n            \"name\": \"string\",\n            \"sha1\": \"string\",\n            \"sha256\": \"string\"\n          }\n        ],\n        \"process_results\": [\n          {\n            \"command\": \"string\",\n            \"id\": 8101,\n            \"log_content\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"command\": \"string\",\n            \"id\": 8854,\n            \"log_content\": \"string\",\n            \"name\": \"string\"\n          }\n        ]\n      },\n      \"node_id\": 2082,\n      \"owasp\": \"string\",\n      \"prevention\": \"string\",\n      \"protocol_based_result\": [\n        {\n          \"alert_result\": \"string\",\n          \"completed_at\": 782,\n          \"has_alert_analysis\": true,\n          \"has_log_analysis\": false,\n          \"integrations\": [\n            {\n              \"action_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"alert_result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"has_alert_analysis\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"has_log_analysis\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"integration_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"log_result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"node_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"product_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"protocol\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"action_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"alert_result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"has_alert_analysis\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"has_log_analysis\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"integration_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"log_result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"node_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"product_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"protocol\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"log_result\": \"string\",\n          \"prevention\": \"string\",\n          \"protocol\": \"string\",\n          \"started_at\": 6410\n        },\n        {\n          \"alert_result\": \"string\",\n          \"completed_at\": 6506,\n          \"has_alert_analysis\": false,\n          \"has_log_analysis\": true,\n          \"integrations\": [\n            {\n              \"action_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"alert_result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"has_alert_analysis\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"has_log_analysis\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"integration_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"log_result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"node_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"product_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"protocol\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"action_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"alert_result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"has_alert_analysis\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"has_log_analysis\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"integration_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"log_result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"node_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"product_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"protocol\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"log_result\": \"string\",\n          \"prevention\": \"string\",\n          \"protocol\": \"string\",\n          \"started_at\": 4685\n        }\n      ],\n      \"references\": {\n        \"cve_reference\": {\n          \"link\": \"string\",\n          \"name\": \"string\"\n        },\n        \"cwe_reference\": {\n          \"link\": \"string\",\n          \"name\": \"string\"\n        },\n        \"virus_total_reference\": [\n          {\n            \"link\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"link\": \"string\",\n            \"name\": \"string\"\n          }\n        ]\n      },\n      \"sources\": [\n        \"string\",\n        \"string\"\n      ],\n      \"started_at\": 2707\n    },\n    {\n      \"action_id\": 9576,\n      \"action_name\": \"string\",\n      \"affected_os\": [\n        \"string\",\n        \"string\"\n      ],\n      \"affected_platforms\": [\n        {\n          \"architecture\": \"string\",\n          \"os\": \"string\",\n          \"platform\": \"string\"\n        },\n        {\n          \"architecture\": \"string\",\n          \"os\": \"string\",\n          \"platform\": \"string\"\n        }\n      ],\n      \"affected_products\": [\n        \"string\",\n        \"string\"\n      ],\n      \"attack_module\": \"string\",\n      \"attack_module_id\": 8127,\n      \"category\": \"string\",\n      \"completed_at\": 6923,\n      \"description\": \"string\",\n      \"detection_analysis\": {\n        \"alert_result\": \"string\",\n        \"has_alert_analysis\": false,\n        \"has_log_analysis\": false,\n        \"integration_based_results\": [\n          {\n            \"alert\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"has_alert_analysis\": false,\n            \"has_log_analysis\": false,\n            \"integration_id\": 337,\n            \"log\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"product_name\": \"string\",\n            \"protocol\": \"string\",\n            \"status\": \"string\"\n          },\n          {\n            \"alert\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"has_alert_analysis\": true,\n            \"has_log_analysis\": false,\n            \"integration_id\": 6321,\n            \"log\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"product_name\": \"string\",\n            \"protocol\": \"string\",\n            \"status\": \"string\"\n          }\n        ],\n        \"log_result\": \"string\"\n      },\n      \"display_id\": 9614,\n      \"frameworks\": {\n        \"mitre\": {\n          \"sub_technique\": \"string\",\n          \"sub_technique_id\": \"string\",\n          \"tactic\": \"string\",\n          \"tactic_id\": \"string\",\n          \"technique\": \"string\",\n          \"technique_id\": \"string\"\n        },\n        \"ukc\": {\n          \"phase\": \"string\",\n          \"stage\": \"string\"\n        }\n      },\n      \"has_detection_analysis\": true,\n      \"module_based_results\": {\n        \"file_details\": [\n          {\n            \"md5\": \"string\",\n            \"name\": \"string\",\n            \"sha1\": \"string\",\n            \"sha256\": \"string\"\n          },\n          {\n            \"md5\": \"string\",\n            \"name\": \"string\",\n            \"sha1\": \"string\",\n            \"sha256\": \"string\"\n          }\n        ],\n        \"process_results\": [\n          {\n            \"command\": \"string\",\n            \"id\": 2539,\n            \"log_content\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"command\": \"string\",\n            \"id\": 8976,\n            \"log_content\": \"string\",\n            \"name\": \"string\"\n          }\n        ]\n      },\n      \"node_id\": 8203,\n      \"owasp\": \"string\",\n      \"prevention\": \"string\",\n      \"protocol_based_result\": [\n        {\n          \"alert_result\": \"string\",\n          \"completed_at\": 402,\n          \"has_alert_analysis\": false,\n          \"has_log_analysis\": true,\n          \"integrations\": [\n            {\n              \"action_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"alert_result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"has_alert_analysis\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"has_log_analysis\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"integration_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"log_result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"node_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"product_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"protocol\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"action_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"alert_result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"has_alert_analysis\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"has_log_analysis\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"integration_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"log_result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"node_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"product_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"protocol\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"log_result\": \"string\",\n          \"prevention\": \"string\",\n          \"protocol\": \"string\",\n          \"started_at\": 6645\n        },\n        {\n          \"alert_result\": \"string\",\n          \"completed_at\": 1301,\n          \"has_alert_analysis\": true,\n          \"has_log_analysis\": true,\n          \"integrations\": [\n            {\n              \"action_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"alert_result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"has_alert_analysis\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"has_log_analysis\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"integration_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"log_result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"node_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"product_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"protocol\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"action_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"alert_result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"has_alert_analysis\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"has_log_analysis\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"integration_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"log_result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"node_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"product_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"protocol\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"log_result\": \"string\",\n          \"prevention\": \"string\",\n          \"protocol\": \"string\",\n          \"started_at\": 8301\n        }\n      ],\n      \"references\": {\n        \"cve_reference\": {\n          \"link\": \"string\",\n          \"name\": \"string\"\n        },\n        \"cwe_reference\": {\n          \"link\": \"string\",\n          \"name\": \"string\"\n        },\n        \"virus_total_reference\": [\n          {\n            \"link\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"link\": \"string\",\n            \"name\": \"string\"\n          }\n        ]\n      },\n      \"sources\": [\n        \"string\",\n        \"string\"\n      ],\n      \"started_at\": 4224\n    }\n  ],\n  \"pages\": {\n    \"limit\": 20,\n    \"offset\": 0,\n    \"total_count\": 100\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74ebca04-0611-4772-80aa-d2ddc6df2de2",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "run",
+                    ":RunId",
+                    "threats",
+                    ":ThreatId",
+                    "actions"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "action_ids",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "action_ids",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "action_display_ids",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "action_display_ids",
+                      "value": "<uint64>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Simulation Run ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ThreatId",
+                      "description": "(Required) Threat ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae89270e-9862-4b5c-bc9e-0d4f9f6f93d1",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "run",
+                    ":RunId",
+                    "threats",
+                    ":ThreatId",
+                    "actions"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "action_ids",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "action_ids",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "action_display_ids",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "action_display_ids",
+                      "value": "<uint64>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Simulation Run ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ThreatId",
+                      "description": "(Required) Threat ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e189061-29ca-4586-99b5-3306154881ac",
+          "name": "# Action Details",
+          "request": {
+            "name": "# Action Details",
+            "description": {
+              "content": "Includes detailed action result with attack start & end time, log & alert time and attack module based details (payloads, terminal log, file name, sha256, md5, sha1).\nProtocol based results are also available.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "simulations",
+                ":Id",
+                "run",
+                ":RunId",
+                "threats",
+                ":ThreatId",
+                "actions",
+                ":ActionId"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "node_id",
+                  "value": "<long>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "RunId",
+                  "description": "(Required) Simulation Run ID (URI parameter)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "ActionId",
+                  "description": "(Required) Action ID (URI parameter)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "Id",
+                  "description": "(Required) Simulation ID (URI parameter)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "ThreatId",
+                  "description": "(Required) Threat ID (URI parameter)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "098af634-9528-40e8-ae36-eb0a79e47965",
+              "name": "ActionDetailsReturnSwagger",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "run",
+                    ":RunId",
+                    "threats",
+                    ":ThreatId",
+                    "actions",
+                    ":ActionId"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "node_id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Simulation Run ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ActionId",
+                      "description": "(Required) Action ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ThreatId",
+                      "description": "(Required) Threat ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"action_id\": 8987,\n  \"action_name\": \"string\",\n  \"affected_os\": [\n    \"string\",\n    \"string\"\n  ],\n  \"affected_platforms\": [\n    {\n      \"architecture\": \"string\",\n      \"os\": \"string\",\n      \"platform\": \"string\"\n    },\n    {\n      \"architecture\": \"string\",\n      \"os\": \"string\",\n      \"platform\": \"string\"\n    }\n  ],\n  \"affected_products\": [\n    \"string\",\n    \"string\"\n  ],\n  \"attack_module\": \"string\",\n  \"attack_module_id\": 6015,\n  \"category\": \"string\",\n  \"completed_at\": 8495,\n  \"description\": \"string\",\n  \"detection_analysis\": {\n    \"alert_result\": \"string\",\n    \"has_alert_analysis\": true,\n    \"has_log_analysis\": false,\n    \"integration_based_results\": [\n      {\n        \"alert\": {\n          \"alert_result\": \"string\",\n          \"alerted_time\": 905\n        },\n        \"has_alert_analysis\": true,\n        \"has_log_analysis\": true,\n        \"integration_id\": 2703,\n        \"log\": {\n          \"log_result\": \"string\",\n          \"logged_time\": 919\n        },\n        \"product_name\": \"string\",\n        \"protocol\": \"string\",\n        \"status\": \"string\"\n      },\n      {\n        \"alert\": {\n          \"alert_result\": \"string\",\n          \"alerted_time\": 9976\n        },\n        \"has_alert_analysis\": false,\n        \"has_log_analysis\": true,\n        \"integration_id\": 521,\n        \"log\": {\n          \"log_result\": \"string\",\n          \"logged_time\": 9934\n        },\n        \"product_name\": \"string\",\n        \"protocol\": \"string\",\n        \"status\": \"string\"\n      }\n    ],\n    \"log_result\": \"string\"\n  },\n  \"display_id\": 6755,\n  \"frameworks\": {\n    \"mitre\": {\n      \"sub_technique\": \"string\",\n      \"sub_technique_id\": \"string\",\n      \"tactic\": \"string\",\n      \"tactic_id\": \"string\",\n      \"technique\": \"string\",\n      \"technique_id\": \"string\"\n    },\n    \"ukc\": {\n      \"phase\": \"string\",\n      \"stage\": \"string\"\n    }\n  },\n  \"has_detection_analysis\": true,\n  \"module_based_results\": {\n    \"file_details\": [\n      {\n        \"md5\": \"string\",\n        \"name\": \"string\",\n        \"sha1\": \"string\",\n        \"sha256\": \"string\"\n      },\n      {\n        \"md5\": \"string\",\n        \"name\": \"string\",\n        \"sha1\": \"string\",\n        \"sha256\": \"string\"\n      }\n    ],\n    \"process_results\": [\n      {\n        \"command\": \"string\",\n        \"id\": 9369,\n        \"log_content\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"command\": \"string\",\n        \"id\": 2391,\n        \"log_content\": \"string\",\n        \"name\": \"string\"\n      }\n    ]\n  },\n  \"node_id\": 8622,\n  \"owasp\": \"string\",\n  \"prevention\": \"string\",\n  \"protocol_based_result\": [\n    {\n      \"alert_result\": \"string\",\n      \"completed_at\": 3283,\n      \"has_alert_analysis\": false,\n      \"has_log_analysis\": false,\n      \"integrations\": [\n        {\n          \"action_id\": 6820,\n          \"alert_result\": \"string\",\n          \"has_alert_analysis\": true,\n          \"has_log_analysis\": true,\n          \"integration_id\": 7821,\n          \"log_result\": \"string\",\n          \"node_id\": 1808,\n          \"product_name\": \"string\",\n          \"protocol\": \"string\"\n        },\n        {\n          \"action_id\": 6519,\n          \"alert_result\": \"string\",\n          \"has_alert_analysis\": true,\n          \"has_log_analysis\": true,\n          \"integration_id\": 387,\n          \"log_result\": \"string\",\n          \"node_id\": 7284,\n          \"product_name\": \"string\",\n          \"protocol\": \"string\"\n        }\n      ],\n      \"log_result\": \"string\",\n      \"prevention\": \"string\",\n      \"protocol\": \"string\",\n      \"started_at\": 3083\n    },\n    {\n      \"alert_result\": \"string\",\n      \"completed_at\": 5610,\n      \"has_alert_analysis\": false,\n      \"has_log_analysis\": false,\n      \"integrations\": [\n        {\n          \"action_id\": 2947,\n          \"alert_result\": \"string\",\n          \"has_alert_analysis\": false,\n          \"has_log_analysis\": true,\n          \"integration_id\": 9696,\n          \"log_result\": \"string\",\n          \"node_id\": 7347,\n          \"product_name\": \"string\",\n          \"protocol\": \"string\"\n        },\n        {\n          \"action_id\": 9554,\n          \"alert_result\": \"string\",\n          \"has_alert_analysis\": true,\n          \"has_log_analysis\": false,\n          \"integration_id\": 271,\n          \"log_result\": \"string\",\n          \"node_id\": 8313,\n          \"product_name\": \"string\",\n          \"protocol\": \"string\"\n        }\n      ],\n      \"log_result\": \"string\",\n      \"prevention\": \"string\",\n      \"protocol\": \"string\",\n      \"started_at\": 1297\n    }\n  ],\n  \"references\": {\n    \"cve_reference\": {\n      \"link\": \"string\",\n      \"name\": \"string\"\n    },\n    \"cwe_reference\": {\n      \"link\": \"string\",\n      \"name\": \"string\"\n    },\n    \"virus_total_reference\": [\n      {\n        \"link\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"link\": \"string\",\n        \"name\": \"string\"\n      }\n    ]\n  },\n  \"sources\": [\n    \"string\",\n    \"string\"\n  ],\n  \"started_at\": 4221\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c103266-cca9-4ba4-a8b3-23cb03b61aa5",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "run",
+                    ":RunId",
+                    "threats",
+                    ":ThreatId",
+                    "actions",
+                    ":ActionId"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "node_id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Simulation Run ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ActionId",
+                      "description": "(Required) Action ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ThreatId",
+                      "description": "(Required) Threat ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b68a8d45-d63a-4f7a-b027-37b8db13264d",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "run",
+                    ":RunId",
+                    "threats",
+                    ":ThreatId",
+                    "actions",
+                    ":ActionId"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "node_id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Simulation Run ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ActionId",
+                      "description": "(Required) Action ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ThreatId",
+                      "description": "(Required) Threat ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af51af9c-b61f-48a1-9fc4-68505a7552b2",
+          "name": "# Integration based Alert Details for Actions",
+          "request": {
+            "name": "# Integration based Alert Details for Actions",
+            "description": {
+              "content": "Includes Action Name, Log Source and Alert Time.\nDefault limit: 100, Default offset: 0\nMax limit: 1000\nSame action can be used multiple times under the scope of threat where these actions are distinguished by node_id\nnode_id parameter can be used optionally. For the case it is not provided, first node is returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "simulations",
+                ":Id",
+                "run",
+                ":RunId",
+                "threats",
+                ":ThreatId",
+                "actions",
+                ":ActionId",
+                "integrations",
+                ":IntegrationId",
+                "alerts"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "node_id",
+                  "value": "<long>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "RunId",
+                  "description": "(Required) Simulation Run ID (URI parameter)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "Id",
+                  "description": "(Required) Simulation ID (URI parameter)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "ThreatId",
+                  "description": "(Required) Threat ID (URI parameter)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "ActionId",
+                  "description": "(Required) Action ID (URI parameter)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "IntegrationId",
+                  "description": "(Required) Integration ID (URI parameter)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "23ebcdc6-fffb-47f7-93ee-068a87c117c2",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "run",
+                    ":RunId",
+                    "threats",
+                    ":ThreatId",
+                    "actions",
+                    ":ActionId",
+                    "integrations",
+                    ":IntegrationId",
+                    "alerts"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "node_id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Simulation Run ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ThreatId",
+                      "description": "(Required) Threat ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ActionId",
+                      "description": "(Required) Action ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "IntegrationId",
+                      "description": "(Required) Integration ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alerts\": [\n    {\n      \"action\": \"string\",\n      \"alert_id\": 789,\n      \"log_type\": \"string\",\n      \"name\": \"string\",\n      \"source\": \"string\",\n      \"time\": 7987\n    },\n    {\n      \"action\": \"string\",\n      \"alert_id\": 1712,\n      \"log_type\": \"string\",\n      \"name\": \"string\",\n      \"source\": \"string\",\n      \"time\": 9881\n    }\n  ],\n  \"pages\": {\n    \"limit\": 20,\n    \"offset\": 0,\n    \"total_count\": 100\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe2f4910-9e8c-4d4c-ae00-0e6530dae34e",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "run",
+                    ":RunId",
+                    "threats",
+                    ":ThreatId",
+                    "actions",
+                    ":ActionId",
+                    "integrations",
+                    ":IntegrationId",
+                    "alerts"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "node_id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Simulation Run ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ThreatId",
+                      "description": "(Required) Threat ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ActionId",
+                      "description": "(Required) Action ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "IntegrationId",
+                      "description": "(Required) Integration ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "514827ba-720f-41d9-a808-949fd2b6599b",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "run",
+                    ":RunId",
+                    "threats",
+                    ":ThreatId",
+                    "actions",
+                    ":ActionId",
+                    "integrations",
+                    ":IntegrationId",
+                    "alerts"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "node_id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Simulation Run ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ThreatId",
+                      "description": "(Required) Threat ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ActionId",
+                      "description": "(Required) Action ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "IntegrationId",
+                      "description": "(Required) Integration ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea7d7fc6-c8b6-4113-9e2c-8ebf46c2c211",
+          "name": "# Integration based Log Details for Actions",
+          "request": {
+            "name": "# Integration based Log Details for Actions",
+            "description": {
+              "content": "Includes Action Name, Log Source and Log Time.\nDefault limit: 100, Default offset: 0\nMax limit: 1000\nSame action can be used multiple times under the scope of threat where these actions are distinguished by node_id\nnode_id parameter can be used optionally. For the case it is not provided, first node is returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "simulations",
+                ":Id",
+                "run",
+                ":RunId",
+                "threats",
+                ":ThreatId",
+                "actions",
+                ":ActionId",
+                "integrations",
+                ":IntegrationId",
+                "logs"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "node_id",
+                  "value": "<long>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "RunId",
+                  "description": "(Required) Simulation Run ID (URI parameter)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "Id",
+                  "description": "(Required) Simulation ID (URI parameter)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "ThreatId",
+                  "description": "(Required) Threat ID (URI parameter)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "ActionId",
+                  "description": "(Required) Action ID (URI parameter)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "IntegrationId",
+                  "description": "(Required) Integration ID (URI parameter)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "44dcaaea-fbcf-42ce-85c2-15f56e5b3aea",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "run",
+                    ":RunId",
+                    "threats",
+                    ":ThreatId",
+                    "actions",
+                    ":ActionId",
+                    "integrations",
+                    ":IntegrationId",
+                    "logs"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "node_id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Simulation Run ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ThreatId",
+                      "description": "(Required) Threat ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ActionId",
+                      "description": "(Required) Action ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "IntegrationId",
+                      "description": "(Required) Integration ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"logs\": [\n    {\n      \"action\": \"string\",\n      \"log_id\": 5890,\n      \"log_type\": \"string\",\n      \"name\": \"string\",\n      \"source\": \"string\",\n      \"time\": 9864\n    },\n    {\n      \"action\": \"string\",\n      \"log_id\": 3529,\n      \"log_type\": \"string\",\n      \"name\": \"string\",\n      \"source\": \"string\",\n      \"time\": 3237\n    }\n  ],\n  \"pages\": {\n    \"limit\": 20,\n    \"offset\": 0,\n    \"total_count\": 100\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22a38062-1f0e-4032-8dd3-5d2bdb3d89d1",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "run",
+                    ":RunId",
+                    "threats",
+                    ":ThreatId",
+                    "actions",
+                    ":ActionId",
+                    "integrations",
+                    ":IntegrationId",
+                    "logs"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "node_id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Simulation Run ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ThreatId",
+                      "description": "(Required) Threat ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ActionId",
+                      "description": "(Required) Action ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "IntegrationId",
+                      "description": "(Required) Integration ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06aeb508-e8b7-491c-9917-2080609086ea",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "run",
+                    ":RunId",
+                    "threats",
+                    ":ThreatId",
+                    "actions",
+                    ":ActionId",
+                    "integrations",
+                    ":IntegrationId",
+                    "logs"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "node_id",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Simulation Run ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ThreatId",
+                      "description": "(Required) Threat ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ActionId",
+                      "description": "(Required) Action ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "IntegrationId",
+                      "description": "(Required) Integration ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b429b954-008f-4ba3-b35b-6250ca5516fc",
+          "name": "# Raw Log File Links",
+          "request": {
+            "name": "# Raw Log File Links",
+            "description": {
+              "content": "Retrieves raw log file download links for a specific threat, peer, and integration combination.\nReturns an array of URLs pointing to raw log files that can be downloaded.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "simulations",
+                ":SimulationId",
+                "run",
+                ":RunId",
+                "threats",
+                ":ThreatId",
+                "peers",
+                ":PeerId",
+                "integrations",
+                ":IntegrationId",
+                "raw-logs"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "actionId",
+                  "value": "<uint64>",
+                  "description": "Action ID (Query parameter)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "SimulationId",
+                  "description": "(Required) Simulation ID (URI parameter)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "RunId",
+                  "description": "(Required) Run ID (URI parameter)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "ThreatId",
+                  "description": "(Required) Threat ID (URI parameter)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "PeerId",
+                  "description": "(Required) Peer ID (URI parameter)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "IntegrationId",
+                  "description": "(Required) Integration ID (URI parameter)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "77f271b0-1617-4052-98c1-d0b86a908508",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":SimulationId",
+                    "run",
+                    ":RunId",
+                    "threats",
+                    ":ThreatId",
+                    "peers",
+                    ":PeerId",
+                    "integrations",
+                    ":IntegrationId",
+                    "raw-logs"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "actionId",
+                      "value": "<uint64>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "SimulationId",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Run ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ThreatId",
+                      "description": "(Required) Threat ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "PeerId",
+                      "description": "(Required) Peer ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "IntegrationId",
+                      "description": "(Required) Integration ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"raw_log_file_links\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0638560b-5f78-42c0-8391-a91a6e38bf40",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":SimulationId",
+                    "run",
+                    ":RunId",
+                    "threats",
+                    ":ThreatId",
+                    "peers",
+                    ":PeerId",
+                    "integrations",
+                    ":IntegrationId",
+                    "raw-logs"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "actionId",
+                      "value": "<uint64>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "SimulationId",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Run ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ThreatId",
+                      "description": "(Required) Threat ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "PeerId",
+                      "description": "(Required) Peer ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "IntegrationId",
+                      "description": "(Required) Integration ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70bba424-49f6-4a80-994b-66460bf001ff",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":SimulationId",
+                    "run",
+                    ":RunId",
+                    "threats",
+                    ":ThreatId",
+                    "peers",
+                    ":PeerId",
+                    "integrations",
+                    ":IntegrationId",
+                    "raw-logs"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "actionId",
+                      "value": "<uint64>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "SimulationId",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "RunId",
+                      "description": "(Required) Run ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "ThreatId",
+                      "description": "(Required) Threat ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "PeerId",
+                      "description": "(Required) Peer ID (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "IntegrationId",
+                      "description": "(Required) Integration ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.picussecurity.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d8948b97-b03b-440f-9489-9fd56596f794",
+    "name": "Picus Customer Simulation Result API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<p class=\"body-1\">You can access the simulation raw data using the Rest API. Scope of the API includes; Simulation list, Simulation Details, Threat/Objective/Action Results, Results mapped to MITRE ATTC&K and Unified Kill Chain frameworks, Detection Analysis Results, Validated Logs & Alerts with SIEM & EDR integration.</p>\n<p class=\"body-1\">OAuth2 protocol is used to authorize Refresh/Access tokens. To obtain the API, you should generate a refresh token and then request an access token using the /v1/auth/token endpoint. The refresh token will be valid for 6 months, whereas the access token will be available for 2 hours. After getting the access token, add Authorization: Bearer {accessToken} to the header to request access to the below endpoints.</p>\n<p class=\"body-1\">Endpoints returning data with a lot of load works with the pagination method. You can use the offset and limit parameters to get the correct page.</p>\n\n<i class=\"body-1\">Your usage will be limited with your Picus license.</i>",
+      "type": "text/plain"
+    }
+  }
+}

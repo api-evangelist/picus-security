@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picus Customer Templates API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "# Template List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/templates",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "category_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Predefined Category Names or My Templates"
+              },
+              {
+                "name": "content_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by content type Static or Dynamic"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Templates; Template Name, Description, Id, Threat Count, Content Type, Category Name, Subcategory Name"
+        },
+        {
+          "info": {
+            "name": "# Create Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.picussecurity.com/v1/templates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates the dynamic/static templates with given threats or rule content"
+        },
+        {
+          "info": {
+            "name": "# Template Detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/templates/:Id",
+            "params": [
+              {
+                "name": "Id",
+                "value": "",
+                "type": "path",
+                "description": "Template ID (URI parameter)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Template Detail; Template Name, Description, Id, Content Type, Category Name, Subcategory Name\nApplicable Agent Types, Rules For Dynamic Templates, Threat List"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

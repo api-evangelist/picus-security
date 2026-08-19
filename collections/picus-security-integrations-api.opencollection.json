@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picus Customer Integrations API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Integrations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "# Integrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/integrations",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Integration List; Integration ID, Integration Name, Created At, Updated At, Health Status, Integration Agent ID, Integration Agent Name (If Available)"
+        },
+        {
+          "info": {
+            "name": "# Integration Agents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/integrations/agents",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Integration Agent List; Integration Agent ID, Integration Agent Name, Created At, Updated At, Status (Alive | Dead), Is Installed, Is Token Expired"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

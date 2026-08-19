@@ -1,0 +1,796 @@
+{
+  "item": [
+    {
+      "id": "6849be4c-0d6e-4e3e-8646-9d6df66dedf5",
+      "name": "Templates",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c672c160-2beb-4b3b-bcb9-b3def941ac2c",
+          "name": "# Template List",
+          "request": {
+            "name": "# Template List",
+            "description": {
+              "content": "Templates; Template Name, Description, Id, Threat Count, Content Type, Category Name, Subcategory Name",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "templates"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "category_name",
+                  "value": "<string>",
+                  "description": "Filter by Predefined Category Names or My Templates"
+                },
+                {
+                  "disabled": false,
+                  "key": "content_type",
+                  "value": "<string>",
+                  "description": "Filter by content type Static or Dynamic"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9e494a6a-4b21-42a5-afd4-04c1e0bedb9b",
+              "name": "TemplatesReturnSwagger",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "templates"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "category_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "content_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pages\": {\n    \"limit\": 20,\n    \"offset\": 0,\n    \"total_count\": 100\n  },\n  \"templates\": [\n    {\n      \"agent_types\": [\n        {\n          \"id\": 1,\n          \"name\": \"Windows\"\n        },\n        {\n          \"id\": 1,\n          \"name\": \"Windows\"\n        }\n      ],\n      \"category_name\": \"main\",\n      \"content_type\": \"Static\",\n      \"content_updated_at\": 1654781780578,\n      \"description\": \"Description\",\n      \"id\": 1,\n      \"name\": \"Template-1\",\n      \"subcategory_name\": \"sub\",\n      \"threat_count\": 2\n    },\n    {\n      \"agent_types\": [\n        {\n          \"id\": 1,\n          \"name\": \"Windows\"\n        },\n        {\n          \"id\": 1,\n          \"name\": \"Windows\"\n        }\n      ],\n      \"category_name\": \"main\",\n      \"content_type\": \"Static\",\n      \"content_updated_at\": 1654781780578,\n      \"description\": \"Description\",\n      \"id\": 1,\n      \"name\": \"Template-1\",\n      \"subcategory_name\": \"sub\",\n      \"threat_count\": 2\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db082090-87c6-46b7-b033-522c39059b51",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "templates"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "category_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "content_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "496a8857-b551-45d5-98fd-c7dd53d62944",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "templates"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "category_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "content_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8fc369f-6153-43af-b7b8-25385278671f",
+          "name": "# Create Template",
+          "request": {
+            "name": "# Create Template",
+            "description": {
+              "content": "Creates the dynamic/static templates with given threats or rule content",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "templates"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": {\n    \"rules\": [\n      {\n        \"affected_operating_systems\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"category_names\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"date_label\": \"<string>\",\n        \"kill_chain_phases\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mitre_tactics\": [\n          \"<uint64>\",\n          \"<uint64>\"\n        ],\n        \"modules\": [\n          \"<uint64>\",\n          \"<uint64>\"\n        ],\n        \"only_name\": \"<string>\",\n        \"severities\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"threat_actors\": [\n          \"<uint64>\",\n          \"<uint64>\"\n        ]\n      },\n      {\n        \"affected_operating_systems\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"category_names\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"date_label\": \"<string>\",\n        \"kill_chain_phases\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mitre_tactics\": [\n          \"<uint64>\",\n          \"<uint64>\"\n        ],\n        \"modules\": [\n          \"<uint64>\",\n          \"<uint64>\"\n        ],\n        \"only_name\": \"<string>\",\n        \"severities\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"threat_actors\": [\n          \"<uint64>\",\n          \"<uint64>\"\n        ]\n      }\n    ],\n    \"threats\": [\n      \"<uint64>\",\n      \"<uint64>\"\n    ]\n  },\n  \"description\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d59737c4-4c31-4c14-9d1a-c59067e51ccf",
+              "name": "TemplateCreateReturnSwagger",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "templates"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"content\": {\n    \"rules\": [\n      {\n        \"affected_operating_systems\": [\n          \"Windows\"\n        ],\n        \"category_names\": [\n          \"Attack Scenario\",\n          \"Malicious Code\"\n        ],\n        \"date_label\": \"Last 30 days.\",\n        \"kill_chain_phases\": [\n          \"Delivery\",\n          \"Defense Evasion\"\n        ],\n        \"mitre_tactics\": [\n          4,\n          10,\n          11\n        ],\n        \"modules\": [\n          \"<uint64>\",\n          \"<uint64>\"\n        ],\n        \"only_name\": \"threat group campaign malware download\",\n        \"severities\": [\n          \"high\"\n        ],\n        \"tags\": [\n          \"Iron Tiger\",\n          \"APT27\"\n        ],\n        \"threat_actors\": [\n          60,\n          62\n        ]\n      },\n      {\n        \"affected_operating_systems\": [\n          \"Windows\"\n        ],\n        \"category_names\": [\n          \"Attack Scenario\",\n          \"Malicious Code\"\n        ],\n        \"date_label\": \"Last 30 days.\",\n        \"kill_chain_phases\": [\n          \"Delivery\",\n          \"Defense Evasion\"\n        ],\n        \"mitre_tactics\": [\n          4,\n          10,\n          11\n        ],\n        \"modules\": [\n          \"<uint64>\",\n          \"<uint64>\"\n        ],\n        \"only_name\": \"threat group campaign malware download\",\n        \"severities\": [\n          \"high\"\n        ],\n        \"tags\": [\n          \"Iron Tiger\",\n          \"APT27\"\n        ],\n        \"threat_actors\": [\n          60,\n          62\n        ]\n      }\n    ],\n    \"threats\": [\n      \"<uint64>\",\n      \"<uint64>\"\n    ]\n  },\n  \"description\": \"This template rocks!\",\n  \"name\": \"Example Template\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": {\n    \"threats\": [\n      3021,\n      3790\n    ]\n  },\n  \"content_type\": \"Static\",\n  \"content_update_time\": 1655748108944,\n  \"creation_time\": 1655748108944,\n  \"description\": \"High Severity Threats For Last 30 Days\",\n  \"id\": 1,\n  \"name\": \"Example Template\",\n  \"rules\": [\n    {\n      \"affected_operating_systems\": [\n        \"Windows\"\n      ],\n      \"category_names\": [\n        \"Attack Scenario\",\n        \"Malicious Code\"\n      ],\n      \"date_label\": \"Last 30 days.\",\n      \"kill_chain_phases\": [\n        \"Delivery\",\n        \"Defense Evasion\"\n      ],\n      \"mitre_tactics\": [\n        4,\n        10,\n        11\n      ],\n      \"modules\": [\n        \"<uint64>\",\n        \"<uint64>\"\n      ],\n      \"only_name\": \"threat group campaign malware download\",\n      \"severities\": [\n        \"high\"\n      ],\n      \"tags\": [\n        \"Iron Tiger\",\n        \"APT27\"\n      ],\n      \"threat_actors\": [\n        60,\n        62\n      ]\n    },\n    {\n      \"affected_operating_systems\": [\n        \"Windows\"\n      ],\n      \"category_names\": [\n        \"Attack Scenario\",\n        \"Malicious Code\"\n      ],\n      \"date_label\": \"Last 30 days.\",\n      \"kill_chain_phases\": [\n        \"Delivery\",\n        \"Defense Evasion\"\n      ],\n      \"mitre_tactics\": [\n        4,\n        10,\n        11\n      ],\n      \"modules\": [\n        \"<uint64>\",\n        \"<uint64>\"\n      ],\n      \"only_name\": \"threat group campaign malware download\",\n      \"severities\": [\n        \"high\"\n      ],\n      \"tags\": [\n        \"Iron Tiger\",\n        \"APT27\"\n      ],\n      \"threat_actors\": [\n        60,\n        62\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de884ee0-1528-45d1-9421-2df9cb0816a3",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "templates"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"content\": {\n    \"rules\": [\n      {\n        \"affected_operating_systems\": [\n          \"Windows\"\n        ],\n        \"category_names\": [\n          \"Attack Scenario\",\n          \"Malicious Code\"\n        ],\n        \"date_label\": \"Last 30 days.\",\n        \"kill_chain_phases\": [\n          \"Delivery\",\n          \"Defense Evasion\"\n        ],\n        \"mitre_tactics\": [\n          4,\n          10,\n          11\n        ],\n        \"modules\": [\n          \"<uint64>\",\n          \"<uint64>\"\n        ],\n        \"only_name\": \"threat group campaign malware download\",\n        \"severities\": [\n          \"high\"\n        ],\n        \"tags\": [\n          \"Iron Tiger\",\n          \"APT27\"\n        ],\n        \"threat_actors\": [\n          60,\n          62\n        ]\n      },\n      {\n        \"affected_operating_systems\": [\n          \"Windows\"\n        ],\n        \"category_names\": [\n          \"Attack Scenario\",\n          \"Malicious Code\"\n        ],\n        \"date_label\": \"Last 30 days.\",\n        \"kill_chain_phases\": [\n          \"Delivery\",\n          \"Defense Evasion\"\n        ],\n        \"mitre_tactics\": [\n          4,\n          10,\n          11\n        ],\n        \"modules\": [\n          \"<uint64>\",\n          \"<uint64>\"\n        ],\n        \"only_name\": \"threat group campaign malware download\",\n        \"severities\": [\n          \"high\"\n        ],\n        \"tags\": [\n          \"Iron Tiger\",\n          \"APT27\"\n        ],\n        \"threat_actors\": [\n          60,\n          62\n        ]\n      }\n    ],\n    \"threats\": [\n      \"<uint64>\",\n      \"<uint64>\"\n    ]\n  },\n  \"description\": \"This template rocks!\",\n  \"name\": \"Example Template\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6166e203-9ebb-4b53-a56c-a4481f24255d",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "templates"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"content\": {\n    \"rules\": [\n      {\n        \"affected_operating_systems\": [\n          \"Windows\"\n        ],\n        \"category_names\": [\n          \"Attack Scenario\",\n          \"Malicious Code\"\n        ],\n        \"date_label\": \"Last 30 days.\",\n        \"kill_chain_phases\": [\n          \"Delivery\",\n          \"Defense Evasion\"\n        ],\n        \"mitre_tactics\": [\n          4,\n          10,\n          11\n        ],\n        \"modules\": [\n          \"<uint64>\",\n          \"<uint64>\"\n        ],\n        \"only_name\": \"threat group campaign malware download\",\n        \"severities\": [\n          \"high\"\n        ],\n        \"tags\": [\n          \"Iron Tiger\",\n          \"APT27\"\n        ],\n        \"threat_actors\": [\n          60,\n          62\n        ]\n      },\n      {\n        \"affected_operating_systems\": [\n          \"Windows\"\n        ],\n        \"category_names\": [\n          \"Attack Scenario\",\n          \"Malicious Code\"\n        ],\n        \"date_label\": \"Last 30 days.\",\n        \"kill_chain_phases\": [\n          \"Delivery\",\n          \"Defense Evasion\"\n        ],\n        \"mitre_tactics\": [\n          4,\n          10,\n          11\n        ],\n        \"modules\": [\n          \"<uint64>\",\n          \"<uint64>\"\n        ],\n        \"only_name\": \"threat group campaign malware download\",\n        \"severities\": [\n          \"high\"\n        ],\n        \"tags\": [\n          \"Iron Tiger\",\n          \"APT27\"\n        ],\n        \"threat_actors\": [\n          60,\n          62\n        ]\n      }\n    ],\n    \"threats\": [\n      \"<uint64>\",\n      \"<uint64>\"\n    ]\n  },\n  \"description\": \"This template rocks!\",\n  \"name\": \"Example Template\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9711a25f-9abe-469a-a86e-d1a626ba7fa0",
+          "name": "# Template Detail",
+          "request": {
+            "name": "# Template Detail",
+            "description": {
+              "content": "Template Detail; Template Name, Description, Id, Content Type, Category Name, Subcategory Name\nApplicable Agent Types, Rules For Dynamic Templates, Threat List",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "templates",
+                ":Id"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "Id",
+                  "description": "(Required) Template ID (URI parameter)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d4014730-8bc2-40c3-b1dc-d1d19439eecc",
+              "name": "TemplateDetailReturnSwagger",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "templates",
+                    ":Id"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Template ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Template\": {\n    \"agent_types\": [\n      {\n        \"id\": 1,\n        \"name\": \"Windows\"\n      },\n      {\n        \"id\": 1,\n        \"name\": \"Windows\"\n      }\n    ],\n    \"category_name\": \"main\",\n    \"content_type\": \"Static\",\n    \"content_updated_at\": 1654781780578,\n    \"created_at\": 1654781780578,\n    \"description\": \"Description\",\n    \"id\": 1,\n    \"name\": \"Template-1\",\n    \"rules\": [\n      {\n        \"affected_operating_systems\": [\n          \"Windows\"\n        ],\n        \"attack_modules\": [\n          1,\n          2,\n          3\n        ],\n        \"categories\": [\n          2424,\n          664\n        ],\n        \"category_names\": [\n          \"Attack Scenario\",\n          \"Malicious Code\"\n        ],\n        \"date_label\": \"\\\"Last 30 days.\\\"\",\n        \"kill_chain_phases\": [\n          \"Delivery\",\n          \"Defense Evasion\"\n        ],\n        \"mitre_tactics\": [\n          4,\n          10,\n          11\n        ],\n        \"only_name\": \"threat group campaign malware download\",\n        \"regions\": [\n          7287,\n          9601\n        ],\n        \"sectors\": [\n          8066,\n          1190\n        ],\n        \"severities\": [\n          \"high\"\n        ],\n        \"tags\": [\n          \"Iron Tiger\",\n          \"APT27\"\n        ],\n        \"threat_actors\": [\n          60,\n          62\n        ]\n      },\n      {\n        \"affected_operating_systems\": [\n          \"Windows\"\n        ],\n        \"attack_modules\": [\n          1,\n          2,\n          3\n        ],\n        \"categories\": [\n          8901,\n          8785\n        ],\n        \"category_names\": [\n          \"Attack Scenario\",\n          \"Malicious Code\"\n        ],\n        \"date_label\": \"\\\"Last 30 days.\\\"\",\n        \"kill_chain_phases\": [\n          \"Delivery\",\n          \"Defense Evasion\"\n        ],\n        \"mitre_tactics\": [\n          4,\n          10,\n          11\n        ],\n        \"only_name\": \"threat group campaign malware download\",\n        \"regions\": [\n          7096,\n          3524\n        ],\n        \"sectors\": [\n          8148,\n          1603\n        ],\n        \"severities\": [\n          \"high\"\n        ],\n        \"tags\": [\n          \"Iron Tiger\",\n          \"APT27\"\n        ],\n        \"threat_actors\": [\n          60,\n          62\n        ]\n      }\n    ],\n    \"subcategory_name\": \"sub\",\n    \"threats\": [\n      {\n        \"display_id\": 7509,\n        \"id\": 4668,\n        \"name\": \"string\"\n      },\n      {\n        \"display_id\": 4499,\n        \"id\": 3099,\n        \"name\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9cf98009-514b-4956-bd40-2886d2958543",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "templates",
+                    ":Id"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Template ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c48ef6f-11f5-4430-9977-f4a1a20b7c6b",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "templates",
+                    ":Id"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Template ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.picussecurity.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ac690d04-770b-4e18-8061-2e2b11e16603",
+    "name": "Picus Customer Templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<p class=\"body-1\">You can access the simulation raw data using the Rest API. Scope of the API includes; Simulation list, Simulation Details, Threat/Objective/Action Results, Results mapped to MITRE ATTC&K and Unified Kill Chain frameworks, Detection Analysis Results, Validated Logs & Alerts with SIEM & EDR integration.</p>\n<p class=\"body-1\">OAuth2 protocol is used to authorize Refresh/Access tokens. To obtain the API, you should generate a refresh token and then request an access token using the /v1/auth/token endpoint. The refresh token will be valid for 6 months, whereas the access token will be available for 2 hours. After getting the access token, add Authorization: Bearer {accessToken} to the header to request access to the below endpoints.</p>\n<p class=\"body-1\">Endpoints returning data with a lot of load works with the pagination method. You can use the offset and limit parameters to get the correct page.</p>\n\n<i class=\"body-1\">Your usage will be limited with your Picus license.</i>",
+      "type": "text/plain"
+    }
+  }
+}

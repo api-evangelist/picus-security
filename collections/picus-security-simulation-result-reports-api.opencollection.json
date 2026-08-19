@@ -1,0 +1,160 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picus Customer Simulation Result Reports API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Simulation-Result-Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "# Generate Simulation Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.picussecurity.com/v2/simulations/:Id/results/reports",
+            "params": [
+              {
+                "name": "Id",
+                "value": "",
+                "type": "path",
+                "description": "Simulation ID"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of the report. One of: 'run' | 'overview'"
+              },
+              {
+                "name": "runId",
+                "value": "",
+                "type": "query",
+                "description": "Id of the run or 'latest'. Required if type is 'run'"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Generates a report for the specified simulation. The report can either provide an overview or focus on a specific run of the simulation, depending on the parameters."
+        },
+        {
+          "info": {
+            "name": "# Simulation Result Report Detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v2/simulations/:Id/results/reports/:ReportId",
+            "params": [
+              {
+                "name": "ReportId",
+                "value": "",
+                "type": "path",
+                "description": "Report ID (URI parameter)"
+              },
+              {
+                "name": "Id",
+                "value": "",
+                "type": "path",
+                "description": "Simulation ID (URI parameter)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get details for simulation result report by report id"
+        },
+        {
+          "info": {
+            "name": "# Download Simulation Result Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v2/simulations/:Id/results/reports/:ReportId/download",
+            "params": [
+              {
+                "name": "ReportId",
+                "value": "",
+                "type": "path",
+                "description": "Report ID (URI parameter)"
+              },
+              {
+                "name": "Id",
+                "value": "",
+                "type": "path",
+                "description": "Simulation ID (URI parameter)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Downloads a simulation result report file by id.\nThis endpoint is used in on-prem deployments where users cannot access S3 directly.\nThe file is returned as binary content with appropriate Content-Disposition header."
+        },
+        {
+          "info": {
+            "name": "# Simulation Result Report Download Url",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v2/simulations/:Id/results/reports/:ReportId/download-url",
+            "params": [
+              {
+                "name": "ReportId",
+                "value": "",
+                "type": "path",
+                "description": "Report ID (URI parameter)"
+              },
+              {
+                "name": "Id",
+                "value": "",
+                "type": "path",
+                "description": "Simulation ID (URI parameter)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get download url for a simulation result report by id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

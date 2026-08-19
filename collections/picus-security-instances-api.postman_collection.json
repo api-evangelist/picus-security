@@ -1,0 +1,294 @@
+{
+  "item": [
+    {
+      "id": "02b8662b-8e5a-4d58-bff6-d7ff534acf75",
+      "name": "Instances",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "81c2ee7d-50d0-4c0e-a845-c524240f178d",
+          "name": "# List Instance Scores",
+          "request": {
+            "name": "# List Instance Scores",
+            "description": {
+              "content": "Returns exposure instance scores for the specified host-exposure pairs.\nDuplicate pairs are deduplicated server-side. Unmatched pairs are omitted from the response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "exposures",
+                "instances",
+                "scores"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": {\n    \"host_exposure_pairs\": [\n      {\n        \"exposure_id\": \"<string>\",\n        \"hostname\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "baf2ce40-a110-4454-9a53-55b02bd71b24",
+              "name": "ScoresResponse contains the list of instances for the requested host-exposure pairs.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "exposures",
+                    "instances",
+                    "scores"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": {\n    \"host_exposure_pairs\": [\n      {\n        \"exposure_id\": \"CVE-2022-21903\",\n        \"hostname\": \"asset-001\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"instance_scores\": [\n    {\n      \"asset_criticality\": 3.9,\n      \"asset_id\": \"asset-001\",\n      \"contextual_cvss\": 7.6,\n      \"cve_id\": \"CVE-2022-21903\",\n      \"exploitability\": 71,\n      \"picus_exposure_score\": 7.2,\n      \"security_control_effectiveness\": \"75.0\"\n    },\n    {\n      \"asset_criticality\": 3.9,\n      \"asset_id\": \"asset-001\",\n      \"contextual_cvss\": 7.6,\n      \"cve_id\": \"CVE-2022-21903\",\n      \"exploitability\": 71,\n      \"picus_exposure_score\": 7.2,\n      \"security_control_effectiveness\": \"75.0\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83d58166-e749-455c-a567-65a27734234c",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "exposures",
+                    "instances",
+                    "scores"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": {\n    \"host_exposure_pairs\": [\n      {\n        \"exposure_id\": \"CVE-2022-21903\",\n        \"hostname\": \"asset-001\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05083e50-92cf-45ce-a90a-b529f7a721cf",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "exposures",
+                    "instances",
+                    "scores"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": {\n    \"host_exposure_pairs\": [\n      {\n        \"exposure_id\": \"CVE-2022-21903\",\n        \"hostname\": \"asset-001\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.picussecurity.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a50db613-0ea2-45ad-bfdd-3b3d9f45e5a2",
+    "name": "Picus Customer Instances API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<p class=\"body-1\">You can access the simulation raw data using the Rest API. Scope of the API includes; Simulation list, Simulation Details, Threat/Objective/Action Results, Results mapped to MITRE ATTC&K and Unified Kill Chain frameworks, Detection Analysis Results, Validated Logs & Alerts with SIEM & EDR integration.</p>\n<p class=\"body-1\">OAuth2 protocol is used to authorize Refresh/Access tokens. To obtain the API, you should generate a refresh token and then request an access token using the /v1/auth/token endpoint. The refresh token will be valid for 6 months, whereas the access token will be available for 2 hours. After getting the access token, add Authorization: Bearer {accessToken} to the header to request access to the below endpoints.</p>\n<p class=\"body-1\">Endpoints returning data with a lot of load works with the pagination method. You can use the offset and limit parameters to get the correct page.</p>\n\n<i class=\"body-1\">Your usage will be limited with your Picus license.</i>",
+      "type": "text/plain"
+    }
+  }
+}

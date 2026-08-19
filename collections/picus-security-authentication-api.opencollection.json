@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picus Customer Authentication API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "# Regenerating refresh token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.picussecurity.com/v1/auth/refresh",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint regenerates refresh token.\nInvalidates previous refresh/access token.\nWhen provided refresh token is expired, a new refresh token should be created from the application itself"
+        },
+        {
+          "info": {
+            "name": "# Getting access token for endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.picussecurity.com/v1/auth/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "OAuth2 protocol is used to authorize Refresh/Access tokens.\nTo obtain the API, you should generate a refresh token and then request an access token using the /v1/auth/token endpoint.\nThe refresh token will be valid for 6 months, whereas the access token will be available for 2 hours.\nAfter getting the access token, add Authorization: Bearer {accessToken} to the header to request access to the below endpoints."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

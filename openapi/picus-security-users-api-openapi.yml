@@ -1,0 +1,409 @@
+openapi: 3.2.0
+info:
+  title: Picus Customer Users API
+  description: '<p class="body-1">You can access the simulation raw data using the Rest API. Scope of the API includes; Simulation list, Simulation Details, Threat/Objective/Action Results, Results mapped to MITRE ATTC&K and Unified Kill Chain frameworks, Detection Analysis Results, Validated Logs & Alerts with SIEM & EDR integration.</p>
+
+    <p class="body-1">OAuth2 protocol is used to authorize Refresh/Access tokens. To obtain the API, you should generate a refresh token and then request an access token using the /v1/auth/token endpoint. The refresh token will be valid for 6 months, whereas the access token will be available for 2 hours. After getting the access token, add Authorization: Bearer {accessToken} to the header to request access to the below endpoints.</p>
+
+    <p class="body-1">Endpoints returning data with a lot of load works with the pagination method. You can use the offset and limit parameters to get the correct page.</p>
+
+
+    <i class="body-1">Your usage will be limited with your Picus license.</i>'
+  version: '1.0'
+servers:
+- url: https://api.picussecurity.com/
+security:
+- Access-Token: []
+tags:
+- name: Users
+paths:
+  /v1/users:
+    get:
+      security:
+      - Access-Token: []
+      description: User; Email, User ID, Assigned Role, Role ID, Name, Surname, IsActive Status.
+      tags:
+      - Users
+      summary: '# Get Users'
+      operationId: usersFilterParams
+      parameters:
+      - x-go-name: Limit
+        name: limit
+        in: query
+        schema:
+          type: integer
+          format: int64
+      - x-go-name: Offset
+        name: offset
+        in: query
+        schema:
+          type: integer
+          format: int64
+      - x-go-name: Role
+        description: Role
+        name: role
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/GetUsersInputResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedErrorSwagger'
+        '422':
+          $ref: '#/components/responses/validationErrorSwagger'
+        default:
+          $ref: '#/components/responses/genericErrorSwagger'
+      servers:
+      - url: https://api.picussecurity.com/
+  /v1/users/invite:
+    post:
+      security:
+      - Access-Token: []
+      description: Invite User; Email, Role ID, Login Type
+      tags:
+      - Users
+      summary: '# Invite User'
+      operationId: InviteUserParams
+      responses:
+        '200':
+          $ref: '#/components/responses/InviteUserReturnSwagger'
+        '401':
+          $ref: '#/components/responses/unauthorizedErrorSwagger'
+        '422':
+          $ref: '#/components/responses/validationErrorSwagger'
+        default:
+          $ref: '#/components/responses/genericErrorSwagger'
+      servers:
+      - url: https://api.picussecurity.com/
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InviteUserRequest'
+  /v1/users/roles:
+    get:
+      security:
+      - Access-Token: []
+      description: Roles; Role ID, Role Name
+      tags:
+      - Users
+      summary: '# Get Roles'
+      operationId: RolesFilterParams
+      parameters:
+      - x-go-name: Limit
+        name: limit
+        in: query
+        schema:
+          type: integer
+          format: int64
+      - x-go-name: Offset
+        name: offset
+        in: query
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          $ref: '#/components/responses/GetRolesReturnSwagger'
+        '401':
+          $ref: '#/components/responses/unauthorizedErrorSwagger'
+        default:
+          $ref: '#/components/responses/genericErrorSwagger'
+      servers:
+      - url: https://api.picussecurity.com/
+  /v1/users/{userId}:
+    delete:
+      security:
+      - Access-Token: []
+      description: Delete User; User ID, Success Status
+      tags:
+      - Users
+      summary: '# Delete User'
+      operationId: deleteUserFilterParams
+      parameters:
+      - example: '12345'
+        x-go-name: UserId
+        description: User ID to delete
+        name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      responses:
+        '200':
+          $ref: '#/components/responses/DeleteUserReturnSwagger'
+        '401':
+          $ref: '#/components/responses/unauthorizedErrorSwagger'
+        '422':
+          $ref: '#/components/responses/validationErrorSwagger'
+        default:
+          $ref: '#/components/responses/genericErrorSwagger'
+      servers:
+      - url: https://api.picussecurity.com/
+  /v1/users/{userId}/role:
+    put:
+      security:
+      - Access-Token: []
+      description: Assign Role; User ID, Role ID
+      tags:
+      - Users
+      summary: '# Assign Role'
+      operationId: assignRoleParams
+      parameters:
+      - example: '12345'
+        x-go-name: UserId
+        description: User ID whose role will be updated
+        name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      responses:
+        '200':
+          $ref: '#/components/responses/AssignRoleReturnSwagger'
+        '401':
+          $ref: '#/components/responses/unauthorizedErrorSwagger'
+        '422':
+          $ref: '#/components/responses/validationErrorSwagger'
+        default:
+          $ref: '#/components/responses/genericErrorSwagger'
+      servers:
+      - url: https://api.picussecurity.com/
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - role_id
+              properties:
+                role_id:
+                  description: Role ID to assign to the user
+                  type: integer
+                  format: uint64
+                  x-go-name: RoleID
+                  example: 2
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        email:
+          description: Email
+          type: string
+          x-go-name: Email
+          example: abc@def.com
+        last_login_time:
+          description: Event Time
+          type: string
+          format: date-time
+          x-go-name: LastLoginTime
+          example: '1743141698'
+        login_type:
+          description: LoginType
+          type: string
+          x-go-name: LoginType
+          example: sso
+        role:
+          description: Role
+          type: string
+          x-go-name: Role
+          example: admin
+        role_id:
+          description: RoleID
+          type: integer
+          format: uint64
+          x-go-name: RoleID
+          example: 4567
+        user_id:
+          description: UserID
+          type: integer
+          format: uint64
+          x-go-name: UserID
+          example: 1234
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
+    Pagination:
+      type: object
+      properties:
+        limit:
+          description: Limit
+          type: integer
+          format: int64
+          x-go-name: Limit
+          example: 20
+        offset:
+          description: Offset
+          type: integer
+          format: int64
+          x-go-name: Offset
+          example: 0
+        total_count:
+          description: Total Count
+          type: integer
+          format: int64
+          x-go-name: TotalCount
+          example: 100
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/apirequest
+    Role:
+      type: object
+      properties:
+        id:
+          description: ID
+          type: integer
+          format: uint64
+          x-go-name: ID
+          example: 1
+        name:
+          description: Name
+          type: string
+          x-go-name: Name
+          example: Owner
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
+    InviteUserRequest:
+      type: object
+      properties:
+        email:
+          description: Email
+          type: string
+          x-go-name: Email
+          example: abc@def.com
+        login_type:
+          description: LoginType
+          type: string
+          x-go-name: LoginType
+          example: sso
+        role_id:
+          description: RoleID
+          type: integer
+          format: uint64
+          x-go-name: RoleID
+          example: 4567
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
+  responses:
+    AssignRoleReturnSwagger:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                description: Success status of the update operation
+                type: boolean
+                x-go-name: Success
+                example: true
+    GetUsersInputResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              pages:
+                $ref: '#/components/schemas/Pagination'
+              users:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+                x-go-name: Users
+    unauthorizedErrorSwagger:
+      description: unauthorizedErrorSwagger is represents unauthorized error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+                example: unauthorized error
+    InviteUserReturnSwagger:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: uint64
+                x-go-name: ID
+    genericErrorSwagger:
+      description: genericErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error Code is optional. It is using for define specific error types.
+                type: integer
+                format: int64
+                x-go-name: ErrorCode
+                example: 1001
+              errors:
+                description: Errors are optional. If there are multiple error, this field gives details.
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example: '["error1", "error2"]'
+              message:
+                description: Error Message that contains information about error
+                type: string
+                x-go-name: Message
+    validationErrorSwagger:
+      description: validationErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                description: Validation Error List
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example:
+                  param: tag=max, param=25, given value=1000
+              message:
+                description: Message will be "validation error"
+                type: string
+                x-go-name: Message
+                example: validation error
+    GetRolesReturnSwagger:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              pages:
+                $ref: '#/components/schemas/Pagination'
+              roles:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Role'
+                x-go-name: Roles
+    DeleteUserReturnSwagger:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                description: Success status of the deletion operation
+                type: boolean
+                x-go-name: Success
+                example: true
+  securitySchemes:
+    Access-Token:
+      description: After getting the access token, type <i>Bearer accessToken</i> to the Value input box to request access to the below endpoints For example <i>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</i>
+      type: apiKey
+      name: Authorization
+      in: header

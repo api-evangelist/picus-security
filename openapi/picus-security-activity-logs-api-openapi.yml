@@ -1,0 +1,195 @@
+openapi: 3.2.0
+info:
+  title: Picus Customer Activity Logs API
+  description: '<p class="body-1">You can access the simulation raw data using the Rest API. Scope of the API includes; Simulation list, Simulation Details, Threat/Objective/Action Results, Results mapped to MITRE ATTC&K and Unified Kill Chain frameworks, Detection Analysis Results, Validated Logs & Alerts with SIEM & EDR integration.</p>
+
+    <p class="body-1">OAuth2 protocol is used to authorize Refresh/Access tokens. To obtain the API, you should generate a refresh token and then request an access token using the /v1/auth/token endpoint. The refresh token will be valid for 6 months, whereas the access token will be available for 2 hours. After getting the access token, add Authorization: Bearer {accessToken} to the header to request access to the below endpoints.</p>
+
+    <p class="body-1">Endpoints returning data with a lot of load works with the pagination method. You can use the offset and limit parameters to get the correct page.</p>
+
+
+    <i class="body-1">Your usage will be limited with your Picus license.</i>'
+  version: '1.0'
+servers:
+- url: https://api.picussecurity.com/
+security:
+- Access-Token: []
+tags:
+- name: Activity-Logs
+paths:
+  /v1/activity-logs:
+    get:
+      security:
+      - Access-Token: []
+      description: This endpoint return activity logs.
+      tags:
+      - Activity-Logs
+      summary: '# Get activity logs'
+      operationId: activityLogsFilterParams
+      parameters:
+      - x-go-name: Limit
+        name: limit
+        in: query
+        schema:
+          type: integer
+          format: int64
+      - x-go-name: Offset
+        name: offset
+        in: query
+        schema:
+          type: integer
+          format: int64
+      - x-go-name: DateStart
+        description: Date start in epoch
+        name: date_start
+        in: query
+        schema:
+          type: integer
+          format: uint64
+      - x-go-name: DateEnd
+        description: Date end in epoch
+        name: date_end
+        in: query
+        schema:
+          type: integer
+          format: uint64
+      responses:
+        '200':
+          $ref: '#/components/responses/GetActivityLogsInputResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedErrorSwagger'
+        '422':
+          $ref: '#/components/responses/validationErrorSwagger'
+        default:
+          $ref: '#/components/responses/genericErrorSwagger'
+      servers:
+      - url: https://api.picussecurity.com/
+components:
+  responses:
+    GetActivityLogsInputResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              activity_logs:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActivityLog'
+                x-go-name: ActivityLogs
+              pages:
+                $ref: '#/components/schemas/Pagination'
+    unauthorizedErrorSwagger:
+      description: unauthorizedErrorSwagger is represents unauthorized error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+                example: unauthorized error
+    genericErrorSwagger:
+      description: genericErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error Code is optional. It is using for define specific error types.
+                type: integer
+                format: int64
+                x-go-name: ErrorCode
+                example: 1001
+              errors:
+                description: Errors are optional. If there are multiple error, this field gives details.
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example: '["error1", "error2"]'
+              message:
+                description: Error Message that contains information about error
+                type: string
+                x-go-name: Message
+    validationErrorSwagger:
+      description: validationErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                description: Validation Error List
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example:
+                  param: tag=max, param=25, given value=1000
+              message:
+                description: Message will be "validation error"
+                type: string
+                x-go-name: Message
+                example: validation error
+  schemas:
+    Pagination:
+      type: object
+      properties:
+        limit:
+          description: Limit
+          type: integer
+          format: int64
+          x-go-name: Limit
+          example: 20
+        offset:
+          description: Offset
+          type: integer
+          format: int64
+          x-go-name: Offset
+          example: 0
+        total_count:
+          description: Total Count
+          type: integer
+          format: int64
+          x-go-name: TotalCount
+          example: 100
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/apirequest
+    ActivityLog:
+      type: object
+      properties:
+        action:
+          description: Action
+          type: string
+          x-go-name: Action
+          example: IntegrationAgentDown
+        event_activity:
+          description: Event Activity in json
+          type: object
+          x-go-name: EventActivity
+        event_time:
+          description: Event Time
+          type: string
+          format: date-time
+          x-go-name: EventTime
+          example: '1743141698'
+        event_type:
+          description: Event Type
+          type: string
+          x-go-name: EventType
+          example: Agent
+        ip:
+          description: Ip
+          type: string
+          x-go-name: Ip
+          example: 123.123.123.123
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
+  securitySchemes:
+    Access-Token:
+      description: After getting the access token, type <i>Bearer accessToken</i> to the Value input box to request access to the below endpoints For example <i>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</i>
+      type: apiKey
+      name: Authorization
+      in: header

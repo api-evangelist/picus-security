@@ -1,0 +1,4393 @@
+{
+  "item": [
+    {
+      "id": "180347c2-d28e-4c86-89bb-d90d4e06261a",
+      "name": "Mitigation",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f4a5cb92-d162-4300-ac2a-56078e3f0fdb",
+          "name": "# List Custom Detection Content",
+          "request": {
+            "name": "# List Custom Detection Content",
+            "description": {
+              "content": "Lists custom detection content items for the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "mitigation",
+                "detection-content",
+                "custom"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "Limit",
+                  "value": "10",
+                  "description": "Maximum number of items to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "Offset",
+                  "value": "0",
+                  "description": "Number of items to skip before starting to return results."
+                },
+                {
+                  "disabled": false,
+                  "key": "Search",
+                  "value": "<string>",
+                  "description": "Filter by content name (case-insensitive substring match)."
+                },
+                {
+                  "disabled": false,
+                  "key": "RuleSeverity",
+                  "value": "<string>",
+                  "description": "Filter by severity level. Comma-separated list. Available values: critical, high, medium, low."
+                },
+                {
+                  "disabled": false,
+                  "key": "RuleSeverity",
+                  "value": "<string>",
+                  "description": "Filter by severity level. Comma-separated list. Available values: critical, high, medium, low."
+                },
+                {
+                  "disabled": false,
+                  "key": "OrderBy",
+                  "value": "<string>",
+                  "description": "Field to sort results by. Available values: release_date, update_date."
+                },
+                {
+                  "disabled": false,
+                  "key": "IsAscending",
+                  "value": "false",
+                  "description": "Whether sort order is ascending. Set to false for descending."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "813f7d1b-0c60-40bf-b999-cf44a53d6a7f",
+              "name": "GetCustomDetectionContentResponse",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "custom"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "Limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "Offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "RuleSeverity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "RuleSeverity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "IsAscending",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"currentPage\": 6036,\n    \"currentPageSize\": 7752,\n    \"pageSize\": 3056,\n    \"totalCount\": 4296,\n    \"totalPageCount\": 9921\n  },\n  \"rules\": [\n    {\n      \"actions\": [\n        {\n          \"id\": 7528,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 3678,\n          \"name\": \"string\"\n        }\n      ],\n      \"author\": \"string\",\n      \"content_id\": \"string\",\n      \"content_sources\": [\n        {\n          \"deviceName\": \"string\",\n          \"policies\": [\n            \"string\",\n            \"string\"\n          ],\n          \"query\": \"string\",\n          \"severity\": \"string\"\n        },\n        {\n          \"deviceName\": \"string\",\n          \"policies\": [\n            \"string\",\n            \"string\"\n          ],\n          \"query\": \"string\",\n          \"severity\": \"string\"\n        }\n      ],\n      \"name\": \"string\",\n      \"severity\": \"string\",\n      \"tactics\": [\n        \"string\",\n        \"string\"\n      ],\n      \"techniques\": [\n        {\n          \"mitreId\": \"string\",\n          \"name\": \"string\",\n          \"url\": \"string\"\n        },\n        {\n          \"mitreId\": \"string\",\n          \"name\": \"string\",\n          \"url\": \"string\"\n        }\n      ],\n      \"type\": \"string\"\n    },\n    {\n      \"actions\": [\n        {\n          \"id\": 4866,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 7958,\n          \"name\": \"string\"\n        }\n      ],\n      \"author\": \"string\",\n      \"content_id\": \"string\",\n      \"content_sources\": [\n        {\n          \"deviceName\": \"string\",\n          \"policies\": [\n            \"string\",\n            \"string\"\n          ],\n          \"query\": \"string\",\n          \"severity\": \"string\"\n        },\n        {\n          \"deviceName\": \"string\",\n          \"policies\": [\n            \"string\",\n            \"string\"\n          ],\n          \"query\": \"string\",\n          \"severity\": \"string\"\n        }\n      ],\n      \"name\": \"string\",\n      \"severity\": \"string\",\n      \"tactics\": [\n        \"string\",\n        \"string\"\n      ],\n      \"techniques\": [\n        {\n          \"mitreId\": \"string\",\n          \"name\": \"string\",\n          \"url\": \"string\"\n        },\n        {\n          \"mitreId\": \"string\",\n          \"name\": \"string\",\n          \"url\": \"string\"\n        }\n      ],\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55a57e88-fa56-416b-a737-ca10cf4dc234",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "custom"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "Limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "Offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "Search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "RuleSeverity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "RuleSeverity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "OrderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "IsAscending",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "380bad35-a25c-465a-b78e-2d9006cb07bc",
+          "name": "# Create Custom Detection Content",
+          "request": {
+            "name": "# Create Custom Detection Content",
+            "description": {
+              "content": "Creates custom detection content items for the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "mitigation",
+                "detection-content",
+                "custom"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"action_ids\": [\n        \"<uint64>\",\n        \"<uint64>\"\n      ],\n      \"author\": \"<string>\",\n      \"content_name\": \"<string>\",\n      \"content_sources\": [\n        {\n          \"content_policies\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"device_name\": \"<string>\",\n          \"event_id\": [\n            \"<long>\",\n            \"<long>\"\n          ],\n          \"query\": \"<string>\",\n          \"severity\": \"<string>\"\n        },\n        {\n          \"content_policies\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"device_name\": \"<string>\",\n          \"event_id\": [\n            \"<long>\",\n            \"<long>\"\n          ],\n          \"query\": \"<string>\",\n          \"severity\": \"<string>\"\n        }\n      ],\n      \"description\": \"<string>\",\n      \"false_positives\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"products\": \"<string>\",\n      \"references\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"release_date\": \"<long>\",\n      \"service\": \"<string>\",\n      \"status\": \"<string>\",\n      \"sub_techniques\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"tactics\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"techniques\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d1beae65-7b2e-4d12-975d-d1fdebcb3994",
+              "name": "CreateCustomDetectionContentResponse",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "custom"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"action_ids\": [\n        \"<uint64>\",\n        \"<uint64>\"\n      ],\n      \"author\": \"<string>\",\n      \"content_name\": \"<string>\",\n      \"content_sources\": [\n        {\n          \"content_policies\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"device_name\": \"<string>\",\n          \"event_id\": [\n            \"<long>\",\n            \"<long>\"\n          ],\n          \"query\": \"<string>\",\n          \"severity\": \"<string>\"\n        },\n        {\n          \"content_policies\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"device_name\": \"<string>\",\n          \"event_id\": [\n            \"<long>\",\n            \"<long>\"\n          ],\n          \"query\": \"<string>\",\n          \"severity\": \"<string>\"\n        }\n      ],\n      \"description\": \"<string>\",\n      \"false_positives\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"products\": \"<string>\",\n      \"references\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"release_date\": \"<long>\",\n      \"service\": \"<string>\",\n      \"status\": \"<string>\",\n      \"sub_techniques\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"tactics\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"techniques\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created\": [\n    {\n      \"content_id\": \"string\"\n    },\n    {\n      \"content_id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96559a64-fc8c-4a6d-bac9-27c227b7d2c8",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "custom"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"action_ids\": [\n        \"<uint64>\",\n        \"<uint64>\"\n      ],\n      \"author\": \"<string>\",\n      \"content_name\": \"<string>\",\n      \"content_sources\": [\n        {\n          \"content_policies\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"device_name\": \"<string>\",\n          \"event_id\": [\n            \"<long>\",\n            \"<long>\"\n          ],\n          \"query\": \"<string>\",\n          \"severity\": \"<string>\"\n        },\n        {\n          \"content_policies\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"device_name\": \"<string>\",\n          \"event_id\": [\n            \"<long>\",\n            \"<long>\"\n          ],\n          \"query\": \"<string>\",\n          \"severity\": \"<string>\"\n        }\n      ],\n      \"description\": \"<string>\",\n      \"false_positives\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"products\": \"<string>\",\n      \"references\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"release_date\": \"<long>\",\n      \"service\": \"<string>\",\n      \"status\": \"<string>\",\n      \"sub_techniques\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"tactics\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"techniques\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49b921d9-be75-40b1-be0a-40372b9be2da",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "custom"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"action_ids\": [\n        \"<uint64>\",\n        \"<uint64>\"\n      ],\n      \"author\": \"<string>\",\n      \"content_name\": \"<string>\",\n      \"content_sources\": [\n        {\n          \"content_policies\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"device_name\": \"<string>\",\n          \"event_id\": [\n            \"<long>\",\n            \"<long>\"\n          ],\n          \"query\": \"<string>\",\n          \"severity\": \"<string>\"\n        },\n        {\n          \"content_policies\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"device_name\": \"<string>\",\n          \"event_id\": [\n            \"<long>\",\n            \"<long>\"\n          ],\n          \"query\": \"<string>\",\n          \"severity\": \"<string>\"\n        }\n      ],\n      \"description\": \"<string>\",\n      \"false_positives\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"products\": \"<string>\",\n      \"references\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"release_date\": \"<long>\",\n      \"service\": \"<string>\",\n      \"status\": \"<string>\",\n      \"sub_techniques\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"tactics\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"techniques\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5528561b-e8ed-49e0-9c5a-6d780ba9c1eb",
+          "name": "# Get Custom Detection Content By ID",
+          "request": {
+            "name": "# Get Custom Detection Content By ID",
+            "description": {
+              "content": "Returns a custom detection content item by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "mitigation",
+                "detection-content",
+                "custom",
+                ":content_id"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "content_id",
+                  "description": "(Required) Unique identifier (UUID) of the custom detection content item."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dfc3579a-ed6f-4ea4-b04f-f8d13bcac15d",
+              "name": "GetCustomDetectionContentByIdResponse",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "custom",
+                    ":content_id"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "content_id",
+                      "description": "(Required) Unique identifier (UUID) of the custom detection content item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"actions\": [\n    {\n      \"id\": 7077,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 8947,\n      \"name\": \"string\"\n    }\n  ],\n  \"author\": \"string\",\n  \"content_id\": \"string\",\n  \"content_sources\": [\n    {\n      \"deviceName\": \"string\",\n      \"policies\": [\n        \"string\",\n        \"string\"\n      ],\n      \"query\": \"string\",\n      \"severity\": \"string\"\n    },\n    {\n      \"deviceName\": \"string\",\n      \"policies\": [\n        \"string\",\n        \"string\"\n      ],\n      \"query\": \"string\",\n      \"severity\": \"string\"\n    }\n  ],\n  \"name\": \"string\",\n  \"severity\": \"string\",\n  \"tactics\": [\n    \"string\",\n    \"string\"\n  ],\n  \"techniques\": [\n    {\n      \"mitreId\": \"string\",\n      \"name\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"mitreId\": \"string\",\n      \"name\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca972507-5720-46a8-85b5-191a285067be",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "custom",
+                    ":content_id"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "content_id",
+                      "description": "(Required) Unique identifier (UUID) of the custom detection content item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1918a167-883d-4807-9ee1-9bb391575cb2",
+          "name": "# Update Custom Detection Content",
+          "request": {
+            "name": "# Update Custom Detection Content",
+            "description": {
+              "content": "Updates a custom detection content item by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "mitigation",
+                "detection-content",
+                "custom",
+                ":content_id"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "content_id",
+                  "description": "(Required) Unique identifier (UUID) of the custom detection content item to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action_ids\": [\n    \"<uint64>\",\n    \"<uint64>\"\n  ],\n  \"author\": \"<string>\",\n  \"content_name\": \"<string>\",\n  \"content_sources\": [\n    {\n      \"content_policies\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"device_name\": \"<string>\",\n      \"event_id\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"query\": \"<string>\",\n      \"severity\": \"<string>\"\n    },\n    {\n      \"content_policies\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"device_name\": \"<string>\",\n      \"event_id\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"query\": \"<string>\",\n      \"severity\": \"<string>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"false_positives\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"products\": \"<string>\",\n  \"references\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"release_date\": \"<long>\",\n  \"service\": \"<string>\",\n  \"status\": \"<string>\",\n  \"sub_techniques\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tactics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"techniques\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a3db0c01-7380-4011-86d1-24e5169a0543",
+              "name": "UpdateCustomDetectionContentResponse",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "custom",
+                    ":content_id"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "content_id",
+                      "description": "(Required) Unique identifier (UUID) of the custom detection content item to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action_ids\": [\n    \"<uint64>\",\n    \"<uint64>\"\n  ],\n  \"author\": \"<string>\",\n  \"content_name\": \"<string>\",\n  \"content_sources\": [\n    {\n      \"content_policies\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"device_name\": \"<string>\",\n      \"event_id\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"query\": \"<string>\",\n      \"severity\": \"<string>\"\n    },\n    {\n      \"content_policies\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"device_name\": \"<string>\",\n      \"event_id\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"query\": \"<string>\",\n      \"severity\": \"<string>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"false_positives\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"products\": \"<string>\",\n  \"references\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"release_date\": \"<long>\",\n  \"service\": \"<string>\",\n  \"status\": \"<string>\",\n  \"sub_techniques\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tactics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"techniques\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2727a9e4-c8e4-4748-b4f9-24947b67e412",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "custom",
+                    ":content_id"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "content_id",
+                      "description": "(Required) Unique identifier (UUID) of the custom detection content item to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action_ids\": [\n    \"<uint64>\",\n    \"<uint64>\"\n  ],\n  \"author\": \"<string>\",\n  \"content_name\": \"<string>\",\n  \"content_sources\": [\n    {\n      \"content_policies\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"device_name\": \"<string>\",\n      \"event_id\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"query\": \"<string>\",\n      \"severity\": \"<string>\"\n    },\n    {\n      \"content_policies\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"device_name\": \"<string>\",\n      \"event_id\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"query\": \"<string>\",\n      \"severity\": \"<string>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"false_positives\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"products\": \"<string>\",\n  \"references\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"release_date\": \"<long>\",\n  \"service\": \"<string>\",\n  \"status\": \"<string>\",\n  \"sub_techniques\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tactics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"techniques\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "934efebd-b7ea-4d3b-9bfe-e548dea9b32a",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "custom",
+                    ":content_id"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "content_id",
+                      "description": "(Required) Unique identifier (UUID) of the custom detection content item to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action_ids\": [\n    \"<uint64>\",\n    \"<uint64>\"\n  ],\n  \"author\": \"<string>\",\n  \"content_name\": \"<string>\",\n  \"content_sources\": [\n    {\n      \"content_policies\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"device_name\": \"<string>\",\n      \"event_id\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"query\": \"<string>\",\n      \"severity\": \"<string>\"\n    },\n    {\n      \"content_policies\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"device_name\": \"<string>\",\n      \"event_id\": [\n        \"<long>\",\n        \"<long>\"\n      ],\n      \"query\": \"<string>\",\n      \"severity\": \"<string>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"false_positives\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"products\": \"<string>\",\n  \"references\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"release_date\": \"<long>\",\n  \"service\": \"<string>\",\n  \"status\": \"<string>\",\n  \"sub_techniques\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tactics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"techniques\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f1a8f169-5f86-4a62-a15c-2ef0fef26a89",
+          "name": "# Delete Custom Detection Content",
+          "request": {
+            "name": "# Delete Custom Detection Content",
+            "description": {
+              "content": "Deletes a custom detection content item by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "mitigation",
+                "detection-content",
+                "custom",
+                ":content_id"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "content_id",
+                  "description": "(Required) Unique identifier (UUID) of the custom detection content item to delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f6f5fcb7-9a56-4ed7-b542-f5b6390789a9",
+              "name": "DeleteCustomDetectionContentResponse",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "custom",
+                    ":content_id"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "content_id",
+                      "description": "(Required) Unique identifier (UUID) of the custom detection content item to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a59ce4a0-bc47-4088-9fd0-66e65cb16d99",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "custom",
+                    ":content_id"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "content_id",
+                      "description": "(Required) Unique identifier (UUID) of the custom detection content item to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10388b3f-99e9-49a6-8cfc-c651707fc477",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "custom",
+                    ":content_id"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "content_id",
+                      "description": "(Required) Unique identifier (UUID) of the custom detection content item to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f155790a-fe64-41e9-a04d-e2528ef49073",
+          "name": "# Get Detection Content Devices",
+          "request": {
+            "name": "# Get Detection Content Devices",
+            "description": {
+              "content": "Returns all available detection content devices (e.g. Splunk, QRadar). Used to populate device selection when creating custom detection content.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "mitigation",
+                "detection-content",
+                "devices"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d94402c8-f8e7-4044-bfff-2a11c46aeba8",
+              "name": "DetectionDevicesResponse",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "devices"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"devices\": [\n    {\n      \"id\": 1651,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 6056,\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4daf0571-2aa2-4a8d-8839-2c72f1e55d5e",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "devices"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de229d23-18ce-4d4e-940d-49f24608e90b",
+          "name": "# Get MITRE ATT&CK Sub-Techniques",
+          "request": {
+            "name": "# Get MITRE ATT&CK Sub-Techniques",
+            "description": {
+              "content": "Returns all available MITRE ATT&CK sub-techniques with their parent technique reference. Used to populate sub-technique selection when creating custom detection content.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "mitigation",
+                "detection-content",
+                "mitre",
+                "sub-techniques"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "75854b1f-4610-45c8-ab32-55039facbb2b",
+              "name": "MitreSubTechniquesResponse",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "mitre",
+                    "sub-techniques"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sub_techniques\": [\n    {\n      \"mitre_id\": \"string\",\n      \"name\": \"string\",\n      \"technique_mitre_id\": \"string\"\n    },\n    {\n      \"mitre_id\": \"string\",\n      \"name\": \"string\",\n      \"technique_mitre_id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c43ebb76-1b2c-4e55-b3f6-a6172527bbb7",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "mitre",
+                    "sub-techniques"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43b97968-a2f4-4db3-b99d-546dc8a269ba",
+          "name": "# Get MITRE ATT&CK Tactics",
+          "request": {
+            "name": "# Get MITRE ATT&CK Tactics",
+            "description": {
+              "content": "Returns all available MITRE ATT&CK tactics. Used to populate tactic selection when creating custom detection content.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "mitigation",
+                "detection-content",
+                "mitre",
+                "tactics"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8b003962-073f-47cc-acbf-953a3e552df9",
+              "name": "MitreTacticsResponse",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "mitre",
+                    "tactics"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tactics\": [\n    {\n      \"mitre_id\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"mitre_id\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4578af0-f700-4c36-b762-6da52173222e",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "mitre",
+                    "tactics"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe9b059e-0cde-402c-a0fe-c6ff6f1600e4",
+          "name": "# Get MITRE ATT&CK Techniques",
+          "request": {
+            "name": "# Get MITRE ATT&CK Techniques",
+            "description": {
+              "content": "Returns all available MITRE ATT&CK techniques. Used to populate technique selection when creating custom detection content.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "mitigation",
+                "detection-content",
+                "mitre",
+                "techniques"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "37072e44-a027-425e-b11a-1af6c6102541",
+              "name": "MitreTechniquesResponse",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "mitre",
+                    "techniques"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"techniques\": [\n    {\n      \"mitre_id\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"mitre_id\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "603f9ee5-56a9-4d33-b0d6-02a04e8cda8e",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "mitre",
+                    "techniques"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e69b1943-14d9-4173-a554-289ba49b21cd",
+          "name": "# Detection Content Sources",
+          "request": {
+            "name": "# Detection Content Sources",
+            "description": {
+              "content": "Returns the detection content sources associated with the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "mitigation",
+                "detection-content",
+                "sources"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "01256831-b14d-4a28-a492-5f3885db20f5",
+              "name": "SourcesResponse",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "sources"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sources\": [\n    {\n      \"name\": \"string\",\n      \"ruleCount\": 7883\n    },\n    {\n      \"name\": \"string\",\n      \"ruleCount\": 9750\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2570c972-f76e-4963-8466-24a70a65538b",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "sources"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bac1cfea-93d6-4827-935f-0c9e34a1877a",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    "sources"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22cc81c8-81dc-430b-a782-f1a6ba858eec",
+          "name": "# Detection Content Log Sources",
+          "request": {
+            "name": "# Detection Content Log Sources",
+            "description": {
+              "content": "Returns the log sources of the account for the provided content source.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "mitigation",
+                "detection-content",
+                ":source",
+                "log-sources"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "source",
+                  "description": "(Required) Source (URI parameter)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4f8384dd-32a6-4e6f-92b4-10010109158b",
+              "name": "LogSourcesResponse",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    ":source",
+                    "log-sources"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "source",
+                      "description": "(Required) Source (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"logSources\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "364ddaf4-ad50-4817-99aa-ec21afd5749e",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    ":source",
+                    "log-sources"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "source",
+                      "description": "(Required) Source (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bd338fa-08a1-4cb4-b00e-fa3c76dc6bf1",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    ":source",
+                    "log-sources"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "source",
+                      "description": "(Required) Source (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "54399d77-c7c2-44d3-b261-7ca098a898de",
+          "name": "# Detection Content Rules",
+          "request": {
+            "name": "# Detection Content Rules",
+            "description": {
+              "content": "Returns the rules of the account for the provided content source.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "mitigation",
+                "detection-content",
+                ":source",
+                "rules"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<uint64>",
+                  "description": "Limit"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<uint64>",
+                  "description": "Offset"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search key"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderBy",
+                  "value": "<string>",
+                  "description": "Order by key. One of 'release_date' 'update_date'"
+                },
+                {
+                  "disabled": false,
+                  "key": "asc",
+                  "value": "<boolean>",
+                  "description": "Whether ordering should be ascending or descending"
+                },
+                {
+                  "disabled": false,
+                  "key": "ruleSeverity",
+                  "value": "<string>",
+                  "description": "Rule severity filter (comma-separated). Available options: critical, high, medium, low. ex: low,medium"
+                },
+                {
+                  "disabled": false,
+                  "key": "ruleSeverity",
+                  "value": "<string>",
+                  "description": "Rule severity filter (comma-separated). Available options: critical, high, medium, low. ex: low,medium"
+                },
+                {
+                  "disabled": false,
+                  "key": "logSources",
+                  "value": "<string>",
+                  "description": "Log source filter (comma-separated). Available options can be obtained from log sources endpoint. ex: Sysmon,Splunk"
+                },
+                {
+                  "disabled": false,
+                  "key": "logSources",
+                  "value": "<string>",
+                  "description": "Log source filter (comma-separated). Available options can be obtained from log sources endpoint. ex: Sysmon,Splunk"
+                },
+                {
+                  "disabled": false,
+                  "key": "alerted",
+                  "value": "<boolean>",
+                  "description": "If true, only actions with \"not alerted\" results in the simulations and their contents are displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "threats",
+                  "value": "<long>",
+                  "description": "Threat filter (comma-separated). Available options can be obtained from threats endpoint. ex: 123,124"
+                },
+                {
+                  "disabled": false,
+                  "key": "threats",
+                  "value": "<long>",
+                  "description": "Threat filter (comma-separated). Available options can be obtained from threats endpoint. ex: 123,124"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "predefined"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "source",
+                  "description": "(Required) Content Source Name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e23455ec-a5f8-4b61-9c9a-09fb4b0238b2",
+              "name": "RulesResponse",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    ":source",
+                    "rules"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asc",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "ruleSeverity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ruleSeverity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logSources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logSources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "alerted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "threats",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "threats",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "predefined"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "source",
+                      "description": "(Required) Content Source Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"currentPage\": 6764,\n    \"currentPageSize\": 3169,\n    \"pageSize\": 5896,\n    \"totalCount\": 8680,\n    \"totalPageCount\": 7962\n  },\n  \"rules\": [\n    {\n      \"actions\": [\n        {\n          \"id\": 7775,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 5193,\n          \"name\": \"string\"\n        }\n      ],\n      \"id\": \"string\",\n      \"mitre\": [\n        {\n          \"mitreId\": \"string\",\n          \"name\": \"string\",\n          \"url\": \"string\"\n        },\n        {\n          \"mitreId\": \"string\",\n          \"name\": \"string\",\n          \"url\": \"string\"\n        }\n      ],\n      \"name\": \"string\",\n      \"releaseDate\": 8280,\n      \"score\": 5670,\n      \"severity\": \"string\",\n      \"type\": \"string\",\n      \"updateDate\": 9737\n    },\n    {\n      \"actions\": [\n        {\n          \"id\": 8891,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 3675,\n          \"name\": \"string\"\n        }\n      ],\n      \"id\": \"string\",\n      \"mitre\": [\n        {\n          \"mitreId\": \"string\",\n          \"name\": \"string\",\n          \"url\": \"string\"\n        },\n        {\n          \"mitreId\": \"string\",\n          \"name\": \"string\",\n          \"url\": \"string\"\n        }\n      ],\n      \"name\": \"string\",\n      \"releaseDate\": 8746,\n      \"score\": 4555,\n      \"severity\": \"string\",\n      \"type\": \"string\",\n      \"updateDate\": 5313\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e7527955-05d7-482a-9e3f-88d9b8edbabd",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    ":source",
+                    "rules"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asc",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "ruleSeverity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ruleSeverity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logSources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logSources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "alerted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "threats",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "threats",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "predefined"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "source",
+                      "description": "(Required) Content Source Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f17a7d3-8e93-4fc9-9524-7945a55a12b2",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    ":source",
+                    "rules"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asc",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "ruleSeverity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ruleSeverity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logSources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logSources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "alerted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "threats",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "threats",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "predefined"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "source",
+                      "description": "(Required) Content Source Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62a49fa6-c56d-482f-8688-8e5923721bb2",
+          "name": "# Detection Content Rule Details",
+          "request": {
+            "name": "# Detection Content Rule Details",
+            "description": {
+              "content": "Returns the details of the detection content rule for the given ruleId and content source.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "mitigation",
+                "detection-content",
+                ":source",
+                "rules",
+                ":ruleId"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "source",
+                  "description": "(Required) Source (URI parameter)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ruleId",
+                  "description": "(Required) RuleId (URI parameter)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d0b3aefe-92eb-4ee0-abc3-70efd56012d7",
+              "name": "RuleDetailResponse",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    ":source",
+                    "rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "source",
+                      "description": "(Required) Source (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) RuleId (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"actions\": [\n    {\n      \"category\": \"string\",\n      \"display_id\": 3541,\n      \"id\": 663,\n      \"name\": \"string\"\n    },\n    {\n      \"category\": \"string\",\n      \"display_id\": 9771,\n      \"id\": 8615,\n      \"name\": \"string\"\n    }\n  ],\n  \"overview\": {\n    \"author\": \"string\",\n    \"description\": \"string\",\n    \"deviceName\": \"string\",\n    \"falsePositives\": [\n      \"string\",\n      \"string\"\n    ],\n    \"id\": \"string\",\n    \"integrationConfigurations\": {\n      \"crowdStrike\": {\n        \"ioaDetails\": {\n          \"commandLine\": \"string\",\n          \"connectionType\": \"string\",\n          \"filePath\": \"string\",\n          \"fileType\": \"string\",\n          \"grandparentCommandLine\": \"string\",\n          \"grandparentImageFileName\": \"string\",\n          \"imageFileName\": \"string\",\n          \"parentCommandLine\": \"string\",\n          \"parentImageFileName\": \"string\",\n          \"platform\": \"string\",\n          \"remoteIPAddress\": \"string\",\n          \"remoteTCPUDPPort\": \"string\",\n          \"ruleAction\": \"string\",\n          \"ruleQuery\": \"string\",\n          \"ruleType\": \"string\"\n        },\n        \"logScaleQuery\": \"string\"\n      }\n    },\n    \"logSource\": {\n      \"policies\": [\n        \"string\",\n        \"string\"\n      ],\n      \"productName\": [\n        \"string\",\n        \"string\"\n      ],\n      \"service\": \"string\"\n    },\n    \"mitre\": [\n      {\n        \"mitreId\": \"string\",\n        \"name\": \"string\",\n        \"url\": \"string\"\n      },\n      {\n        \"mitreId\": \"string\",\n        \"name\": \"string\",\n        \"url\": \"string\"\n      }\n    ],\n    \"name\": \"string\",\n    \"query\": \"string\",\n    \"releaseDate\": 8014,\n    \"score\": 1939,\n    \"severity\": \"string\",\n    \"type\": \"string\",\n    \"updateDate\": 1021\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0823e068-c236-46d6-8b06-7d184a3b874e",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "detection-content",
+                    ":source",
+                    "rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "source",
+                      "description": "(Required) Source (URI parameter)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) RuleId (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7b5c00cf-89ac-43a9-b794-ee22210eafac",
+          "name": "# Devices' Stats List (deprecated)",
+          "request": {
+            "name": "# Devices' Stats List (deprecated)",
+            "description": {
+              "content": "Deprecated: This endpoint has been deprecated and is no longer available.\nPlease migrate to the V2 endpoints:\n`GET /v2/mitigation/devices` - Returns device list\n`GET /v2/mitigation/devices/{DeviceId}` - Returns stats for a specific device",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "mitigation",
+                "devices"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "simulation_ids",
+                  "value": "<long>",
+                  "description": "Filter with Simulation id. (Max 20 ids)"
+                },
+                {
+                  "disabled": false,
+                  "key": "simulation_ids",
+                  "value": "<long>",
+                  "description": "Filter with Simulation id. (Max 20 ids)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "75ed835f-8a3c-452d-92be-fd717fbe51c5",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "devices"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "simulation_ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "simulation_ids",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4e04113-1e74-4694-8ce9-49250da19963",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "devices"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "simulation_ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "simulation_ids",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc80ac27-fe2c-488e-aa29-7781487aaee8",
+          "name": "Signature List; Signature Id, Signature Name, Vendor Severity, Signature Category, Signature Version,",
+          "request": {
+            "name": "Signature List; Signature Id, Signature Name, Vendor Severity, Signature Category, Signature Version,",
+            "description": {
+              "content": "Description. Reference, Product Platform, Product Version",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "mitigation",
+                "devices",
+                ":DeviceId",
+                "signatures"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "action_ids",
+                  "value": "<long>",
+                  "description": "(Required) Filter with Action ids. (Max 10 ids)"
+                },
+                {
+                  "disabled": false,
+                  "key": "action_ids",
+                  "value": "<long>",
+                  "description": "(Required) Filter with Action ids. (Max 10 ids)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "DeviceId",
+                  "description": "(Required) Device ID (URI parameter)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5b43cb4e-1a39-4be1-9880-8d6d07e87261",
+              "name": "SignatureListSwagger",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "devices",
+                    ":DeviceId",
+                    "signatures"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "action_ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "action_ids",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "DeviceId",
+                      "description": "(Required) Device ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signatures\": [\n    {\n      \"description\": \"string\",\n      \"id\": 2823,\n      \"name\": \"string\",\n      \"product_platform\": \"string\",\n      \"product_version\": \"string\",\n      \"reference\": \"string\",\n      \"signature_category\": \"string\",\n      \"signature_id\": \"string\",\n      \"signature_version\": \"string\",\n      \"vendor_severity\": \"string\"\n    },\n    {\n      \"description\": \"string\",\n      \"id\": 5686,\n      \"name\": \"string\",\n      \"product_platform\": \"string\",\n      \"product_version\": \"string\",\n      \"reference\": \"string\",\n      \"signature_category\": \"string\",\n      \"signature_id\": \"string\",\n      \"signature_version\": \"string\",\n      \"vendor_severity\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "755887df-aa87-4be1-91fc-d7fb73577ca3",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "devices",
+                    ":DeviceId",
+                    "signatures"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "action_ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "action_ids",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "DeviceId",
+                      "description": "(Required) Device ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "864c2d85-bc13-481a-9912-7a3fc9e43f5d",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "devices",
+                    ":DeviceId",
+                    "signatures"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "action_ids",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "action_ids",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "DeviceId",
+                      "description": "(Required) Device ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fef4edcc-d905-4276-bc83-cecec7f22939",
+          "name": "# Generic Not Blocked Actions List",
+          "request": {
+            "name": "# Generic Not Blocked Actions List",
+            "description": {
+              "content": "Returns a list of not blocked actions for generic mitigations with their associated signatures and recommendations.\nThe response includes action details, attack module, category, and mitigation information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "mitigation",
+                "generic",
+                "not-blocked-actions"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "threat_or_action_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "threat_ids",
+                  "value": "<uint64>"
+                },
+                {
+                  "disabled": false,
+                  "key": "threat_ids",
+                  "value": "<uint64>"
+                },
+                {
+                  "disabled": false,
+                  "key": "threat_severities",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "threat_severities",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "attack_modules",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "attack_modules",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "assessment_id_list",
+                  "value": "<uint64>"
+                },
+                {
+                  "disabled": false,
+                  "key": "assessment_id_list",
+                  "value": "<uint64>"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_all_assessments",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "run_id",
+                  "value": "<uint64>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5b35ca26-4b18-4884-9cb0-9333fa10c689",
+              "name": "NotBlockedActionsListSwagger",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "generic",
+                    "not-blocked-actions"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "threat_or_action_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "threat_ids",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "threat_ids",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "threat_severities",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "threat_severities",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "attack_modules",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "attack_modules",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assessment_id_list",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "assessment_id_list",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "is_all_assessments",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "run_id",
+                      "value": "<uint64>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"not_blocked_action_list\": [\n    {\n      \"action_display_id\": 458,\n      \"action_id\": 4137,\n      \"action_name\": \"string\",\n      \"assessment_run_id\": 3721,\n      \"attack_category\": \"string\",\n      \"attack_module\": \"string\",\n      \"campaign_id\": 4579,\n      \"mitigation_ids\": [\n        899,\n        2621\n      ],\n      \"node_id\": 1760,\n      \"release_date\": \"string\",\n      \"signature_descriptions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"signature_names\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"action_display_id\": 1553,\n      \"action_id\": 5494,\n      \"action_name\": \"string\",\n      \"assessment_run_id\": 1087,\n      \"attack_category\": \"string\",\n      \"attack_module\": \"string\",\n      \"campaign_id\": 5321,\n      \"mitigation_ids\": [\n        2274,\n        637\n      ],\n      \"node_id\": 1621,\n      \"release_date\": \"string\",\n      \"signature_descriptions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"signature_names\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"limit\": 20,\n    \"offset\": 0,\n    \"total_count\": 100\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06c70421-d457-4bf4-b8ad-a298a28ae0ea",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "generic",
+                    "not-blocked-actions"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "threat_or_action_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "threat_ids",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "threat_ids",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "threat_severities",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "threat_severities",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "attack_modules",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "attack_modules",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assessment_id_list",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "assessment_id_list",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "is_all_assessments",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "run_id",
+                      "value": "<uint64>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5307b244-d351-4ee3-977e-648dec4ccf35",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "mitigation",
+                    "generic",
+                    "not-blocked-actions"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "threat_or_action_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "threat_ids",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "threat_ids",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "threat_severities",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "threat_severities",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "attack_modules",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "attack_modules",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assessment_id_list",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "assessment_id_list",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "is_all_assessments",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "run_id",
+                      "value": "<uint64>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "435adf8d-ed0b-42ce-a216-fdb9ae902ca3",
+          "name": "# Device List",
+          "request": {
+            "name": "# Device List",
+            "description": {
+              "content": "Returns a list of mitigation devices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v2",
+                "mitigation",
+                "devices"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "66915918-d107-42e2-850f-062c4cd1c649",
+              "name": "DevicesListV2Swagger",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v2",
+                    "mitigation",
+                    "devices"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"devices\": [\n    {\n      \"device_id\": 8498,\n      \"device_name\": \"string\"\n    },\n    {\n      \"device_id\": 8000,\n      \"device_name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5cc5ae4a-5106-4106-91a6-4fd464f6230a",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v2",
+                    "mitigation",
+                    "devices"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b1a733a-f192-49a2-8165-8e43aee63849",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v2",
+                    "mitigation",
+                    "devices"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "296eb306-3f69-4fd9-9213-8525e936aa8f",
+          "name": "# Device Stats",
+          "request": {
+            "name": "# Device Stats",
+            "description": {
+              "content": "Returns statistics for a specific mitigation device including Blocked Count, Not Blocked Count,\nTotal Count, and Score.\n\nThis endpoint works together with GET /v2/mitigation/devices to replace the deprecated\nV1 endpoint. First retrieve the device list, then use this endpoint to get stats for\neach device as needed.\n\nExample workflow:**\n\n1. Call GET /v2/mitigation/devices to get the list of devices\n\n2. Call GET /v2/mitigation/devices/{DeviceId} to get stats for a specific device",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v2",
+                "mitigation",
+                "devices",
+                ":DeviceId"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "DeviceId",
+                  "description": "(Required) Device ID (URI parameter)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "645639eb-b959-43ae-a275-b7a9a004c5ad",
+              "name": "DeviceStatsByIdSwagger",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v2",
+                    "mitigation",
+                    "devices",
+                    ":DeviceId"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "DeviceId",
+                      "description": "(Required) Device ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"blocked_count\": 301,\n  \"device_id\": 8358,\n  \"not_blocked_count\": 3985,\n  \"score\": 9227,\n  \"total_count\": 4731\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00a5ae81-b855-4416-87f7-3dd226777106",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v2",
+                    "mitigation",
+                    "devices",
+                    ":DeviceId"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "DeviceId",
+                      "description": "(Required) Device ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f21744ed-bfa1-4aab-9aa9-c56e57a786c8",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v2",
+                    "mitigation",
+                    "devices",
+                    ":DeviceId"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "DeviceId",
+                      "description": "(Required) Device ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.picussecurity.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9295eb67-1a05-48c1-abf0-3bbfb734c159",
+    "name": "Picus Customer Mitigation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<p class=\"body-1\">You can access the simulation raw data using the Rest API. Scope of the API includes; Simulation list, Simulation Details, Threat/Objective/Action Results, Results mapped to MITRE ATTC&K and Unified Kill Chain frameworks, Detection Analysis Results, Validated Logs & Alerts with SIEM & EDR integration.</p>\n<p class=\"body-1\">OAuth2 protocol is used to authorize Refresh/Access tokens. To obtain the API, you should generate a refresh token and then request an access token using the /v1/auth/token endpoint. The refresh token will be valid for 6 months, whereas the access token will be available for 2 hours. After getting the access token, add Authorization: Bearer {accessToken} to the header to request access to the below endpoints.</p>\n<p class=\"body-1\">Endpoints returning data with a lot of load works with the pagination method. You can use the offset and limit parameters to get the correct page.</p>\n\n<i class=\"body-1\">Your usage will be limited with your Picus license.</i>",
+      "type": "text/plain"
+    }
+  }
+}

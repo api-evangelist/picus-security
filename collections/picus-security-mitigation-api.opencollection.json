@@ -1,0 +1,568 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picus Customer Mitigation API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Mitigation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "# List Custom Detection Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/mitigation/detection-content/custom",
+            "params": [
+              {
+                "name": "Limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return per page."
+              },
+              {
+                "name": "Offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip before starting to return results."
+              },
+              {
+                "name": "Search",
+                "value": "",
+                "type": "query",
+                "description": "Filter by content name (case-insensitive substring match)."
+              },
+              {
+                "name": "RuleSeverity",
+                "value": "high,medium",
+                "type": "query",
+                "description": "Filter by severity level. Comma-separated list. Available values: critical, high, medium, low."
+              },
+              {
+                "name": "OrderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort results by. Available values: release_date, update_date."
+              },
+              {
+                "name": "IsAscending",
+                "value": "",
+                "type": "query",
+                "description": "Whether sort order is ascending. Set to false for descending."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Lists custom detection content items for the account."
+        },
+        {
+          "info": {
+            "name": "# Create Custom Detection Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.picussecurity.com/v1/mitigation/detection-content/custom",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates custom detection content items for the account."
+        },
+        {
+          "info": {
+            "name": "# Get Custom Detection Content By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/mitigation/detection-content/custom/:content_id",
+            "params": [
+              {
+                "name": "content_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (UUID) of the custom detection content item."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a custom detection content item by its ID."
+        },
+        {
+          "info": {
+            "name": "# Update Custom Detection Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.picussecurity.com/v1/mitigation/detection-content/custom/:content_id",
+            "params": [
+              {
+                "name": "content_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (UUID) of the custom detection content item to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates a custom detection content item by ID."
+        },
+        {
+          "info": {
+            "name": "# Delete Custom Detection Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.picussecurity.com/v1/mitigation/detection-content/custom/:content_id",
+            "params": [
+              {
+                "name": "content_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (UUID) of the custom detection content item to delete."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a custom detection content item by ID."
+        },
+        {
+          "info": {
+            "name": "# Get Detection Content Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/mitigation/detection-content/devices",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all available detection content devices (e.g. Splunk, QRadar). Used to populate device selection when creating custom detection content."
+        },
+        {
+          "info": {
+            "name": "# Get MITRE ATT&CK Sub-Techniques",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/mitigation/detection-content/mitre/sub-techniques",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all available MITRE ATT&CK sub-techniques with their parent technique reference. Used to populate sub-technique selection when creating custom detection content."
+        },
+        {
+          "info": {
+            "name": "# Get MITRE ATT&CK Tactics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/mitigation/detection-content/mitre/tactics",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all available MITRE ATT&CK tactics. Used to populate tactic selection when creating custom detection content."
+        },
+        {
+          "info": {
+            "name": "# Get MITRE ATT&CK Techniques",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/mitigation/detection-content/mitre/techniques",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all available MITRE ATT&CK techniques. Used to populate technique selection when creating custom detection content."
+        },
+        {
+          "info": {
+            "name": "# Detection Content Sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/mitigation/detection-content/sources",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the detection content sources associated with the account."
+        },
+        {
+          "info": {
+            "name": "# Detection Content Log Sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/mitigation/detection-content/:source/log-sources",
+            "params": [
+              {
+                "name": "source",
+                "value": "",
+                "type": "path",
+                "description": "Source (URI parameter)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the log sources of the account for the provided content source."
+        },
+        {
+          "info": {
+            "name": "# Detection Content Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/mitigation/detection-content/:source/rules",
+            "params": [
+              {
+                "name": "source",
+                "value": "",
+                "type": "path",
+                "description": "Content Source Name"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search key"
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Order by key. One of 'release_date' 'update_date'"
+              },
+              {
+                "name": "asc",
+                "value": "",
+                "type": "query",
+                "description": "Whether ordering should be ascending or descending"
+              },
+              {
+                "name": "ruleSeverity",
+                "value": "",
+                "type": "query",
+                "description": "Rule severity filter (comma-separated). Available options: critical, high, medium, low. ex: low,medium"
+              },
+              {
+                "name": "logSources",
+                "value": "",
+                "type": "query",
+                "description": "Log source filter (comma-separated). Available options can be obtained from log sources endpoint. ex: Sysmon,Splunk"
+              },
+              {
+                "name": "alerted",
+                "value": "",
+                "type": "query",
+                "description": "If true, only actions with \"not alerted\" results in the simulations and their contents are displayed"
+              },
+              {
+                "name": "threats",
+                "value": "",
+                "type": "query",
+                "description": "Threat filter (comma-separated). Available options can be obtained from threats endpoint. ex: 123,124"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the rules of the account for the provided content source."
+        },
+        {
+          "info": {
+            "name": "# Detection Content Rule Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/mitigation/detection-content/:source/rules/:ruleId",
+            "params": [
+              {
+                "name": "source",
+                "value": "",
+                "type": "path",
+                "description": "Source (URI parameter)"
+              },
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "RuleId (URI parameter)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the details of the detection content rule for the given ruleId and content source."
+        },
+        {
+          "info": {
+            "name": "# Devices' Stats List (deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/mitigation/devices",
+            "params": [
+              {
+                "name": "simulation_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter with Simulation id. (Max 20 ids)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deprecated: This endpoint has been deprecated and is no longer available.\nPlease migrate to the V2 endpoints:\n`GET /v2/mitigation/devices` - Returns device list\n`GET /v2/mitigation/devices/{DeviceId}` - Returns stats for a specific device"
+        },
+        {
+          "info": {
+            "name": "Signature List; Signature Id, Signature Name, Vendor Severity, Signature Category, Signature Version,",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/mitigation/devices/:DeviceId/signatures",
+            "params": [
+              {
+                "name": "action_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter with Action ids. (Max 10 ids)"
+              },
+              {
+                "name": "DeviceId",
+                "value": "",
+                "type": "path",
+                "description": "Device ID (URI parameter)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Description. Reference, Product Platform, Product Version"
+        },
+        {
+          "info": {
+            "name": "# Generic Not Blocked Actions List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/mitigation/generic/not-blocked-actions",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "threat_or_action_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "threat_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "threat_severities",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "attack_modules",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "assessment_id_list",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_all_assessments",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of not blocked actions for generic mitigations with their associated signatures and recommendations.\nThe response includes action details, attack module, category, and mitigation information."
+        },
+        {
+          "info": {
+            "name": "# Device List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v2/mitigation/devices",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of mitigation devices."
+        },
+        {
+          "info": {
+            "name": "# Device Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v2/mitigation/devices/:DeviceId",
+            "params": [
+              {
+                "name": "DeviceId",
+                "value": "",
+                "type": "path",
+                "description": "Device ID (URI parameter)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns statistics for a specific mitigation device including Blocked Count, Not Blocked Count,\nTotal Count, and Score.\n\nThis endpoint works together with GET /v2/mitigation/devices to replace the deprecated\nV1 endpoint. First retrieve the device list, then use this endpoint to get stats for\neach device as needed.\n\nExample workflow:**\n\n1. Call GET /v2/mitigation/devices to get the list of devices\n\n2. Call GET /v2/mitigation/devices/{DeviceId} to get stats for a specific device"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

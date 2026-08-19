@@ -2,12 +2,13 @@ generated: '2026-08-02'
 method: derived
 status: candidate
 source: openapi/_original/picus-security-openapi.json (Swagger 2.0, 71 paths, 84 operations)
-summary: 'Picus Security publishes NO hosted or remote MCP server as of this pass: nothing on the docs host, nothing in
-  the public MCP registries, no npm/@modelcontextprotocol package, and no MCP endpoint referenced anywhere in apidocs.picussecurity.com/llms.txt.
-  This manifest is a DERIVED CANDIDATE tool surface, computed one-tool-per-operation from the live Picus Customer API contract,
-  so an agent integrator (or Picus) has a grounded starting point. Every tool below names the exact backing operationId;
-  the tool''s real input schema is that operation''s parameters plus requestBody in the referenced spec file. Nothing here
-  is served by Picus.'
+summary: 'Picus Security publishes NO hosted or remote MCP server as of this pass: nothing on the docs
+  host, nothing in the public MCP registries, no npm/@modelcontextprotocol package, and no MCP endpoint
+  referenced anywhere in apidocs.picussecurity.com/llms.txt. This manifest is a DERIVED CANDIDATE tool
+  surface, computed one-tool-per-operation from the live Picus Customer API contract, so an agent integrator
+  (or Picus) has a grounded starting point. Every tool below names the exact backing operationId; the
+  tool''s real input schema is that operation''s parameters plus requestBody in the referenced spec file.
+  Nothing here is served by Picus.'
 server:
   name: picus-security
   published: false
@@ -22,10 +23,10 @@ auth:
   refresh_token_ttl: 6 months
   see: authentication/picus-security-authentication.yml
 safety:
-  note: This is an offensive-security control plane. 25 of the 84 candidate tools are write operations that create, run,
-    cancel or delete adversary simulations, author custom threats and actions, upload payload files, or manage users and
-    roles. Any real MCP deployment MUST gate the write set behind explicit human approval — running a simulation executes
-    attack techniques against production security controls.
+  note: This is an offensive-security control plane. 25 of the 84 candidate tools are write operations
+    that create, run, cancel or delete adversary simulations, author custom threats and actions, upload
+    payload files, or manage users and roles. Any real MCP deployment MUST gate the write set behind explicit
+    human approval — running a simulation executes attack techniques against production security controls.
   high_consequence_tools:
   - create_simulations
   - create_simulations_simulate_now
@@ -230,7 +231,8 @@ tools:
   tag: Mitigation
   write: false
 - name: list_mitigation_devices_signatures
-  description: Signature List; Signature Id, Signature Name, Vendor Severity, Signature Category, Signature Version,
+  description: Signature List; Signature Id, Signature Name, Vendor Severity, Signature Category, Signature
+    Version,
   method: GET
   path: /v1/mitigation/devices/{DeviceId}/signatures
   source_operation: openapi/picus-security-mitigation-openapi.yml#signatureListParams
@@ -635,3 +637,9 @@ tools:
   source_operation: openapi/picus-security-threats-openapi.yml#actionListParams
   tag: Threats
   write: false
+deployment:
+  mode: none
+  verified: derived
+  tools: 84
+  checked: '2026-08-12'
+  source: catalog MCP census

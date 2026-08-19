@@ -1,0 +1,265 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picus Customer Simulations API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Simulations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "# Simulation List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/simulations",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter with Status (one or more status): RUNNING | STOPPED | WAITING FOR THE FIRST RUN | NOT STARTED | COMPLETED"
+              },
+              {
+                "name": "simulation_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter with Simulation name."
+              },
+              {
+                "name": "agent_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter with Agent name."
+              },
+              {
+                "name": "agent_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter with Agent id."
+              },
+              {
+                "name": "template_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter with Template name."
+              },
+              {
+                "name": "template_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter with Template id."
+              },
+              {
+                "name": "prevention_result_lte",
+                "value": "",
+                "type": "query",
+                "description": "Filter with Prevention Result Less Than or Equals"
+              },
+              {
+                "name": "prevention_result_gte",
+                "value": "",
+                "type": "query",
+                "description": "Filter with Prevention Result Greater Than or Equals"
+              },
+              {
+                "name": "detection_result_lte",
+                "value": "",
+                "type": "query",
+                "description": "Filter with Detection Result Less Than or Equals"
+              },
+              {
+                "name": "detection_result_gte",
+                "value": "",
+                "type": "query",
+                "description": "Filter with Detection Result Greater Than or Equals"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Simulation List; Simulation ID, Simulation Name, Simulation Agent (with status), Enrichment Status, Last Prevention Result, Last Detection Result (if Available)\nDefault limit: 25, Default offset: 0\nMax limit: 50"
+        },
+        {
+          "info": {
+            "name": "# Create Simulation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.picussecurity.com/v1/simulations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates the simulation with given information"
+        },
+        {
+          "info": {
+            "name": "# Simulation Detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/simulations/:Id",
+            "params": [
+              {
+                "name": "Id",
+                "value": "",
+                "type": "path",
+                "description": "Simulation ID (URI parameter)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Simulation Detail; Simulation Name, Simulation Agent (with status), Enrichment Status, Last Prevention Result,\nLast Detection Result (if Available), Simulation Run List"
+        },
+        {
+          "info": {
+            "name": "# Update Simulation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.picussecurity.com/v1/simulations/:Id",
+            "params": [
+              {
+                "name": "Id",
+                "value": "",
+                "type": "path",
+                "description": "Simulation ID (URI parameter)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates the simulation with given information"
+        },
+        {
+          "info": {
+            "name": "# Delete Simulation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.picussecurity.com/v1/simulations/:Id",
+            "params": [
+              {
+                "name": "Id",
+                "value": "",
+                "type": "path",
+                "description": "Simulation ID (URI parameter)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes simulation with given id"
+        },
+        {
+          "info": {
+            "name": "# Cancel Simulation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.picussecurity.com/v1/simulations/:Id/cancel",
+            "params": [
+              {
+                "name": "Id",
+                "value": "",
+                "type": "path",
+                "description": "Simulation ID (URI parameter)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Cancels simulation with given id if it is running"
+        },
+        {
+          "info": {
+            "name": "# Simulate Now",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.picussecurity.com/v1/simulations/:Id/simulate-now",
+            "params": [
+              {
+                "name": "Id",
+                "value": "",
+                "type": "path",
+                "description": "Simulation ID (URI parameter)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "ReRuns simulation with given id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1769 @@
+openapi: 3.2.0
+info:
+  title: Picus Customer Simulation Result API
+  description: '<p class="body-1">You can access the simulation raw data using the Rest API. Scope of the API includes; Simulation list, Simulation Details, Threat/Objective/Action Results, Results mapped to MITRE ATTC&K and Unified Kill Chain frameworks, Detection Analysis Results, Validated Logs & Alerts with SIEM & EDR integration.</p>
+
+    <p class="body-1">OAuth2 protocol is used to authorize Refresh/Access tokens. To obtain the API, you should generate a refresh token and then request an access token using the /v1/auth/token endpoint. The refresh token will be valid for 6 months, whereas the access token will be available for 2 hours. After getting the access token, add Authorization: Bearer {accessToken} to the header to request access to the below endpoints.</p>
+
+    <p class="body-1">Endpoints returning data with a lot of load works with the pagination method. You can use the offset and limit parameters to get the correct page.</p>
+
+
+    <i class="body-1">Your usage will be limited with your Picus license.</i>'
+  version: '1.0'
+servers:
+- url: https://api.picussecurity.com/
+security:
+- Access-Token: []
+tags:
+- name: Simulation-Result
+paths:
+  /v1/simulations/{Id}/run/{RunId}:
+    get:
+      security:
+      - Access-Token: []
+      description: 'Includes Prevention and Detection result details
+
+        Prevention Result: Total Threats, Blocked/Not Blocked, Attackers Objective, UnAchieved/Achieved Count
+
+        Detection Result: Logged/Not Logged, Alerted/Not Alerted Count'
+      tags:
+      - Simulation-Result
+      summary: '# Simulation Run Result'
+      operationId: simulationRunParams
+      parameters:
+      - description: Simulation ID (URI parameter)
+        name: Id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - description: Simulation Run ID (URI parameter)
+        name: RunId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      responses:
+        '200':
+          $ref: '#/components/responses/SimulationRunDetailResponse'
+        '422':
+          $ref: '#/components/responses/validationErrorSwagger'
+        default:
+          $ref: '#/components/responses/genericErrorSwagger'
+      servers:
+      - url: https://api.picussecurity.com/
+  /v1/simulations/{Id}/run/{RunId}/frameworks:
+    get:
+      security:
+      - Access-Token: []
+      description: Simulation Run Result with Mitre ATT&CK and Unified Kill Chain framework
+      tags:
+      - Simulation-Result
+      summary: Simulation Run Result with Mitre ATT&CK and Unified Kill Chain framework
+      operationId: runDetailParams
+      parameters:
+      - description: Simulation ID (URI parameter)
+        name: Id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - description: Simulation Run ID (URI parameter)
+        name: RunId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      responses:
+        '200':
+          $ref: '#/components/responses/RunDetailResultsReturnSwagger'
+        '422':
+          $ref: '#/components/responses/validationErrorSwagger'
+        default:
+          $ref: '#/components/responses/genericErrorSwagger'
+      servers:
+      - url: https://api.picussecurity.com/
+  /v1/simulations/{Id}/run/{RunId}/threats:
+    get:
+      security:
+      - Access-Token: []
+      description: 'Includes Threat, Attacker''s Objective, Action results for Prevention and Threat, Action results for Detection
+
+        Default limit: 10, Default offset: 0
+
+        Max limit: 50'
+      tags:
+      - Simulation-Result
+      summary: '# Threats - Objectives - Actions'
+      operationId: runThreatParams
+      parameters:
+      - x-go-name: Limit
+        name: limit
+        in: query
+        schema:
+          type: integer
+          format: int64
+      - x-go-name: Offset
+        name: offset
+        in: query
+        schema:
+          type: integer
+          format: int64
+      - description: Simulation ID (URI parameter)
+        name: Id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - description: Simulation Run ID (URI parameter)
+        name: RunId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      responses:
+        '200':
+          $ref: '#/components/responses/ThreatResultsReturnSwagger'
+        '422':
+          $ref: '#/components/responses/validationErrorSwagger'
+        default:
+          $ref: '#/components/responses/genericErrorSwagger'
+      servers:
+      - url: https://api.picussecurity.com/
+  /v1/simulations/{Id}/run/{RunId}/threats/{ThreatId}/actions:
+    get:
+      security:
+      - Access-Token: []
+      description: 'Includes detailed action result with attack start & end time, log & alert time and attack module based details (payloads, terminal log, file name, sha256, md5, sha1) for the actions of the given threat.
+
+        Protocol based results are also available.'
+      tags:
+      - Simulation-Result
+      summary: '# Action Details List'
+      operationId: actionDetailsListParams
+      parameters:
+      - x-go-name: Limit
+        name: limit
+        in: query
+        schema:
+          type: integer
+          format: int64
+      - x-go-name: Offset
+        name: offset
+        in: query
+        schema:
+          type: integer
+          format: int64
+      - description: Simulation ID (URI parameter)
+        name: Id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - description: Simulation Run ID (URI parameter)
+        name: RunId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - description: Threat ID (URI parameter)
+        name: ThreatId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - x-go-name: ActionIDs
+        description: List Action Details With Action ID List. (Max 100 ids)
+        name: action_ids
+        in: query
+        schema:
+          type: array
+          items:
+            type: integer
+            format: uint64
+      - x-go-name: ActionDisplayIDs
+        description: List Action Details With Action Display ID List. (Max 100 display ids)
+        name: action_display_ids
+        in: query
+        schema:
+          type: array
+          items:
+            type: integer
+            format: uint64
+      responses:
+        '200':
+          $ref: '#/components/responses/ActionDetailsListReturnSwagger'
+        '422':
+          $ref: '#/components/responses/validationErrorSwagger'
+        default:
+          $ref: '#/components/responses/genericErrorSwagger'
+      servers:
+      - url: https://api.picussecurity.com/
+  /v1/simulations/{Id}/run/{RunId}/threats/{ThreatId}/actions/{ActionId}:
+    get:
+      security:
+      - Access-Token: []
+      description: 'Includes detailed action result with attack start & end time, log & alert time and attack module based details (payloads, terminal log, file name, sha256, md5, sha1).
+
+        Protocol based results are also available.'
+      tags:
+      - Simulation-Result
+      summary: '# Action Details'
+      operationId: actionDetailsParams
+      parameters:
+      - description: Simulation Run ID (URI parameter)
+        name: RunId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - description: Action ID (URI parameter)
+        name: ActionId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - description: Simulation ID (URI parameter)
+        name: Id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - description: Threat ID (URI parameter)
+        name: ThreatId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - x-go-name: NodeId
+        name: node_id
+        in: query
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          $ref: '#/components/responses/ActionDetailsReturnSwagger'
+        '422':
+          $ref: '#/components/responses/validationErrorSwagger'
+        default:
+          $ref: '#/components/responses/genericErrorSwagger'
+      servers:
+      - url: https://api.picussecurity.com/
+  /v1/simulations/{Id}/run/{RunId}/threats/{ThreatId}/actions/{ActionId}/integrations/{IntegrationId}/alerts:
+    get:
+      security:
+      - Access-Token: []
+      description: 'Includes Action Name, Log Source and Alert Time.
+
+        Default limit: 100, Default offset: 0
+
+        Max limit: 1000
+
+        Same action can be used multiple times under the scope of threat where these actions are distinguished by node_id
+
+        node_id parameter can be used optionally. For the case it is not provided, first node is returned.'
+      tags:
+      - Simulation-Result
+      summary: '# Integration based Alert Details for Actions'
+      operationId: actionAlertsParams
+      parameters:
+      - x-go-name: Limit
+        name: limit
+        in: query
+        schema:
+          type: integer
+          format: int64
+      - x-go-name: Offset
+        name: offset
+        in: query
+        schema:
+          type: integer
+          format: int64
+      - description: Simulation Run ID (URI parameter)
+        name: RunId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - description: Simulation ID (URI parameter)
+        name: Id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - description: Threat ID (URI parameter)
+        name: ThreatId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - description: Action ID (URI parameter)
+        name: ActionId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - description: Integration ID (URI parameter)
+        name: IntegrationId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - x-go-name: NodeId
+        name: node_id
+        in: query
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          $ref: '#/components/responses/ActionAlertsReturnSwagger'
+        '422':
+          $ref: '#/components/responses/validationErrorSwagger'
+        default:
+          $ref: '#/components/responses/genericErrorSwagger'
+      servers:
+      - url: https://api.picussecurity.com/
+  /v1/simulations/{Id}/run/{RunId}/threats/{ThreatId}/actions/{ActionId}/integrations/{IntegrationId}/logs:
+    get:
+      security:
+      - Access-Token: []
+      description: 'Includes Action Name, Log Source and Log Time.
+
+        Default limit: 100, Default offset: 0
+
+        Max limit: 1000
+
+        Same action can be used multiple times under the scope of threat where these actions are distinguished by node_id
+
+        node_id parameter can be used optionally. For the case it is not provided, first node is returned.'
+      tags:
+      - Simulation-Result
+      summary: '# Integration based Log Details for Actions'
+      operationId: actionLogsParams
+      parameters:
+      - x-go-name: Limit
+        name: limit
+        in: query
+        schema:
+          type: integer
+          format: int64
+      - x-go-name: Offset
+        name: offset
+        in: query
+        schema:
+          type: integer
+          format: int64
+      - description: Simulation Run ID (URI parameter)
+        name: RunId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - description: Simulation ID (URI parameter)
+        name: Id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - description: Threat ID (URI parameter)
+        name: ThreatId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - description: Action ID (URI parameter)
+        name: ActionId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - description: Integration ID (URI parameter)
+        name: IntegrationId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - x-go-name: NodeId
+        name: node_id
+        in: query
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          $ref: '#/components/responses/ActionLogsReturnSwagger'
+        '422':
+          $ref: '#/components/responses/validationErrorSwagger'
+        default:
+          $ref: '#/components/responses/genericErrorSwagger'
+      servers:
+      - url: https://api.picussecurity.com/
+  /v1/simulations/{SimulationId}/run/{RunId}/threats/{ThreatId}/peers/{PeerId}/integrations/{IntegrationId}/raw-logs:
+    get:
+      security:
+      - Access-Token: []
+      description: 'Retrieves raw log file download links for a specific threat, peer, and integration combination.
+
+        Returns an array of URLs pointing to raw log files that can be downloaded.'
+      tags:
+      - Simulation-Result
+      summary: '# Raw Log File Links'
+      operationId: rawLogsParams
+      parameters:
+      - description: Simulation ID (URI parameter)
+        name: SimulationId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - description: Run ID (URI parameter)
+        name: RunId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - description: Threat ID (URI parameter)
+        name: ThreatId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - description: Peer ID (URI parameter)
+        name: PeerId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - description: Integration ID (URI parameter)
+        name: IntegrationId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: uint64
+      - x-go-name: ActionId
+        description: Action ID (Query parameter)
+        name: actionId
+        in: query
+        schema:
+          type: integer
+          format: uint64
+      responses:
+        '200':
+          $ref: '#/components/responses/RawLogsReturnSwagger'
+        '422':
+          $ref: '#/components/responses/validationErrorSwagger'
+        default:
+          $ref: '#/components/responses/genericErrorSwagger'
+      servers:
+      - url: https://api.picussecurity.com/
+components:
+  schemas:
+    FileDetailsCommon:
+      type: object
+      properties:
+        md5:
+          type: string
+          x-go-name: MD5
+        name:
+          type: string
+          x-go-name: Name
+        sha1:
+          type: string
+          x-go-name: Sha1
+        sha256:
+          type: string
+          x-go-name: Sha256
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    FlowNode:
+      type: object
+      properties:
+        display_id:
+          type: integer
+          format: uint64
+          x-go-name: DisplayId
+        false_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlowNode'
+          x-go-name: FalseItems
+        id:
+          type: integer
+          format: uint64
+          x-go-name: ID
+        name:
+          type: string
+          x-go-name: Name
+        node_id:
+          type: integer
+          format: uint64
+          x-go-name: NodeID
+        true_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlowNode'
+          x-go-name: TrueItems
+        type:
+          type: string
+          x-go-name: Type
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
+    Logging:
+      type: object
+      properties:
+        log_result:
+          description: Log Result Logged / Not Logged
+          type: string
+          x-go-name: LoggingResult
+        logged_time:
+          description: Logged time if it is Logged
+          type: integer
+          format: int64
+          x-go-name: LoggedTime
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    Frameworks:
+      type: object
+      properties:
+        mitre:
+          $ref: '#/components/schemas/Mitre'
+        ukc:
+          $ref: '#/components/schemas/Ukc'
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    PlatformCommon:
+      type: object
+      properties:
+        architecture:
+          type: string
+          x-go-name: Architecture
+        os:
+          type: string
+          x-go-name: Os
+        platform:
+          type: string
+          x-go-name: Platform
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    SimulationResultsLoggingDTO:
+      type: object
+      properties:
+        logged_threat_count:
+          description: Logged threat count
+          type: integer
+          format: int64
+          x-go-name: LoggedThreatCount
+        not_logged_threat_count:
+          description: Not logged threat count
+          type: integer
+          format: int64
+          x-go-name: NotLoggedThreatCount
+        score:
+          description: Log Score
+          type: integer
+          format: int64
+          x-go-name: Score
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    MitreResults:
+      type: object
+      properties:
+        tactics:
+          type: array
+          items:
+            $ref: '#/components/schemas/TacticResults'
+          x-go-name: Tactics
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run/details
+    SubTechniqueResults:
+      type: object
+      properties:
+        blocked_action_count:
+          type: integer
+          format: int64
+          x-go-name: BlockedActionCount
+        description:
+          type: string
+          x-go-name: Description
+        detection_result:
+          $ref: '#/components/schemas/DetectionResult'
+        mitre_id:
+          type: string
+          x-go-name: MitreID
+        mitre_name:
+          type: string
+          x-go-name: MitreName
+        name:
+          type: string
+          x-go-name: Name
+        not_blocked_action_count:
+          type: integer
+          format: int64
+          x-go-name: NotBlockedActionCount
+        not_tested_action_count:
+          type: integer
+          format: int64
+          x-go-name: NotTestedActionCount
+        total_action_count:
+          type: integer
+          format: int64
+          x-go-name: TotalActionCount
+        url:
+          type: string
+          x-go-name: Url
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run/details
+    ThreatsDetectionResult:
+      type: object
+      properties:
+        alert_result:
+          description: Alert result if it has alert analysis
+          type: string
+          x-go-name: AlertResult
+        has_alert_analysis:
+          description: Has alert analysis
+          type: boolean
+          x-go-name: HasAlertAnalysis
+        has_log_analysis:
+          description: Has log analysis
+          type: boolean
+          x-go-name: HasLogAnalysis
+        integrations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Enrichment'
+          x-go-name: Integrations
+        log_result:
+          description: Log result if it has log analysis
+          type: string
+          x-go-name: LogResult
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    ActionDetailsDTO:
+      type: object
+      properties:
+        action_id:
+          description: Action Id
+          type: integer
+          format: uint64
+          x-go-name: ActionId
+        action_name:
+          description: Action Name
+          type: string
+          x-go-name: ActionName
+        affected_os:
+          description: Affected Os
+          type: array
+          items:
+            type: string
+          x-go-name: AffectedOS
+        affected_platforms:
+          description: Affected Platforms
+          type: array
+          items:
+            $ref: '#/components/schemas/PlatformCommon'
+          x-go-name: AffectedPlatforms
+        affected_products:
+          description: Affected Products
+          type: array
+          items:
+            type: string
+          x-go-name: AffectedProducts
+        attack_module:
+          description: Attack Module
+          type: string
+          x-go-name: AttackModule
+        attack_module_id:
+          description: Attack Module Id
+          type: integer
+          format: uint64
+          x-go-name: AttackModuleId
+        category:
+          description: Category
+          type: string
+          x-go-name: Category
+        completed_at:
+          description: Completed At
+          type: integer
+          format: int64
+          x-go-name: CompletedAt
+        description:
+          description: Description
+          type: string
+          x-go-name: Description
+        detection_analysis:
+          $ref: '#/components/schemas/DetectionResult'
+        display_id:
+          description: Display Id (Seen in UI)
+          type: integer
+          format: uint64
+          x-go-name: DisplayId
+        frameworks:
+          $ref: '#/components/schemas/Frameworks'
+        has_detection_analysis:
+          description: Has detection analysis
+          type: boolean
+          x-go-name: HasDetectionAnalysis
+        module_based_results:
+          $ref: '#/components/schemas/ModuleBasedResults'
+        node_id:
+          description: Node Id (One action can be in the same threat, it can be specified with node id)
+          type: integer
+          format: uint64
+          x-go-name: NodeId
+        owasp:
+          description: Owasp
+          type: string
+          x-go-name: Owasp
+        prevention:
+          description: Prevention Result
+          type: string
+          x-go-name: Prevention
+        protocol_based_result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProtocolBasedResults'
+          x-go-name: ProtocolBasedResult
+        references:
+          $ref: '#/components/schemas/ActionDetailReferences'
+        sources:
+          description: Sources
+          type: array
+          items:
+            type: string
+          x-go-name: Sources
+        started_at:
+          description: Started At
+          type: integer
+          format: int64
+          x-go-name: StartedAt
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    StagesResult:
+      type: object
+      properties:
+        blocked_action_count:
+          type: integer
+          format: int64
+          x-go-name: BlockedActionCount
+        detection_result:
+          $ref: '#/components/schemas/DetectionResult'
+        name:
+          type: string
+          x-go-name: Name
+        not_blocked_action_count:
+          type: integer
+          format: int64
+          x-go-name: NotBlockedActionCount
+        not_tested_action_count:
+          type: integer
+          format: int64
+          x-go-name: NotTestedActionCount
+        phases:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhasesResult'
+          x-go-name: Phases
+        total_action_count:
+          type: integer
+          format: int64
+          x-go-name: TotalActionCount
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run/details
+    Objective:
+      type: object
+      properties:
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlowNode'
+          x-go-name: Actions
+        id:
+          type: integer
+          format: uint64
+          x-go-name: Id
+        name:
+          type: string
+          x-go-name: Name
+        type:
+          type: string
+          x-go-name: Type
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
+    SimulationResultDTO:
+      type: object
+      properties:
+        detection_analysis:
+          $ref: '#/components/schemas/SimulationResultsDetectionDTO'
+        has_detection_analysis:
+          description: Has detection analysis
+          type: boolean
+          x-go-name: HasDetectionAnalysis
+        prevention:
+          $ref: '#/components/schemas/SimulationResultsPreventionDTO'
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    StatusDetails:
+      type: object
+      properties:
+        detection:
+          $ref: '#/components/schemas/ThreatCounts'
+        prevention:
+          $ref: '#/components/schemas/ThreatCounts'
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/dto
+    SimulationResultsAlertDTO:
+      type: object
+      properties:
+        alerted_threat_count:
+          description: Alerted threat count
+          type: integer
+          format: int64
+          x-go-name: AlertedThreatCount
+        not_alerted_threat_count:
+          description: Not alerted threat count
+          type: integer
+          format: int64
+          x-go-name: NotAlertedThreatCount
+        score:
+          description: Alert score
+          type: integer
+          format: int64
+          x-go-name: Score
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    ActionAlertDTO:
+      type: object
+      properties:
+        action:
+          description: Alert action
+          type: string
+          x-go-name: Action
+        alert_id:
+          description: Alert Id
+          type: integer
+          format: int64
+          x-go-name: AlertId
+        log_type:
+          description: Log Type prevention / detection / N/A
+          type: string
+          x-go-name: LogType
+        name:
+          description: Alert name
+          type: string
+          x-go-name: Name
+        source:
+          description: Log Source
+          type: string
+          x-go-name: LogSource
+        time:
+          description: Alerted time
+          type: integer
+          format: int64
+          x-go-name: LogTime
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    ActionDetailProcess:
+      type: object
+      properties:
+        command:
+          description: Command
+          type: string
+          x-go-name: Content
+        id:
+          description: Process Id
+          type: integer
+          format: uint64
+          x-go-name: ID
+        log_content:
+          description: Log Content
+          type: string
+          x-go-name: Logs
+        name:
+          description: Process Name
+          type: string
+          x-go-name: Name
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    DetectionResult:
+      type: object
+      properties:
+        alert_result:
+          description: Alert result Alerted / Not Alerted
+          type: string
+          x-go-name: AlertResult
+        has_alert_analysis:
+          description: Has alert analysis
+          type: boolean
+          x-go-name: HasAlertAnalysis
+        has_log_analysis:
+          description: Has Log analysis
+          type: boolean
+          x-go-name: HasLogAnalysis
+        integration_based_results:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntegrationBasedResult'
+          x-go-name: DetectionResults
+        log_result:
+          description: Log result Logged / Not Logged
+          type: string
+          x-go-name: LogResult
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    Alert:
+      type: object
+      properties:
+        alert_result:
+          description: Alert Result Alerted / Not Alerted
+          type: string
+          x-go-name: AlertResult
+        alerted_time:
+          description: Alerted time if it is alerted
+          type: integer
+          format: int64
+          x-go-name: AlertedTime
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    ModuleBasedResults:
+      type: object
+      properties:
+        file_details:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileDetailsCommon'
+          x-go-name: FileDetails
+        process_results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActionDetailProcess'
+          x-go-name: ProcessResults
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    ThreatCounts:
+      type: object
+      properties:
+        completed_threat_count:
+          type: integer
+          format: int64
+          x-go-name: Completed
+        total_threat_count:
+          type: integer
+          format: int64
+          x-go-name: Total
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/dto
+    SimulationThreatCounts:
+      type: object
+      properties:
+        blocked_count:
+          description: Blocked threat count
+          type: integer
+          format: int64
+          x-go-name: BlockedCount
+        not_blocked_count:
+          description: Not blocked threat count
+          type: integer
+          format: int64
+          x-go-name: NotBlockedCount
+        not_tested_count:
+          description: Not tested threat count
+          type: integer
+          format: int64
+          x-go-name: NotTestedCount
+        total_count:
+          description: Total threat count
+          type: integer
+          format: int64
+          x-go-name: ThreatCount
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    SimulationResultsDetectionDTO:
+      type: object
+      properties:
+        alert:
+          $ref: '#/components/schemas/SimulationResultsAlertDTO'
+        has_alert_analysis:
+          description: Has detection analysis
+          type: boolean
+          x-go-name: AlertEnabled
+        has_log_analysis:
+          description: Has log analysis
+          type: boolean
+          x-go-name: LogEnabled
+        integrations:
+          type: array
+          items:
+            $ref: '#/components/schemas/RunIntegration'
+          x-go-name: Enrichments
+        log:
+          $ref: '#/components/schemas/SimulationResultsLoggingDTO'
+        security_score:
+          description: Detection Security Score
+          type: integer
+          format: int64
+          x-go-name: SecurityScore
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    PhasesResult:
+      type: object
+      properties:
+        blocked_action_count:
+          type: integer
+          format: int64
+          x-go-name: BlockedActionCount
+        detection_result:
+          $ref: '#/components/schemas/DetectionResult'
+        name:
+          type: string
+          x-go-name: Name
+        not_blocked_action_count:
+          type: integer
+          format: int64
+          x-go-name: NotBlockedActionCount
+        not_tested_action_count:
+          type: integer
+          format: int64
+          x-go-name: NotTestedActionCount
+        total_action_count:
+          type: integer
+          format: int64
+          x-go-name: TotalActionCount
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run/details
+    Ukc:
+      type: object
+      properties:
+        phase:
+          description: Unified kill chain Phase
+          type: string
+          x-go-name: Phase
+        stage:
+          description: Unified kill chain SÏtage
+          type: string
+          x-go-name: Stage
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    ActionLogDTO:
+      type: object
+      properties:
+        action:
+          description: Log Action
+          type: string
+          x-go-name: Action
+        log_id:
+          description: Log id
+          type: integer
+          format: int64
+          x-go-name: LogId
+        log_type:
+          description: Log Type prevention / detection / N/A
+          type: string
+          x-go-name: LogType
+        name:
+          description: Log Name
+          type: string
+          x-go-name: Name
+        source:
+          description: Log Source
+          type: string
+          x-go-name: LogSource
+        time:
+          description: Logged time
+          type: integer
+          format: int64
+          x-go-name: LogTime
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    PIntegrationBasedResult:
+      type: object
+      properties:
+        action_id:
+          type: integer
+          format: uint64
+          x-go-name: ActionId
+        alert_result:
+          description: Alert result if it has alert analysis
+          type: string
+          x-go-name: AlertResult
+        has_alert_analysis:
+          description: Has alert analysis
+          type: boolean
+          x-go-name: AlertEnabled
+        has_log_analysis:
+          description: Has log analysis
+          type: boolean
+          x-go-name: LogEnabled
+        integration_id:
+          description: Integration Identifier
+          type: integer
+          format: int64
+          x-go-name: IntegrationId
+        log_result:
+          description: Log result if it has log analysis
+          type: string
+          x-go-name: LogResult
+        node_id:
+          type: integer
+          format: uint64
+          x-go-name: NodeId
+        product_name:
+          description: Integrated Product Name
+          type: string
+          x-go-name: ProductName
+        protocol:
+          description: Protocol http / https
+          type: string
+          x-go-name: Protocol
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    SimulationRunThreat:
+      type: object
+      properties:
+        completed_at:
+          description: Completed At
+          type: integer
+          format: int64
+          x-go-name: CompletedAt
+        detection_analysis:
+          $ref: '#/components/schemas/ThreatsDetectionResult'
+        has_detection_analysis:
+          description: Has detection analysis
+          type: boolean
+          x-go-name: HasDetectionAnalysis
+        objectives:
+          type: array
+          items:
+            $ref: '#/components/schemas/Objective'
+          x-go-name: Objectives
+        prevention:
+          description: Prevention Result
+          type: string
+          x-go-name: Prevention
+        release_date:
+          description: Release Date
+          type: integer
+          format: int64
+          x-go-name: ReleaseDate
+        severity:
+          description: Severity
+          type: string
+          x-go-name: Severity
+        started_at:
+          description: Started At
+          type: integer
+          format: int64
+          x-go-name: StartedAt
+        threat_display_id:
+          description: Threat Display Id
+          type: integer
+          format: int64
+          x-go-name: DisplayId
+        threat_id:
+          description: Threat Id
+          type: integer
+          format: int64
+          x-go-name: Id
+        threat_name:
+          description: Threat Name
+          type: string
+          x-go-name: Name
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    TechniqueResults:
+      type: object
+      properties:
+        blocked_action_count:
+          type: integer
+          format: int64
+          x-go-name: BlockedActionCount
+        description:
+          type: string
+          x-go-name: Description
+        detection_result:
+          $ref: '#/components/schemas/DetectionResult'
+        mitre_id:
+          type: string
+          x-go-name: MitreID
+        mitre_name:
+          type: string
+          x-go-name: MitreName
+        name:
+          type: string
+          x-go-name: Name
+        not_blocked_action_count:
+          type: integer
+          format: int64
+          x-go-name: NotBlockedActionCount
+        not_tested_action_count:
+          type: integer
+          format: int64
+          x-go-name: NotTestedActionCount
+        sub_techniques:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubTechniqueResults'
+          x-go-name: SubTechniques
+        total_action_count:
+          type: integer
+          format: int64
+          x-go-name: TotalActionCount
+        url:
+          type: string
+          x-go-name: Url
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run/details
+    TacticResults:
+      type: object
+      properties:
+        blocked_action_count:
+          type: integer
+          format: int64
+          x-go-name: BlockedActionCount
+        description:
+          type: string
+          x-go-name: Description
+        detection_result:
+          $ref: '#/components/schemas/DetectionResult'
+        mitre_id:
+          type: string
+          x-go-name: MitreID
+        mitre_name:
+          type: string
+          x-go-name: MitreName
+        name:
+          type: string
+          x-go-name: Name
+        not_blocked_action_count:
+          type: integer
+          format: int64
+          x-go-name: NotBlockedActionCount
+        not_tested_action_count:
+          type: integer
+          format: int64
+          x-go-name: NotTestedActionCount
+        techniques:
+          type: array
+          items:
+            $ref: '#/components/schemas/TechniqueResults'
+          x-go-name: Techniques
+        total_action_count:
+          type: integer
+          format: int64
+          x-go-name: TotalActionCount
+        url:
+          type: string
+          x-go-name: Url
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run/details
+    Reference:
+      type: object
+      properties:
+        link:
+          description: Link
+          type: string
+          x-go-name: Link
+        name:
+          description: Name
+          type: string
+          x-go-name: Name
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    IntegrationBasedResult:
+      type: object
+      properties:
+        alert:
+          $ref: '#/components/schemas/Alert'
+        has_alert_analysis:
+          description: Has alert analysis
+          type: boolean
+          x-go-name: HasAlertAnalysis
+        has_log_analysis:
+          description: Has log analysis
+          type: boolean
+          x-go-name: HasLogAnalysis
+        integration_id:
+          description: Integration Id
+          type: integer
+          format: int64
+          x-go-name: IntegrationId
+        log:
+          $ref: '#/components/schemas/Logging'
+        product_name:
+          description: Product name
+          type: string
+          x-go-name: ProductName
+        protocol:
+          description: Protocol like http / https
+          type: string
+          x-go-name: Protocol
+        status:
+          description: Status
+          type: string
+          x-go-name: Status
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    UkcResults:
+      type: object
+      properties:
+        stages:
+          type: array
+          items:
+            $ref: '#/components/schemas/StagesResult'
+          x-go-name: Stages
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run/details
+    Pagination:
+      type: object
+      properties:
+        limit:
+          description: Limit
+          type: integer
+          format: int64
+          x-go-name: Limit
+          example: 20
+        offset:
+          description: Offset
+          type: integer
+          format: int64
+          x-go-name: Offset
+          example: 0
+        total_count:
+          description: Total Count
+          type: integer
+          format: int64
+          x-go-name: TotalCount
+          example: 100
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/apirequest
+    ProtocolBasedResults:
+      type: object
+      properties:
+        alert_result:
+          description: Alert result if it has alert analysis
+          type: string
+          x-go-name: AlertResult
+        completed_at:
+          description: Completed at
+          type: integer
+          format: int64
+          x-go-name: CompletedAt
+        has_alert_analysis:
+          description: Has alert analysis
+          type: boolean
+          x-go-name: HasAlertAnalysis
+        has_log_analysis:
+          description: Has log analysis
+          type: boolean
+          x-go-name: HasLogAnalysis
+        integrations:
+          type: array
+          items:
+            $ref: '#/components/schemas/PIntegrationBasedResult'
+          x-go-name: Integrations
+        log_result:
+          description: Log result if it has log analysis
+          type: string
+          x-go-name: LogResult
+        prevention:
+          description: Prevention result
+          type: string
+          x-go-name: Prevention
+        protocol:
+          description: Protocol http / https
+          type: string
+          x-go-name: Protocol
+        started_at:
+          description: Started at
+          type: integer
+          format: int64
+          x-go-name: StartedAt
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    Mitre:
+      type: object
+      properties:
+        sub_technique:
+          description: Mitre Att&ck SubTechnique Name
+          type: string
+          x-go-name: SubTechnique
+        sub_technique_id:
+          description: Mitre Att&ck SubTechnique Id
+          type: string
+          x-go-name: SubTechniqueId
+        tactic:
+          description: Mitre Att&ck Tactic Name
+          type: string
+          x-go-name: Tactic
+        tactic_id:
+          description: Mitre Att&ck Tactic Id
+          type: string
+          x-go-name: TacticId
+        technique:
+          description: Mitre Att&ck Technique Name
+          type: string
+          x-go-name: Technique
+        technique_id:
+          description: Mitre Att&ck Technique Id
+          type: string
+          x-go-name: TechniqueId
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    ActionDetailReferences:
+      type: object
+      properties:
+        cve_reference:
+          $ref: '#/components/schemas/Reference'
+        cwe_reference:
+          $ref: '#/components/schemas/Reference'
+        virus_total_reference:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reference'
+          x-go-name: VirusTotalReference
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    SimulationResultsPreventionDTO:
+      type: object
+      properties:
+        attacker_objectives:
+          $ref: '#/components/schemas/SimulationObjectiveCounts'
+        security_score:
+          description: Prevention Security Score
+          type: integer
+          format: int64
+          x-go-name: SecurityScore
+        threat:
+          $ref: '#/components/schemas/SimulationThreatCounts'
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    RunIntegration:
+      type: object
+      properties:
+        id:
+          description: Integration Identifier
+          type: integer
+          format: int64
+          x-go-name: Id
+          example: 1
+        product_name:
+          description: Integrated Product Name like Crowdstrike
+          type: string
+          x-go-name: ProductName
+          example: Crowdstrike
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    SimulationObjectiveCounts:
+      type: object
+      properties:
+        achived_count:
+          description: Achived attackers objective count
+          type: integer
+          format: int64
+          x-go-name: AchivedCount
+        not_tested_count:
+          description: Not tested attackers objective count
+          type: integer
+          format: int64
+          x-go-name: NotTestedCount
+        total_count:
+          description: Total attackers objective count
+          type: integer
+          format: int64
+          x-go-name: ObjectiveCount
+        unachived_count:
+          description: Unachived attackers objective count
+          type: integer
+          format: int64
+          x-go-name: UnachivedCount
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    Enrichment:
+      type: object
+      properties:
+        id:
+          description: Integration Id
+          type: integer
+          format: int64
+          x-go-name: Id
+          example: 1
+        product_name:
+          description: Product Name
+          type: string
+          x-go-name: ProductName
+          example: Crowdstrike
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations
+  responses:
+    validationErrorSwagger:
+      description: validationErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                description: Validation Error List
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example:
+                  param: tag=max, param=25, given value=1000
+              message:
+                description: Message will be "validation error"
+                type: string
+                x-go-name: Message
+                example: validation error
+    ActionDetailsReturnSwagger:
+      description: ActionDetailsReturnSwagger
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              action_id:
+                description: Action Id
+                type: integer
+                format: uint64
+                x-go-name: ActionId
+              action_name:
+                description: Action Name
+                type: string
+                x-go-name: ActionName
+              affected_os:
+                description: Affected Os
+                type: array
+                items:
+                  type: string
+                x-go-name: AffectedOS
+              affected_platforms:
+                description: Affected Platforms
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlatformCommon'
+                x-go-name: AffectedPlatforms
+              affected_products:
+                description: Affected Products
+                type: array
+                items:
+                  type: string
+                x-go-name: AffectedProducts
+              attack_module:
+                description: Attack Module
+                type: string
+                x-go-name: AttackModule
+              attack_module_id:
+                description: Attack Module Id
+                type: integer
+                format: uint64
+                x-go-name: AttackModuleId
+              category:
+                description: Category
+                type: string
+                x-go-name: Category
+              completed_at:
+                description: Completed At
+                type: integer
+                format: int64
+                x-go-name: CompletedAt
+              description:
+                description: Description
+                type: string
+                x-go-name: Description
+              detection_analysis:
+                $ref: '#/components/schemas/DetectionResult'
+              display_id:
+                description: Display Id (Seen in UI)
+                type: integer
+                format: uint64
+                x-go-name: DisplayId
+              frameworks:
+                $ref: '#/components/schemas/Frameworks'
+              has_detection_analysis:
+                description: Has detection analysis
+                type: boolean
+                x-go-name: HasDetectionAnalysis
+              module_based_results:
+                $ref: '#/components/schemas/ModuleBasedResults'
+              node_id:
+                description: Node Id (One action can be in the same threat, it can be specified with node id)
+                type: integer
+                format: uint64
+                x-go-name: NodeId
+              owasp:
+                description: Owasp
+                type: string
+                x-go-name: Owasp
+              prevention:
+                description: Prevention Result
+                type: string
+                x-go-name: Prevention
+              protocol_based_result:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProtocolBasedResults'
+                x-go-name: ProtocolBasedResult
+              references:
+                $ref: '#/components/schemas/ActionDetailReferences'
+              sources:
+                description: Sources
+                type: array
+                items:
+                  type: string
+                x-go-name: Sources
+              started_at:
+                description: Started At
+                type: integer
+                format: int64
+                x-go-name: StartedAt
+    ActionDetailsListReturnSwagger:
+      description: ActionDetailsListReturnSwagger
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              actions:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActionDetailsDTO'
+                x-go-name: Actions
+              pages:
+                $ref: '#/components/schemas/Pagination'
+    ActionAlertsReturnSwagger:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              alerts:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActionAlertDTO'
+                x-go-name: ActionAlerts
+              pages:
+                $ref: '#/components/schemas/Pagination'
+    ActionLogsReturnSwagger:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              logs:
+                description: Log list
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActionLogDTO'
+                x-go-name: ActionLogs
+              pages:
+                $ref: '#/components/schemas/Pagination'
+    SimulationRunDetailResponse:
+      description: SimulationRunDetailResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              completed_at:
+                description: Completed At (if completed)
+                type: integer
+                format: int64
+                x-go-name: CompletedAt
+              completion_ratio:
+                type: integer
+                format: int64
+                x-go-name: CompletionRatio
+              fail_reason_message:
+                type: string
+                x-go-name: FailReasonMessage
+              results:
+                $ref: '#/components/schemas/SimulationResultDTO'
+              scheduled_time:
+                type: integer
+                format: int64
+                x-go-name: ScheduledTime
+              simulation_id:
+                description: Simulation Id
+                type: integer
+                format: uint64
+                x-go-name: SimulationId
+              simulation_run_id:
+                description: Simulation Run Id
+                type: integer
+                format: uint64
+                x-go-name: SimulationRunId
+              started_at:
+                description: Started At
+                type: integer
+                format: int64
+                x-go-name: StartedAt
+              status:
+                description: Status STOPPED | WAITING FOR THE FIRST RUN | NOT STARTED | COMPLETED
+                type: string
+                x-go-name: Status
+              status_details:
+                $ref: '#/components/schemas/StatusDetails'
+              template_id:
+                description: Template Id
+                type: integer
+                format: uint64
+                x-go-name: TemplateId
+    genericErrorSwagger:
+      description: genericErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error Code is optional. It is using for define specific error types.
+                type: integer
+                format: int64
+                x-go-name: ErrorCode
+                example: 1001
+              errors:
+                description: Errors are optional. If there are multiple error, this field gives details.
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example: '["error1", "error2"]'
+              message:
+                description: Error Message that contains information about error
+                type: string
+                x-go-name: Message
+    RunDetailResultsReturnSwagger:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              mitre_attack_results:
+                $ref: '#/components/schemas/MitreResults'
+              unified_kill_chain_results:
+                $ref: '#/components/schemas/UkcResults'
+    ThreatResultsReturnSwagger:
+      description: ThreatResultsReturnSwagger
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              pages:
+                $ref: '#/components/schemas/Pagination'
+              threats:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SimulationRunThreat'
+                x-go-name: SimulationThreatResult
+    RawLogsReturnSwagger:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              raw_log_file_links:
+                type: array
+                items:
+                  type: string
+                x-go-name: RawLogFileLinks
+  securitySchemes:
+    Access-Token:
+      description: After getting the access token, type <i>Bearer accessToken</i> to the Value input box to request access to the below endpoints For example <i>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</i>
+      type: apiKey
+      name: Authorization
+      in: header

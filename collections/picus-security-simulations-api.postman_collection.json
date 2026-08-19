@@ -1,0 +1,1947 @@
+{
+  "item": [
+    {
+      "id": "479885df-4c99-407b-88b1-a019609fb463",
+      "name": "Simulations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fafa6b84-8796-4b53-8719-60ae766e15e9",
+          "name": "# Simulation List",
+          "request": {
+            "name": "# Simulation List",
+            "description": {
+              "content": "Simulation List; Simulation ID, Simulation Name, Simulation Agent (with status), Enrichment Status, Last Prevention Result, Last Detection Result (if Available)\nDefault limit: 25, Default offset: 0\nMax limit: 50",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "simulations"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter with Status (one or more status): RUNNING | STOPPED | WAITING FOR THE FIRST RUN | NOT STARTED | COMPLETED"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter with Status (one or more status): RUNNING | STOPPED | WAITING FOR THE FIRST RUN | NOT STARTED | COMPLETED"
+                },
+                {
+                  "disabled": false,
+                  "key": "simulation_name",
+                  "value": "<string>",
+                  "description": "Filter with Simulation name."
+                },
+                {
+                  "disabled": false,
+                  "key": "agent_name",
+                  "value": "<string>",
+                  "description": "Filter with Agent name."
+                },
+                {
+                  "disabled": false,
+                  "key": "agent_id",
+                  "value": "<uint64>",
+                  "description": "Filter with Agent id."
+                },
+                {
+                  "disabled": false,
+                  "key": "template_name",
+                  "value": "<string>",
+                  "description": "Filter with Template name."
+                },
+                {
+                  "disabled": false,
+                  "key": "template_id",
+                  "value": "<uint64>",
+                  "description": "Filter with Template id."
+                },
+                {
+                  "disabled": false,
+                  "key": "prevention_result_lte",
+                  "value": "<long>",
+                  "description": "Filter with Prevention Result Less Than or Equals"
+                },
+                {
+                  "disabled": false,
+                  "key": "prevention_result_gte",
+                  "value": "<long>",
+                  "description": "Filter with Prevention Result Greater Than or Equals"
+                },
+                {
+                  "disabled": false,
+                  "key": "detection_result_lte",
+                  "value": "<long>",
+                  "description": "Filter with Detection Result Less Than or Equals"
+                },
+                {
+                  "disabled": false,
+                  "key": "detection_result_gte",
+                  "value": "<long>",
+                  "description": "Filter with Detection Result Greater Than or Equals"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7cb3e45b-ed12-446c-9d04-fc0adbdf8720",
+              "name": "SimulationsResponse",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "simulation_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agent_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agent_id",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "template_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "template_id",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "prevention_result_lte",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "prevention_result_gte",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "detection_result_lte",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "detection_result_gte",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pages\": {\n    \"limit\": 20,\n    \"offset\": 0,\n    \"total_count\": 100\n  },\n  \"simulations\": [\n    {\n      \"agent\": {\n        \"id\": 1,\n        \"name\": \"Agent-1\",\n        \"status\": \"alive | dead | expired\",\n        \"type\": \"QuickEmail | Browser | Installable Agent | Windows | Linux | MacOS\",\n        \"version\": \"3.4.0.0\"\n      },\n      \"completion_ratio\": 7202,\n      \"detection_analysis\": {\n        \"integrations\": [\n          {\n            \"id\": 1,\n            \"product_name\": \"Crowdstrike\"\n          },\n          {\n            \"id\": 1,\n            \"product_name\": \"Crowdstrike\"\n          }\n        ]\n      },\n      \"fail_reason_message\": \"string\",\n      \"has_detection_analysis\": true,\n      \"has_last_run_detection_analysis\": false,\n      \"last_detection_security_score\": 50,\n      \"last_prevention_security_score\": 50,\n      \"simulation_id\": 1,\n      \"simulation_name\": \"Simulation-1\",\n      \"status\": \"RUNNING | COMPLETED | STOPPED | NOT STARTED | SCHEDULED | WAITING FOR THE FIRST RUN\",\n      \"status_details\": {\n        \"detection\": {\n          \"completed_threat_count\": 4257,\n          \"total_threat_count\": 5131\n        },\n        \"prevention\": {\n          \"completed_threat_count\": 5602,\n          \"total_threat_count\": 1797\n        }\n      },\n      \"template_id\": 1,\n      \"template_name\": \"Template #1\",\n      \"updated_at\": 1654623047\n    },\n    {\n      \"agent\": {\n        \"id\": 1,\n        \"name\": \"Agent-1\",\n        \"status\": \"alive | dead | expired\",\n        \"type\": \"QuickEmail | Browser | Installable Agent | Windows | Linux | MacOS\",\n        \"version\": \"3.4.0.0\"\n      },\n      \"completion_ratio\": 8224,\n      \"detection_analysis\": {\n        \"integrations\": [\n          {\n            \"id\": 1,\n            \"product_name\": \"Crowdstrike\"\n          },\n          {\n            \"id\": 1,\n            \"product_name\": \"Crowdstrike\"\n          }\n        ]\n      },\n      \"fail_reason_message\": \"string\",\n      \"has_detection_analysis\": true,\n      \"has_last_run_detection_analysis\": false,\n      \"last_detection_security_score\": 50,\n      \"last_prevention_security_score\": 50,\n      \"simulation_id\": 1,\n      \"simulation_name\": \"Simulation-1\",\n      \"status\": \"RUNNING | COMPLETED | STOPPED | NOT STARTED | SCHEDULED | WAITING FOR THE FIRST RUN\",\n      \"status_details\": {\n        \"detection\": {\n          \"completed_threat_count\": 1050,\n          \"total_threat_count\": 8652\n        },\n        \"prevention\": {\n          \"completed_threat_count\": 6010,\n          \"total_threat_count\": 2737\n        }\n      },\n      \"template_id\": 1,\n      \"template_name\": \"Template #1\",\n      \"updated_at\": 1654623047\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e46d76d-437e-4516-95a4-61c8c86e93f8",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "simulation_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agent_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agent_id",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "template_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "template_id",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "prevention_result_lte",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "prevention_result_gte",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "detection_result_lte",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "detection_result_gte",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ad11e1b-6d62-4327-95a4-1f9ddd1019da",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "simulation_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agent_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agent_id",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "template_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "template_id",
+                      "value": "<uint64>"
+                    },
+                    {
+                      "key": "prevention_result_lte",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "prevention_result_gte",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "detection_result_lte",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "detection_result_gte",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db7c3172-7e62-4835-b18e-a2cca69294bd",
+          "name": "# Create Simulation",
+          "request": {
+            "name": "# Create Simulation",
+            "description": {
+              "content": "Creates the simulation with given information",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "simulations"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"template_id\": \"<uint64>\",\n  \"agent_id\": \"<uint64>\",\n  \"agent_user_ids\": [\n    \"<uint64>\",\n    \"<uint64>\"\n  ],\n  \"auto_resume\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"force\": \"<boolean>\",\n  \"integrations\": [\n    \"<uint64>\",\n    \"<uint64>\"\n  ],\n  \"obfuscation_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"protocols\": [\n    {\n      \"module_id\": \"<uint64>\",\n      \"protocols\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"module_id\": \"<uint64>\",\n      \"protocols\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"schedule\": {\n    \"start_time\": \"<long>\",\n    \"name\": \"<string>\",\n    \"frequency\": \"<string>\",\n    \"day_of_month\": [\n      \"<long>\",\n      \"<long>\"\n    ],\n    \"day_of_week\": [\n      \"<long>\",\n      \"<long>\"\n    ],\n    \"frequency_interval\": \"<long>\"\n  },\n  \"schedule_now\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a01af14d-3626-4123-8b92-7f47c3185be5",
+              "name": "SimulationCreateReturnSwagger",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"simulation - 1\",\n  \"template_id\": 1,\n  \"agent_id\": 3,\n  \"agent_user_ids\": [\n    1,\n    2\n  ],\n  \"auto_resume\": \"<boolean>\",\n  \"description\": \"This simulation rocks!\",\n  \"force\": \"<boolean>\",\n  \"integrations\": [\n    1,\n    2,\n    3\n  ],\n  \"obfuscation_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"protocols\": [\n    {\n      \"module_id\": 1,\n      \"protocols\": [\n        \"http\",\n        \"https\"\n      ]\n    },\n    {\n      \"module_id\": 1,\n      \"protocols\": [\n        \"http\",\n        \"https\"\n      ]\n    }\n  ],\n  \"schedule\": {\n    \"start_time\": \"<long>\",\n    \"name\": \"Schedule-1\",\n    \"frequency\": \"WEEKLY\",\n    \"day_of_month\": [\n      1,\n      30\n    ],\n    \"day_of_week\": [\n      1,\n      3\n    ],\n    \"frequency_interval\": 2\n  },\n  \"schedule_now\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"run_immediately\": true,\n  \"run_info\": {\n    \"browser\": \"BrowserUnknown\",\n    \"id\": 1,\n    \"status\": \"COMPLETED\"\n  },\n  \"simulation\": {\n    \"agent_id\": {\n      \"Int64\": 1987,\n      \"Valid\": false\n    },\n    \"agent_user_ids\": [\n      1,\n      2\n    ],\n    \"description\": \"description of the simulation\",\n    \"id\": 1,\n    \"integrations\": [\n      1,\n      2,\n      3\n    ],\n    \"is_active\": {\n      \"Bool\": false,\n      \"Valid\": false\n    },\n    \"name\": \"Simulation - 1\",\n    \"obfuscation_methods\": [\n      \"string\",\n      \"string\"\n    ],\n    \"protocols\": [\n      {\n        \"module_id\": 1,\n        \"protocols\": [\n          \"http\",\n          \"https\"\n        ]\n      },\n      {\n        \"module_id\": 1,\n        \"protocols\": [\n          \"http\",\n          \"https\"\n        ]\n      }\n    ],\n    \"schedule_id\": 3,\n    \"template_id\": {\n      \"Int64\": 70,\n      \"Valid\": true\n    }\n  },\n  \"simulation_already_exist\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "56310bf9-7adc-4e28-a4e2-aca3ebb8b3d1",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"simulation - 1\",\n  \"template_id\": 1,\n  \"agent_id\": 3,\n  \"agent_user_ids\": [\n    1,\n    2\n  ],\n  \"auto_resume\": \"<boolean>\",\n  \"description\": \"This simulation rocks!\",\n  \"force\": \"<boolean>\",\n  \"integrations\": [\n    1,\n    2,\n    3\n  ],\n  \"obfuscation_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"protocols\": [\n    {\n      \"module_id\": 1,\n      \"protocols\": [\n        \"http\",\n        \"https\"\n      ]\n    },\n    {\n      \"module_id\": 1,\n      \"protocols\": [\n        \"http\",\n        \"https\"\n      ]\n    }\n  ],\n  \"schedule\": {\n    \"start_time\": \"<long>\",\n    \"name\": \"Schedule-1\",\n    \"frequency\": \"WEEKLY\",\n    \"day_of_month\": [\n      1,\n      30\n    ],\n    \"day_of_week\": [\n      1,\n      3\n    ],\n    \"frequency_interval\": 2\n  },\n  \"schedule_now\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad3ae25d-2ee2-4823-a3b4-289119a1b2f6",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"simulation - 1\",\n  \"template_id\": 1,\n  \"agent_id\": 3,\n  \"agent_user_ids\": [\n    1,\n    2\n  ],\n  \"auto_resume\": \"<boolean>\",\n  \"description\": \"This simulation rocks!\",\n  \"force\": \"<boolean>\",\n  \"integrations\": [\n    1,\n    2,\n    3\n  ],\n  \"obfuscation_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"protocols\": [\n    {\n      \"module_id\": 1,\n      \"protocols\": [\n        \"http\",\n        \"https\"\n      ]\n    },\n    {\n      \"module_id\": 1,\n      \"protocols\": [\n        \"http\",\n        \"https\"\n      ]\n    }\n  ],\n  \"schedule\": {\n    \"start_time\": \"<long>\",\n    \"name\": \"Schedule-1\",\n    \"frequency\": \"WEEKLY\",\n    \"day_of_month\": [\n      1,\n      30\n    ],\n    \"day_of_week\": [\n      1,\n      3\n    ],\n    \"frequency_interval\": 2\n  },\n  \"schedule_now\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3fe9341b-ae79-484c-b338-498a216d2090",
+          "name": "# Simulation Detail",
+          "request": {
+            "name": "# Simulation Detail",
+            "description": {
+              "content": "Simulation Detail; Simulation Name, Simulation Agent (with status), Enrichment Status, Last Prevention Result,\nLast Detection Result (if Available), Simulation Run List",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "simulations",
+                ":Id"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "Id",
+                  "description": "(Required) Simulation ID (URI parameter)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5df74f5b-d2a5-49fa-a524-ef3d2341f749",
+              "name": "SimulationDetailReturnSwagger",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Simulations\": {\n    \"agent\": {\n      \"id\": 1,\n      \"name\": \"Agent-1\",\n      \"status\": \"alive | dead | expired\",\n      \"type\": \"QuickEmail | Browser | Installable Agent | Windows | Linux | MacOS\",\n      \"version\": \"3.4.0.0\"\n    },\n    \"completion_ratio\": 6049,\n    \"created_at\": 1654623047,\n    \"detection_analysis\": {\n      \"integrations\": [\n        {\n          \"id\": 1,\n          \"product_name\": \"Crowdstrike\"\n        },\n        {\n          \"id\": 1,\n          \"product_name\": \"Crowdstrike\"\n        }\n      ]\n    },\n    \"has_detection_analysis\": false,\n    \"has_last_run_detection_analysis\": false,\n    \"last_detection_security_score\": 4843,\n    \"last_prevention_security_score\": 3464,\n    \"simulation_id\": 1,\n    \"simulation_name\": \"Simulation 1\",\n    \"simulation_run\": [\n      {\n        \"completed_at\": 1650527217,\n        \"fail_reason_message\": \"string\",\n        \"id\": \"1\",\n        \"scheduled_time\": 9147,\n        \"started_at\": 1650526217,\n        \"status\": \"RUNNING | COMPLETED | STOPPED | NOT STARTED | SCHEDULED | WAITING FOR THE FIRST RUN\"\n      },\n      {\n        \"completed_at\": 1650527217,\n        \"fail_reason_message\": \"string\",\n        \"id\": \"1\",\n        \"scheduled_time\": 350,\n        \"started_at\": 1650526217,\n        \"status\": \"RUNNING | COMPLETED | STOPPED | NOT STARTED | SCHEDULED | WAITING FOR THE FIRST RUN\"\n      }\n    ],\n    \"status\": \"RUNNING | COMPLETED | STOPPED | NOT STARTED | SCHEDULED | WAITING FOR THE FIRST RUN\",\n    \"status_details\": {\n      \"detection\": {\n        \"completed_threat_count\": 6293,\n        \"total_threat_count\": 7189\n      },\n      \"prevention\": {\n        \"completed_threat_count\": 2754,\n        \"total_threat_count\": 9436\n      }\n    },\n    \"template_id\": 1,\n    \"template_name\": \"Template #1\",\n    \"updated_at\": 1654623047\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4029b2e9-7aec-48ee-a2b5-3094b6eeb952",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ffd0f159-1cc5-4e88-83d5-695d91030c69",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0cab116b-0dd2-4e54-89a2-1049179f48f7",
+          "name": "# Update Simulation",
+          "request": {
+            "name": "# Update Simulation",
+            "description": {
+              "content": "Updates the simulation with given information",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "simulations",
+                ":Id"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "Id",
+                  "description": "(Required) Simulation ID (URI parameter)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schedule\": {\n    \"start_time\": \"<long>\",\n    \"name\": \"<string>\",\n    \"frequency\": \"<string>\",\n    \"day_of_month\": [\n      \"<long>\",\n      \"<long>\"\n    ],\n    \"day_of_week\": [\n      \"<long>\",\n      \"<long>\"\n    ],\n    \"frequency_interval\": \"<long>\"\n  },\n  \"schedule_now\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2a0b8572-1f61-4adc-a846-9df9b56392fd",
+              "name": "SimulationUpdateReturnSwagger",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schedule\": {\n    \"start_time\": \"<long>\",\n    \"name\": \"Schedule-1\",\n    \"frequency\": \"WEEKLY\",\n    \"day_of_month\": [\n      1,\n      30\n    ],\n    \"day_of_week\": [\n      1,\n      3\n    ],\n    \"frequency_interval\": 2\n  },\n  \"schedule_now\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"run_immediately\": true,\n  \"simulation\": {\n    \"agent_id\": {\n      \"Int64\": 4934,\n      \"Valid\": false\n    },\n    \"agent_user_ids\": [\n      1,\n      2\n    ],\n    \"description\": \"description of the simulation\",\n    \"id\": 1,\n    \"integrations\": [\n      1,\n      2,\n      3\n    ],\n    \"is_active\": {\n      \"Bool\": false,\n      \"Valid\": false\n    },\n    \"name\": \"Simulation - 1\",\n    \"obfuscation_methods\": [\n      \"string\",\n      \"string\"\n    ],\n    \"protocols\": [\n      {\n        \"module_id\": 1,\n        \"protocols\": [\n          \"http\",\n          \"https\"\n        ]\n      },\n      {\n        \"module_id\": 1,\n        \"protocols\": [\n          \"http\",\n          \"https\"\n        ]\n      }\n    ],\n    \"schedule_id\": 3,\n    \"template_id\": {\n      \"Int64\": 9301,\n      \"Valid\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d28bc36-cc5f-4d14-8c46-f04394cbeec5",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schedule\": {\n    \"start_time\": \"<long>\",\n    \"name\": \"Schedule-1\",\n    \"frequency\": \"WEEKLY\",\n    \"day_of_month\": [\n      1,\n      30\n    ],\n    \"day_of_week\": [\n      1,\n      3\n    ],\n    \"frequency_interval\": 2\n  },\n  \"schedule_now\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed559146-4e97-4478-8d47-cd36f146affa",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schedule\": {\n    \"start_time\": \"<long>\",\n    \"name\": \"Schedule-1\",\n    \"frequency\": \"WEEKLY\",\n    \"day_of_month\": [\n      1,\n      30\n    ],\n    \"day_of_week\": [\n      1,\n      3\n    ],\n    \"frequency_interval\": 2\n  },\n  \"schedule_now\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "08704402-5ff0-4952-9254-dad55b64833f",
+          "name": "# Delete Simulation",
+          "request": {
+            "name": "# Delete Simulation",
+            "description": {
+              "content": "Deletes simulation with given id",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "simulations",
+                ":Id"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "Id",
+                  "description": "(Required) Simulation ID (URI parameter)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8d112f1b-4cc1-4dc3-a291-aed1d880c7d4",
+              "name": "SimulationDeleteReturnSwagger",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "043cbcf5-6d76-446f-8020-686d1ac2ded8",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f64249a7-cb24-45b2-832b-2963d9e1804b",
+              "name": "genericErrorWithSuccessSwagger is represents the erroneous cases with success field",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\",\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1adbd312-b2e4-4dff-95f1-29bea6218408",
+          "name": "# Cancel Simulation",
+          "request": {
+            "name": "# Cancel Simulation",
+            "description": {
+              "content": "Cancels simulation with given id if it is running",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "simulations",
+                ":Id",
+                "cancel"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "Id",
+                  "description": "(Required) Simulation ID (URI parameter)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "461c34cf-57c7-4d46-9825-97709e1b0cde",
+              "name": "SimulationCancelReturnSwagger",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39aaf798-d691-4bb8-87c4-bd107bb08591",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44592ebb-36a8-4fcb-bb26-17a6f8d18151",
+              "name": "genericErrorWithSuccessSwagger is represents the erroneous cases with success field",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\",\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e185b802-5c01-4c2f-a11d-f1c787b201f3",
+          "name": "# Simulate Now",
+          "request": {
+            "name": "# Simulate Now",
+            "description": {
+              "content": "ReRuns simulation with given id",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "",
+                "v1",
+                "simulations",
+                ":Id",
+                "simulate-now"
+              ],
+              "host": [
+                "api",
+                "picussecurity",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uint64>",
+                  "key": "Id",
+                  "description": "(Required) Simulation ID (URI parameter)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ea50d944-147f-4b08-8ac7-d8eb7cde2552",
+              "name": "SimulateNowReturnSwagger",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "simulate-now"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"run_immediately\": false,\n  \"run_info\": {\n    \"browser\": \"BrowserUnknown\",\n    \"id\": 1,\n    \"status\": \"COMPLETED\"\n  },\n  \"simulation\": {\n    \"agent_id\": {\n      \"Int64\": 2186,\n      \"Valid\": false\n    },\n    \"agent_user_ids\": [\n      1,\n      2\n    ],\n    \"description\": \"description of the simulation\",\n    \"id\": 1,\n    \"integrations\": [\n      1,\n      2,\n      3\n    ],\n    \"is_active\": {\n      \"Bool\": false,\n      \"Valid\": true\n    },\n    \"name\": \"Simulation - 1\",\n    \"obfuscation_methods\": [\n      \"string\",\n      \"string\"\n    ],\n    \"protocols\": [\n      {\n        \"module_id\": 1,\n        \"protocols\": [\n          \"http\",\n          \"https\"\n        ]\n      },\n      {\n        \"module_id\": 1,\n        \"protocols\": [\n          \"http\",\n          \"https\"\n        ]\n      }\n    ],\n    \"schedule_id\": 3,\n    \"template_id\": {\n      \"Int64\": 2640,\n      \"Valid\": true\n    }\n  },\n  \"simulation_already_exist\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4fc75ed-5373-4499-90a8-7fde37c9f006",
+              "name": "validationErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "simulate-now"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {\n    \"param\": \"tag=max, param=25, given value=1000\"\n  },\n  \"message\": \"validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e774b6c4-8142-45da-b0b1-acc023392aa0",
+              "name": "genericErrorSwagger is represents the erroneous cases",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "",
+                    "v1",
+                    "simulations",
+                    ":Id",
+                    "simulate-now"
+                  ],
+                  "host": [
+                    "api",
+                    "picussecurity",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uint64>",
+                      "key": "Id",
+                      "description": "(Required) Simulation ID (URI parameter)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_code\": 1001,\n  \"errors\": {\n    \"key_0\": \"string\"\n  },\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.picussecurity.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7792097c-9855-4b9f-9ac6-6f09d4996f3e",
+    "name": "Picus Customer Simulations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<p class=\"body-1\">You can access the simulation raw data using the Rest API. Scope of the API includes; Simulation list, Simulation Details, Threat/Objective/Action Results, Results mapped to MITRE ATTC&K and Unified Kill Chain frameworks, Detection Analysis Results, Validated Logs & Alerts with SIEM & EDR integration.</p>\n<p class=\"body-1\">OAuth2 protocol is used to authorize Refresh/Access tokens. To obtain the API, you should generate a refresh token and then request an access token using the /v1/auth/token endpoint. The refresh token will be valid for 6 months, whereas the access token will be available for 2 hours. After getting the access token, add Authorization: Bearer {accessToken} to the header to request access to the below endpoints.</p>\n<p class=\"body-1\">Endpoints returning data with a lot of load works with the pagination method. You can use the offset and limit parameters to get the correct page.</p>\n\n<i class=\"body-1\">Your usage will be limited with your Picus license.</i>",
+      "type": "text/plain"
+    }
+  }
+}

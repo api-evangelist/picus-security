@@ -1,0 +1,179 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picus Customer Agents API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Agents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "# Agent List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/agents",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Agents; Agent Name, Agent Status, Agent Type, Agent Created Time, Agent Platform"
+        },
+        {
+          "info": {
+            "name": "# Download Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/agents/download-link",
+            "params": [
+              {
+                "name": "agent_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "variant",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the download link for the given agent type and variant. Variants can be portable or installable for windows agent type,\n32bit or 64bit for linux agent type and apple or intel for macos agent type."
+        },
+        {
+          "info": {
+            "name": "# Install Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/agents/install-token",
+            "params": [
+              {
+                "name": "agent_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "variant",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the install token for the given agent type and variant. Variants can be portable or installable for windows agent type,\n32bit or 64bit for linux agent type and apple or intel for macos agent type. If agent type is kubernetes, variant is not required."
+        },
+        {
+          "info": {
+            "name": "# Download Kubernetes agent YAML",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/agents/kubernetes/download-yaml",
+            "params": [
+              {
+                "name": "agent_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "agent_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Downloads the Kubernetes agent YAML file for the given agent name and agent ID."
+        },
+        {
+          "info": {
+            "name": "# Reinstall Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/agents/reinstall-token",
+            "params": [
+              {
+                "name": "agent_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the reinstall token for the given agent type and variant. Variants can be portable or installable for windows agent type,\n32bit or 64bit for linux agent type and apple or intel for macos agent type."
+        },
+        {
+          "info": {
+            "name": "# Agent Detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/agents/:Id",
+            "params": [
+              {
+                "name": "Id",
+                "value": "",
+                "type": "path",
+                "description": "Agent ID (URI parameter)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Agent Detail; Agent Name, Agent Status, Agent Type, Agent Created Time, Agent Platform,\nAgent Mitigation Devices, Agent Attack Modules"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

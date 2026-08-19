@@ -1,0 +1,626 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Picus Customer Threats API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Threats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "# Action Parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/threat-library/action-parameters",
+            "params": [
+              {
+                "name": "module_name",
+                "value": "",
+                "type": "query",
+                "description": "List Action Parameters with Module Name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint returns all available parameters required to create an action. It provides the complete configuration schema, including supported fields, available option values, and related metadata necessary for action creation."
+        },
+        {
+          "info": {
+            "name": "# Action Details List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/threat-library/actions",
+            "params": [
+              {
+                "name": "action_ids",
+                "value": "",
+                "type": "query",
+                "description": "List Action Details With Action ID List. (Max 100 ids)"
+              },
+              {
+                "name": "action_display_ids",
+                "value": "",
+                "type": "query",
+                "description": "List Action Details With Action Display ID List. (Max 100 display ids)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Action Details; Action Id, Action Display Id, Action Name, Action Release Date, Action Description, Action Affected Os, Action Affected Products, Action Affected Platforms, Action Category, Attack Module, Mitres, Unified Kill Chains, Module Based Details, Owasp, Reference Links, Keyword Queries"
+        },
+        {
+          "info": {
+            "name": "# CreateAction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.picussecurity.com/v1/threat-library/actions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates custom actions with given arguments"
+        },
+        {
+          "info": {
+            "name": "# Custom Action Keyword",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.picussecurity.com/v1/threat-library/actions/custom-keyword",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Generates the detection keyword (query) for a custom action based on the given attack module\nand its related fields (file hashes, file name, play process ids, url or action id).\nThe returned keyword can then be passed to the Create Action endpoint."
+        },
+        {
+          "info": {
+            "name": "# Action Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/threat-library/actions/:ActionId",
+            "params": [
+              {
+                "name": "ActionId",
+                "value": "",
+                "type": "path",
+                "description": "Action ID (URI parameter)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Action Details; Action Id, Action Display Id, Action Name, Action Release Date, Action Description, Action Affected Os, Action Affected Products, Action Affected Platforms, Action Category, Attack Module, Mitres, Unified Kill Chains, Module Based Details, Owasp, Reference Links, Keyword Queries"
+        },
+        {
+          "info": {
+            "name": "# Files List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/threat-library/files",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "File Type can be local or remote"
+              },
+              {
+                "name": "nameLike",
+                "value": "",
+                "type": "query",
+                "description": "name like can be someFileName"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Files List;\nDefault limit: 100, Default offset: 0\nMax limit: 100"
+        },
+        {
+          "info": {
+            "name": "# Upload File",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.picussecurity.com/v1/threat-library/files",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file_type",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "type",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "download_path",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "is_executable",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "skip_zip_extract",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Uploads a file that can later be referenced when creating custom actions or processes.\nThe file must be sent as multipart/form-data under the \"file\" field."
+        },
+        {
+          "info": {
+            "name": "# Process List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/threat-library/processes",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "process_type",
+                "value": "",
+                "type": "query",
+                "description": "List Process With Process Type"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Processes;\nDefault limit: 100, Default offset: 0\nMax limit: 100"
+        },
+        {
+          "info": {
+            "name": "# Create Process",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.picussecurity.com/v1/threat-library/processes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates custom processes with given arguments"
+        },
+        {
+          "info": {
+            "name": "# List Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/threat-library/tags",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List tags for threats"
+        },
+        {
+          "info": {
+            "name": "# List Threat Actors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/threat-library/threat-actors",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List threat actors"
+        },
+        {
+          "info": {
+            "name": "# Threat List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/threat-library/threats",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "severities",
+                "value": "",
+                "type": "query",
+                "description": "Filter with Severity (one or more severity): Low | Medium | High"
+              },
+              {
+                "name": "attack_category_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter with one or more Attack Category IDs.\n\nAvailable attack categories, as `id: name (attack module)`:\n\n1: Malicious Code (Network Infiltration)\n2: Attack Scenario (Windows Endpoint Scenario)\n3: Vulnerability Exploitation (Network Infiltration)\n4: Web Application (Web Application)\n5: Malicious Code (E-mail Infiltration)\n6: Vulnerability Exploitation (E-mail Infiltration)\n7: Data Exfiltration (Data Exfiltration)\n37: Attack Scenario (Linux Endpoint Scenario)\n38: Attack Scenario (macOS Endpoint Scenario)\n39: Lateral Movement Techniques (Windows Endpoint Scenario)\n41: URL Filtering (URL Filtering)\n42: Attack Scenario (Kubernetes Endpoint Scenario)\n137: Azure ARM (Azure Cloud Emulation)\n138: Azure Entra ID (Azure Cloud Emulation)\n139: Azure m365 (Azure Cloud Emulation)\n140: AWS (AWS Cloud Emulation)\n141: GCP (GCP Cloud Emulation)"
+              },
+              {
+                "name": "attack_module_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter with one or more Attack Module IDs.\n\nAvailable attack modules, as `id: name`:\n\n1: Network Infiltration\n2: Windows Endpoint Scenario\n3: Web Application\n4: E-mail Infiltration\n5: Data Exfiltration\n6: Linux Endpoint Scenario\n7: macOS Endpoint Scenario\n9: URL Filtering\n10: Kubernetes Endpoint Scenario\n103: Azure Cloud Emulation\n104: AWS Cloud Emulation\n105: GCP Cloud Emulation"
+              },
+              {
+                "name": "release_date_gte",
+                "value": "",
+                "type": "query",
+                "description": "Filter with Release Date Greater Than or Equals."
+              },
+              {
+                "name": "release_date_lte",
+                "value": "",
+                "type": "query",
+                "description": "Filter with Release Date Less Than or Equals."
+              },
+              {
+                "name": "is_predefined",
+                "value": "",
+                "type": "query",
+                "description": "Filter with whether threat is predefined."
+              },
+              {
+                "name": "affected_products",
+                "value": "",
+                "type": "query",
+                "description": "Filter with Affected Products."
+              },
+              {
+                "name": "affected_os",
+                "value": "",
+                "type": "query",
+                "description": "Filter with Affected Operating Systems. Windows | Linux | macOS"
+              },
+              {
+                "name": "unified_kill_chains",
+                "value": "",
+                "type": "query",
+                "description": "Filter with Unified Kill Chain Phases."
+              },
+              {
+                "name": "threat_actors",
+                "value": "",
+                "type": "query",
+                "description": "Threat Actors Filter"
+              },
+              {
+                "name": "mitre_attack",
+                "value": "",
+                "type": "query",
+                "description": "Mitre Tactics Filter"
+              },
+              {
+                "name": "attacker_objectives",
+                "value": "",
+                "type": "query",
+                "description": "Attacker Objectives Filter"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Threat List; Threat ID, Threat Display ID, Threat Name,  Release Date, Severity, Tags, Affected Operating Systems, Is Predefined, Attack Categories, Attack Module Ids, Unified Kill Chain Phases, Mitres"
+        },
+        {
+          "info": {
+            "name": "# Create Threat",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.picussecurity.com/v1/threat-library/threats",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates custom threats with given arguments"
+        },
+        {
+          "info": {
+            "name": "# Import Threat Pack",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.picussecurity.com/v1/threat-library/threats/import",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Imports a threat pack from a YAML file or an encrypted zip archive containing\na YAML definition and optional payload files. Returns the created threat details.\nFor detailed information on how to construct the threat file, please refer to the guide\nat https://support.picussecurity.com/hc/en-us/articles/36765648951837."
+        },
+        {
+          "info": {
+            "name": "# Threat Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/threat-library/threats/:ThreatId",
+            "params": [
+              {
+                "name": "ThreatId",
+                "value": "",
+                "type": "path",
+                "description": "Threat ID (URI parameter)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Threat Details; Threat ID, Threat Display ID, Threat Name,  Release Date, Severity, Tags, Affected Operating Systems, Is Predefined, Attack Categories, Attack Module Ids, Unified Kill Chain Phases, Mitres, Threat Description, Affected Products, Action Category Id, Applicable Agent Types, Objective Flows, Threat Actors"
+        },
+        {
+          "info": {
+            "name": "# Update Threat",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.picussecurity.com/v1/threat-library/threats/:ThreatId",
+            "params": [
+              {
+                "name": "ThreatId",
+                "value": "",
+                "type": "path",
+                "description": "Threat ID (URI parameter)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates custom threats with given arguments"
+        },
+        {
+          "info": {
+            "name": "# Delete Threat",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.picussecurity.com/v1/threat-library/threats/:ThreatId",
+            "params": [
+              {
+                "name": "ThreatId",
+                "value": "",
+                "type": "path",
+                "description": "Threat ID (URI parameter)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes custom threats with given threat ID"
+        },
+        {
+          "info": {
+            "name": "# Export Threat Pack",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v1/threat-library/threats/:ThreatId/export",
+            "params": [
+              {
+                "name": "ThreatId",
+                "value": "",
+                "type": "path",
+                "description": "Threat ID (URI parameter)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Exports a custom threat as an encrypted zip file containing the threat definition\nand any associated files. The response is a binary file download."
+        },
+        {
+          "info": {
+            "name": "# Action List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.picussecurity.com/v2/threat-library/actions",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "updated_at_gte",
+                "value": "",
+                "type": "query",
+                "description": "List Actions With Updated At Greater Than or Equal to UpdatedAtGte."
+              },
+              {
+                "name": "updated_at_lte",
+                "value": "",
+                "type": "query",
+                "description": "List Actions With Updated At Less Than or Equal to UpdatedAtLte."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Action List; Action Id, Action Display Id, Updated At, Action Name\nDefault limit: 100, Default offset: 0\nMax limit: 100"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
