@@ -19,6 +19,17 @@ specificationVersion: '0.23'
 created: '2026-08-02'
 modified: '2026-08-02'
 tags:
+- Cybersecurity
+- Security Validation
+- Breach and Attack Simulation
+- Adversarial Exposure Validation
+- Continuous Threat Exposure Management
+- Penetration Testing
+- Threat Intelligence
+- mitre-attack
+- Detection Engineering
+- Security Operations
+tags_raw:
 - cybersecurity
 - security-validation
 - breach-and-attack-simulation
@@ -36,6 +47,8 @@ apis:
   humanURL: https://apidocs.picussecurity.com/
   baseURL: https://api.picussecurity.com/
   tags:
+  - Activity Logs
+  tags_raw:
   - Activity-Logs
   properties:
   - type: OpenAPI
@@ -140,6 +153,8 @@ apis:
   humanURL: https://apidocs.picussecurity.com/
   baseURL: https://api.picussecurity.com/
   tags:
+  - Integration
+  tags_raw:
   - Integrations
   properties:
   - type: OpenAPI
@@ -376,6 +391,8 @@ apis:
   humanURL: https://apidocs.picussecurity.com/
   baseURL: https://api.picussecurity.com/
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
