@@ -11,6 +11,18 @@ description: >-
   results, the threat library, threat templates, agents, integrations, mitigation and detection content,
   exposure instance scores, users and roles, and activity logs, authorized with OAuth2-issued refresh and
   access tokens.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://www.picussecurity.com/hubfs/Picus_February2020/images/favicon.ico
 url: https://raw.githubusercontent.com/api-evangelist/picus-security/refs/heads/main/apis.yml
 x-type: company
