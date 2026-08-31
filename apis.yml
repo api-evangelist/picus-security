@@ -32,15 +32,15 @@ created: '2026-08-02'
 modified: '2026-08-02'
 tags:
 - Cybersecurity
-- Security Validation
-- Breach and Attack Simulation
-- Adversarial Exposure Validation
-- Continuous Threat Exposure Management
-- Penetration Testing
+- security-validation
+- breach-and-attack-simulation
+- adversarial-exposure-validation
+- continuous-threat-exposure-management
+- penetration-testing
 - Threat Intelligence
 - mitre-attack
-- Detection Engineering
-- Security Operations
+- detection-engineering
+- security-operations
 tags_raw:
 - cybersecurity
 - security-validation
@@ -59,7 +59,7 @@ apis:
   humanURL: https://apidocs.picussecurity.com/
   baseURL: https://api.picussecurity.com/
   tags:
-  - Activity Logs
+  - Activity-Logs
   tags_raw:
   - Activity-Logs
   properties:
