@@ -313,6 +313,8 @@ apis:
   humanURL: https://apidocs.picussecurity.com/
   baseURL: https://api.picussecurity.com/
   tags:
+  - Simulation
+  tags_raw:
   - Simulations
   properties:
   - type: OpenAPI
