@@ -1,14 +1,7 @@
 openapi: 3.2.0
 info:
-  title: Picus Customer Mitigation API
-  description: '<p class="body-1">You can access the simulation raw data using the Rest API. Scope of the API includes; Simulation list, Simulation Details, Threat/Objective/Action Results, Results mapped to MITRE ATTC&K and Unified Kill Chain frameworks, Detection Analysis Results, Validated Logs & Alerts with SIEM & EDR integration.</p>
-
-    <p class="body-1">OAuth2 protocol is used to authorize Refresh/Access tokens. To obtain the API, you should generate a refresh token and then request an access token using the /v1/auth/token endpoint. The refresh token will be valid for 6 months, whereas the access token will be available for 2 hours. After getting the access token, add Authorization: Bearer {accessToken} to the header to request access to the below endpoints.</p>
-
-    <p class="body-1">Endpoints returning data with a lot of load works with the pagination method. You can use the offset and limit parameters to get the correct page.</p>
-
-
-    <i class="body-1">Your usage will be limited with your Picus license.</i>'
+  description: You can access the simulation raw data using the Rest API.
+  title: Picus Rest Mitigation API
   version: '1.0'
 servers:
 - url: https://api.picussecurity.com/
@@ -462,7 +455,7 @@ paths:
       description: Description. Reference, Product Platform, Product Version
       tags:
       - Mitigation
-      summary: Signature List; Signature Id, Signature Name, Vendor Severity, Signature Category, Signature Version,
+      summary: Signature List; Signature Id, Signature Name, Vendor Severity, Signature…
       operationId: signatureListParams
       parameters:
       - x-go-name: ActionIds
@@ -633,786 +626,7 @@ paths:
       servers:
       - url: https://api.picussecurity.com/
 components:
-  schemas:
-    DeleteCustomDetectionContentInternalResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          x-go-name: Message
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
-    DetectionContentRuleDetailOverviewCustomerApiResponse:
-      type: object
-      properties:
-        author:
-          type: string
-          x-go-name: Author
-        description:
-          type: string
-          x-go-name: Description
-        deviceName:
-          type: string
-          x-go-name: DeviceName
-        falsePositives:
-          type: array
-          items:
-            type: string
-          x-go-name: FalsePositives
-        id:
-          type: string
-          x-go-name: Id
-        integrationConfigurations:
-          $ref: '#/components/schemas/DetectionContentRuleDetailIntegrationConfigurations'
-        logSource:
-          $ref: '#/components/schemas/LogSourceDTO'
-        mitre:
-          type: array
-          items:
-            $ref: '#/components/schemas/TechniqueInfoDTO'
-          x-go-name: Mitre
-        name:
-          type: string
-          x-go-name: Name
-        query:
-          type: string
-          x-go-name: Query
-        releaseDate:
-          type: integer
-          format: int64
-          x-go-name: ReleaseDate
-        score:
-          type: integer
-          format: int64
-          x-go-name: Score
-        severity:
-          type: string
-          x-go-name: Severity
-        type:
-          type: string
-          x-go-name: Type
-        updateDate:
-          type: integer
-          format: int64
-          x-go-name: UpdateDate
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
-    CreatedCustomDetectionContentItem:
-      type: object
-      properties:
-        content_id:
-          type: string
-          x-go-name: ContentID
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
-    DetectionContentRuleDetailCustomerApiResponse:
-      type: object
-      properties:
-        actions:
-          type: array
-          items:
-            $ref: '#/components/schemas/ActionWithCategoryDTO'
-          x-go-name: Actions
-        overview:
-          $ref: '#/components/schemas/DetectionContentRuleDetailOverviewCustomerApiResponse'
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
-    DetectionContentLogSourceCustomerApiResponse:
-      type: object
-      properties:
-        logSources:
-          type: array
-          items:
-            type: string
-          x-go-name: LogSources
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
-    CustomDetectionContentParams:
-      type: object
-      properties:
-        action_ids:
-          type: array
-          items:
-            type: integer
-            format: uint64
-          x-go-name: ActionIds
-        author:
-          type: string
-          x-go-name: Author
-        content_name:
-          type: string
-          x-go-name: ContentName
-        content_sources:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomDetectionSourceParams'
-          x-go-name: Sources
-        description:
-          type: string
-          x-go-name: Description
-        false_positives:
-          type: array
-          items:
-            type: string
-          x-go-name: FalsePositives
-        products:
-          type: string
-          x-go-name: Products
-        references:
-          type: array
-          items:
-            type: string
-          x-go-name: References
-        release_date:
-          description: 'Release date of the detection content, as a Unix timestamp in milliseconds.
-
-            If omitted, the current server time is used.'
-          type: integer
-          format: int64
-          x-go-name: ReleaseDate
-        service:
-          type: string
-          x-go-name: Service
-        status:
-          type: string
-          x-go-name: Status
-        sub_techniques:
-          type: array
-          items:
-            type: string
-          x-go-name: SubTechniques
-        tactics:
-          type: array
-          items:
-            type: string
-          x-go-name: Tactics
-        techniques:
-          type: array
-          items:
-            type: string
-          x-go-name: Techniques
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
-    SourceWithRuleCount:
-      type: object
-      properties:
-        name:
-          type: string
-          x-go-name: ContentSourceName
-        ruleCount:
-          type: integer
-          format: int64
-          x-go-name: RuleCount
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
-    RuleDTO:
-      type: object
-      properties:
-        actions:
-          type: array
-          items:
-            $ref: '#/components/schemas/IdNameInfoDTO'
-          x-go-name: Actions
-        id:
-          type: string
-          x-go-name: Id
-        mitre:
-          type: array
-          items:
-            $ref: '#/components/schemas/TechniqueInfoDTO'
-          x-go-name: Mitre
-        name:
-          type: string
-          x-go-name: Name
-        releaseDate:
-          type: integer
-          format: int64
-          x-go-name: ReleaseDate
-        score:
-          type: integer
-          format: int64
-          x-go-name: Score
-        severity:
-          type: string
-          x-go-name: Severity
-        type:
-          type: string
-          x-go-name: Type
-        updateDate:
-          type: integer
-          format: int64
-          x-go-name: UpdateDate
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
-    DetectionContentRuleDetailIntegrationConfigurations:
-      type: object
-      properties:
-        crowdStrike:
-          $ref: '#/components/schemas/DetectionContentRuleDetailCrowdStrikeConfiguration'
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
-    ContentSourceItem:
-      type: object
-      properties:
-        deviceName:
-          type: string
-          x-go-name: DeviceName
-        policies:
-          type: array
-          items:
-            type: string
-          x-go-name: Policies
-        query:
-          type: string
-          x-go-name: Query
-        severity:
-          type: string
-          x-go-name: Severity
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
-    CustomRuleDTO:
-      type: object
-      properties:
-        actions:
-          type: array
-          items:
-            $ref: '#/components/schemas/IdNameInfoDTO'
-          x-go-name: Actions
-        author:
-          type: string
-          x-go-name: Author
-        content_id:
-          type: string
-          x-go-name: ContentId
-        content_sources:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContentSourceItem'
-          x-go-name: ContentSources
-        name:
-          type: string
-          x-go-name: Name
-        severity:
-          type: string
-          x-go-name: Severity
-        tactics:
-          type: array
-          items:
-            type: string
-          x-go-name: Tactics
-        techniques:
-          type: array
-          items:
-            $ref: '#/components/schemas/TechniqueInfoDTO'
-          x-go-name: Techniques
-        type:
-          type: string
-          x-go-name: Type
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
-    DetectionContentRuleDetailCrowdStrikeConfiguration:
-      type: object
-      properties:
-        ioaDetails:
-          $ref: '#/components/schemas/CrowdStrikeIOARuleResponse'
-        logScaleQuery:
-          type: string
-          x-go-name: LogScaleQuery
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
-    NotBlockedActionResponse:
-      type: object
-      properties:
-        action_display_id:
-          type: integer
-          format: uint64
-          x-go-name: ActionDisplayId
-        action_id:
-          type: integer
-          format: uint64
-          x-go-name: ActionId
-        action_name:
-          type: string
-          x-go-name: ActionName
-        assessment_run_id:
-          type: integer
-          format: uint64
-          x-go-name: AssessmentRunId
-        attack_category:
-          type: string
-          x-go-name: AttackCategory
-        attack_module:
-          type: string
-          x-go-name: AttackModule
-        campaign_id:
-          type: integer
-          format: uint64
-          x-go-name: CampaignId
-        mitigation_ids:
-          $ref: '#/components/schemas/Int64Array'
-        node_id:
-          type: integer
-          format: uint64
-          x-go-name: NodeId
-        release_date:
-          type: string
-          x-go-name: ReleaseDate
-        signature_descriptions:
-          $ref: '#/components/schemas/StringArray'
-        signature_names:
-          $ref: '#/components/schemas/StringArray'
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
-    UpdateCustomDetectionContentInternalResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          x-go-name: Message
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
-    PaginationDTO:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-          format: uint64
-          x-go-name: CurrentPage
-        currentPageSize:
-          type: integer
-          format: int64
-          x-go-name: CurrentPageSize
-        pageSize:
-          type: integer
-          format: uint64
-          x-go-name: PageSize
-        totalCount:
-          type: integer
-          format: int64
-          x-go-name: TotalCount
-        totalPageCount:
-          type: integer
-          format: int64
-          x-go-name: TotalPageCount
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
-    LogSourceDTO:
-      type: object
-      properties:
-        policies:
-          type: array
-          items:
-            type: string
-          x-go-name: Policies
-        productName:
-          type: array
-          items:
-            type: string
-          x-go-name: ProductName
-        service:
-          type: string
-          x-go-name: Service
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
-    StringArray:
-      type: array
-      title: StringArray represents a one-dimensional array of the PostgreSQL character types.
-      items:
-        type: string
-      x-go-package: github.com/lib/pq
-    TechniqueInfoDTO:
-      type: object
-      properties:
-        mitreId:
-          type: string
-          x-go-name: MitreId
-        name:
-          type: string
-          x-go-name: Name
-        url:
-          type: string
-          x-go-name: Url
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
-    Signature:
-      type: object
-      properties:
-        description:
-          type: string
-          x-go-name: Description
-        id:
-          type: integer
-          format: int64
-          x-go-name: Id
-        name:
-          type: string
-          x-go-name: Name
-        product_platform:
-          type: string
-          x-go-name: ProductPlatform
-        product_version:
-          type: string
-          x-go-name: ProductVersion
-        reference:
-          type: string
-          x-go-name: Reference
-        signature_category:
-          type: string
-          x-go-name: SignatureCategory
-        signature_id:
-          type: string
-          x-go-name: SignatureId
-        signature_version:
-          type: string
-          x-go-name: SignatureVersion
-        vendor_severity:
-          type: string
-          x-go-name: VendorSeverity
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/mitigation
-    CreateCustomDetectionContentInternalResponse:
-      type: object
-      properties:
-        created:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreatedCustomDetectionContentItem'
-          x-go-name: Created
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
-    IdNameInfoDTO:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          x-go-name: Id
-        name:
-          type: string
-          x-go-name: Name
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
-    CrowdStrikeIOARuleResponse:
-      type: object
-      properties:
-        commandLine:
-          type: string
-          x-go-name: CommandLine
-        connectionType:
-          type: string
-          x-go-name: ConnectionType
-        filePath:
-          type: string
-          x-go-name: FilePath
-        fileType:
-          type: string
-          x-go-name: FileType
-        grandparentCommandLine:
-          type: string
-          x-go-name: GrandparentCommandLine
-        grandparentImageFileName:
-          type: string
-          x-go-name: GrandparentImageFileName
-        imageFileName:
-          type: string
-          x-go-name: ImageFileName
-        parentCommandLine:
-          type: string
-          x-go-name: ParentCommandLine
-        parentImageFileName:
-          type: string
-          x-go-name: ParentImageFileName
-        platform:
-          type: string
-          x-go-name: Platform
-        remoteIPAddress:
-          type: string
-          x-go-name: RemoteIPAddress
-        remoteTCPUDPPort:
-          type: string
-          x-go-name: RemoteTCPUDPPort
-        ruleAction:
-          type: string
-          x-go-name: RuleAction
-        ruleQuery:
-          type: string
-          x-go-name: RuleQuery
-        ruleType:
-          type: string
-          x-go-name: RuleType
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
-    CustomDetectionSourceParams:
-      type: object
-      properties:
-        content_policies:
-          type: array
-          items:
-            type: string
-          x-go-name: ContentPolicies
-        device_name:
-          type: string
-          x-go-name: DeviceName
-        event_id:
-          type: array
-          items:
-            type: integer
-            format: int64
-          x-go-name: EventId
-        query:
-          type: string
-          x-go-name: DeviceQuery
-        severity:
-          type: string
-          x-go-name: Severity
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
-    Pagination:
-      type: object
-      properties:
-        limit:
-          description: Limit
-          type: integer
-          format: int64
-          x-go-name: Limit
-          example: 20
-        offset:
-          description: Offset
-          type: integer
-          format: int64
-          x-go-name: Offset
-          example: 0
-        total_count:
-          description: Total Count
-          type: integer
-          format: int64
-          x-go-name: TotalCount
-          example: 100
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/apirequest
-    Int64Array:
-      type: array
-      title: Int64Array represents a one-dimensional array of the PostgreSQL integer types.
-      items:
-        type: integer
-        format: int64
-      x-go-package: github.com/lib/pq
-    ActionWithCategoryDTO:
-      type: object
-      properties:
-        category:
-          type: string
-          x-go-name: Category
-        display_id:
-          type: integer
-          format: int64
-          x-go-name: DisplayId
-        id:
-          type: integer
-          format: int64
-          x-go-name: Id
-        name:
-          type: string
-          x-go-name: Name
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
   responses:
-    CreateCustomDetectionContentResponse:
-      description: CreateCustomDetectionContentResponse
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreateCustomDetectionContentInternalResponse'
-    NotBlockedActionsListSwagger:
-      description: NotBlockedActionsListSwagger
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              not_blocked_action_list:
-                type: array
-                items:
-                  $ref: '#/components/schemas/NotBlockedActionResponse'
-                x-go-name: NotBlockedActions
-              pagination:
-                $ref: '#/components/schemas/Pagination'
-    MitreTechniquesResponse:
-      description: MitreTechniquesResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              techniques:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    mitre_id:
-                      description: MITRE ATT&CK technique identifier (e.g. T1059)
-                      type: string
-                      x-go-name: MitreId
-                    name:
-                      description: Human-readable name of the technique
-                      type: string
-                      x-go-name: Name
-                x-go-name: Techniques
-    validationErrorSwagger:
-      description: validationErrorSwagger is represents the erroneous cases
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              errors:
-                description: Validation Error List
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example:
-                  param: tag=max, param=25, given value=1000
-              message:
-                description: Message will be "validation error"
-                type: string
-                x-go-name: Message
-                example: validation error
-    SignatureListSwagger:
-      description: SignatureListSwagger
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              signatures:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Signature'
-                x-go-name: Signatures
-    MitreTacticsResponse:
-      description: MitreTacticsResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              tactics:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    mitre_id:
-                      description: MITRE ATT&CK tactic identifier (e.g. TA0001)
-                      type: string
-                      x-go-name: MitreId
-                    name:
-                      description: Human-readable name of the tactic
-                      type: string
-                      x-go-name: Name
-                x-go-name: Tactics
-    DeleteCustomDetectionContentResponse:
-      description: DeleteCustomDetectionContentResponse
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/DeleteCustomDetectionContentInternalResponse'
-    GetCustomDetectionContentByIdResponse:
-      description: GetCustomDetectionContentByIdResponse
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CustomRuleDTO'
-    genericErrorSwagger:
-      description: genericErrorSwagger is represents the erroneous cases
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error_code:
-                description: Error Code is optional. It is using for define specific error types.
-                type: integer
-                format: int64
-                x-go-name: ErrorCode
-                example: 1001
-              errors:
-                description: Errors are optional. If there are multiple error, this field gives details.
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example: '["error1", "error2"]'
-              message:
-                description: Error Message that contains information about error
-                type: string
-                x-go-name: Message
-    MitreSubTechniquesResponse:
-      description: MitreSubTechniquesResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              sub_techniques:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    mitre_id:
-                      description: MITRE ATT&CK sub-technique identifier (e.g. T1059.001)
-                      type: string
-                      x-go-name: MitreId
-                    name:
-                      description: Human-readable name of the sub-technique
-                      type: string
-                      x-go-name: Name
-                    technique_mitre_id:
-                      description: Parent technique MITRE ID (e.g. T1059)
-                      type: string
-                      x-go-name: TechniqueMitreId
-                x-go-name: SubTechniques
-    DevicesListV2Swagger:
-      description: DevicesListV2Swagger
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              devices:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    device_id:
-                      type: integer
-                      format: uint64
-                      x-go-name: DeviceId
-                    device_name:
-                      type: string
-                      x-go-name: DeviceName
-                x-go-name: Devices
-    DeviceStatsByIdSwagger:
-      description: DeviceStatsByIdSwagger
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              blocked_count:
-                type: integer
-                format: int64
-                x-go-name: BlockedCount
-              device_id:
-                type: integer
-                format: uint64
-                x-go-name: DeviceId
-              not_blocked_count:
-                type: integer
-                format: int64
-                x-go-name: NotBlockedCount
-              score:
-                type: integer
-                format: int64
-                x-go-name: Score
-              total_count:
-                type: integer
-                format: int64
-                x-go-name: TotalCount
-    SourcesResponse:
-      description: SourcesResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              sources:
-                type: array
-                items:
-                  $ref: '#/components/schemas/SourceWithRuleCount'
-                x-go-name: Sources
-    UpdateCustomDetectionContentResponse:
-      description: UpdateCustomDetectionContentResponse
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UpdateCustomDetectionContentInternalResponse'
     DetectionDevicesResponse:
       description: DetectionDevicesResponse
       content:
@@ -1435,26 +649,6 @@ components:
                       type: string
                       x-go-name: Name
                 x-go-name: Devices
-    RulesResponse:
-      description: RulesResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              pagination:
-                $ref: '#/components/schemas/PaginationDTO'
-              rules:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RuleDTO'
-                x-go-name: Rules
-    LogSourcesResponse:
-      description: LogSourcesResponse
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/DetectionContentLogSourceCustomerApiResponse'
     GetCustomDetectionContentResponse:
       description: GetCustomDetectionContentResponse
       content:
@@ -1569,12 +763,811 @@ components:
                       type: string
                       x-go-name: Type
                 x-go-name: Rules
+    SourcesResponse:
+      description: SourcesResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              sources:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SourceWithRuleCount'
+                x-go-name: Sources
+    DevicesListV2Swagger:
+      description: DevicesListV2Swagger
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              devices:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    device_id:
+                      type: integer
+                      format: uint64
+                      x-go-name: DeviceId
+                    device_name:
+                      type: string
+                      x-go-name: DeviceName
+                x-go-name: Devices
+    DeleteCustomDetectionContentResponse:
+      description: DeleteCustomDetectionContentResponse
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DeleteCustomDetectionContentInternalResponse'
+    CreateCustomDetectionContentResponse:
+      description: CreateCustomDetectionContentResponse
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateCustomDetectionContentInternalResponse'
+    MitreTacticsResponse:
+      description: MitreTacticsResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              tactics:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    mitre_id:
+                      description: MITRE ATT&CK tactic identifier (e.g. TA0001)
+                      type: string
+                      x-go-name: MitreId
+                    name:
+                      description: Human-readable name of the tactic
+                      type: string
+                      x-go-name: Name
+                x-go-name: Tactics
+    RulesResponse:
+      description: RulesResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              pagination:
+                $ref: '#/components/schemas/PaginationDTO'
+              rules:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RuleDTO'
+                x-go-name: Rules
+    genericErrorSwagger:
+      description: genericErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error Code is optional. It is using for define specific error types.
+                type: integer
+                format: int64
+                x-go-name: ErrorCode
+                example: 1001
+              errors:
+                description: Errors are optional. If there are multiple error, this field gives details.
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example: '["error1", "error2"]'
+              message:
+                description: Error Message that contains information about error
+                type: string
+                x-go-name: Message
+    MitreSubTechniquesResponse:
+      description: MitreSubTechniquesResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              sub_techniques:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    mitre_id:
+                      description: MITRE ATT&CK sub-technique identifier (e.g. T1059.001)
+                      type: string
+                      x-go-name: MitreId
+                    name:
+                      description: Human-readable name of the sub-technique
+                      type: string
+                      x-go-name: Name
+                    technique_mitre_id:
+                      description: Parent technique MITRE ID (e.g. T1059)
+                      type: string
+                      x-go-name: TechniqueMitreId
+                x-go-name: SubTechniques
+    NotBlockedActionsListSwagger:
+      description: NotBlockedActionsListSwagger
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              not_blocked_action_list:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NotBlockedActionResponse'
+                x-go-name: NotBlockedActions
+              pagination:
+                $ref: '#/components/schemas/Pagination'
+    UpdateCustomDetectionContentResponse:
+      description: UpdateCustomDetectionContentResponse
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateCustomDetectionContentInternalResponse'
     RuleDetailResponse:
       description: RuleDetailResponse
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/DetectionContentRuleDetailCustomerApiResponse'
+    SignatureListSwagger:
+      description: SignatureListSwagger
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              signatures:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Signature'
+                x-go-name: Signatures
+    LogSourcesResponse:
+      description: LogSourcesResponse
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DetectionContentLogSourceCustomerApiResponse'
+    validationErrorSwagger:
+      description: validationErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                description: Validation Error List
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example:
+                  param: tag=max, param=25, given value=1000
+              message:
+                description: Message will be "validation error"
+                type: string
+                x-go-name: Message
+                example: validation error
+    GetCustomDetectionContentByIdResponse:
+      description: GetCustomDetectionContentByIdResponse
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CustomRuleDTO'
+    MitreTechniquesResponse:
+      description: MitreTechniquesResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              techniques:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    mitre_id:
+                      description: MITRE ATT&CK technique identifier (e.g. T1059)
+                      type: string
+                      x-go-name: MitreId
+                    name:
+                      description: Human-readable name of the technique
+                      type: string
+                      x-go-name: Name
+                x-go-name: Techniques
+    DeviceStatsByIdSwagger:
+      description: DeviceStatsByIdSwagger
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              blocked_count:
+                type: integer
+                format: int64
+                x-go-name: BlockedCount
+              device_id:
+                type: integer
+                format: uint64
+                x-go-name: DeviceId
+              not_blocked_count:
+                type: integer
+                format: int64
+                x-go-name: NotBlockedCount
+              score:
+                type: integer
+                format: int64
+                x-go-name: Score
+              total_count:
+                type: integer
+                format: int64
+                x-go-name: TotalCount
+  schemas:
+    DetectionContentLogSourceCustomerApiResponse:
+      type: object
+      properties:
+        logSources:
+          type: array
+          items:
+            type: string
+          x-go-name: LogSources
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
+    DetectionContentRuleDetailOverviewCustomerApiResponse:
+      type: object
+      properties:
+        author:
+          type: string
+          x-go-name: Author
+        description:
+          type: string
+          x-go-name: Description
+        deviceName:
+          type: string
+          x-go-name: DeviceName
+        falsePositives:
+          type: array
+          items:
+            type: string
+          x-go-name: FalsePositives
+        id:
+          type: string
+          x-go-name: Id
+        integrationConfigurations:
+          $ref: '#/components/schemas/DetectionContentRuleDetailIntegrationConfigurations'
+        logSource:
+          $ref: '#/components/schemas/LogSourceDTO'
+        mitre:
+          type: array
+          items:
+            $ref: '#/components/schemas/TechniqueInfoDTO'
+          x-go-name: Mitre
+        name:
+          type: string
+          x-go-name: Name
+        query:
+          type: string
+          x-go-name: Query
+        releaseDate:
+          type: integer
+          format: int64
+          x-go-name: ReleaseDate
+        score:
+          type: integer
+          format: int64
+          x-go-name: Score
+        severity:
+          type: string
+          x-go-name: Severity
+        type:
+          type: string
+          x-go-name: Type
+        updateDate:
+          type: integer
+          format: int64
+          x-go-name: UpdateDate
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
+    ActionWithCategoryDTO:
+      type: object
+      properties:
+        category:
+          type: string
+          x-go-name: Category
+        display_id:
+          type: integer
+          format: int64
+          x-go-name: DisplayId
+        id:
+          type: integer
+          format: int64
+          x-go-name: Id
+        name:
+          type: string
+          x-go-name: Name
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
+    CrowdStrikeIOARuleResponse:
+      type: object
+      properties:
+        commandLine:
+          type: string
+          x-go-name: CommandLine
+        connectionType:
+          type: string
+          x-go-name: ConnectionType
+        filePath:
+          type: string
+          x-go-name: FilePath
+        fileType:
+          type: string
+          x-go-name: FileType
+        grandparentCommandLine:
+          type: string
+          x-go-name: GrandparentCommandLine
+        grandparentImageFileName:
+          type: string
+          x-go-name: GrandparentImageFileName
+        imageFileName:
+          type: string
+          x-go-name: ImageFileName
+        parentCommandLine:
+          type: string
+          x-go-name: ParentCommandLine
+        parentImageFileName:
+          type: string
+          x-go-name: ParentImageFileName
+        platform:
+          type: string
+          x-go-name: Platform
+        remoteIPAddress:
+          type: string
+          x-go-name: RemoteIPAddress
+        remoteTCPUDPPort:
+          type: string
+          x-go-name: RemoteTCPUDPPort
+        ruleAction:
+          type: string
+          x-go-name: RuleAction
+        ruleQuery:
+          type: string
+          x-go-name: RuleQuery
+        ruleType:
+          type: string
+          x-go-name: RuleType
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
+    DetectionContentRuleDetailCrowdStrikeConfiguration:
+      type: object
+      properties:
+        ioaDetails:
+          $ref: '#/components/schemas/CrowdStrikeIOARuleResponse'
+        logScaleQuery:
+          type: string
+          x-go-name: LogScaleQuery
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
+    CreateCustomDetectionContentInternalResponse:
+      type: object
+      properties:
+        created:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreatedCustomDetectionContentItem'
+          x-go-name: Created
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
+    CustomDetectionContentParams:
+      type: object
+      properties:
+        action_ids:
+          type: array
+          items:
+            type: integer
+            format: uint64
+          x-go-name: ActionIds
+        author:
+          type: string
+          x-go-name: Author
+        content_name:
+          type: string
+          x-go-name: ContentName
+        content_sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomDetectionSourceParams'
+          x-go-name: Sources
+        description:
+          type: string
+          x-go-name: Description
+        false_positives:
+          type: array
+          items:
+            type: string
+          x-go-name: FalsePositives
+        products:
+          type: string
+          x-go-name: Products
+        references:
+          type: array
+          items:
+            type: string
+          x-go-name: References
+        release_date:
+          description: 'Release date of the detection content, as a Unix timestamp in milliseconds.
+
+            If omitted, the current server time is used.'
+          type: integer
+          format: int64
+          x-go-name: ReleaseDate
+        service:
+          type: string
+          x-go-name: Service
+        status:
+          type: string
+          x-go-name: Status
+        sub_techniques:
+          type: array
+          items:
+            type: string
+          x-go-name: SubTechniques
+        tactics:
+          type: array
+          items:
+            type: string
+          x-go-name: Tactics
+        techniques:
+          type: array
+          items:
+            type: string
+          x-go-name: Techniques
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
+    NotBlockedActionResponse:
+      type: object
+      properties:
+        action_display_id:
+          type: integer
+          format: uint64
+          x-go-name: ActionDisplayId
+        action_id:
+          type: integer
+          format: uint64
+          x-go-name: ActionId
+        action_name:
+          type: string
+          x-go-name: ActionName
+        assessment_run_id:
+          type: integer
+          format: uint64
+          x-go-name: AssessmentRunId
+        attack_category:
+          type: string
+          x-go-name: AttackCategory
+        attack_module:
+          type: string
+          x-go-name: AttackModule
+        campaign_id:
+          type: integer
+          format: uint64
+          x-go-name: CampaignId
+        mitigation_ids:
+          $ref: '#/components/schemas/Int64Array'
+        node_id:
+          type: integer
+          format: uint64
+          x-go-name: NodeId
+        release_date:
+          type: string
+          x-go-name: ReleaseDate
+        signature_descriptions:
+          $ref: '#/components/schemas/StringArray'
+        signature_names:
+          $ref: '#/components/schemas/StringArray'
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
+    UpdateCustomDetectionContentInternalResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
+    StringArray:
+      type: array
+      title: StringArray represents a one-dimensional array of the PostgreSQL character types.
+      items:
+        type: string
+      x-go-package: github.com/lib/pq
+    Signature:
+      type: object
+      properties:
+        description:
+          type: string
+          x-go-name: Description
+        id:
+          type: integer
+          format: int64
+          x-go-name: Id
+        name:
+          type: string
+          x-go-name: Name
+        product_platform:
+          type: string
+          x-go-name: ProductPlatform
+        product_version:
+          type: string
+          x-go-name: ProductVersion
+        reference:
+          type: string
+          x-go-name: Reference
+        signature_category:
+          type: string
+          x-go-name: SignatureCategory
+        signature_id:
+          type: string
+          x-go-name: SignatureId
+        signature_version:
+          type: string
+          x-go-name: SignatureVersion
+        vendor_severity:
+          type: string
+          x-go-name: VendorSeverity
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/mitigation
+    PaginationDTO:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+          format: uint64
+          x-go-name: CurrentPage
+        currentPageSize:
+          type: integer
+          format: int64
+          x-go-name: CurrentPageSize
+        pageSize:
+          type: integer
+          format: uint64
+          x-go-name: PageSize
+        totalCount:
+          type: integer
+          format: int64
+          x-go-name: TotalCount
+        totalPageCount:
+          type: integer
+          format: int64
+          x-go-name: TotalPageCount
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
+    ContentSourceItem:
+      type: object
+      properties:
+        deviceName:
+          type: string
+          x-go-name: DeviceName
+        policies:
+          type: array
+          items:
+            type: string
+          x-go-name: Policies
+        query:
+          type: string
+          x-go-name: Query
+        severity:
+          type: string
+          x-go-name: Severity
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
+    CustomRuleDTO:
+      type: object
+      properties:
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdNameInfoDTO'
+          x-go-name: Actions
+        author:
+          type: string
+          x-go-name: Author
+        content_id:
+          type: string
+          x-go-name: ContentId
+        content_sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentSourceItem'
+          x-go-name: ContentSources
+        name:
+          type: string
+          x-go-name: Name
+        severity:
+          type: string
+          x-go-name: Severity
+        tactics:
+          type: array
+          items:
+            type: string
+          x-go-name: Tactics
+        techniques:
+          type: array
+          items:
+            $ref: '#/components/schemas/TechniqueInfoDTO'
+          x-go-name: Techniques
+        type:
+          type: string
+          x-go-name: Type
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
+    DetectionContentRuleDetailCustomerApiResponse:
+      type: object
+      properties:
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActionWithCategoryDTO'
+          x-go-name: Actions
+        overview:
+          $ref: '#/components/schemas/DetectionContentRuleDetailOverviewCustomerApiResponse'
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
+    Pagination:
+      type: object
+      properties:
+        limit:
+          description: Limit
+          type: integer
+          format: int64
+          x-go-name: Limit
+          example: 20
+        offset:
+          description: Offset
+          type: integer
+          format: int64
+          x-go-name: Offset
+          example: 0
+        total_count:
+          description: Total Count
+          type: integer
+          format: int64
+          x-go-name: TotalCount
+          example: 100
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/apirequest
+    LogSourceDTO:
+      type: object
+      properties:
+        policies:
+          type: array
+          items:
+            type: string
+          x-go-name: Policies
+        productName:
+          type: array
+          items:
+            type: string
+          x-go-name: ProductName
+        service:
+          type: string
+          x-go-name: Service
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
+    CustomDetectionSourceParams:
+      type: object
+      properties:
+        content_policies:
+          type: array
+          items:
+            type: string
+          x-go-name: ContentPolicies
+        device_name:
+          type: string
+          x-go-name: DeviceName
+        event_id:
+          type: array
+          items:
+            type: integer
+            format: int64
+          x-go-name: EventId
+        query:
+          type: string
+          x-go-name: DeviceQuery
+        severity:
+          type: string
+          x-go-name: Severity
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
+    DeleteCustomDetectionContentInternalResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          x-go-name: Message
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
+    IdNameInfoDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          x-go-name: Id
+        name:
+          type: string
+          x-go-name: Name
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
+    SourceWithRuleCount:
+      type: object
+      properties:
+        name:
+          type: string
+          x-go-name: ContentSourceName
+        ruleCount:
+          type: integer
+          format: int64
+          x-go-name: RuleCount
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
+    CreatedCustomDetectionContentItem:
+      type: object
+      properties:
+        content_id:
+          type: string
+          x-go-name: ContentID
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
+    RuleDTO:
+      type: object
+      properties:
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdNameInfoDTO'
+          x-go-name: Actions
+        id:
+          type: string
+          x-go-name: Id
+        mitre:
+          type: array
+          items:
+            $ref: '#/components/schemas/TechniqueInfoDTO'
+          x-go-name: Mitre
+        name:
+          type: string
+          x-go-name: Name
+        releaseDate:
+          type: integer
+          format: int64
+          x-go-name: ReleaseDate
+        score:
+          type: integer
+          format: int64
+          x-go-name: Score
+        severity:
+          type: string
+          x-go-name: Severity
+        type:
+          type: string
+          x-go-name: Type
+        updateDate:
+          type: integer
+          format: int64
+          x-go-name: UpdateDate
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
+    DetectionContentRuleDetailIntegrationConfigurations:
+      type: object
+      properties:
+        crowdStrike:
+          $ref: '#/components/schemas/DetectionContentRuleDetailCrowdStrikeConfiguration'
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
+    TechniqueInfoDTO:
+      type: object
+      properties:
+        mitreId:
+          type: string
+          x-go-name: MitreId
+        name:
+          type: string
+          x-go-name: Name
+        url:
+          type: string
+          x-go-name: Url
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
+    Int64Array:
+      type: array
+      title: Int64Array represents a one-dimensional array of the PostgreSQL integer types.
+      items:
+        type: integer
+        format: int64
+      x-go-package: github.com/lib/pq
   securitySchemes:
     Access-Token:
       description: After getting the access token, type <i>Bearer accessToken</i> to the Value input box to request access to the below endpoints For example <i>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</i>

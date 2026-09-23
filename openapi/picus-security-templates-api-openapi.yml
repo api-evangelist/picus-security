@@ -1,14 +1,7 @@
 openapi: 3.2.0
 info:
-  title: Picus Customer Templates API
-  description: '<p class="body-1">You can access the simulation raw data using the Rest API. Scope of the API includes; Simulation list, Simulation Details, Threat/Objective/Action Results, Results mapped to MITRE ATTC&K and Unified Kill Chain frameworks, Detection Analysis Results, Validated Logs & Alerts with SIEM & EDR integration.</p>
-
-    <p class="body-1">OAuth2 protocol is used to authorize Refresh/Access tokens. To obtain the API, you should generate a refresh token and then request an access token using the /v1/auth/token endpoint. The refresh token will be valid for 6 months, whereas the access token will be available for 2 hours. After getting the access token, add Authorization: Bearer {accessToken} to the header to request access to the below endpoints.</p>
-
-    <p class="body-1">Endpoints returning data with a lot of load works with the pagination method. You can use the offset and limit parameters to get the correct page.</p>
-
-
-    <i class="body-1">Your usage will be limited with your Picus license.</i>'
+  description: You can access the simulation raw data using the Rest API.
+  title: Picus Rest Templates API
   version: '1.0'
 servers:
 - url: https://api.picussecurity.com/
@@ -126,6 +119,179 @@ paths:
       - url: https://api.picussecurity.com/
 components:
   schemas:
+    TemplateDetailReturn:
+      type: object
+      properties:
+        agent_types:
+          description: Template Agent Types
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentType'
+          x-go-name: AgentTypes
+          example: '[{id:1}]'
+        category_name:
+          description: Template Category Name (main)
+          type: string
+          x-go-name: CategoryName
+          example: main
+        content_type:
+          description: Content Type (Static | Dynamic)
+          type: string
+          x-go-name: ContentType
+          example: Static
+        content_updated_at:
+          description: Template Content Updated Time
+          type: integer
+          format: int64
+          x-go-name: ContentChangedAt
+          example: 1654781780578
+        created_at:
+          description: Template Creation Time (1654781780578)
+          type: integer
+          format: int64
+          x-go-name: CreeatedAt
+          example: 1654781780578
+        description:
+          description: Template Description
+          type: string
+          x-go-name: Description
+          example: Description
+        id:
+          description: Template Id
+          type: integer
+          format: int64
+          x-go-name: Id
+          example: 1
+        name:
+          description: Template Name
+          type: string
+          x-go-name: Name
+          example: Template-1
+        rules:
+          description: Template Rules For Dynamic Templates
+          type: array
+          items:
+            $ref: '#/components/schemas/RulesReturn'
+          x-go-name: Rules
+        subcategory_name:
+          description: Template Subcategory Name (sub)
+          type: string
+          x-go-name: SubcategoryName
+          example: sub
+        threats:
+          description: 'Template Campaigns ([{id: 1, Name: Threat 1}, {id: 2, Name: Threat 2}])'
+          type: array
+          items:
+            $ref: '#/components/schemas/CampaignDetails'
+          x-go-name: Threats
+          example: '[{id: 1, Name: Threat 1}, {id: 2, Name: Threat 2}]'
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/templates
+    AgentType:
+      type: object
+      properties:
+        id:
+          description: Agent Id
+          type: integer
+          format: int64
+          x-go-name: Id
+          example: 1
+        name:
+          description: Agent Name
+          type: string
+          x-go-name: Name
+          example: Windows
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/templates
+    CampaignDetails:
+      type: object
+      properties:
+        display_id:
+          type: integer
+          format: int64
+          x-go-name: DisplayId
+        id:
+          type: integer
+          format: int64
+          x-go-name: Id
+        name:
+          type: string
+          x-go-name: Name
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/templates
+    TemplateReturn:
+      type: object
+      properties:
+        agent_types:
+          description: Template Agent Types
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentType'
+          x-go-name: AgentTypes
+          example: '[{id:1}]'
+        category_name:
+          description: Template Category Name (main)
+          type: string
+          x-go-name: CategoryName
+          example: main
+        content_type:
+          description: Content Type (Static | Dynamic)
+          type: string
+          x-go-name: ContentType
+          example: Static
+        content_updated_at:
+          description: Template Content Updated Time
+          type: integer
+          format: int64
+          x-go-name: ContentChangedAt
+          example: 1654781780578
+        description:
+          description: Template Description
+          type: string
+          x-go-name: Description
+          example: Description
+        id:
+          description: Template Id
+          type: integer
+          format: int64
+          x-go-name: Id
+          example: 1
+        name:
+          description: Template Name
+          type: string
+          x-go-name: Name
+          example: Template-1
+        subcategory_name:
+          description: Template Subcategory Name (sub)
+          type: string
+          x-go-name: SubcategoryName
+          example: sub
+        threat_count:
+          description: Template Threat Count
+          type: integer
+          format: int64
+          x-go-name: ThreatCount
+          example: 2
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/templates
+    Pagination:
+      type: object
+      properties:
+        limit:
+          description: Limit
+          type: integer
+          format: int64
+          x-go-name: Limit
+          example: 20
+        offset:
+          description: Offset
+          type: integer
+          format: int64
+          x-go-name: Offset
+          example: 0
+        total_count:
+          description: Total Count
+          type: integer
+          format: int64
+          x-go-name: TotalCount
+          example: 100
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/apirequest
     RulesReturn:
       type: object
       properties:
@@ -233,88 +399,16 @@ components:
           - 60
           - 62
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/templates
-    CampaignDetails:
+    SingleTemplateContentResponse:
       type: object
       properties:
-        display_id:
-          type: integer
-          format: int64
-          x-go-name: DisplayId
-        id:
-          type: integer
-          format: int64
-          x-go-name: Id
-        name:
-          type: string
-          x-go-name: Name
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/templates
-    TemplateDetailReturn:
-      type: object
-      properties:
-        agent_types:
-          description: Template Agent Types
-          type: array
-          items:
-            $ref: '#/components/schemas/AgentType'
-          x-go-name: AgentTypes
-          example: '[{id:1}]'
-        category_name:
-          description: Template Category Name (main)
-          type: string
-          x-go-name: CategoryName
-          example: main
-        content_type:
-          description: Content Type (Static | Dynamic)
-          type: string
-          x-go-name: ContentType
-          example: Static
-        content_updated_at:
-          description: Template Content Updated Time
-          type: integer
-          format: int64
-          x-go-name: ContentChangedAt
-          example: 1654781780578
-        created_at:
-          description: Template Creation Time (1654781780578)
-          type: integer
-          format: int64
-          x-go-name: CreeatedAt
-          example: 1654781780578
-        description:
-          description: Template Description
-          type: string
-          x-go-name: Description
-          example: Description
-        id:
-          description: Template Id
-          type: integer
-          format: int64
-          x-go-name: Id
-          example: 1
-        name:
-          description: Template Name
-          type: string
-          x-go-name: Name
-          example: Template-1
-        rules:
-          description: Template Rules For Dynamic Templates
-          type: array
-          items:
-            $ref: '#/components/schemas/RulesReturn'
-          x-go-name: Rules
-        subcategory_name:
-          description: Template Subcategory Name (sub)
-          type: string
-          x-go-name: SubcategoryName
-          example: sub
         threats:
-          description: 'Template Campaigns ([{id: 1, Name: Threat 1}, {id: 2, Name: Threat 2}])'
           type: array
           items:
-            $ref: '#/components/schemas/CampaignDetails'
+            type: integer
+            format: uint64
           x-go-name: Threats
-          example: '[{id: 1, Name: Threat 1}, {id: 2, Name: Threat 2}]'
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/templates
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
     TemplateThreatParams:
       type: object
       properties:
@@ -330,107 +424,6 @@ components:
             format: uint64
           x-go-name: Threats
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
-    SingleTemplateContentResponse:
-      type: object
-      properties:
-        threats:
-          type: array
-          items:
-            type: integer
-            format: uint64
-          x-go-name: Threats
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
-    TemplateReturn:
-      type: object
-      properties:
-        agent_types:
-          description: Template Agent Types
-          type: array
-          items:
-            $ref: '#/components/schemas/AgentType'
-          x-go-name: AgentTypes
-          example: '[{id:1}]'
-        category_name:
-          description: Template Category Name (main)
-          type: string
-          x-go-name: CategoryName
-          example: main
-        content_type:
-          description: Content Type (Static | Dynamic)
-          type: string
-          x-go-name: ContentType
-          example: Static
-        content_updated_at:
-          description: Template Content Updated Time
-          type: integer
-          format: int64
-          x-go-name: ContentChangedAt
-          example: 1654781780578
-        description:
-          description: Template Description
-          type: string
-          x-go-name: Description
-          example: Description
-        id:
-          description: Template Id
-          type: integer
-          format: int64
-          x-go-name: Id
-          example: 1
-        name:
-          description: Template Name
-          type: string
-          x-go-name: Name
-          example: Template-1
-        subcategory_name:
-          description: Template Subcategory Name (sub)
-          type: string
-          x-go-name: SubcategoryName
-          example: sub
-        threat_count:
-          description: Template Threat Count
-          type: integer
-          format: int64
-          x-go-name: ThreatCount
-          example: 2
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/templates
-    AgentType:
-      type: object
-      properties:
-        id:
-          description: Agent Id
-          type: integer
-          format: int64
-          x-go-name: Id
-          example: 1
-        name:
-          description: Agent Name
-          type: string
-          x-go-name: Name
-          example: Windows
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/templates
-    Pagination:
-      type: object
-      properties:
-        limit:
-          description: Limit
-          type: integer
-          format: int64
-          x-go-name: Limit
-          example: 20
-        offset:
-          description: Offset
-          type: integer
-          format: int64
-          x-go-name: Offset
-          example: 0
-        total_count:
-          description: Total Count
-          type: integer
-          format: int64
-          x-go-name: TotalCount
-          example: 100
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/apirequest
     TemplateRule:
       type: object
       properties:
@@ -516,6 +509,15 @@ components:
           - 62
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
   responses:
+    TemplateDetailReturnSwagger:
+      description: TemplateDetailReturnSwagger
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              Template:
+                $ref: '#/components/schemas/TemplateDetailReturn'
     TemplatesReturnSwagger:
       description: TemplatesReturnSwagger
       content:
@@ -530,6 +532,26 @@ components:
                 items:
                   $ref: '#/components/schemas/TemplateReturn'
                 x-go-name: Templates
+    validationErrorSwagger:
+      description: validationErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                description: Validation Error List
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example:
+                  param: tag=max, param=25, given value=1000
+              message:
+                description: Message will be "validation error"
+                type: string
+                x-go-name: Message
+                example: validation error
     TemplateCreateReturnSwagger:
       description: TemplateCreateReturnSwagger
       content:
@@ -601,35 +623,6 @@ components:
                 description: Error Message that contains information about error
                 type: string
                 x-go-name: Message
-    validationErrorSwagger:
-      description: validationErrorSwagger is represents the erroneous cases
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              errors:
-                description: Validation Error List
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example:
-                  param: tag=max, param=25, given value=1000
-              message:
-                description: Message will be "validation error"
-                type: string
-                x-go-name: Message
-                example: validation error
-    TemplateDetailReturnSwagger:
-      description: TemplateDetailReturnSwagger
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              Template:
-                $ref: '#/components/schemas/TemplateDetailReturn'
   securitySchemes:
     Access-Token:
       description: After getting the access token, type <i>Bearer accessToken</i> to the Value input box to request access to the below endpoints For example <i>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</i>

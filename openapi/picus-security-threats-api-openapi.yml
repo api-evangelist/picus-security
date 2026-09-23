@@ -1,14 +1,7 @@
 openapi: 3.2.0
 info:
-  title: Picus Customer Threats API
-  description: '<p class="body-1">You can access the simulation raw data using the Rest API. Scope of the API includes; Simulation list, Simulation Details, Threat/Objective/Action Results, Results mapped to MITRE ATTC&K and Unified Kill Chain frameworks, Detection Analysis Results, Validated Logs & Alerts with SIEM & EDR integration.</p>
-
-    <p class="body-1">OAuth2 protocol is used to authorize Refresh/Access tokens. To obtain the API, you should generate a refresh token and then request an access token using the /v1/auth/token endpoint. The refresh token will be valid for 6 months, whereas the access token will be available for 2 hours. After getting the access token, add Authorization: Bearer {accessToken} to the header to request access to the below endpoints.</p>
-
-    <p class="body-1">Endpoints returning data with a lot of load works with the pagination method. You can use the offset and limit parameters to get the correct page.</p>
-
-
-    <i class="body-1">Your usage will be limited with your Picus license.</i>'
+  description: You can access the simulation raw data using the Rest API.
+  title: Picus Rest Threats API
   version: '1.0'
 servers:
 - url: https://api.picussecurity.com/
@@ -499,7 +492,7 @@ paths:
     get:
       security:
       - Access-Token: []
-      description: Threat List; Threat ID, Threat Display ID, Threat Name,  Release Date, Severity, Tags, Affected Operating Systems, Is Predefined, Attack Categories, Attack Module Ids, Unified Kill Chain Phases, Mitres
+      description: Threat List; Threat ID, Threat Display ID, Threat Name, Release Date, Severity, Tags, Affected Operating Systems, Is Predefined, Attack Categories, Attack Module Ids, Unified Kill Chain Phases, Mitres
       tags:
       - Threats
       summary: '# Threat List'
@@ -811,7 +804,7 @@ paths:
     get:
       security:
       - Access-Token: []
-      description: Threat Details; Threat ID, Threat Display ID, Threat Name,  Release Date, Severity, Tags, Affected Operating Systems, Is Predefined, Attack Categories, Attack Module Ids, Unified Kill Chain Phases, Mitres, Threat Description, Affected Products, Action Category Id, Applicable Agent Types, Objective Flows, Threat Actors
+      description: Threat Details; Threat ID, Threat Display ID, Threat Name, Release Date, Severity, Tags, Affected Operating Systems, Is Predefined, Attack Categories, Attack Module Ids, Unified Kill Chain Phases, Mitres, Threat Description, Affected Products, Action Category Id, Applicable Agent Types, Objective Flows, Threat Actors
       tags:
       - Threats
       summary: '# Threat Details'
@@ -1029,51 +1022,6 @@ paths:
       - url: https://api.picussecurity.com/
 components:
   schemas:
-    File:
-      type: object
-      properties:
-        MD5:
-          type: string
-        SHA1:
-          type: string
-        SHA256:
-          type: string
-        name:
-          type: string
-          x-go-name: Name
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
-    FlowNode:
-      type: object
-      properties:
-        display_id:
-          type: integer
-          format: uint64
-          x-go-name: DisplayId
-        false_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/FlowNode'
-          x-go-name: FalseItems
-        id:
-          type: integer
-          format: uint64
-          x-go-name: ID
-        name:
-          type: string
-          x-go-name: Name
-        node_id:
-          type: integer
-          format: uint64
-          x-go-name: NodeID
-        true_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/FlowNode'
-          x-go-name: TrueItems
-        type:
-          type: string
-          x-go-name: Type
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
     CapiThreatDTO:
       type: object
       properties:
@@ -1109,283 +1057,6 @@ components:
             type: string
           x-go-name: Tags
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
-    Frameworks:
-      type: object
-      properties:
-        mitre:
-          $ref: '#/components/schemas/Mitre'
-        ukc:
-          $ref: '#/components/schemas/Ukc'
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
-    CustomCampaignObjectiveParams:
-      description: CustomCampaignObjectiveParams
-      type: object
-      required:
-      - name
-      - action_ids
-      - result_condition
-      properties:
-        action_ids:
-          type: array
-          maximum: 100
-          items:
-            type: integer
-            format: uint64
-          x-go-name: ActionIDs
-          example:
-          - 1000123
-        name:
-          type: string
-          maximum: 100
-          x-go-name: Name
-          example: A1
-        result_condition:
-          type: string
-          x-go-name: ResultCondition
-          example: unblocked
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
-    GenericIDNameItemDTO:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: uint64
-          x-go-name: ID
-          example: 1
-        name:
-          type: string
-          x-go-name: Name
-          example: item-name
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
-    CustomActionKeywordOutput:
-      type: object
-      properties:
-        keyword:
-          type: string
-          x-go-name: Keyword
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
-    ActionParameterBase:
-      type: object
-      properties:
-        id:
-          description: Id
-          type: string
-          x-go-name: Id
-          example: '1'
-        name:
-          description: Name
-          type: string
-          x-go-name: Name
-          example: Example
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
-    ThreatActor:
-      type: object
-      properties:
-        aka:
-          type: string
-          x-go-name: Aka
-        id:
-          description: Id
-          type: integer
-          format: uint64
-          x-go-name: Id
-          example: '1'
-        name:
-          description: Name
-          type: string
-          x-go-name: Name
-          example: Lazarus Group
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
-    AttackCategory:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          x-go-name: Id
-        name:
-          type: string
-          x-go-name: Name
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
-    FileApiOutput:
-      type: object
-      properties:
-        affected_processes:
-          type: array
-          items:
-            type: object
-            properties:
-              arguments:
-                type: string
-                x-go-name: Arguments
-              id:
-                type: integer
-                format: uint64
-                x-go-name: ID
-              name:
-                type: string
-                x-go-name: Name
-              path:
-                type: string
-                x-go-name: Path
-              process_type:
-                type: string
-                x-go-name: ProcessType
-          x-go-name: AffectedProcesses
-        created_at:
-          type: string
-          x-go-name: CreatedAt
-        download_path:
-          type: string
-          x-go-name: DownloadPath
-        id:
-          type: integer
-          format: int64
-          x-go-name: Id
-        is_executable:
-          type: boolean
-          x-go-name: IsExecutable
-        name:
-          type: object
-          properties:
-            base_name:
-              type: string
-              x-go-name: BaseName
-            extension:
-              type: string
-              x-go-name: Extension
-            full_name:
-              type: string
-              x-go-name: FullName
-            uuid:
-              type: string
-              x-go-name: UUID
-          x-go-name: Name
-        skip_zip_extract:
-          type: boolean
-          x-go-name: SkipZipExtract
-        type:
-          type: string
-          x-go-name: Type
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
-    Objective:
-      type: object
-      properties:
-        actions:
-          type: array
-          items:
-            $ref: '#/components/schemas/FlowNode'
-          x-go-name: Actions
-        id:
-          type: integer
-          format: uint64
-          x-go-name: Id
-        name:
-          type: string
-          x-go-name: Name
-        type:
-          type: string
-          x-go-name: Type
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
-    FileUploadOutput:
-      type: object
-      properties:
-        remote_file_id:
-          type: integer
-          format: int64
-          x-go-name: RemoteFileId
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
-    ModuleBasedDetails:
-      type: object
-      properties:
-        file:
-          $ref: '#/components/schemas/File'
-        processes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Process'
-          x-go-name: Process
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
-    Platform:
-      type: object
-      properties:
-        architecture:
-          type: string
-          x-go-name: PlatformArchitecture
-        name:
-          type: string
-          x-go-name: PlatformName
-        os:
-          type: string
-          x-go-name: PlatformOs
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
-    Process:
-      type: object
-      properties:
-        affected_actions:
-          type: array
-          items:
-            $ref: '#/components/schemas/AffectedAction'
-          x-go-name: AffectedActions
-        argument:
-          type: string
-          x-go-name: Argument
-        created_at:
-          type: string
-          format: date-time
-          x-go-name: CreatedAt
-        id:
-          type: integer
-          format: int64
-          x-go-name: Id
-        is_predefined:
-          type: boolean
-          x-go-name: IsPredefined
-        path:
-          type: string
-          x-go-name: Path
-        process_files_summary:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProcessFilesSummary'
-          x-go-name: ProcessFilesSummary
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
-    ProcessActionParams:
-      type: object
-      title: ProcessActionParams defines process-related parameters for an action.
-      properties:
-        cond_name:
-          description: example 1, for P1
-          type: integer
-          format: int64
-          x-go-name: ConditionName
-        is_blocked:
-          description: example "true"
-          type: string
-          x-go-name: IsBlocked
-        process_id:
-          description: example 1000123
-          type: integer
-          format: uint64
-          x-go-name: ProcessID
-        rank:
-          description: example 1
-          type: integer
-          format: int64
-          x-go-name: Rank
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
-    UkcDTO:
-      type: object
-      properties:
-        phases:
-          type: array
-          items:
-            type: string
-          x-go-name: Phases
-        stage:
-          type: string
-          x-go-name: Stage
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
     ActionSummary:
       type: object
       properties:
@@ -1413,444 +1084,6 @@ components:
           x-go-name: UpdatedAt
           example: 1649983505
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
-    NullInt64:
-      type: object
-      properties:
-        Int64:
-          type: integer
-          format: int64
-        Valid:
-          type: boolean
-      x-go-package: github.com/picusnext/picus-ng-lib/go/kit/types
-    ActionReturn:
-      type: object
-      properties:
-        affected_os:
-          description: Action AffectedOs
-          type: array
-          items:
-            type: string
-          x-go-name: AffectedOs
-          example:
-          - Windows
-        affected_platforms:
-          description: Action Platforms
-          type: array
-          items:
-            $ref: '#/components/schemas/Platform'
-          x-go-name: Platforms
-          example:
-          - architecture: 32-bit
-            name: Windows 10
-            os: Windows
-        affected_products:
-          description: Action AffectedProducts
-          type: array
-          items:
-            type: string
-          x-go-name: AffectedProducts
-          example:
-          - Windows
-          - Linux
-        attack_category:
-          description: Action Category
-          type: string
-          x-go-name: Category
-          example: category 1
-        attack_module:
-          description: Action Module
-          type: string
-          x-go-name: Module
-          example: module 1
-        attack_module_id:
-          description: Module Id
-          type: integer
-          format: uint64
-          x-go-name: ModuleId
-          example: 1
-        created_at:
-          description: Action Created At
-          type: integer
-          format: int64
-          x-go-name: CreatedAt
-          example: 1654623047
-        cve:
-          description: Action CVE
-          type: string
-          x-go-name: CVE
-          example: cve 1
-        cwe:
-          description: Action CWE
-          type: string
-          x-go-name: CWE
-          example: cwe 1
-        description:
-          description: Action Description
-          type: string
-          x-go-name: Description
-          example: description
-        display_id:
-          description: Action DisplayId
-          type: integer
-          format: int64
-          x-go-name: DisplayId
-          example: 11
-        frameworks:
-          $ref: '#/components/schemas/Frameworks'
-        id:
-          description: Action Id
-          type: integer
-          format: uint64
-          x-go-name: Id
-          example: 1
-        keyword_queries:
-          description: Keyword Queries
-          type: array
-          items:
-            $ref: '#/components/schemas/KWDictionary'
-          x-go-name: KeywordQueries
-          example:
-          - id: 1
-            query: example query
-            type: Default/Custom
-        module_based_details:
-          $ref: '#/components/schemas/ModuleBasedDetails'
-        name:
-          description: Action Name
-          type: string
-          x-go-name: Name
-          example: action 1
-        owasp:
-          description: Action Owasp
-          type: string
-          x-go-name: Owasp
-          example: owasp 1
-        references:
-          $ref: '#/components/schemas/ActionDetailReferences'
-        release_date:
-          description: Action ReleaseDate
-          type: integer
-          format: int64
-          x-go-name: ReleaseDate
-          example: 1649983505
-        sources:
-          description: Sources
-          type: array
-          items:
-            type: string
-          x-go-name: Sources
-          example:
-          - source1
-          - source2
-        tags:
-          description: Action Tags
-          type: array
-          items:
-            type: string
-          x-go-name: Tags
-          example:
-          - Custom
-        updated_at:
-          description: Action Updated At
-          type: integer
-          format: int64
-          x-go-name: UpdatedAt
-          example: 1654623047
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
-    AffectedAction:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          x-go-name: Id
-        name:
-          type: string
-          x-go-name: Name
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
-    ThreatsReturn:
-      type: object
-      properties:
-        affected_os:
-          description: Threat Affected Os
-          type: array
-          items:
-            type: string
-          x-go-name: AffectedOs
-          example:
-          - Windows
-        attack_categories:
-          description: Threat Attack Categories
-          type: array
-          items:
-            $ref: '#/components/schemas/AttackCategory'
-          x-go-name: AttackCategories
-          example:
-          - id: 1
-            name: Attack Category 1
-        attack_modules:
-          description: Threat Module Ids
-          type: array
-          items:
-            $ref: '#/components/schemas/AttackModule'
-          x-go-name: Modules
-          example:
-          - 1
-          - 2
-        created_at:
-          description: Threat Created At
-          type: integer
-          format: int64
-          x-go-name: CreatedAt
-          example: 1654623047
-        description:
-          description: Threat Description
-          type: string
-          x-go-name: Description
-          example: Threat 1
-        display_id:
-          description: Threat DisplayId
-          type: integer
-          format: int64
-          x-go-name: DisplayId
-          example: 1000
-        flows:
-          type: array
-          items:
-            $ref: '#/components/schemas/Objective'
-          x-go-name: Flows
-        id:
-          description: Threat Id
-          type: integer
-          format: uint64
-          x-go-name: Id
-          example: 1
-        is_predefined:
-          description: Threat Is Predefined
-          type: boolean
-          x-go-name: IsPredefined
-          example: false
-        mitre_attack:
-          description: Threat Mitre Tactics
-          type: array
-          items:
-            $ref: '#/components/schemas/MitreDTO'
-          x-go-name: Mitres
-          example:
-          - tactic: Credential Access
-            techniques:
-            - OS Credential Dumping
-          - tactic: Execution
-            techniques:
-            - Inter-Process Communication
-        name:
-          description: Threat Name
-          type: string
-          x-go-name: Name
-          example: Threat 1
-        release_date:
-          description: Threat Release Date
-          type: integer
-          format: int64
-          x-go-name: ReleaseDate
-          example: 1649681264
-        severity:
-          description: Threat Severity
-          type: string
-          x-go-name: Severity
-          example: High
-        tags:
-          description: Threat Tags
-          type: array
-          items:
-            type: string
-          x-go-name: Tags
-          example:
-          - Custom
-        unified_kill_chains:
-          description: Threat Kill Chain Phases
-          type: array
-          items:
-            $ref: '#/components/schemas/UkcDTO'
-          x-go-name: UnifiedKillChains
-          example:
-          - phases:
-            - Credential Access
-            stage: Network Propagation
-          - phases:
-            - Execution
-            stage: Network Propagation
-        updated_at:
-          description: Threat Updated At
-          type: integer
-          format: int64
-          x-go-name: UpdatedAt
-          example: 1654623047
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
-    CapiProcessDTO:
-      type: object
-      properties:
-        argument:
-          type: string
-          x-go-name: Argument
-        created_at:
-          type: string
-          format: date-time
-          x-go-name: CreatedAt
-        id:
-          type: integer
-          format: uint64
-          x-go-name: ID
-        path:
-          type: string
-          x-go-name: Path
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
-    AttackModule:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          x-go-name: Id
-        name:
-          type: string
-          x-go-name: Name
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
-    Ukc:
-      type: object
-      properties:
-        phase:
-          description: Unified kill chain Phase
-          type: string
-          x-go-name: Phase
-        stage:
-          description: Unified kill chain SÏtage
-          type: string
-          x-go-name: Stage
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
-    MitreParameter:
-      description: MitreParameter represents the top-level structure
-      type: object
-      properties:
-        has_actions:
-          description: HasActions
-          type: boolean
-          x-go-name: HasActions
-          example: false
-        id:
-          description: Id
-          type: integer
-          format: int64
-          x-go-name: Id
-          example: 6
-        name:
-          description: Name
-          type: string
-          x-go-name: Name
-          example: Reconnaissance
-        techniques:
-          description: Techniques
-          type: array
-          items:
-            $ref: '#/components/schemas/Technique'
-          x-go-name: Techniques
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
-    CreateProcessListInput:
-      description: CreateProcessListInput represents the request parameters for creating a process
-      type: object
-      properties:
-        argument:
-          description: Argument
-          type: string
-          x-go-name: Argument
-          example: stop WinDefend
-        code:
-          description: Expected exit code, part of the process success condition
-          type: integer
-          format: int64
-          x-go-name: Code
-          example: 0
-        comment:
-          description: Comment
-          type: string
-          x-go-name: Comment
-          example: Stops Windows Defender service
-        delay:
-          description: Delay
-          type: integer
-          format: int64
-          x-go-name: Delay
-          example: 0
-        file_ids:
-          description: FileIds
-          type: array
-          items:
-            type: integer
-            format: int64
-          x-go-name: FileIds
-          example:
-          - 1000001
-        is_async:
-          description: Is Asynchronous
-          type: boolean
-          x-go-name: IsAsync
-          example: false
-        is_blocked:
-          description: Is Blocked
-          type: boolean
-          x-go-name: IsBlocked
-          example: false
-        output:
-          description: Output
-          type: string
-          x-go-name: Output
-          example: '""'
-        path:
-          description: Path
-          type: string
-          x-go-name: Path
-          example: C:\\Windows\\System32\\sc.exe
-        process_type:
-          description: ProcessType can be play or rewind
-          type: string
-          x-go-name: ProcessType
-          example: play
-        success_cond_exist:
-          description: Success Condition Exist
-          type: boolean
-          x-go-name: SuccessCondExist
-          example: false
-        timeout:
-          description: Timeout
-          type: integer
-          format: int64
-          x-go-name: Timeout
-          example: 120000
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
-    ProcessFilesSummary:
-      type: object
-      properties:
-        FileSize:
-          type: integer
-          format: int64
-        FileType:
-          type: string
-        Id:
-          type: integer
-          format: int64
-        IsDownloaded:
-          type: boolean
-        IsExecutable:
-          type: boolean
-        Name:
-          type: string
-        Path:
-          type: string
-        SkipZipExtract:
-          type: boolean
-        Url:
-          type: string
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
     ThreatReturn:
       type: object
       properties:
@@ -2005,18 +1238,45 @@ components:
           x-go-name: UpdatedAt
           example: 1654623047
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
-    Reference:
+    MitreParameter:
+      description: MitreParameter represents the top-level structure
       type: object
       properties:
-        link:
-          description: Link
-          type: string
-          x-go-name: Link
+        has_actions:
+          description: HasActions
+          type: boolean
+          x-go-name: HasActions
+          example: false
+        id:
+          description: Id
+          type: integer
+          format: int64
+          x-go-name: Id
+          example: 6
         name:
           description: Name
           type: string
           x-go-name: Name
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+          example: Reconnaissance
+        techniques:
+          description: Techniques
+          type: array
+          items:
+            $ref: '#/components/schemas/Technique'
+          x-go-name: Techniques
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
+    MitreDTO:
+      type: object
+      properties:
+        tactic:
+          type: string
+          x-go-name: Tactic
+        techniques:
+          type: array
+          items:
+            type: string
+          x-go-name: Techniques
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
     Mitre:
       type: object
       properties:
@@ -2045,40 +1305,368 @@ components:
           type: string
           x-go-name: TechniqueId
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
-    Pagination:
+    ThreatActor:
       type: object
       properties:
-        limit:
-          description: Limit
-          type: integer
-          format: int64
-          x-go-name: Limit
-          example: 20
-        offset:
-          description: Offset
-          type: integer
-          format: int64
-          x-go-name: Offset
-          example: 0
-        total_count:
-          description: Total Count
-          type: integer
-          format: int64
-          x-go-name: TotalCount
-          example: 100
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/apirequest
-    MitreDTO:
-      type: object
-      properties:
-        tactic:
+        aka:
           type: string
-          x-go-name: Tactic
-        techniques:
+          x-go-name: Aka
+        id:
+          description: Id
+          type: integer
+          format: uint64
+          x-go-name: Id
+          example: '1'
+        name:
+          description: Name
+          type: string
+          x-go-name: Name
+          example: Lazarus Group
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
+    ActionReturn:
+      type: object
+      properties:
+        affected_os:
+          description: Action AffectedOs
           type: array
           items:
             type: string
-          x-go-name: Techniques
+          x-go-name: AffectedOs
+          example:
+          - Windows
+        affected_platforms:
+          description: Action Platforms
+          type: array
+          items:
+            $ref: '#/components/schemas/Platform'
+          x-go-name: Platforms
+          example:
+          - architecture: 32-bit
+            name: Windows 10
+            os: Windows
+        affected_products:
+          description: Action AffectedProducts
+          type: array
+          items:
+            type: string
+          x-go-name: AffectedProducts
+          example:
+          - Windows
+          - Linux
+        attack_category:
+          description: Action Category
+          type: string
+          x-go-name: Category
+          example: category 1
+        attack_module:
+          description: Action Module
+          type: string
+          x-go-name: Module
+          example: module 1
+        attack_module_id:
+          description: Module Id
+          type: integer
+          format: uint64
+          x-go-name: ModuleId
+          example: 1
+        created_at:
+          description: Action Created At
+          type: integer
+          format: int64
+          x-go-name: CreatedAt
+          example: 1654623047
+        cve:
+          description: Action CVE
+          type: string
+          x-go-name: CVE
+          example: cve 1
+        cwe:
+          description: Action CWE
+          type: string
+          x-go-name: CWE
+          example: cwe 1
+        description:
+          description: Action Description
+          type: string
+          x-go-name: Description
+          example: description
+        display_id:
+          description: Action DisplayId
+          type: integer
+          format: int64
+          x-go-name: DisplayId
+          example: 11
+        frameworks:
+          $ref: '#/components/schemas/Frameworks'
+        id:
+          description: Action Id
+          type: integer
+          format: uint64
+          x-go-name: Id
+          example: 1
+        keyword_queries:
+          description: Keyword Queries
+          type: array
+          items:
+            $ref: '#/components/schemas/KWDictionary'
+          x-go-name: KeywordQueries
+          example:
+          - id: 1
+            query: example query
+            type: Default/Custom
+        module_based_details:
+          $ref: '#/components/schemas/ModuleBasedDetails'
+        name:
+          description: Action Name
+          type: string
+          x-go-name: Name
+          example: action 1
+        owasp:
+          description: Action Owasp
+          type: string
+          x-go-name: Owasp
+          example: owasp 1
+        references:
+          $ref: '#/components/schemas/ActionDetailReferences'
+        release_date:
+          description: Action ReleaseDate
+          type: integer
+          format: int64
+          x-go-name: ReleaseDate
+          example: 1649983505
+        sources:
+          description: Sources
+          type: array
+          items:
+            type: string
+          x-go-name: Sources
+          example:
+          - source1
+          - source2
+        tags:
+          description: Action Tags
+          type: array
+          items:
+            type: string
+          x-go-name: Tags
+          example:
+          - Custom
+        updated_at:
+          description: Action Updated At
+          type: integer
+          format: int64
+          x-go-name: UpdatedAt
+          example: 1654623047
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
+    CustomActionKeywordOutput:
+      type: object
+      properties:
+        keyword:
+          type: string
+          x-go-name: Keyword
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
+    UkcDTO:
+      type: object
+      properties:
+        phases:
+          type: array
+          items:
+            type: string
+          x-go-name: Phases
+        stage:
+          type: string
+          x-go-name: Stage
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
+    CapiActionDTO:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+          x-go-name: CreatedAt
+        description:
+          type: string
+          x-go-name: Description
+        display_id:
+          type: integer
+          format: uint64
+          x-go-name: DisplayID
+        id:
+          type: integer
+          format: uint64
+          x-go-name: ID
+        name:
+          type: string
+          x-go-name: Name
+        tags:
+          type: array
+          items:
+            type: string
+          x-go-name: Tags
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
+    Frameworks:
+      type: object
+      properties:
+        mitre:
+          $ref: '#/components/schemas/Mitre'
+        ukc:
+          $ref: '#/components/schemas/Ukc'
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    ProcessFilesSummary:
+      type: object
+      properties:
+        FileSize:
+          type: integer
+          format: int64
+        FileType:
+          type: string
+        Id:
+          type: integer
+          format: int64
+        IsDownloaded:
+          type: boolean
+        IsExecutable:
+          type: boolean
+        Name:
+          type: string
+        Path:
+          type: string
+        SkipZipExtract:
+          type: boolean
+        Url:
+          type: string
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
+    ThreatsReturn:
+      type: object
+      properties:
+        affected_os:
+          description: Threat Affected Os
+          type: array
+          items:
+            type: string
+          x-go-name: AffectedOs
+          example:
+          - Windows
+        attack_categories:
+          description: Threat Attack Categories
+          type: array
+          items:
+            $ref: '#/components/schemas/AttackCategory'
+          x-go-name: AttackCategories
+          example:
+          - id: 1
+            name: Attack Category 1
+        attack_modules:
+          description: Threat Module Ids
+          type: array
+          items:
+            $ref: '#/components/schemas/AttackModule'
+          x-go-name: Modules
+          example:
+          - 1
+          - 2
+        created_at:
+          description: Threat Created At
+          type: integer
+          format: int64
+          x-go-name: CreatedAt
+          example: 1654623047
+        description:
+          description: Threat Description
+          type: string
+          x-go-name: Description
+          example: Threat 1
+        display_id:
+          description: Threat DisplayId
+          type: integer
+          format: int64
+          x-go-name: DisplayId
+          example: 1000
+        flows:
+          type: array
+          items:
+            $ref: '#/components/schemas/Objective'
+          x-go-name: Flows
+        id:
+          description: Threat Id
+          type: integer
+          format: uint64
+          x-go-name: Id
+          example: 1
+        is_predefined:
+          description: Threat Is Predefined
+          type: boolean
+          x-go-name: IsPredefined
+          example: false
+        mitre_attack:
+          description: Threat Mitre Tactics
+          type: array
+          items:
+            $ref: '#/components/schemas/MitreDTO'
+          x-go-name: Mitres
+          example:
+          - tactic: Credential Access
+            techniques:
+            - OS Credential Dumping
+          - tactic: Execution
+            techniques:
+            - Inter-Process Communication
+        name:
+          description: Threat Name
+          type: string
+          x-go-name: Name
+          example: Threat 1
+        release_date:
+          description: Threat Release Date
+          type: integer
+          format: int64
+          x-go-name: ReleaseDate
+          example: 1649681264
+        severity:
+          description: Threat Severity
+          type: string
+          x-go-name: Severity
+          example: High
+        tags:
+          description: Threat Tags
+          type: array
+          items:
+            type: string
+          x-go-name: Tags
+          example:
+          - Custom
+        unified_kill_chains:
+          description: Threat Kill Chain Phases
+          type: array
+          items:
+            $ref: '#/components/schemas/UkcDTO'
+          x-go-name: UnifiedKillChains
+          example:
+          - phases:
+            - Credential Access
+            stage: Network Propagation
+          - phases:
+            - Execution
+            stage: Network Propagation
+        updated_at:
+          description: Threat Updated At
+          type: integer
+          format: int64
+          x-go-name: UpdatedAt
+          example: 1654623047
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
+    Reference:
+      type: object
+      properties:
+        link:
+          description: Link
+          type: string
+          x-go-name: Link
+        name:
+          description: Name
+          type: string
+          x-go-name: Name
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
     ActionDetailReferences:
       type: object
       properties:
@@ -2106,6 +1694,253 @@ components:
           type: string
           x-go-name: Type
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
+    CapiProcessDTO:
+      type: object
+      properties:
+        argument:
+          type: string
+          x-go-name: Argument
+        created_at:
+          type: string
+          format: date-time
+          x-go-name: CreatedAt
+        id:
+          type: integer
+          format: uint64
+          x-go-name: ID
+        path:
+          type: string
+          x-go-name: Path
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
+    Objective:
+      type: object
+      properties:
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlowNode'
+          x-go-name: Actions
+        id:
+          type: integer
+          format: uint64
+          x-go-name: Id
+        name:
+          type: string
+          x-go-name: Name
+        type:
+          type: string
+          x-go-name: Type
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
+    AffectedAction:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          x-go-name: Id
+        name:
+          type: string
+          x-go-name: Name
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
+    ModuleBasedDetails:
+      type: object
+      properties:
+        file:
+          $ref: '#/components/schemas/File'
+        processes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Process'
+          x-go-name: Process
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
+    FlowNode:
+      type: object
+      properties:
+        display_id:
+          type: integer
+          format: uint64
+          x-go-name: DisplayId
+        false_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlowNode'
+          x-go-name: FalseItems
+        id:
+          type: integer
+          format: uint64
+          x-go-name: ID
+        name:
+          type: string
+          x-go-name: Name
+        node_id:
+          type: integer
+          format: uint64
+          x-go-name: NodeID
+        true_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlowNode'
+          x-go-name: TrueItems
+        type:
+          type: string
+          x-go-name: Type
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
+    ProcessActionParams:
+      type: object
+      title: ProcessActionParams defines process-related parameters for an action.
+      properties:
+        cond_name:
+          description: example 1, for P1
+          type: integer
+          format: int64
+          x-go-name: ConditionName
+        is_blocked:
+          description: example "true"
+          type: string
+          x-go-name: IsBlocked
+        process_id:
+          description: example 1000123
+          type: integer
+          format: uint64
+          x-go-name: ProcessID
+        rank:
+          description: example 1
+          type: integer
+          format: int64
+          x-go-name: Rank
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
+    Pagination:
+      type: object
+      properties:
+        limit:
+          description: Limit
+          type: integer
+          format: int64
+          x-go-name: Limit
+          example: 20
+        offset:
+          description: Offset
+          type: integer
+          format: int64
+          x-go-name: Offset
+          example: 0
+        total_count:
+          description: Total Count
+          type: integer
+          format: int64
+          x-go-name: TotalCount
+          example: 100
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/apirequest
+    ActionParameterBase:
+      type: object
+      properties:
+        id:
+          description: Id
+          type: string
+          x-go-name: Id
+          example: '1'
+        name:
+          description: Name
+          type: string
+          x-go-name: Name
+          example: Example
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
+    AttackModule:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          x-go-name: Id
+        name:
+          type: string
+          x-go-name: Name
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
+    CreateProcessListInput:
+      description: CreateProcessListInput represents the request parameters for creating a process
+      type: object
+      properties:
+        argument:
+          description: Argument
+          type: string
+          x-go-name: Argument
+          example: stop WinDefend
+        code:
+          description: Expected exit code, part of the process success condition
+          type: integer
+          format: int64
+          x-go-name: Code
+          example: 0
+        comment:
+          description: Comment
+          type: string
+          x-go-name: Comment
+          example: Stops Windows Defender service
+        delay:
+          description: Delay
+          type: integer
+          format: int64
+          x-go-name: Delay
+          example: 0
+        file_ids:
+          description: FileIds
+          type: array
+          items:
+            type: integer
+            format: int64
+          x-go-name: FileIds
+          example:
+          - 1000001
+        is_async:
+          description: Is Asynchronous
+          type: boolean
+          x-go-name: IsAsync
+          example: false
+        is_blocked:
+          description: Is Blocked
+          type: boolean
+          x-go-name: IsBlocked
+          example: false
+        output:
+          description: Output
+          type: string
+          x-go-name: Output
+          example: '""'
+        path:
+          description: Path
+          type: string
+          x-go-name: Path
+          example: C:\\Windows\\System32\\sc.exe
+        process_type:
+          description: ProcessType can be play or rewind
+          type: string
+          x-go-name: ProcessType
+          example: play
+        success_cond_exist:
+          description: Success Condition Exist
+          type: boolean
+          x-go-name: SuccessCondExist
+          example: false
+        timeout:
+          description: Timeout
+          type: integer
+          format: int64
+          x-go-name: Timeout
+          example: 120000
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
+    GenericIDNameItemDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: uint64
+          x-go-name: ID
+          example: 1
+        name:
+          type: string
+          x-go-name: Name
+          example: item-name
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
     Technique:
       description: Technique represents an attack technique
       type: object
@@ -2154,156 +1989,201 @@ components:
           x-go-name: Name
           example: Hardware
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
-    CapiActionDTO:
+    FileUploadOutput:
       type: object
       properties:
+        remote_file_id:
+          type: integer
+          format: int64
+          x-go-name: RemoteFileId
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
+    Process:
+      type: object
+      properties:
+        affected_actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/AffectedAction'
+          x-go-name: AffectedActions
+        argument:
+          type: string
+          x-go-name: Argument
         created_at:
           type: string
           format: date-time
           x-go-name: CreatedAt
-        description:
-          type: string
-          x-go-name: Description
-        display_id:
-          type: integer
-          format: uint64
-          x-go-name: DisplayID
         id:
           type: integer
-          format: uint64
-          x-go-name: ID
+          format: int64
+          x-go-name: Id
+        is_predefined:
+          type: boolean
+          x-go-name: IsPredefined
+        path:
+          type: string
+          x-go-name: Path
+        process_files_summary:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcessFilesSummary'
+          x-go-name: ProcessFilesSummary
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
+    NullInt64:
+      type: object
+      properties:
+        Int64:
+          type: integer
+          format: int64
+        Valid:
+          type: boolean
+      x-go-package: github.com/picusnext/picus-ng-lib/go/kit/types
+    AttackCategory:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          x-go-name: Id
         name:
           type: string
           x-go-name: Name
-        tags:
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
+    Platform:
+      type: object
+      properties:
+        architecture:
+          type: string
+          x-go-name: PlatformArchitecture
+        name:
+          type: string
+          x-go-name: PlatformName
+        os:
+          type: string
+          x-go-name: PlatformOs
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
+    FileApiOutput:
+      type: object
+      properties:
+        affected_processes:
           type: array
           items:
-            type: string
-          x-go-name: Tags
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
-  responses:
-    CustomActionKeywordReturnResponse:
-      description: CustomActionKeywordReturnResponse
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CustomActionKeywordOutput'
-    ActionDetailReturnResponse:
-      description: ActionDetailReturnResponse
-      content:
-        application/json:
-          schema:
             type: object
             properties:
-              action:
-                $ref: '#/components/schemas/ActionReturn'
-    fileResponse:
-      description: A file download response
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              type: integer
-              format: uint8
-    ThreatDetailReturnResponse:
-      description: ThreatDetailReturnResponse
+              arguments:
+                type: string
+                x-go-name: Arguments
+              id:
+                type: integer
+                format: uint64
+                x-go-name: ID
+              name:
+                type: string
+                x-go-name: Name
+              path:
+                type: string
+                x-go-name: Path
+              process_type:
+                type: string
+                x-go-name: ProcessType
+          x-go-name: AffectedProcesses
+        created_at:
+          type: string
+          x-go-name: CreatedAt
+        download_path:
+          type: string
+          x-go-name: DownloadPath
+        id:
+          type: integer
+          format: int64
+          x-go-name: Id
+        is_executable:
+          type: boolean
+          x-go-name: IsExecutable
+        name:
+          type: object
+          properties:
+            base_name:
+              type: string
+              x-go-name: BaseName
+            extension:
+              type: string
+              x-go-name: Extension
+            full_name:
+              type: string
+              x-go-name: FullName
+            uuid:
+              type: string
+              x-go-name: UUID
+          x-go-name: Name
+        skip_zip_extract:
+          type: boolean
+          x-go-name: SkipZipExtract
+        type:
+          type: string
+          x-go-name: Type
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
+    Ukc:
+      type: object
+      properties:
+        phase:
+          description: Unified kill chain Phase
+          type: string
+          x-go-name: Phase
+        stage:
+          description: Unified kill chain SÏtage
+          type: string
+          x-go-name: Stage
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations_run
+    CustomCampaignObjectiveParams:
+      description: CustomCampaignObjectiveParams
+      type: object
+      required:
+      - name
+      - action_ids
+      - result_condition
+      properties:
+        action_ids:
+          type: array
+          maximum: 100
+          items:
+            type: integer
+            format: uint64
+          x-go-name: ActionIDs
+          example:
+          - 1000123
+        name:
+          type: string
+          maximum: 100
+          x-go-name: Name
+          example: A1
+        result_condition:
+          type: string
+          x-go-name: ResultCondition
+          example: unblocked
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
+    File:
+      type: object
+      properties:
+        MD5:
+          type: string
+        SHA1:
+          type: string
+        SHA256:
+          type: string
+        name:
+          type: string
+          x-go-name: Name
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/threats
+  responses:
+    ThreatUpdateReturnResponse:
+      description: ThreatUpdateReturnResponse
       content:
         application/json:
           schema:
             type: object
             properties:
               threat:
-                $ref: '#/components/schemas/ThreatReturn'
-    validationErrorSwagger:
-      description: validationErrorSwagger is represents the erroneous cases
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              errors:
-                description: Validation Error List
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example:
-                  param: tag=max, param=25, given value=1000
-              message:
-                description: Message will be "validation error"
-                type: string
-                x-go-name: Message
-                example: validation error
-    ThreatDeleteReturnResponse:
-      description: ThreatDeleteReturnResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-    ThreatsReturnResponse:
-      description: ThreatsReturnResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              pages:
-                $ref: '#/components/schemas/Pagination'
-              threats:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ThreatsReturn'
-                x-go-name: Threats
-    ActionCreateReturnResponse:
-      description: ActionCreateReturnResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              action:
-                $ref: '#/components/schemas/CapiActionDTO'
-    TagsListReturnResponse:
-      description: TagsListReturnResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              tags:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GenericIDNameItemDTO'
-                x-go-name: Tags
-    genericErrorSwagger:
-      description: genericErrorSwagger is represents the erroneous cases
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error_code:
-                description: Error Code is optional. It is using for define specific error types.
-                type: integer
-                format: int64
-                x-go-name: ErrorCode
-                example: 1001
-              errors:
-                description: Errors are optional. If there are multiple error, this field gives details.
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example: '["error1", "error2"]'
-              message:
-                description: Error Message that contains information about error
-                type: string
-                x-go-name: Message
+                $ref: '#/components/schemas/CapiThreatDTO'
     FileUploadReturnResponse:
       description: FileUploadReturnResponse
       content:
@@ -2341,87 +2221,6 @@ components:
                 description: Name of the YAML file that was imported
                 type: string
                 x-go-name: Filename
-    ProcessCreateReturnResponse:
-      description: ProcessCreateReturnResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              process:
-                $ref: '#/components/schemas/CapiProcessDTO'
-    ProcessListReturnResponse:
-      description: ProcessListReturnResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              pages:
-                $ref: '#/components/schemas/Pagination'
-              processes:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Process'
-                x-go-name: Processes
-    ThreatActorListReturnResponse:
-      description: ThreatActorListReturnResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              threat_actors:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ThreatActor'
-                x-go-name: ThreatActors
-    ActionDetailListReturnResponse:
-      description: ActionDetailListReturnResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              actions:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ActionReturn'
-                x-go-name: Actions
-              pages:
-                $ref: '#/components/schemas/Pagination'
-    ThreatUpdateReturnResponse:
-      description: ThreatUpdateReturnResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              threat:
-                $ref: '#/components/schemas/CapiThreatDTO'
-    ThreatCreateReturnResponse:
-      description: ThreatCreateReturnResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              threat:
-                $ref: '#/components/schemas/CapiThreatDTO'
-    ActionListReturnResponse:
-      description: ActionListReturnResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              actions:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ActionSummary'
-                x-go-name: Actions
-              pages:
-                $ref: '#/components/schemas/Pagination'
     FileListReturnResponse:
       description: FileListReturnResponse
       content:
@@ -2436,6 +2235,18 @@ components:
                 x-go-name: Files
               pages:
                 $ref: '#/components/schemas/Pagination'
+    TagsListReturnResponse:
+      description: TagsListReturnResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              tags:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GenericIDNameItemDTO'
+                x-go-name: Tags
     ActionParametersResponse:
       description: ActionParametersResponse
       content:
@@ -2487,6 +2298,188 @@ components:
                 items:
                   $ref: '#/components/schemas/ActionParameterBase'
                 x-go-name: UrlCategories
+    genericErrorSwagger:
+      description: genericErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error Code is optional. It is using for define specific error types.
+                type: integer
+                format: int64
+                x-go-name: ErrorCode
+                example: 1001
+              errors:
+                description: Errors are optional. If there are multiple error, this field gives details.
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example: '["error1", "error2"]'
+              message:
+                description: Error Message that contains information about error
+                type: string
+                x-go-name: Message
+    ActionCreateReturnResponse:
+      description: ActionCreateReturnResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              action:
+                $ref: '#/components/schemas/CapiActionDTO'
+    ActionDetailReturnResponse:
+      description: ActionDetailReturnResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              action:
+                $ref: '#/components/schemas/ActionReturn'
+    ThreatDetailReturnResponse:
+      description: ThreatDetailReturnResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              threat:
+                $ref: '#/components/schemas/ThreatReturn'
+    CustomActionKeywordReturnResponse:
+      description: CustomActionKeywordReturnResponse
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CustomActionKeywordOutput'
+    ProcessCreateReturnResponse:
+      description: ProcessCreateReturnResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              process:
+                $ref: '#/components/schemas/CapiProcessDTO'
+    ActionListReturnResponse:
+      description: ActionListReturnResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              actions:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActionSummary'
+                x-go-name: Actions
+              pages:
+                $ref: '#/components/schemas/Pagination'
+    ThreatActorListReturnResponse:
+      description: ThreatActorListReturnResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              threat_actors:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ThreatActor'
+                x-go-name: ThreatActors
+    ActionDetailListReturnResponse:
+      description: ActionDetailListReturnResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              actions:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActionReturn'
+                x-go-name: Actions
+              pages:
+                $ref: '#/components/schemas/Pagination'
+    ThreatsReturnResponse:
+      description: ThreatsReturnResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              pages:
+                $ref: '#/components/schemas/Pagination'
+              threats:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ThreatsReturn'
+                x-go-name: Threats
+    fileResponse:
+      description: A file download response
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: integer
+              format: uint8
+    ProcessListReturnResponse:
+      description: ProcessListReturnResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              pages:
+                $ref: '#/components/schemas/Pagination'
+              processes:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Process'
+                x-go-name: Processes
+    ThreatDeleteReturnResponse:
+      description: ThreatDeleteReturnResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+    validationErrorSwagger:
+      description: validationErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                description: Validation Error List
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example:
+                  param: tag=max, param=25, given value=1000
+              message:
+                description: Message will be "validation error"
+                type: string
+                x-go-name: Message
+                example: validation error
+    ThreatCreateReturnResponse:
+      description: ThreatCreateReturnResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              threat:
+                $ref: '#/components/schemas/CapiThreatDTO'
   securitySchemes:
     Access-Token:
       description: After getting the access token, type <i>Bearer accessToken</i> to the Value input box to request access to the below endpoints For example <i>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</i>
