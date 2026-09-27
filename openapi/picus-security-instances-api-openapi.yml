@@ -70,26 +70,6 @@ components:
                 items:
                   $ref: '#/components/schemas/ScoreItem'
                 x-go-name: InstanceScores
-    validationErrorSwagger:
-      description: validationErrorSwagger is represents the erroneous cases
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              errors:
-                description: Validation Error List
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example:
-                  param: tag=max, param=25, given value=1000
-              message:
-                description: Message will be "validation error"
-                type: string
-                x-go-name: Message
-                example: validation error
     genericErrorSwagger:
       description: genericErrorSwagger is represents the erroneous cases
       content:
@@ -114,19 +94,27 @@ components:
                 description: Error Message that contains information about error
                 type: string
                 x-go-name: Message
+    validationErrorSwagger:
+      description: validationErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                description: Validation Error List
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example:
+                  param: tag=max, param=25, given value=1000
+              message:
+                description: Message will be "validation error"
+                type: string
+                x-go-name: Message
+                example: validation error
   schemas:
-    HostExposurePairSwagger:
-      type: object
-      properties:
-        exposure_id:
-          type: string
-          x-go-name: ExposureID
-          example: CVE-2022-21903
-        hostname:
-          type: string
-          x-go-name: Hostname
-          example: asset-001
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/exposures/instances
     ScoreItem:
       type: object
       properties:
@@ -163,6 +151,18 @@ components:
           x-go-name: SecurityControlEffectiveness
           example: '75.0'
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
+    HostExposurePairSwagger:
+      type: object
+      properties:
+        exposure_id:
+          type: string
+          x-go-name: ExposureID
+          example: CVE-2022-21903
+        hostname:
+          type: string
+          x-go-name: Hostname
+          example: asset-001
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/exposures/instances
   securitySchemes:
     Access-Token:
       description: After getting the access token, type <i>Bearer accessToken</i> to the Value input box to request access to the below endpoints For example <i>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</i>

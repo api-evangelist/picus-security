@@ -181,29 +181,6 @@ paths:
                   example: 2
 components:
   responses:
-    DeleteUserReturnSwagger:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                description: Success status of the deletion operation
-                type: boolean
-                x-go-name: Success
-                example: true
-    InviteUserReturnSwagger:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              id:
-                type: integer
-                format: uint64
-                x-go-name: ID
     AssignRoleReturnSwagger:
       description: ''
       content:
@@ -216,26 +193,6 @@ components:
                 type: boolean
                 x-go-name: Success
                 example: true
-    validationErrorSwagger:
-      description: validationErrorSwagger is represents the erroneous cases
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              errors:
-                description: Validation Error List
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example:
-                  param: tag=max, param=25, given value=1000
-              message:
-                description: Message will be "validation error"
-                type: string
-                x-go-name: Message
-                example: validation error
     GetRolesReturnSwagger:
       description: ''
       content:
@@ -250,6 +207,17 @@ components:
                 items:
                   $ref: '#/components/schemas/Role'
                 x-go-name: Roles
+    InviteUserReturnSwagger:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: uint64
+                x-go-name: ID
     genericErrorSwagger:
       description: genericErrorSwagger is represents the erroneous cases
       content:
@@ -274,6 +242,17 @@ components:
                 description: Error Message that contains information about error
                 type: string
                 x-go-name: Message
+    unauthorizedErrorSwagger:
+      description: unauthorizedErrorSwagger is represents unauthorized error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+                example: unauthorized error
     GetUsersInputResponse:
       description: ''
       content:
@@ -288,60 +267,39 @@ components:
                 items:
                   $ref: '#/components/schemas/User'
                 x-go-name: Users
-    unauthorizedErrorSwagger:
-      description: unauthorizedErrorSwagger is represents unauthorized error
+    DeleteUserReturnSwagger:
+      description: ''
       content:
         application/json:
           schema:
             type: object
             properties:
+              success:
+                description: Success status of the deletion operation
+                type: boolean
+                x-go-name: Success
+                example: true
+    validationErrorSwagger:
+      description: validationErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                description: Validation Error List
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example:
+                  param: tag=max, param=25, given value=1000
               message:
+                description: Message will be "validation error"
                 type: string
                 x-go-name: Message
-                example: unauthorized error
+                example: validation error
   schemas:
-    InviteUserRequest:
-      type: object
-      properties:
-        email:
-          description: Email
-          type: string
-          x-go-name: Email
-          example: abc@def.com
-        login_type:
-          description: LoginType
-          type: string
-          x-go-name: LoginType
-          example: sso
-        role_id:
-          description: RoleID
-          type: integer
-          format: uint64
-          x-go-name: RoleID
-          example: 4567
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
-    Pagination:
-      type: object
-      properties:
-        limit:
-          description: Limit
-          type: integer
-          format: int64
-          x-go-name: Limit
-          example: 20
-        offset:
-          description: Offset
-          type: integer
-          format: int64
-          x-go-name: Offset
-          example: 0
-        total_count:
-          description: Total Count
-          type: integer
-          format: int64
-          x-go-name: TotalCount
-          example: 100
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/apirequest
     User:
       type: object
       properties:
@@ -379,6 +337,26 @@ components:
           x-go-name: UserID
           example: 1234
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
+    InviteUserRequest:
+      type: object
+      properties:
+        email:
+          description: Email
+          type: string
+          x-go-name: Email
+          example: abc@def.com
+        login_type:
+          description: LoginType
+          type: string
+          x-go-name: LoginType
+          example: sso
+        role_id:
+          description: RoleID
+          type: integer
+          format: uint64
+          x-go-name: RoleID
+          example: 4567
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
     Role:
       type: object
       properties:
@@ -394,6 +372,28 @@ components:
           x-go-name: Name
           example: Owner
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
+    Pagination:
+      type: object
+      properties:
+        limit:
+          description: Limit
+          type: integer
+          format: int64
+          x-go-name: Limit
+          example: 20
+        offset:
+          description: Offset
+          type: integer
+          format: int64
+          x-go-name: Offset
+          example: 0
+        total_count:
+          description: Total Count
+          type: integer
+          format: int64
+          x-go-name: TotalCount
+          example: 100
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/apirequest
   securitySchemes:
     Access-Token:
       description: After getting the access token, type <i>Bearer accessToken</i> to the Value input box to request access to the below endpoints For example <i>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</i>

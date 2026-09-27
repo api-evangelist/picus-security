@@ -169,43 +169,28 @@ paths:
       - url: https://api.picussecurity.com/
 components:
   responses:
-    fileResponse:
-      description: A file download response
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              type: integer
-              format: uint8
-    GenerateSimulationReportResponse:
-      description: GenerateSimulationReportResponse
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/SimulationReportBasicOutput'
-    validationErrorSwagger:
-      description: validationErrorSwagger is represents the erroneous cases
+    notFoundErrorSwagger:
+      description: notFoundErrorSwagger represents not found error
       content:
         application/json:
           schema:
             type: object
             properties:
-              errors:
-                description: Validation Error List
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example:
-                  param: tag=max, param=25, given value=1000
               message:
-                description: Message will be "validation error"
                 type: string
                 x-go-name: Message
-                example: validation error
+                example: not found error
+    internalServerErrorSwagger:
+      description: internalServerErrorSwagger represents internal server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+                example: internal server error
     genericErrorSwagger:
       description: genericErrorSwagger is represents the erroneous cases
       content:
@@ -230,17 +215,23 @@ components:
                 description: Error Message that contains information about error
                 type: string
                 x-go-name: Message
-    internalServerErrorSwagger:
-      description: internalServerErrorSwagger represents internal server error
+    GenerateSimulationReportResponse:
+      description: GenerateSimulationReportResponse
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-                example: internal server error
+            type: array
+            items:
+              $ref: '#/components/schemas/SimulationReportBasicOutput'
+    fileResponse:
+      description: A file download response
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: integer
+              format: uint8
     SimulationReportDownloadUrlResponse:
       description: SimulationReportDownloadUrlResponse
       content:
@@ -251,17 +242,26 @@ components:
               downloadUrl:
                 type: string
                 x-go-name: DownloadUrl
-    notFoundErrorSwagger:
-      description: notFoundErrorSwagger represents not found error
+    validationErrorSwagger:
+      description: validationErrorSwagger is represents the erroneous cases
       content:
         application/json:
           schema:
             type: object
             properties:
+              errors:
+                description: Validation Error List
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example:
+                  param: tag=max, param=25, given value=1000
               message:
+                description: Message will be "validation error"
                 type: string
                 x-go-name: Message
-                example: not found error
+                example: validation error
     unauthorizedErrorSwagger:
       description: unauthorizedErrorSwagger is represents unauthorized error
       content:
@@ -309,26 +309,6 @@ components:
                 x-go-name: Status
                 example: COMPLETED
   schemas:
-    SimulationReportBasicOutput:
-      type: object
-      properties:
-        format:
-          description: 'Report Format. One of: ''PDF'' | ''CSV'''
-          type: string
-          x-go-name: Format
-          example: PDF
-        id:
-          description: Report Id
-          type: integer
-          format: uint64
-          x-go-name: ID
-          example: 1
-        status:
-          description: 'Report Status. One of: ''IN PROGRESS'' | ''COMPLETED'' | ''ERROR'''
-          type: string
-          x-go-name: Status
-          example: COMPLETED
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
     GenerateSimulationReportInput:
       type: object
       properties:
@@ -348,6 +328,26 @@ components:
           description: If true, generated report will include only prevention results
           type: boolean
           x-go-name: OnlyPrevention
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
+    SimulationReportBasicOutput:
+      type: object
+      properties:
+        format:
+          description: 'Report Format. One of: ''PDF'' | ''CSV'''
+          type: string
+          x-go-name: Format
+          example: PDF
+        id:
+          description: Report Id
+          type: integer
+          format: uint64
+          x-go-name: ID
+          example: 1
+        status:
+          description: 'Report Status. One of: ''IN PROGRESS'' | ''COMPLETED'' | ''ERROR'''
+          type: string
+          x-go-name: Status
+          example: COMPLETED
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
   securitySchemes:
     Access-Token:
