@@ -169,17 +169,6 @@ paths:
       - url: https://api.picussecurity.com/
 components:
   responses:
-    notFoundErrorSwagger:
-      description: notFoundErrorSwagger represents not found error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-                example: not found error
     internalServerErrorSwagger:
       description: internalServerErrorSwagger represents internal server error
       content:
@@ -215,14 +204,6 @@ components:
                 description: Error Message that contains information about error
                 type: string
                 x-go-name: Message
-    GenerateSimulationReportResponse:
-      description: GenerateSimulationReportResponse
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/SimulationReportBasicOutput'
     fileResponse:
       description: A file download response
       content:
@@ -232,16 +213,17 @@ components:
             items:
               type: integer
               format: uint8
-    SimulationReportDownloadUrlResponse:
-      description: SimulationReportDownloadUrlResponse
+    unauthorizedErrorSwagger:
+      description: unauthorizedErrorSwagger is represents unauthorized error
       content:
         application/json:
           schema:
             type: object
             properties:
-              downloadUrl:
+              message:
                 type: string
-                x-go-name: DownloadUrl
+                x-go-name: Message
+                example: unauthorized error
     validationErrorSwagger:
       description: validationErrorSwagger is represents the erroneous cases
       content:
@@ -262,8 +244,8 @@ components:
                 type: string
                 x-go-name: Message
                 example: validation error
-    unauthorizedErrorSwagger:
-      description: unauthorizedErrorSwagger is represents unauthorized error
+    notFoundErrorSwagger:
+      description: notFoundErrorSwagger represents not found error
       content:
         application/json:
           schema:
@@ -272,7 +254,7 @@ components:
               message:
                 type: string
                 x-go-name: Message
-                example: unauthorized error
+                example: not found error
     SimulationReportDetailResponse:
       description: SimulationReportDetailResponse
       content:
@@ -308,27 +290,25 @@ components:
                 type: string
                 x-go-name: Status
                 example: COMPLETED
+    GenerateSimulationReportResponse:
+      description: GenerateSimulationReportResponse
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/SimulationReportBasicOutput'
+    SimulationReportDownloadUrlResponse:
+      description: SimulationReportDownloadUrlResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              downloadUrl:
+                type: string
+                x-go-name: DownloadUrl
   schemas:
-    GenerateSimulationReportInput:
-      type: object
-      properties:
-        format:
-          description: 'Corresponding report will be generated for each format specified. Available formats: PDF, CSV'
-          type: array
-          items:
-            type: string
-          x-go-name: Formats
-          example:
-          - PDF
-        includesSensitiveData:
-          description: If false, generated report will display threat information with access links (Only for CSV reports)
-          type: boolean
-          x-go-name: IncludesSensitiveData
-        onlyPrevention:
-          description: If true, generated report will include only prevention results
-          type: boolean
-          x-go-name: OnlyPrevention
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
     SimulationReportBasicOutput:
       type: object
       properties:
@@ -348,6 +328,26 @@ components:
           type: string
           x-go-name: Status
           example: COMPLETED
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
+    GenerateSimulationReportInput:
+      type: object
+      properties:
+        format:
+          description: 'Corresponding report will be generated for each format specified. Available formats: PDF, CSV'
+          type: array
+          items:
+            type: string
+          x-go-name: Formats
+          example:
+          - PDF
+        includesSensitiveData:
+          description: If false, generated report will display threat information with access links (Only for CSV reports)
+          type: boolean
+          x-go-name: IncludesSensitiveData
+        onlyPrevention:
+          description: If true, generated report will include only prevention results
+          type: boolean
+          x-go-name: OnlyPrevention
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
   securitySchemes:
     Access-Token:

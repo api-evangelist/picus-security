@@ -81,48 +81,6 @@ paths:
                   example: access_token (Getting from Settings / API Token / Generate Token)
 components:
   responses:
-    genericErrorSwagger:
-      description: genericErrorSwagger is represents the erroneous cases
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error_code:
-                description: Error Code is optional. It is using for define specific error types.
-                type: integer
-                format: int64
-                x-go-name: ErrorCode
-                example: 1001
-              errors:
-                description: Errors are optional. If there are multiple error, this field gives details.
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example: '["error1", "error2"]'
-              message:
-                description: Error Message that contains information about error
-                type: string
-                x-go-name: Message
-    AuthTokenResponse:
-      description: AuthTokenResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              expire_at:
-                description: When access token is expired at
-                type: integer
-                format: int64
-                x-go-name: ExpireAt
-                example: 1650875751
-              token:
-                description: Access Token
-                type: string
-                x-go-name: Token
-                example: access_token
     GenerateRefreshTokenInternalResponse:
       description: ''
       headers:
@@ -164,6 +122,24 @@ components:
                 type: string
                 x-go-name: Message
                 example: unauthorized error
+    AuthTokenResponse:
+      description: AuthTokenResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              expire_at:
+                description: When access token is expired at
+                type: integer
+                format: int64
+                x-go-name: ExpireAt
+                example: 1650875751
+              token:
+                description: Access Token
+                type: string
+                x-go-name: Token
+                example: access_token
     validationErrorSwagger:
       description: validationErrorSwagger is represents the erroneous cases
       content:
@@ -184,6 +160,30 @@ components:
                 type: string
                 x-go-name: Message
                 example: validation error
+    genericErrorSwagger:
+      description: genericErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error Code is optional. It is using for define specific error types.
+                type: integer
+                format: int64
+                x-go-name: ErrorCode
+                example: 1001
+              errors:
+                description: Errors are optional. If there are multiple error, this field gives details.
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example: '["error1", "error2"]'
+              message:
+                description: Error Message that contains information about error
+                type: string
+                x-go-name: Message
   securitySchemes:
     Access-Token:
       description: After getting the access token, type <i>Bearer accessToken</i> to the Value input box to request access to the below endpoints For example <i>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</i>

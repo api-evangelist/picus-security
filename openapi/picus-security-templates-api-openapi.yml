@@ -119,184 +119,6 @@ paths:
       - url: https://api.picussecurity.com/
 components:
   schemas:
-    TemplateReturn:
-      type: object
-      properties:
-        agent_types:
-          description: Template Agent Types
-          type: array
-          items:
-            $ref: '#/components/schemas/AgentType'
-          x-go-name: AgentTypes
-          example: '[{id:1}]'
-        category_name:
-          description: Template Category Name (main)
-          type: string
-          x-go-name: CategoryName
-          example: main
-        content_type:
-          description: Content Type (Static | Dynamic)
-          type: string
-          x-go-name: ContentType
-          example: Static
-        content_updated_at:
-          description: Template Content Updated Time
-          type: integer
-          format: int64
-          x-go-name: ContentChangedAt
-          example: 1654781780578
-        description:
-          description: Template Description
-          type: string
-          x-go-name: Description
-          example: Description
-        id:
-          description: Template Id
-          type: integer
-          format: int64
-          x-go-name: Id
-          example: 1
-        name:
-          description: Template Name
-          type: string
-          x-go-name: Name
-          example: Template-1
-        subcategory_name:
-          description: Template Subcategory Name (sub)
-          type: string
-          x-go-name: SubcategoryName
-          example: sub
-        threat_count:
-          description: Template Threat Count
-          type: integer
-          format: int64
-          x-go-name: ThreatCount
-          example: 2
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/templates
-    SingleTemplateContentResponse:
-      type: object
-      properties:
-        threats:
-          type: array
-          items:
-            type: integer
-            format: uint64
-          x-go-name: Threats
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
-    TemplateThreatParams:
-      type: object
-      properties:
-        rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/TemplateRule'
-          x-go-name: Rules
-        threats:
-          type: array
-          items:
-            type: integer
-            format: uint64
-          x-go-name: Threats
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
-    AgentType:
-      type: object
-      properties:
-        id:
-          description: Agent Id
-          type: integer
-          format: int64
-          x-go-name: Id
-          example: 1
-        name:
-          description: Agent Name
-          type: string
-          x-go-name: Name
-          example: Windows
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/templates
-    TemplateRule:
-      type: object
-      properties:
-        affected_operating_systems:
-          description: Rule Affected Operating Systems (["Windows"])
-          type: array
-          items:
-            type: string
-          x-go-name: AffectedOperatingSystems
-          example:
-          - Windows
-        category_names:
-          description: Rule Category Names (["Attack Scenario", "Malicious Code"])
-          type: array
-          items:
-            type: string
-          x-go-name: CategoryNames
-          example:
-          - Attack Scenario
-          - Malicious Code
-        date_label:
-          description: Rule Date Label (Last 30 Days)
-          type: string
-          x-go-name: DateLabel
-          example: Last 30 days.
-        kill_chain_phases:
-          description: Rule Kill Chain Phases (["Delivery", "Defense Evasion"])
-          type: array
-          items:
-            type: string
-          x-go-name: KillChainPhases
-          example:
-          - Delivery
-          - Defense Evasion
-        mitre_tactics:
-          description: Rule Mitre Tactic IDs ([4,10,11])
-          type: array
-          items:
-            type: integer
-            format: uint64
-          x-go-name: MitreTactics
-          example:
-          - 4
-          - 10
-          - 11
-        modules:
-          type: array
-          items:
-            type: integer
-            format: uint64
-          x-go-name: ModulesIDs
-        only_name:
-          description: Means Searched Name For Created Dynamic Template (threat group campaign malware download)
-          type: string
-          x-go-name: OnlyNameLike
-          example: threat group campaign malware download
-        severities:
-          description: Rule Severities (["high"])
-          type: array
-          items:
-            type: string
-          x-go-name: Severities
-          example:
-          - high
-        tags:
-          description: Rule Tags (["Iron Tiger","APT27"])
-          type: array
-          items:
-            type: string
-          x-go-name: Tags
-          example:
-          - Iron Tiger
-          - APT27
-        threat_actors:
-          description: Threat Actors ([60,62])
-          type: array
-          items:
-            type: integer
-            format: uint64
-          x-go-name: ThreatActors
-          example:
-          - 60
-          - 62
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
     RulesReturn:
       type: object
       properties:
@@ -419,28 +241,159 @@ components:
           type: string
           x-go-name: Name
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/templates
-    Pagination:
+    AgentType:
       type: object
       properties:
-        limit:
-          description: Limit
+        id:
+          description: Agent Id
           type: integer
           format: int64
-          x-go-name: Limit
-          example: 20
-        offset:
-          description: Offset
+          x-go-name: Id
+          example: 1
+        name:
+          description: Agent Name
+          type: string
+          x-go-name: Name
+          example: Windows
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/templates
+    TemplateReturn:
+      type: object
+      properties:
+        agent_types:
+          description: Template Agent Types
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentType'
+          x-go-name: AgentTypes
+          example: '[{id:1}]'
+        category_name:
+          description: Template Category Name (main)
+          type: string
+          x-go-name: CategoryName
+          example: main
+        content_type:
+          description: Content Type (Static | Dynamic)
+          type: string
+          x-go-name: ContentType
+          example: Static
+        content_updated_at:
+          description: Template Content Updated Time
           type: integer
           format: int64
-          x-go-name: Offset
-          example: 0
-        total_count:
-          description: Total Count
+          x-go-name: ContentChangedAt
+          example: 1654781780578
+        description:
+          description: Template Description
+          type: string
+          x-go-name: Description
+          example: Description
+        id:
+          description: Template Id
           type: integer
           format: int64
-          x-go-name: TotalCount
-          example: 100
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/apirequest
+          x-go-name: Id
+          example: 1
+        name:
+          description: Template Name
+          type: string
+          x-go-name: Name
+          example: Template-1
+        subcategory_name:
+          description: Template Subcategory Name (sub)
+          type: string
+          x-go-name: SubcategoryName
+          example: sub
+        threat_count:
+          description: Template Threat Count
+          type: integer
+          format: int64
+          x-go-name: ThreatCount
+          example: 2
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/templates
+    TemplateRule:
+      type: object
+      properties:
+        affected_operating_systems:
+          description: Rule Affected Operating Systems (["Windows"])
+          type: array
+          items:
+            type: string
+          x-go-name: AffectedOperatingSystems
+          example:
+          - Windows
+        category_names:
+          description: Rule Category Names (["Attack Scenario", "Malicious Code"])
+          type: array
+          items:
+            type: string
+          x-go-name: CategoryNames
+          example:
+          - Attack Scenario
+          - Malicious Code
+        date_label:
+          description: Rule Date Label (Last 30 Days)
+          type: string
+          x-go-name: DateLabel
+          example: Last 30 days.
+        kill_chain_phases:
+          description: Rule Kill Chain Phases (["Delivery", "Defense Evasion"])
+          type: array
+          items:
+            type: string
+          x-go-name: KillChainPhases
+          example:
+          - Delivery
+          - Defense Evasion
+        mitre_tactics:
+          description: Rule Mitre Tactic IDs ([4,10,11])
+          type: array
+          items:
+            type: integer
+            format: uint64
+          x-go-name: MitreTactics
+          example:
+          - 4
+          - 10
+          - 11
+        modules:
+          type: array
+          items:
+            type: integer
+            format: uint64
+          x-go-name: ModulesIDs
+        only_name:
+          description: Means Searched Name For Created Dynamic Template (threat group campaign malware download)
+          type: string
+          x-go-name: OnlyNameLike
+          example: threat group campaign malware download
+        severities:
+          description: Rule Severities (["high"])
+          type: array
+          items:
+            type: string
+          x-go-name: Severities
+          example:
+          - high
+        tags:
+          description: Rule Tags (["Iron Tiger","APT27"])
+          type: array
+          items:
+            type: string
+          x-go-name: Tags
+          example:
+          - Iron Tiger
+          - APT27
+        threat_actors:
+          description: Threat Actors ([60,62])
+          type: array
+          items:
+            type: integer
+            format: uint64
+          x-go-name: ThreatActors
+          example:
+          - 60
+          - 62
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
     TemplateDetailReturn:
       type: object
       properties:
@@ -508,31 +461,77 @@ components:
           x-go-name: Threats
           example: '[{id: 1, Name: Threat 1}, {id: 2, Name: Threat 2}]'
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/templates
+    Pagination:
+      type: object
+      properties:
+        limit:
+          description: Limit
+          type: integer
+          format: int64
+          x-go-name: Limit
+          example: 20
+        offset:
+          description: Offset
+          type: integer
+          format: int64
+          x-go-name: Offset
+          example: 0
+        total_count:
+          description: Total Count
+          type: integer
+          format: int64
+          x-go-name: TotalCount
+          example: 100
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/apirequest
+    SingleTemplateContentResponse:
+      type: object
+      properties:
+        threats:
+          type: array
+          items:
+            type: integer
+            format: uint64
+          x-go-name: Threats
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
+    TemplateThreatParams:
+      type: object
+      properties:
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateRule'
+          x-go-name: Rules
+        threats:
+          type: array
+          items:
+            type: integer
+            format: uint64
+          x-go-name: Threats
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
   responses:
-    genericErrorSwagger:
-      description: genericErrorSwagger is represents the erroneous cases
+    TemplateDetailReturnSwagger:
+      description: TemplateDetailReturnSwagger
       content:
         application/json:
           schema:
             type: object
             properties:
-              error_code:
-                description: Error Code is optional. It is using for define specific error types.
-                type: integer
-                format: int64
-                x-go-name: ErrorCode
-                example: 1001
-              errors:
-                description: Errors are optional. If there are multiple error, this field gives details.
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example: '["error1", "error2"]'
-              message:
-                description: Error Message that contains information about error
-                type: string
-                x-go-name: Message
+              Template:
+                $ref: '#/components/schemas/TemplateDetailReturn'
+    TemplatesReturnSwagger:
+      description: TemplatesReturnSwagger
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              pages:
+                $ref: '#/components/schemas/Pagination'
+              templates:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TemplateReturn'
+                x-go-name: Templates
     TemplateCreateReturnSwagger:
       description: TemplateCreateReturnSwagger
       content:
@@ -580,29 +579,6 @@ components:
                 items:
                   $ref: '#/components/schemas/TemplateRule'
                 x-go-name: Rules
-    TemplateDetailReturnSwagger:
-      description: TemplateDetailReturnSwagger
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              Template:
-                $ref: '#/components/schemas/TemplateDetailReturn'
-    TemplatesReturnSwagger:
-      description: TemplatesReturnSwagger
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              pages:
-                $ref: '#/components/schemas/Pagination'
-              templates:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TemplateReturn'
-                x-go-name: Templates
     validationErrorSwagger:
       description: validationErrorSwagger is represents the erroneous cases
       content:
@@ -623,6 +599,30 @@ components:
                 type: string
                 x-go-name: Message
                 example: validation error
+    genericErrorSwagger:
+      description: genericErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error Code is optional. It is using for define specific error types.
+                type: integer
+                format: int64
+                x-go-name: ErrorCode
+                example: 1001
+              errors:
+                description: Errors are optional. If there are multiple error, this field gives details.
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example: '["error1", "error2"]'
+              message:
+                description: Error Message that contains information about error
+                type: string
+                x-go-name: Message
   securitySchemes:
     Access-Token:
       description: After getting the access token, type <i>Bearer accessToken</i> to the Value input box to request access to the below endpoints For example <i>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</i>

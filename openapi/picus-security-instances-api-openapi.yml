@@ -56,64 +56,6 @@ paths:
                         hostname: asset-001
                   x-go-name: Filters
 components:
-  responses:
-    ScoresResponse:
-      description: ScoresResponse contains the list of instances for the requested host-exposure pairs.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              instance_scores:
-                description: List of exposure instance scores matching the requested pairs. Unmatched pairs are omitted.
-                type: array
-                items:
-                  $ref: '#/components/schemas/ScoreItem'
-                x-go-name: InstanceScores
-    genericErrorSwagger:
-      description: genericErrorSwagger is represents the erroneous cases
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error_code:
-                description: Error Code is optional. It is using for define specific error types.
-                type: integer
-                format: int64
-                x-go-name: ErrorCode
-                example: 1001
-              errors:
-                description: Errors are optional. If there are multiple error, this field gives details.
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example: '["error1", "error2"]'
-              message:
-                description: Error Message that contains information about error
-                type: string
-                x-go-name: Message
-    validationErrorSwagger:
-      description: validationErrorSwagger is represents the erroneous cases
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              errors:
-                description: Validation Error List
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example:
-                  param: tag=max, param=25, given value=1000
-              message:
-                description: Message will be "validation error"
-                type: string
-                x-go-name: Message
-                example: validation error
   schemas:
     ScoreItem:
       type: object
@@ -163,6 +105,64 @@ components:
           x-go-name: Hostname
           example: asset-001
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/exposures/instances
+  responses:
+    ScoresResponse:
+      description: ScoresResponse contains the list of instances for the requested host-exposure pairs.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              instance_scores:
+                description: List of exposure instance scores matching the requested pairs. Unmatched pairs are omitted.
+                type: array
+                items:
+                  $ref: '#/components/schemas/ScoreItem'
+                x-go-name: InstanceScores
+    validationErrorSwagger:
+      description: validationErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                description: Validation Error List
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example:
+                  param: tag=max, param=25, given value=1000
+              message:
+                description: Message will be "validation error"
+                type: string
+                x-go-name: Message
+                example: validation error
+    genericErrorSwagger:
+      description: genericErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error Code is optional. It is using for define specific error types.
+                type: integer
+                format: int64
+                x-go-name: ErrorCode
+                example: 1001
+              errors:
+                description: Errors are optional. If there are multiple error, this field gives details.
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example: '["error1", "error2"]'
+              message:
+                description: Error Message that contains information about error
+                type: string
+                x-go-name: Message
   securitySchemes:
     Access-Token:
       description: After getting the access token, type <i>Bearer accessToken</i> to the Value input box to request access to the below endpoints For example <i>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</i>

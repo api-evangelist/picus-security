@@ -172,15 +172,15 @@ paths:
       - url: https://api.picussecurity.com/
 components:
   responses:
-    AgentDetailReturnSwagger:
-      description: AgentDetailReturnSwagger
+    fileResponse:
+      description: A file download response
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              Agent:
-                $ref: '#/components/schemas/AgentDetailReturn'
+            type: array
+            items:
+              type: integer
+              format: uint8
     GetSimAgentDownloadLinkResponse:
       description: GetSimAgentDownloadLinkResponse
       content:
@@ -203,6 +203,59 @@ components:
                 type: string
                 x-go-name: Version
                 example: '1.2'
+    GetSimAgentInstallTokenResponse:
+      description: GetSimAgentInstallTokenResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token:
+                description: Token
+                type: string
+                x-go-name: Token
+                example: ebsys....
+    AgentDetailReturnSwagger:
+      description: AgentDetailReturnSwagger
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              Agent:
+                $ref: '#/components/schemas/AgentDetailReturn'
+    validationErrorSwagger:
+      description: validationErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                description: Validation Error List
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example:
+                  param: tag=max, param=25, given value=1000
+              message:
+                description: Message will be "validation error"
+                type: string
+                x-go-name: Message
+                example: validation error
+    AgentsReturnSwagger:
+      description: AgentsReturnSwagger
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              agents:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AgentReturn'
+                x-go-name: Agents
     genericErrorSwagger:
       description: genericErrorSwagger is represents the erroneous cases
       content:
@@ -227,60 +280,85 @@ components:
                 description: Error Message that contains information about error
                 type: string
                 x-go-name: Message
-    AgentsReturnSwagger:
-      description: AgentsReturnSwagger
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              agents:
-                type: array
-                items:
-                  $ref: '#/components/schemas/AgentReturn'
-                x-go-name: Agents
-    fileResponse:
-      description: A file download response
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              type: integer
-              format: uint8
-    GetSimAgentInstallTokenResponse:
-      description: GetSimAgentInstallTokenResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              token:
-                description: Token
-                type: string
-                x-go-name: Token
-                example: ebsys....
-    validationErrorSwagger:
-      description: validationErrorSwagger is represents the erroneous cases
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              errors:
-                description: Validation Error List
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example:
-                  param: tag=max, param=25, given value=1000
-              message:
-                description: Message will be "validation error"
-                type: string
-                x-go-name: Message
-                example: validation error
   schemas:
+    AgentReturn:
+      type: object
+      properties:
+        created_at:
+          description: Agent Created at
+          type: integer
+          format: int64
+          x-go-name: CreatedAt
+          example: 1650284604358
+        id:
+          description: Agent Id
+          type: integer
+          format: uint64
+          x-go-name: Id
+          example: 1
+        name:
+          description: Agent Name
+          type: string
+          x-go-name: Name
+          example: Agent-1
+        platform_architecture:
+          description: Platform Architecture like 64-bit
+          type: string
+          x-go-name: PlatformArchitecture
+          example: 64-bit
+        platform_name:
+          description: Platform Name like Windows 10
+          type: string
+          x-go-name: PlatformName
+          example: Windows 10
+        status:
+          description: Agent status gives information about your agent alive ( alive | dead | expired )
+          type: string
+          x-go-name: Status
+          example: alive | dead | expired
+        type:
+          description: Agent type (QuickEmail | Browser | Installable Agent | Windows | Linux | MacOS)
+          type: string
+          x-go-name: Type
+          example: QuickEmail | Browser | Installable Agent | Windows | Linux | MacOS
+        version:
+          description: Agent Version like 3.4.0.0
+          type: string
+          x-go-name: Version
+          example: 3.4.0.0
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
+    Module:
+      type: object
+      properties:
+        enabled:
+          description: Is Attack Module Enable
+          type: boolean
+          x-go-name: Enabled
+        id:
+          description: Attack Module Id
+          type: integer
+          format: int64
+          x-go-name: Id
+        name:
+          description: Attack Module like File Download
+          type: string
+          x-go-name: Name
+          example: File Download
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
+    AffectedPlatform:
+      type: object
+      properties:
+        architecture:
+          description: Affected Platform Architecture
+          type: string
+          x-go-name: Architecture
+          example: 32-bit
+        name:
+          description: Affected Platform Name
+          type: string
+          x-go-name: Name
+          example: Windows Server 2022
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
     AgentDetailReturn:
       type: object
       properties:
@@ -356,52 +434,6 @@ components:
           x-go-name: Version
           example: 3.4.0.0
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
-    AgentReturn:
-      type: object
-      properties:
-        created_at:
-          description: Agent Created at
-          type: integer
-          format: int64
-          x-go-name: CreatedAt
-          example: 1650284604358
-        id:
-          description: Agent Id
-          type: integer
-          format: uint64
-          x-go-name: Id
-          example: 1
-        name:
-          description: Agent Name
-          type: string
-          x-go-name: Name
-          example: Agent-1
-        platform_architecture:
-          description: Platform Architecture like 64-bit
-          type: string
-          x-go-name: PlatformArchitecture
-          example: 64-bit
-        platform_name:
-          description: Platform Name like Windows 10
-          type: string
-          x-go-name: PlatformName
-          example: Windows 10
-        status:
-          description: Agent status gives information about your agent alive ( alive | dead | expired )
-          type: string
-          x-go-name: Status
-          example: alive | dead | expired
-        type:
-          description: Agent type (QuickEmail | Browser | Installable Agent | Windows | Linux | MacOS)
-          type: string
-          x-go-name: Type
-          example: QuickEmail | Browser | Installable Agent | Windows | Linux | MacOS
-        version:
-          description: Agent Version like 3.4.0.0
-          type: string
-          x-go-name: Version
-          example: 3.4.0.0
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
     Device:
       type: object
       properties:
@@ -425,38 +457,6 @@ components:
           type: string
           x-go-name: ProductVersion
           example: 6.3.7
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
-    AffectedPlatform:
-      type: object
-      properties:
-        architecture:
-          description: Affected Platform Architecture
-          type: string
-          x-go-name: Architecture
-          example: 32-bit
-        name:
-          description: Affected Platform Name
-          type: string
-          x-go-name: Name
-          example: Windows Server 2022
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
-    Module:
-      type: object
-      properties:
-        enabled:
-          description: Is Attack Module Enable
-          type: boolean
-          x-go-name: Enabled
-        id:
-          description: Attack Module Id
-          type: integer
-          format: int64
-          x-go-name: Id
-        name:
-          description: Attack Module like File Download
-          type: string
-          x-go-name: Name
-          example: File Download
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
   securitySchemes:
     Access-Token:

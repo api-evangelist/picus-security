@@ -59,6 +59,51 @@ paths:
       - url: https://api.picussecurity.com/
 components:
   responses:
+    unauthorizedErrorSwagger:
+      description: unauthorizedErrorSwagger is represents unauthorized error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+                example: unauthorized error
+    validationErrorSwagger:
+      description: validationErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                description: Validation Error List
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example:
+                  param: tag=max, param=25, given value=1000
+              message:
+                description: Message will be "validation error"
+                type: string
+                x-go-name: Message
+                example: validation error
+    GetActivityLogsInputResponse:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              activity_logs:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActivityLog'
+                x-go-name: ActivityLogs
+              pages:
+                $ref: '#/components/schemas/Pagination'
     genericErrorSwagger:
       description: genericErrorSwagger is represents the erroneous cases
       content:
@@ -83,51 +128,6 @@ components:
                 description: Error Message that contains information about error
                 type: string
                 x-go-name: Message
-    unauthorizedErrorSwagger:
-      description: unauthorizedErrorSwagger is represents unauthorized error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-                example: unauthorized error
-    GetActivityLogsInputResponse:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              activity_logs:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ActivityLog'
-                x-go-name: ActivityLogs
-              pages:
-                $ref: '#/components/schemas/Pagination'
-    validationErrorSwagger:
-      description: validationErrorSwagger is represents the erroneous cases
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              errors:
-                description: Validation Error List
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example:
-                  param: tag=max, param=25, given value=1000
-              message:
-                description: Message will be "validation error"
-                type: string
-                x-go-name: Message
-                example: validation error
   schemas:
     ActivityLog:
       type: object

@@ -371,16 +371,32 @@ paths:
       - url: https://api.picussecurity.com/
 components:
   responses:
-    SimulationDeleteReturnSwagger:
-      description: SimulationDeleteReturnSwagger
+    SimulationCreateReturnSwagger:
+      description: SimulationCreateReturnSwagger
       content:
         application/json:
           schema:
             type: object
             properties:
-              success:
+              run_immediately:
                 type: boolean
-                x-go-name: Success
+                x-go-name: RunImmediately
+              run_info:
+                $ref: '#/components/schemas/SimulationRunApiOutput'
+              simulation:
+                $ref: '#/components/schemas/SimulationApiOutput'
+              simulation_already_exist:
+                type: boolean
+                x-go-name: AssessmentAlreadyExist
+    SimulationDetailReturnSwagger:
+      description: SimulationDetailReturnSwagger
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              Simulations:
+                $ref: '#/components/schemas/SimulationDetailsReturn'
     genericErrorWithSuccessSwagger:
       description: genericErrorWithSuccessSwagger is represents the erroneous cases with success field
       content:
@@ -410,32 +426,6 @@ components:
                 type: boolean
                 x-go-name: Success
                 example: false
-    SimulationsResponse:
-      description: SimulationsResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              pages:
-                $ref: '#/components/schemas/Pagination'
-              simulations:
-                type: array
-                items:
-                  $ref: '#/components/schemas/SimulationSummary'
-                x-go-name: Simulations
-    SimulationUpdateReturnSwagger:
-      description: SimulationUpdateReturnSwagger
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              run_immediately:
-                type: boolean
-                x-go-name: RunImmediately
-              simulation:
-                $ref: '#/components/schemas/SimulationApiOutput'
     validationErrorSwagger:
       description: validationErrorSwagger is represents the erroneous cases
       content:
@@ -458,33 +448,6 @@ components:
                 example: validation error
     SimulateNowReturnSwagger:
       description: SimulateNowReturnSwagger
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              run_immediately:
-                type: boolean
-                x-go-name: RunImmediately
-              run_info:
-                $ref: '#/components/schemas/SimulationRunApiOutput'
-              simulation:
-                $ref: '#/components/schemas/SimulationApiOutput'
-              simulation_already_exist:
-                type: boolean
-                x-go-name: AssessmentAlreadyExist
-    SimulationCancelReturnSwagger:
-      description: SimulationCancelReturnSwagger
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                type: boolean
-                x-go-name: Success
-    SimulationCreateReturnSwagger:
-      description: SimulationCreateReturnSwagger
       content:
         application/json:
           schema:
@@ -524,36 +487,53 @@ components:
                 description: Error Message that contains information about error
                 type: string
                 x-go-name: Message
-    SimulationDetailReturnSwagger:
-      description: SimulationDetailReturnSwagger
+    SimulationDeleteReturnSwagger:
+      description: SimulationDeleteReturnSwagger
       content:
         application/json:
           schema:
             type: object
             properties:
-              Simulations:
-                $ref: '#/components/schemas/SimulationDetailsReturn'
+              success:
+                type: boolean
+                x-go-name: Success
+    SimulationsResponse:
+      description: SimulationsResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              pages:
+                $ref: '#/components/schemas/Pagination'
+              simulations:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SimulationSummary'
+                x-go-name: Simulations
+    SimulationCancelReturnSwagger:
+      description: SimulationCancelReturnSwagger
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                x-go-name: Success
+    SimulationUpdateReturnSwagger:
+      description: SimulationUpdateReturnSwagger
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              run_immediately:
+                type: boolean
+                x-go-name: RunImmediately
+              simulation:
+                $ref: '#/components/schemas/SimulationApiOutput'
   schemas:
-    SimulationRunApiOutput:
-      type: object
-      properties:
-        browser:
-          description: Run Browser Info
-          type: string
-          x-go-name: Browser
-          example: BrowserUnknown
-        id:
-          description: Run Id (1)
-          type: integer
-          format: uint64
-          x-go-name: ID
-          example: 1
-        status:
-          description: Run Status (COMPLETED | RUNNING)
-          type: string
-          x-go-name: Status
-          example: COMPLETED
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
     SimulationProtocol:
       type: object
       properties:
@@ -600,71 +580,6 @@ components:
           - http
           - https
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
-    ThreatCounts:
-      type: object
-      properties:
-        completed_threat_count:
-          type: integer
-          format: int64
-          x-go-name: Completed
-        total_threat_count:
-          type: integer
-          format: int64
-          x-go-name: Total
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/dto
-    Enrichment:
-      type: object
-      properties:
-        id:
-          description: Integration Id
-          type: integer
-          format: int64
-          x-go-name: Id
-          example: 1
-        product_name:
-          description: Product Name
-          type: string
-          x-go-name: ProductName
-          example: Crowdstrike
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations
-    AgentSummary:
-      type: object
-      properties:
-        id:
-          description: Agent Id
-          type: integer
-          format: uint64
-          x-go-name: Id
-          example: 1
-        name:
-          description: Agent Name
-          type: string
-          x-go-name: Name
-          example: Agent-1
-        status:
-          description: Agent status gives information about your agent alive (alive | dead | expired)
-          type: string
-          x-go-name: Status
-          example: alive | dead | expired
-        type:
-          description: Agent type (QuickEmail | Browser | Installable Agent | Windows | Linux | MacOS)
-          type: string
-          x-go-name: Type
-          example: QuickEmail | Browser | Installable Agent | Windows | Linux | MacOS
-        version:
-          description: Agent Version like 3.4.0.0
-          type: string
-          x-go-name: Version
-          example: 3.4.0.0
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations
-    NullBool:
-      type: object
-      properties:
-        Bool:
-          type: boolean
-        Valid:
-          type: boolean
-      x-go-package: github.com/picusnext/picus-ng-lib/go/kit/types
     SimulationDetailsReturn:
       type: object
       properties:
@@ -741,28 +656,51 @@ components:
           x-go-name: UpdatedAt
           example: 1654623047
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations
-    Pagination:
+    Enrichment:
       type: object
       properties:
-        limit:
-          description: Limit
+        id:
+          description: Integration Id
           type: integer
           format: int64
-          x-go-name: Limit
-          example: 20
-        offset:
-          description: Offset
+          x-go-name: Id
+          example: 1
+        product_name:
+          description: Product Name
+          type: string
+          x-go-name: ProductName
+          example: Crowdstrike
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations
+    AgentSummary:
+      type: object
+      properties:
+        id:
+          description: Agent Id
           type: integer
-          format: int64
-          x-go-name: Offset
-          example: 0
-        total_count:
-          description: Total Count
-          type: integer
-          format: int64
-          x-go-name: TotalCount
-          example: 100
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/apirequest
+          format: uint64
+          x-go-name: Id
+          example: 1
+        name:
+          description: Agent Name
+          type: string
+          x-go-name: Name
+          example: Agent-1
+        status:
+          description: Agent status gives information about your agent alive (alive | dead | expired)
+          type: string
+          x-go-name: Status
+          example: alive | dead | expired
+        type:
+          description: Agent type (QuickEmail | Browser | Installable Agent | Windows | Linux | MacOS)
+          type: string
+          x-go-name: Type
+          example: QuickEmail | Browser | Installable Agent | Windows | Linux | MacOS
+        version:
+          description: Agent Version like 3.4.0.0
+          type: string
+          x-go-name: Version
+          example: 3.4.0.0
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations
     ScheduleInput:
       type: object
       required:
@@ -821,6 +759,65 @@ components:
           format: int64
           x-go-name: StartTime
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
+    NullInt64:
+      type: object
+      properties:
+        Int64:
+          type: integer
+          format: int64
+        Valid:
+          type: boolean
+      x-go-package: github.com/picusnext/picus-ng-lib/go/kit/types
+    Pagination:
+      type: object
+      properties:
+        limit:
+          description: Limit
+          type: integer
+          format: int64
+          x-go-name: Limit
+          example: 20
+        offset:
+          description: Offset
+          type: integer
+          format: int64
+          x-go-name: Offset
+          example: 0
+        total_count:
+          description: Total Count
+          type: integer
+          format: int64
+          x-go-name: TotalCount
+          example: 100
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/apirequest
+    StatusDetails:
+      type: object
+      properties:
+        detection:
+          $ref: '#/components/schemas/ThreatCounts'
+        prevention:
+          $ref: '#/components/schemas/ThreatCounts'
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/dto
+    SimulationRunApiOutput:
+      type: object
+      properties:
+        browser:
+          description: Run Browser Info
+          type: string
+          x-go-name: Browser
+          example: BrowserUnknown
+        id:
+          description: Run Id (1)
+          type: integer
+          format: uint64
+          x-go-name: ID
+          example: 1
+        status:
+          description: Run Status (COMPLETED | RUNNING)
+          type: string
+          x-go-name: Status
+          example: COMPLETED
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
     AssessmentProtocol:
       type: object
       properties:
@@ -838,15 +835,6 @@ components:
           - http
           - https
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/internal_service_dto
-    NullInt64:
-      type: object
-      properties:
-        Int64:
-          type: integer
-          format: int64
-        Valid:
-          type: boolean
-      x-go-package: github.com/picusnext/picus-ng-lib/go/kit/types
     SimulationApiOutput:
       type: object
       properties:
@@ -914,6 +902,36 @@ components:
         template_id:
           $ref: '#/components/schemas/NullInt64'
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
+    ThreatCounts:
+      type: object
+      properties:
+        completed_threat_count:
+          type: integer
+          format: int64
+          x-go-name: Completed
+        total_threat_count:
+          type: integer
+          format: int64
+          x-go-name: Total
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/dto
+    Detection:
+      type: object
+      properties:
+        integrations:
+          description: Integration List
+          type: array
+          items:
+            $ref: '#/components/schemas/Enrichment'
+          x-go-name: Enrichments
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations
+    NullBool:
+      type: object
+      properties:
+        Bool:
+          type: boolean
+        Valid:
+          type: boolean
+      x-go-package: github.com/picusnext/picus-ng-lib/go/kit/types
     SimulationRunReturn:
       type: object
       properties:
@@ -947,24 +965,6 @@ components:
           x-go-name: Status
           example: RUNNING | COMPLETED | STOPPED | NOT STARTED | SCHEDULED | WAITING FOR THE FIRST RUN
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations
-    Detection:
-      type: object
-      properties:
-        integrations:
-          description: Integration List
-          type: array
-          items:
-            $ref: '#/components/schemas/Enrichment'
-          x-go-name: Enrichments
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/simulations
-    StatusDetails:
-      type: object
-      properties:
-        detection:
-          $ref: '#/components/schemas/ThreatCounts'
-        prevention:
-          $ref: '#/components/schemas/ThreatCounts'
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/dto
     SimulationSummary:
       type: object
       properties:

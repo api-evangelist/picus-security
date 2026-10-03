@@ -56,6 +56,18 @@ components:
                 items:
                   $ref: '#/components/schemas/IntegrationAgent'
                 x-go-name: IntegrationAgents
+    IntegrationsReturnSwagger:
+      description: IntegrationsReturnSwagger
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              integrations:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IntegrationSummary'
+                x-go-name: Integrations
     genericErrorSwagger:
       description: genericErrorSwagger is represents the erroneous cases
       content:
@@ -80,19 +92,60 @@ components:
                 description: Error Message that contains information about error
                 type: string
                 x-go-name: Message
-    IntegrationsReturnSwagger:
-      description: IntegrationsReturnSwagger
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              integrations:
-                type: array
-                items:
-                  $ref: '#/components/schemas/IntegrationSummary'
-                x-go-name: Integrations
   schemas:
+    IntegrationAgent:
+      type: object
+      properties:
+        created_at:
+          description: Created At
+          type: integer
+          format: int64
+          x-go-name: CreatedAt
+        id:
+          description: Identifier
+          type: integer
+          format: uint64
+          x-go-name: Id
+        installed:
+          description: Is Integration Agent installed
+          type: boolean
+          x-go-name: Installed
+        name:
+          description: Integration Agent Name
+          type: string
+          x-go-name: Name
+        status:
+          description: Integration Agent Status (Dead / Alive)
+          type: string
+          x-go-name: Status
+        token_expired:
+          description: Is Integration Agent Installation token expired
+          type: boolean
+          x-go-name: TokenExpired
+        updated_at:
+          description: Updated At
+          type: integer
+          format: int64
+          x-go-name: UpdatedAt
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/integrations
+    HealthStatusError:
+      type: object
+      properties:
+        message:
+          description: Error Detail from coming integrated product.
+          type: string
+          x-go-name: ErrorDetail
+        step:
+          description: Error Step like (Connection | Authentication | Log Storage | Peer-Manager Communication | vendor | os | alert | log)
+          type: string
+          x-go-name: Step
+          example: Connection | Authentication | Log Storage | Peer-Manager Communication | vendor | os | alert | log
+        type:
+          description: Error Title like Microsoft Defender for Endpoint Authentication Check Step Error.
+          type: string
+          x-go-name: ErrorTitle
+          example: Microsoft Defender for Endpoint Authentication Check Step Error
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/integrations
     IntegrationSummary:
       type: object
       properties:
@@ -159,24 +212,6 @@ components:
           x-go-name: UpdatedAt
           example: 1645625919624
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/integrations
-    HealthStatusError:
-      type: object
-      properties:
-        message:
-          description: Error Detail from coming integrated product.
-          type: string
-          x-go-name: ErrorDetail
-        step:
-          description: Error Step like (Connection | Authentication | Log Storage | Peer-Manager Communication | vendor | os | alert | log)
-          type: string
-          x-go-name: Step
-          example: Connection | Authentication | Log Storage | Peer-Manager Communication | vendor | os | alert | log
-        type:
-          description: Error Title like Microsoft Defender for Endpoint Authentication Check Step Error.
-          type: string
-          x-go-name: ErrorTitle
-          example: Microsoft Defender for Endpoint Authentication Check Step Error
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/integrations
     HealthStatusSummary:
       type: object
       properties:
@@ -187,41 +222,6 @@ components:
           type: boolean
           x-go-name: Healthy
           example: false
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/integrations
-    IntegrationAgent:
-      type: object
-      properties:
-        created_at:
-          description: Created At
-          type: integer
-          format: int64
-          x-go-name: CreatedAt
-        id:
-          description: Identifier
-          type: integer
-          format: uint64
-          x-go-name: Id
-        installed:
-          description: Is Integration Agent installed
-          type: boolean
-          x-go-name: Installed
-        name:
-          description: Integration Agent Name
-          type: string
-          x-go-name: Name
-        status:
-          description: Integration Agent Status (Dead / Alive)
-          type: string
-          x-go-name: Status
-        token_expired:
-          description: Is Integration Agent Installation token expired
-          type: boolean
-          x-go-name: TokenExpired
-        updated_at:
-          description: Updated At
-          type: integer
-          format: int64
-          x-go-name: UpdatedAt
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/integrations
   securitySchemes:
     Access-Token:
