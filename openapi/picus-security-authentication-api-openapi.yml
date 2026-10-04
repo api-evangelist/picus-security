@@ -122,44 +122,6 @@ components:
                 type: string
                 x-go-name: Message
                 example: unauthorized error
-    AuthTokenResponse:
-      description: AuthTokenResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              expire_at:
-                description: When access token is expired at
-                type: integer
-                format: int64
-                x-go-name: ExpireAt
-                example: 1650875751
-              token:
-                description: Access Token
-                type: string
-                x-go-name: Token
-                example: access_token
-    validationErrorSwagger:
-      description: validationErrorSwagger is represents the erroneous cases
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              errors:
-                description: Validation Error List
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example:
-                  param: tag=max, param=25, given value=1000
-              message:
-                description: Message will be "validation error"
-                type: string
-                x-go-name: Message
-                example: validation error
     genericErrorSwagger:
       description: genericErrorSwagger is represents the erroneous cases
       content:
@@ -184,6 +146,44 @@ components:
                 description: Error Message that contains information about error
                 type: string
                 x-go-name: Message
+    validationErrorSwagger:
+      description: validationErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                description: Validation Error List
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example:
+                  param: tag=max, param=25, given value=1000
+              message:
+                description: Message will be "validation error"
+                type: string
+                x-go-name: Message
+                example: validation error
+    AuthTokenResponse:
+      description: AuthTokenResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              expire_at:
+                description: When access token is expired at
+                type: integer
+                format: int64
+                x-go-name: ExpireAt
+                example: 1650875751
+              token:
+                description: Access Token
+                type: string
+                x-go-name: Token
+                example: access_token
   securitySchemes:
     Access-Token:
       description: After getting the access token, type <i>Bearer accessToken</i> to the Value input box to request access to the below endpoints For example <i>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</i>

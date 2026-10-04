@@ -59,37 +59,6 @@ paths:
       - url: https://api.picussecurity.com/
 components:
   responses:
-    unauthorizedErrorSwagger:
-      description: unauthorizedErrorSwagger is represents unauthorized error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-                example: unauthorized error
-    validationErrorSwagger:
-      description: validationErrorSwagger is represents the erroneous cases
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              errors:
-                description: Validation Error List
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example:
-                  param: tag=max, param=25, given value=1000
-              message:
-                description: Message will be "validation error"
-                type: string
-                x-go-name: Message
-                example: validation error
     GetActivityLogsInputResponse:
       description: ''
       content:
@@ -104,6 +73,17 @@ components:
                 x-go-name: ActivityLogs
               pages:
                 $ref: '#/components/schemas/Pagination'
+    unauthorizedErrorSwagger:
+      description: unauthorizedErrorSwagger is represents unauthorized error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+                example: unauthorized error
     genericErrorSwagger:
       description: genericErrorSwagger is represents the erroneous cases
       content:
@@ -128,7 +108,49 @@ components:
                 description: Error Message that contains information about error
                 type: string
                 x-go-name: Message
+    validationErrorSwagger:
+      description: validationErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                description: Validation Error List
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example:
+                  param: tag=max, param=25, given value=1000
+              message:
+                description: Message will be "validation error"
+                type: string
+                x-go-name: Message
+                example: validation error
   schemas:
+    Pagination:
+      type: object
+      properties:
+        limit:
+          description: Limit
+          type: integer
+          format: int64
+          x-go-name: Limit
+          example: 20
+        offset:
+          description: Offset
+          type: integer
+          format: int64
+          x-go-name: Offset
+          example: 0
+        total_count:
+          description: Total Count
+          type: integer
+          format: int64
+          x-go-name: TotalCount
+          example: 100
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/apirequest
     ActivityLog:
       type: object
       properties:
@@ -158,28 +180,6 @@ components:
           x-go-name: Ip
           example: 123.123.123.123
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
-    Pagination:
-      type: object
-      properties:
-        limit:
-          description: Limit
-          type: integer
-          format: int64
-          x-go-name: Limit
-          example: 20
-        offset:
-          description: Offset
-          type: integer
-          format: int64
-          x-go-name: Offset
-          example: 0
-        total_count:
-          description: Total Count
-          type: integer
-          format: int64
-          x-go-name: TotalCount
-          example: 100
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/apirequest
   securitySchemes:
     Access-Token:
       description: After getting the access token, type <i>Bearer accessToken</i> to the Value input box to request access to the below endpoints For example <i>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</i>

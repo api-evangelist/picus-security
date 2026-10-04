@@ -172,6 +172,18 @@ paths:
       - url: https://api.picussecurity.com/
 components:
   responses:
+    GetSimAgentInstallTokenResponse:
+      description: GetSimAgentInstallTokenResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token:
+                description: Token
+                type: string
+                x-go-name: Token
+                example: ebsys....
     fileResponse:
       description: A file download response
       content:
@@ -203,59 +215,6 @@ components:
                 type: string
                 x-go-name: Version
                 example: '1.2'
-    GetSimAgentInstallTokenResponse:
-      description: GetSimAgentInstallTokenResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              token:
-                description: Token
-                type: string
-                x-go-name: Token
-                example: ebsys....
-    AgentDetailReturnSwagger:
-      description: AgentDetailReturnSwagger
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              Agent:
-                $ref: '#/components/schemas/AgentDetailReturn'
-    validationErrorSwagger:
-      description: validationErrorSwagger is represents the erroneous cases
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              errors:
-                description: Validation Error List
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example:
-                  param: tag=max, param=25, given value=1000
-              message:
-                description: Message will be "validation error"
-                type: string
-                x-go-name: Message
-                example: validation error
-    AgentsReturnSwagger:
-      description: AgentsReturnSwagger
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              agents:
-                type: array
-                items:
-                  $ref: '#/components/schemas/AgentReturn'
-                x-go-name: Agents
     genericErrorSwagger:
       description: genericErrorSwagger is represents the erroneous cases
       content:
@@ -280,7 +239,62 @@ components:
                 description: Error Message that contains information about error
                 type: string
                 x-go-name: Message
+    AgentDetailReturnSwagger:
+      description: AgentDetailReturnSwagger
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              Agent:
+                $ref: '#/components/schemas/AgentDetailReturn'
+    AgentsReturnSwagger:
+      description: AgentsReturnSwagger
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              agents:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AgentReturn'
+                x-go-name: Agents
+    validationErrorSwagger:
+      description: validationErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                description: Validation Error List
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example:
+                  param: tag=max, param=25, given value=1000
+              message:
+                description: Message will be "validation error"
+                type: string
+                x-go-name: Message
+                example: validation error
   schemas:
+    AffectedPlatform:
+      type: object
+      properties:
+        architecture:
+          description: Affected Platform Architecture
+          type: string
+          x-go-name: Architecture
+          example: 32-bit
+        name:
+          description: Affected Platform Name
+          type: string
+          x-go-name: Name
+          example: Windows Server 2022
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
     AgentReturn:
       type: object
       properties:
@@ -327,37 +341,29 @@ components:
           x-go-name: Version
           example: 3.4.0.0
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
-    Module:
+    Device:
       type: object
       properties:
-        enabled:
-          description: Is Attack Module Enable
-          type: boolean
-          x-go-name: Enabled
         id:
-          description: Attack Module Id
+          description: Identifier
           type: integer
-          format: int64
+          format: uint64
           x-go-name: Id
         name:
-          description: Attack Module like File Download
+          description: Security Device Name like FortiWeb
           type: string
           x-go-name: Name
-          example: File Download
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
-    AffectedPlatform:
-      type: object
-      properties:
-        architecture:
-          description: Affected Platform Architecture
+          example: FortiWeb
+        product_platform:
+          description: Product Platform like FGWVM
           type: string
-          x-go-name: Architecture
-          example: 32-bit
-        name:
-          description: Affected Platform Name
+          x-go-name: ProductPlatform
+          example: FGWVM
+        product_version:
+          description: Product version
           type: string
-          x-go-name: Name
-          example: Windows Server 2022
+          x-go-name: ProductVersion
+          example: 6.3.7
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
     AgentDetailReturn:
       type: object
@@ -434,29 +440,23 @@ components:
           x-go-name: Version
           example: 3.4.0.0
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
-    Device:
+    Module:
       type: object
       properties:
+        enabled:
+          description: Is Attack Module Enable
+          type: boolean
+          x-go-name: Enabled
         id:
-          description: Identifier
+          description: Attack Module Id
           type: integer
-          format: uint64
+          format: int64
           x-go-name: Id
         name:
-          description: Security Device Name like FortiWeb
+          description: Attack Module like File Download
           type: string
           x-go-name: Name
-          example: FortiWeb
-        product_platform:
-          description: Product Platform like FGWVM
-          type: string
-          x-go-name: ProductPlatform
-          example: FGWVM
-        product_version:
-          description: Product version
-          type: string
-          x-go-name: ProductVersion
-          example: 6.3.7
+          example: File Download
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
   securitySchemes:
     Access-Token:

@@ -181,30 +181,6 @@ paths:
                   example: 2
 components:
   responses:
-    AssignRoleReturnSwagger:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                description: Success status of the update operation
-                type: boolean
-                x-go-name: Success
-                example: true
-    DeleteUserReturnSwagger:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                description: Success status of the deletion operation
-                type: boolean
-                x-go-name: Success
-                example: true
     InviteUserReturnSwagger:
       description: ''
       content:
@@ -227,26 +203,30 @@ components:
                 type: string
                 x-go-name: Message
                 example: unauthorized error
-    validationErrorSwagger:
-      description: validationErrorSwagger is represents the erroneous cases
+    DeleteUserReturnSwagger:
+      description: ''
       content:
         application/json:
           schema:
             type: object
             properties:
-              errors:
-                description: Validation Error List
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example:
-                  param: tag=max, param=25, given value=1000
-              message:
-                description: Message will be "validation error"
-                type: string
-                x-go-name: Message
-                example: validation error
+              success:
+                description: Success status of the deletion operation
+                type: boolean
+                x-go-name: Success
+                example: true
+    AssignRoleReturnSwagger:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                description: Success status of the update operation
+                type: boolean
+                x-go-name: Success
+                example: true
     genericErrorSwagger:
       description: genericErrorSwagger is represents the erroneous cases
       content:
@@ -271,20 +251,6 @@ components:
                 description: Error Message that contains information about error
                 type: string
                 x-go-name: Message
-    GetRolesReturnSwagger:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              pages:
-                $ref: '#/components/schemas/Pagination'
-              roles:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Role'
-                x-go-name: Roles
     GetUsersInputResponse:
       description: ''
       content:
@@ -299,27 +265,41 @@ components:
                 items:
                   $ref: '#/components/schemas/User'
                 x-go-name: Users
+    validationErrorSwagger:
+      description: validationErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                description: Validation Error List
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example:
+                  param: tag=max, param=25, given value=1000
+              message:
+                description: Message will be "validation error"
+                type: string
+                x-go-name: Message
+                example: validation error
+    GetRolesReturnSwagger:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              pages:
+                $ref: '#/components/schemas/Pagination'
+              roles:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Role'
+                x-go-name: Roles
   schemas:
-    InviteUserRequest:
-      type: object
-      properties:
-        email:
-          description: Email
-          type: string
-          x-go-name: Email
-          example: abc@def.com
-        login_type:
-          description: LoginType
-          type: string
-          x-go-name: LoginType
-          example: sso
-        role_id:
-          description: RoleID
-          type: integer
-          format: uint64
-          x-go-name: RoleID
-          example: 4567
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
     Pagination:
       type: object
       properties:
@@ -342,6 +322,26 @@ components:
           x-go-name: TotalCount
           example: 100
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/apirequest
+    InviteUserRequest:
+      type: object
+      properties:
+        email:
+          description: Email
+          type: string
+          x-go-name: Email
+          example: abc@def.com
+        login_type:
+          description: LoginType
+          type: string
+          x-go-name: LoginType
+          example: sso
+        role_id:
+          description: RoleID
+          type: integer
+          format: uint64
+          x-go-name: RoleID
+          example: 4567
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
     Role:
       type: object
       properties:
