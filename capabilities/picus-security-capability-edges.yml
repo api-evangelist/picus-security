@@ -1,0 +1,70 @@
+slug: picus-security
+provider: Picus Security
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Mitigation
+  spec_file: picus-security-mitigation-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.85
+  evidence: 'POST /v1/mitigation/detection-content/custom  # Create Custom Detection Content; GET /v1/mitigation/detection-content/mitre/techniques  #
+    Get MITRE ATT&CK Techniques'
+  reason: Operations create and manage detection rules/content mapped to MITRE ATT&CK tactics and techniques,
+    with log sources and vendor rule responses (e.g. CrowdStrikeIOARuleResponse). This is SIEM/SOC detection
+    engineering, i.e. threat detection and response.
+- tag: Simulation-Latest-Result
+  spec_file: picus-security-simulation-latest-result-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.8
+  evidence: 'GET /v1/simulations/{Id}/run/latest/threats  # Threats - Objectives - Actions; schemas SimulationResultsPreventionDTO,
+    SimulationResultsDetectionDTO'
+  reason: Returns breach-and-attack-simulation run outcomes scoring prevention and detection effectiveness
+    against MITRE ATT&CK and Unified Kill Chain. Clearly cybersecurity management; the evidence straddles
+    detection validation and control/exposure assurance, so no single L2 is named.
+- tag: Simulation-Result
+  spec_file: picus-security-simulation-result-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.8
+  evidence: 'GET /v1/simulations/{Id}/run/{RunId}/threats/{ThreatId}/actions/{ActionId}/integrations/{IntegrationId}/alerts  #
+    Integration based Alert Details for Actions'
+  reason: Reads adversary-simulation run results including per-action alerts and raw logs from security
+    tooling integrations, with DetectionResult and prevention/detection DTOs. Cybersecurity at L1; the
+    specific sub-capability (detection response vs control validation) is ambiguous.
+- tag: Simulations
+  spec_file: picus-security-simulations-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.8
+  evidence: 'POST /v1/simulations  # Create Simulation; PUT /v1/simulations/{Id}/cancel  # Cancel Simulation;
+    POST /v1/simulations/{Id}/simulate-now  # Simulate Now'
+  reason: Full CRUD plus scheduling and on-demand execution of adversary attack simulations against the
+    customer's controls (SimulationProtocol, ThreatCounts, Detection schemas). This is cybersecurity control
+    validation; no single candidate L2 cleanly covers breach-and-attack simulation.
+- tag: Threats
+  spec_file: picus-security-threats-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.8
+  evidence: 'GET /v1/threat-library/threat-actors # List Threat Actors; GET /v1/threat-library/threats
+    # Threat List; schemas: ThreatActor, MitreDTO, SubTechnique'
+  reason: A threat library of adversary techniques, MITRE mappings and threat actors used to simulate
+    attacks is unambiguously cybersecurity content. L1 Cybersecurity Management is safe; the library straddles
+    threat intelligence, detection validation and exposure testing, so no single L2 is confidently supported.
