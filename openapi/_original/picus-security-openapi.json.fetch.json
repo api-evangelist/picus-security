@@ -1,0 +1,12 @@
+{
+ "url": "https://api.picussecurity.com/swagger.json",
+ "requested_url": "https://api.picussecurity.com/swagger.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 381172,
+ "sha256": "cb0fa3dcf51f8fe6e801a202c8d77a3c2de667b635f4a02323bb4ffdb46b3b34",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.988), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
