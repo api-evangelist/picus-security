@@ -1,0 +1,64 @@
+generated: '2026-10-14'
+method: searched
+checked:
+- crowdstrike/integrations/crowdstrike-integration-edges.yml
+- palo-alto-networks/integrations/palo-alto-networks-integration-edges.yml
+- splunk/integrations/splunk-integration-edges.yml
+source:
+- crowdstrike/integrations/crowdstrike-integration-edges.yml
+- palo-alto-networks/integrations/palo-alto-networks-integration-edges.yml
+- splunk/integrations/splunk-integration-edges.yml
+edges:
+- partner_name: CrowdStrike (own)
+  partner: crowdstrike
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.crowdstrike.com/listings/picus-security-validation-platform/
+  mirror_of: crowdstrike/integrations/crowdstrike-integration-edges.yml
+  apps:
+  - Picus Security Validation Platform
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+- partner_name: Palo Alto Networks (own)
+  partner: palo-alto-networks
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://cortex.marketplace.pan.dev/marketplace/details/PicusNGAutomation/
+  mirror_of: palo-alto-networks/integrations/palo-alto-networks-integration-edges.yml
+  apps:
+  - PicusNGAutomation
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Network Security
+  badges:
+  - support:partner
+- partner_name: Splunk (own)
+  partner: splunk
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://splunkbase.splunk.com/app/6861/
+  mirror_of: splunk/integrations/splunk-integration-edges.yml
+  apps:
+  - Picus Security App For Splunk
+  - Picus Security Add-on for Splunk
+  listing_count: 2
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: app
