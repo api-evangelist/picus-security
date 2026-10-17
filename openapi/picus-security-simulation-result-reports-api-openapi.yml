@@ -169,6 +169,71 @@ paths:
       - url: https://api.picussecurity.com/
 components:
   responses:
+    validationErrorSwagger:
+      description: validationErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                description: Validation Error List
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example:
+                  param: tag=max, param=25, given value=1000
+              message:
+                description: Message will be "validation error"
+                type: string
+                x-go-name: Message
+                example: validation error
+    genericErrorSwagger:
+      description: genericErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error Code is optional. It is using for define specific error types.
+                type: integer
+                format: int64
+                x-go-name: ErrorCode
+                example: 1001
+              errors:
+                description: Errors are optional. If there are multiple error, this field gives details.
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example: '["error1", "error2"]'
+              message:
+                description: Error Message that contains information about error
+                type: string
+                x-go-name: Message
+    notFoundErrorSwagger:
+      description: notFoundErrorSwagger represents not found error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+                example: not found error
+    SimulationReportDownloadUrlResponse:
+      description: SimulationReportDownloadUrlResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              downloadUrl:
+                type: string
+                x-go-name: DownloadUrl
     fileResponse:
       description: A file download response
       content:
@@ -189,36 +254,6 @@ components:
                 type: string
                 x-go-name: Message
                 example: internal server error
-    unauthorizedErrorSwagger:
-      description: unauthorizedErrorSwagger is represents unauthorized error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-                example: unauthorized error
-    notFoundErrorSwagger:
-      description: notFoundErrorSwagger represents not found error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-                example: not found error
-    GenerateSimulationReportResponse:
-      description: GenerateSimulationReportResponse
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/SimulationReportBasicOutput'
     SimulationReportDetailResponse:
       description: SimulationReportDetailResponse
       content:
@@ -254,81 +289,26 @@ components:
                 type: string
                 x-go-name: Status
                 example: COMPLETED
-    genericErrorSwagger:
-      description: genericErrorSwagger is represents the erroneous cases
+    GenerateSimulationReportResponse:
+      description: GenerateSimulationReportResponse
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/SimulationReportBasicOutput'
+    unauthorizedErrorSwagger:
+      description: unauthorizedErrorSwagger is represents unauthorized error
       content:
         application/json:
           schema:
             type: object
             properties:
-              error_code:
-                description: Error Code is optional. It is using for define specific error types.
-                type: integer
-                format: int64
-                x-go-name: ErrorCode
-                example: 1001
-              errors:
-                description: Errors are optional. If there are multiple error, this field gives details.
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example: '["error1", "error2"]'
               message:
-                description: Error Message that contains information about error
                 type: string
                 x-go-name: Message
-    SimulationReportDownloadUrlResponse:
-      description: SimulationReportDownloadUrlResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              downloadUrl:
-                type: string
-                x-go-name: DownloadUrl
-    validationErrorSwagger:
-      description: validationErrorSwagger is represents the erroneous cases
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              errors:
-                description: Validation Error List
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example:
-                  param: tag=max, param=25, given value=1000
-              message:
-                description: Message will be "validation error"
-                type: string
-                x-go-name: Message
-                example: validation error
+                example: unauthorized error
   schemas:
-    GenerateSimulationReportInput:
-      type: object
-      properties:
-        format:
-          description: 'Corresponding report will be generated for each format specified. Available formats: PDF, CSV'
-          type: array
-          items:
-            type: string
-          x-go-name: Formats
-          example:
-          - PDF
-        includesSensitiveData:
-          description: If false, generated report will display threat information with access links (Only for CSV reports)
-          type: boolean
-          x-go-name: IncludesSensitiveData
-        onlyPrevention:
-          description: If true, generated report will include only prevention results
-          type: boolean
-          x-go-name: OnlyPrevention
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
     SimulationReportBasicOutput:
       type: object
       properties:
@@ -348,6 +328,26 @@ components:
           type: string
           x-go-name: Status
           example: COMPLETED
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
+    GenerateSimulationReportInput:
+      type: object
+      properties:
+        format:
+          description: 'Corresponding report will be generated for each format specified. Available formats: PDF, CSV'
+          type: array
+          items:
+            type: string
+          x-go-name: Formats
+          example:
+          - PDF
+        includesSensitiveData:
+          description: If false, generated report will display threat information with access links (Only for CSV reports)
+          type: boolean
+          x-go-name: IncludesSensitiveData
+        onlyPrevention:
+          description: If true, generated report will include only prevention results
+          type: boolean
+          x-go-name: OnlyPrevention
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request/customer_api_dto
   securitySchemes:
     Access-Token:

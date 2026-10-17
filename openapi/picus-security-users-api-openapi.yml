@@ -181,28 +181,6 @@ paths:
                   example: 2
 components:
   responses:
-    InviteUserReturnSwagger:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              id:
-                type: integer
-                format: uint64
-                x-go-name: ID
-    unauthorizedErrorSwagger:
-      description: unauthorizedErrorSwagger is represents unauthorized error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-                x-go-name: Message
-                example: unauthorized error
     DeleteUserReturnSwagger:
       description: ''
       content:
@@ -215,42 +193,17 @@ components:
                 type: boolean
                 x-go-name: Success
                 example: true
-    AssignRoleReturnSwagger:
+    InviteUserReturnSwagger:
       description: ''
       content:
         application/json:
           schema:
             type: object
             properties:
-              success:
-                description: Success status of the update operation
-                type: boolean
-                x-go-name: Success
-                example: true
-    genericErrorSwagger:
-      description: genericErrorSwagger is represents the erroneous cases
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error_code:
-                description: Error Code is optional. It is using for define specific error types.
+              id:
                 type: integer
-                format: int64
-                x-go-name: ErrorCode
-                example: 1001
-              errors:
-                description: Errors are optional. If there are multiple error, this field gives details.
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example: '["error1", "error2"]'
-              message:
-                description: Error Message that contains information about error
-                type: string
-                x-go-name: Message
+                format: uint64
+                x-go-name: ID
     GetUsersInputResponse:
       description: ''
       content:
@@ -285,6 +238,30 @@ components:
                 type: string
                 x-go-name: Message
                 example: validation error
+    genericErrorSwagger:
+      description: genericErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error Code is optional. It is using for define specific error types.
+                type: integer
+                format: int64
+                x-go-name: ErrorCode
+                example: 1001
+              errors:
+                description: Errors are optional. If there are multiple error, this field gives details.
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example: '["error1", "error2"]'
+              message:
+                description: Error Message that contains information about error
+                type: string
+                x-go-name: Message
     GetRolesReturnSwagger:
       description: ''
       content:
@@ -299,7 +276,82 @@ components:
                 items:
                   $ref: '#/components/schemas/Role'
                 x-go-name: Roles
+    AssignRoleReturnSwagger:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                description: Success status of the update operation
+                type: boolean
+                x-go-name: Success
+                example: true
+    unauthorizedErrorSwagger:
+      description: unauthorizedErrorSwagger is represents unauthorized error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+                example: unauthorized error
   schemas:
+    User:
+      type: object
+      properties:
+        email:
+          description: Email
+          type: string
+          x-go-name: Email
+          example: abc@def.com
+        last_login_time:
+          description: Event Time
+          type: string
+          format: date-time
+          x-go-name: LastLoginTime
+          example: '1743141698'
+        login_type:
+          description: LoginType
+          type: string
+          x-go-name: LoginType
+          example: sso
+        role:
+          description: Role
+          type: string
+          x-go-name: Role
+          example: admin
+        role_id:
+          description: RoleID
+          type: integer
+          format: uint64
+          x-go-name: RoleID
+          example: 4567
+        user_id:
+          description: UserID
+          type: integer
+          format: uint64
+          x-go-name: UserID
+          example: 1234
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
+    Role:
+      type: object
+      properties:
+        id:
+          description: ID
+          type: integer
+          format: uint64
+          x-go-name: ID
+          example: 1
+        name:
+          description: Name
+          type: string
+          x-go-name: Name
+          example: Owner
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
     Pagination:
       type: object
       properties:
@@ -341,58 +393,6 @@ components:
           format: uint64
           x-go-name: RoleID
           example: 4567
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
-    Role:
-      type: object
-      properties:
-        id:
-          description: ID
-          type: integer
-          format: uint64
-          x-go-name: ID
-          example: 1
-        name:
-          description: Name
-          type: string
-          x-go-name: Name
-          example: Owner
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
-    User:
-      type: object
-      properties:
-        email:
-          description: Email
-          type: string
-          x-go-name: Email
-          example: abc@def.com
-        last_login_time:
-          description: Event Time
-          type: string
-          format: date-time
-          x-go-name: LastLoginTime
-          example: '1743141698'
-        login_type:
-          description: LoginType
-          type: string
-          x-go-name: LoginType
-          example: sso
-        role:
-          description: Role
-          type: string
-          x-go-name: Role
-          example: admin
-        role_id:
-          description: RoleID
-          type: integer
-          format: uint64
-          x-go-name: RoleID
-          example: 4567
-        user_id:
-          description: UserID
-          type: integer
-          format: uint64
-          x-go-name: UserID
-          example: 1234
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/internal_request
   securitySchemes:
     Access-Token:

@@ -172,82 +172,6 @@ paths:
       - url: https://api.picussecurity.com/
 components:
   responses:
-    GetSimAgentInstallTokenResponse:
-      description: GetSimAgentInstallTokenResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              token:
-                description: Token
-                type: string
-                x-go-name: Token
-                example: ebsys....
-    fileResponse:
-      description: A file download response
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              type: integer
-              format: uint8
-    GetSimAgentDownloadLinkResponse:
-      description: GetSimAgentDownloadLinkResponse
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              link:
-                description: Link
-                type: string
-                x-go-name: Link
-                example: '"https://download.picusnext.com/agents/windows/portable/1.0.0.0/picus-agent-windows-portable-1.0.0.0.exe"'
-              short_url:
-                description: ShortURL
-                type: string
-                x-go-name: ShortURL
-                example: https://cutt.ly/1234567890
-              version:
-                description: Version
-                type: string
-                x-go-name: Version
-                example: '1.2'
-    genericErrorSwagger:
-      description: genericErrorSwagger is represents the erroneous cases
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error_code:
-                description: Error Code is optional. It is using for define specific error types.
-                type: integer
-                format: int64
-                x-go-name: ErrorCode
-                example: 1001
-              errors:
-                description: Errors are optional. If there are multiple error, this field gives details.
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example: '["error1", "error2"]'
-              message:
-                description: Error Message that contains information about error
-                type: string
-                x-go-name: Message
-    AgentDetailReturnSwagger:
-      description: AgentDetailReturnSwagger
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              Agent:
-                $ref: '#/components/schemas/AgentDetailReturn'
     AgentsReturnSwagger:
       description: AgentsReturnSwagger
       content:
@@ -280,21 +204,83 @@ components:
                 type: string
                 x-go-name: Message
                 example: validation error
+    GetSimAgentDownloadLinkResponse:
+      description: GetSimAgentDownloadLinkResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              link:
+                description: Link
+                type: string
+                x-go-name: Link
+                example: '"https://download.picusnext.com/agents/windows/portable/1.0.0.0/picus-agent-windows-portable-1.0.0.0.exe"'
+              short_url:
+                description: ShortURL
+                type: string
+                x-go-name: ShortURL
+                example: https://cutt.ly/1234567890
+              version:
+                description: Version
+                type: string
+                x-go-name: Version
+                example: '1.2'
+    AgentDetailReturnSwagger:
+      description: AgentDetailReturnSwagger
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              Agent:
+                $ref: '#/components/schemas/AgentDetailReturn'
+    genericErrorSwagger:
+      description: genericErrorSwagger is represents the erroneous cases
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_code:
+                description: Error Code is optional. It is using for define specific error types.
+                type: integer
+                format: int64
+                x-go-name: ErrorCode
+                example: 1001
+              errors:
+                description: Errors are optional. If there are multiple error, this field gives details.
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example: '["error1", "error2"]'
+              message:
+                description: Error Message that contains information about error
+                type: string
+                x-go-name: Message
+    GetSimAgentInstallTokenResponse:
+      description: GetSimAgentInstallTokenResponse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token:
+                description: Token
+                type: string
+                x-go-name: Token
+                example: ebsys....
+    fileResponse:
+      description: A file download response
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: integer
+              format: uint8
   schemas:
-    AffectedPlatform:
-      type: object
-      properties:
-        architecture:
-          description: Affected Platform Architecture
-          type: string
-          x-go-name: Architecture
-          example: 32-bit
-        name:
-          description: Affected Platform Name
-          type: string
-          x-go-name: Name
-          example: Windows Server 2022
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
     AgentReturn:
       type: object
       properties:
@@ -340,6 +326,38 @@ components:
           type: string
           x-go-name: Version
           example: 3.4.0.0
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
+    AffectedPlatform:
+      type: object
+      properties:
+        architecture:
+          description: Affected Platform Architecture
+          type: string
+          x-go-name: Architecture
+          example: 32-bit
+        name:
+          description: Affected Platform Name
+          type: string
+          x-go-name: Name
+          example: Windows Server 2022
+      x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
+    Module:
+      type: object
+      properties:
+        enabled:
+          description: Is Attack Module Enable
+          type: boolean
+          x-go-name: Enabled
+        id:
+          description: Attack Module Id
+          type: integer
+          format: int64
+          x-go-name: Id
+        name:
+          description: Attack Module like File Download
+          type: string
+          x-go-name: Name
+          example: File Download
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
     Device:
       type: object
@@ -439,24 +457,6 @@ components:
           type: string
           x-go-name: Version
           example: 3.4.0.0
-      x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
-    Module:
-      type: object
-      properties:
-        enabled:
-          description: Is Attack Module Enable
-          type: boolean
-          x-go-name: Enabled
-        id:
-          description: Attack Module Id
-          type: integer
-          format: int64
-          x-go-name: Id
-        name:
-          description: Attack Module like File Download
-          type: string
-          x-go-name: Name
-          example: File Download
       x-go-package: github.com/picusnext/picus-digital/go/customer-api/agents
   securitySchemes:
     Access-Token:

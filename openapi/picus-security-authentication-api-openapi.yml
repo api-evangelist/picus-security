@@ -111,17 +111,26 @@ components:
           description: Refresh Token
           schema:
             type: string
-    unauthorizedErrorSwagger:
-      description: unauthorizedErrorSwagger is represents unauthorized error
+    validationErrorSwagger:
+      description: validationErrorSwagger is represents the erroneous cases
       content:
         application/json:
           schema:
             type: object
             properties:
+              errors:
+                description: Validation Error List
+                type: object
+                additionalProperties:
+                  type: string
+                x-go-name: Errors
+                example:
+                  param: tag=max, param=25, given value=1000
               message:
+                description: Message will be "validation error"
                 type: string
                 x-go-name: Message
-                example: unauthorized error
+                example: validation error
     genericErrorSwagger:
       description: genericErrorSwagger is represents the erroneous cases
       content:
@@ -146,26 +155,6 @@ components:
                 description: Error Message that contains information about error
                 type: string
                 x-go-name: Message
-    validationErrorSwagger:
-      description: validationErrorSwagger is represents the erroneous cases
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              errors:
-                description: Validation Error List
-                type: object
-                additionalProperties:
-                  type: string
-                x-go-name: Errors
-                example:
-                  param: tag=max, param=25, given value=1000
-              message:
-                description: Message will be "validation error"
-                type: string
-                x-go-name: Message
-                example: validation error
     AuthTokenResponse:
       description: AuthTokenResponse
       content:
@@ -184,6 +173,17 @@ components:
                 type: string
                 x-go-name: Token
                 example: access_token
+    unauthorizedErrorSwagger:
+      description: unauthorizedErrorSwagger is represents unauthorized error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                x-go-name: Message
+                example: unauthorized error
   securitySchemes:
     Access-Token:
       description: After getting the access token, type <i>Bearer accessToken</i> to the Value input box to request access to the below endpoints For example <i>Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</i>
