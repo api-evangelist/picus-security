@@ -12,7 +12,7 @@
       "source": "https://www.picussecurity.com/resource/tag/article",
       "feed_url": "https://www.picussecurity.com/resource/rss.xml",
       "title": "",
-      "saved": 8,
+      "saved": 0,
       "method": "discovered"
     },
     {
@@ -21,14 +21,8 @@
       "title": "",
       "saved": 0,
       "method": "feed"
-    },
-    {
-      "source": "https://support.picussecurity.com/",
-      "feed_url": "",
-      "saved": 0,
-      "skipped": "community-shaped; a vendor feed already saved this run (roadmap#239)"
     }
   ],
-  "post_count": 8,
-  "fetched": "2026-10-10T13:15:00Z"
+  "post_count": 12,
+  "fetched": "2026-10-17T14:53:57Z"
 }
